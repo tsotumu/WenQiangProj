@@ -2,10 +2,10 @@
 <resources>
     <!--视频频道-->
     <string-array name="video_channel_name">
-        <item>热点</item>
-        <item>搞笑</item>
-        <item>娱乐</item>
-        <item>精品</item>
+        <item>安全</item>
+        <item>维修</item>
+        <item>操作</item>
+        <item>保养</item>
     </string-array>
     <string-array name="video_channel_id">
         <item>V9LG4B3A0</item>

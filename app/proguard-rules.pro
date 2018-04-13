@@ -122,8 +122,8 @@
 
 
 #---------------------------------4.反射相关的类和方法-----------------------
--dontwarn com.jaydenxiao.common.commonutils.**
--keep class com.jaydenxiao.common.commonutils.** { *; }
+-dontwarn com.macojia.common.commonutils.**
+-keep class com.macojia.common.commonutils.** { *; }
 
 #----------------------------------------------------------------------------
 

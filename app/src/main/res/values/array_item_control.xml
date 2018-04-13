@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--管控频道-->
+    <string-array name="control_item_names">
+        <item>产量指标</item>
+        <item>质量指标</item>
+        <item>消耗指标</item>
+        <item>效率指标</item>
+        <item>综合指标</item>
+        <item>质量反馈</item>
+        <item>维修指导</item>
+        <item>进度预测</item>
+    </string-array>
+
+</resources>
