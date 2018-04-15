@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ui.main.activity.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,22 +24,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.news.activity.PhotosDetailActivity"
+        <activity android:name=".activity.news.PhotosDetailActivity"
             android:theme="@style/BaseAppTheme.Trans"
             />
-        <activity android:name=".ui.main.activity.MainActivity"/>
-        <activity android:name=".ui.news.activity.NewsDetailActivity"/>
-        <activity android:name=".ui.news.activity.NewsBrowserActivity"/>
-        <activity android:name=".ui.news.activity.NewsPhotoDetailActivity"/>
-        <activity android:name=".ui.news.activity.NewsChannelActivity"/>
-        <activity android:name=".ui.zone.activity.CircleZoneActivity"/>
-        <activity android:name=".ui.zone.activity.CirclePublishActivity"/>
-        <activity android:name=".ui.news.activity.AboutActivity"/>
-        <activity android:name=".ui.news.activity.QualityIndexActivity"/>
-        <activity android:name=".ui.news.activity.YieldIndexActivity"/>
-        <activity android:name=".ui.news.activity.EfficiencyIndexActivity"/>
-        <activity android:name=".ui.news.activity.CompreIndexActivity"/>
-        <activity android:name=".ui.news.activity.CostIndexActivity"/>
+        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.news.NewsDetailActivity"/>
+        <activity android:name=".activity.news.NewsBrowserActivity"/>
+        <activity android:name=".activity.news.NewsPhotoDetailActivity"/>
+        <activity android:name=".activity.news.NewsChannelActivity"/>
+        <activity android:name=".activity.zone.CircleZoneActivity"/>
+        <activity android:name=".activity.zone.CirclePublishActivity"/>
+        <activity android:name=".activity.news.AboutActivity"/>
+        <activity android:name=".activity.news.QualityIndexActivity"/>
+        <activity android:name=".activity.news.YieldIndexActivity"/>
+        <activity android:name=".activity.news.EfficiencyIndexActivity"/>
+        <activity android:name=".activity.news.CompreIndexActivity"/>
+        <activity android:name=".activity.news.CostIndexActivity"/>
         <!-- 友盟统计 -->
         <meta-data
             android:name="UMENG_APPKEY"

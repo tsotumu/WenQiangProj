@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 /**
  * 基类
  */
+
 /***************使用例子*********************/
 //1.mvp模式
 //public class SampleActivity extends BaseActivity<NewsChanelPresenter, NewsChannelModel>implements NewsChannelContract.View {
@@ -63,21 +64,21 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public E mModel;
     public Context mContext;
     public RxManager mRxManager;
-    private boolean isConfigChange=false;
+    private boolean isConfigChange = false;
 
-        @Override
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        isConfigChange=false;
-        mRxManager=new RxManager();
+        isConfigChange = false;
+        mRxManager = new RxManager();
         doBeforeSetcontentView();
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         mContext = this;
         mPresenter = TUtil.getT(this, 0);
-        mModel=TUtil.getT(this,1);
-        if(mPresenter!=null){
-            mPresenter.mContext=this;
+        mModel = TUtil.getT(this, 1);
+        if (mPresenter != null) {
+            mPresenter.mContext = this;
         }
         this.initPresenter();
         this.initView();
@@ -99,11 +100,14 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         SetStatusBarColor();
 
     }
+
     /*********************子类实现*****************************/
     //获取布局文件
     public abstract int getLayoutId();
+
     //简单页面无需mvp就不用管此方法即可,完美兼容各种实际场景的变通
     public abstract void initPresenter();
+
     //初始化view
     public abstract void initView();
 
@@ -114,25 +118,27 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     private void initTheme() {
         ChangeModeController.setTheme(this, R.style.DayTheme, R.style.NightTheme);
     }
+
     /**
      * 着色状态栏（4.4以上系统有效）
      */
-    protected void SetStatusBarColor(){
-        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this,R.color.main_color));
+    protected void SetStatusBarColor() {
+        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.main_color));
     }
+
     /**
      * 着色状态栏（4.4以上系统有效）
      */
-    protected void SetStatusBarColor(int color){
-        StatusBarCompat.setStatusBarColor(this,color);
+    protected void SetStatusBarColor(int color) {
+        StatusBarCompat.setStatusBarColor(this, color);
     }
+
     /**
      * 沉浸状态栏（4.4以上系统有效）
      */
-    protected void SetTranslanteBar(){
+    protected void SetTranslanteBar() {
         StatusBarCompat.translucentStatusBar(this);
     }
-
 
 
     /**
@@ -224,28 +230,33 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public void showLongToast(String text) {
         ToastUitl.showLong(text);
     }
+
     /**
      * 带图片的toast
+     *
      * @param text
      * @param res
      */
-    public void showToastWithImg(String text,int res) {
-        ToastUitl.showToastWithImg(text,res);
+    public void showToastWithImg(String text, int res) {
+        ToastUitl.showToastWithImg(text, res);
     }
+
     /**
      * 网络访问错误提醒
      */
     public void showNetErrorTip() {
-        ToastUitl.showToastWithImg(getText(R.string.net_error).toString(),R.drawable.ic_wifi_off);
+        ToastUitl.showToastWithImg(getText(R.string.net_error).toString(), R.drawable.ic_wifi_off);
     }
+
     public void showNetErrorTip(String error) {
-        ToastUitl.showToastWithImg(error,R.drawable.ic_wifi_off);
+        ToastUitl.showToastWithImg(error, R.drawable.ic_wifi_off);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         //debug版本不统计crash
-        if(!BuildConfig.LOG_DEBUG) {
+        if (!BuildConfig.LOG_DEBUG) {
             //友盟统计
             MobclickAgent.onResume(this);
         }
@@ -255,7 +266,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     protected void onPause() {
         super.onPause();
         //debug版本不统计crash
-        if(!BuildConfig.LOG_DEBUG) {
+        if (!BuildConfig.LOG_DEBUG) {
             //友盟统计
             MobclickAgent.onPause(this);
         }
@@ -264,7 +275,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        isConfigChange=true;
+        isConfigChange = true;
     }
 
     @Override
@@ -272,10 +283,10 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         super.onDestroy();
         if (mPresenter != null)
             mPresenter.onDestroy();
-        if(mRxManager!=null) {
+        if (mRxManager != null) {
             mRxManager.clear();
         }
-        if(!isConfigChange){
+        if (!isConfigChange) {
             AppManager.getAppManager().finishActivity(this);
         }
         ButterKnife.unbind(this);

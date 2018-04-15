@@ -1,7 +1,7 @@
 package com.macojia.leanproduct.ui.news.presenter;
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.app.AppConstant;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.VideoData;
 import com.macojia.leanproduct.ui.news.contract.VideosListContract;
 import com.macojia.common.baserx.RxSubscriber;

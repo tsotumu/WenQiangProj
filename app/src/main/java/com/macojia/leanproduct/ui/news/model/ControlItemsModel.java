@@ -1,22 +1,14 @@
 package com.macojia.leanproduct.ui.news.model;
 
-import android.content.ClipData;
-
-import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.api.ApiConstants;
 import com.macojia.leanproduct.app.AppApplication;
-import com.macojia.leanproduct.app.AppConstant;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.ItemApp;
-import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.leanproduct.db.ControlItemTableManager;
-import com.macojia.leanproduct.db.NewsChannelTableManager;
 import com.macojia.leanproduct.ui.news.contract.ControlItemContract;
-import com.macojia.leanproduct.ui.news.contract.NewsChannelContract;
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.ACache;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import rx.Observable;

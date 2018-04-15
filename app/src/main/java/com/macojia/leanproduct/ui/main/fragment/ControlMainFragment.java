@@ -1,41 +1,22 @@
 package com.macojia.leanproduct.ui.main.fragment;
 
-import android.os.Build;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.aspsine.irecyclerview.IRecyclerView;
-import com.aspsine.irecyclerview.animation.ScaleInAnimation;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.ItemApp;
-import com.macojia.leanproduct.db.ControlItemTableManager;
-import com.macojia.leanproduct.ui.news.activity.AboutActivity;
 import com.macojia.leanproduct.ui.news.adapter.ItemAppAdapter;
 import com.macojia.leanproduct.ui.news.contract.ControlItemContract;
 import com.macojia.leanproduct.ui.news.model.ControlItemsModel;
 import com.macojia.leanproduct.ui.news.presenter.ControlItemsPresenter;
-import com.macojia.leanproduct.ui.zone.activity.CircleZoneActivity;
 import com.macojia.common.base.BaseFragment;
-import com.macojia.common.commonutils.ImageLoaderUtils;
-import com.macojia.common.commonwidget.WaveView;
-import com.macojia.common.daynightmodeutils.ChangeModeController;
 
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.OnClick;
-
-import static android.support.v7.widget.LinearLayoutManager.*;
 
 /**
  * des:管控主页

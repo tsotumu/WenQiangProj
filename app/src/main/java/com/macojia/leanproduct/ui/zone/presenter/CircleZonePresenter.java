@@ -5,7 +5,7 @@ import android.view.View;
 import com.alibaba.fastjson.JSON;
 import com.aspsine.irecyclerview.bean.PageBean;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.app.AppConstant;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.Result;
 import com.macojia.leanproduct.ui.zone.DatasUtil;
 import com.macojia.leanproduct.ui.zone.bean.CircleItem;

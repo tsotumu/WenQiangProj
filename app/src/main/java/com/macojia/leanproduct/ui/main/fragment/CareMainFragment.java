@@ -1,18 +1,24 @@
 package com.macojia.leanproduct.ui.main.fragment;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.ui.news.activity.AboutActivity;
-import com.macojia.leanproduct.ui.zone.activity.CircleZoneActivity;
+import com.macojia.leanproduct.activity.news.AboutActivity;
+import com.macojia.leanproduct.activity.zone.CircleZoneActivity;
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.commonutils.ImageLoaderUtils;
 import com.macojia.common.commonwidget.WaveView;
 import com.macojia.common.daynightmodeutils.ChangeModeController;
+import com.macojia.leanproduct.ui.main.HotelEntityAdapter;
+import com.macojia.leanproduct.ui.main.model.HotelEntity;
+import com.macojia.leanproduct.ui.main.model.SectionedSpanSizeLookup;
 
+import base.utils.JsonUtils;
 import butterknife.Bind;
 import butterknife.OnClick;
 
@@ -22,12 +28,11 @@ import butterknife.OnClick;
  * on 2016.09.17:07
  */
 public class CareMainFragment extends BaseFragment {
-    @Bind(R.id.ll_friend_zone)
-    LinearLayout llFriendZone;
-    @Bind(R.id.wave_view)
-    WaveView waveView;
-    @Bind(R.id.img_logo)
-    ImageView imgLogo;
+    @Bind(R.id.view_recyclerView)
+    RecyclerView mRecyclerView;
+
+    private HotelEntityAdapter mAdapter;
+
 
     @Override
     protected int getLayoutResource() {
@@ -41,28 +46,28 @@ public class CareMainFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        //设置头像跟着波浪背景浮动
-        ImageLoaderUtils.displayRound(getContext(),imgLogo,R.drawable.bgkobe);
-        final FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(-2,-2);
-        lp.gravity = Gravity.CENTER;
-        waveView.setOnWaveAnimationListener(new WaveView.OnWaveAnimationListener() {
-            @Override
-            public void OnWaveAnimation(float y) {
-                lp.setMargins(0,0,0,(int)y+2);
-                imgLogo.setLayoutParams(lp);
-            }
-        });
+        mAdapter = new HotelEntityAdapter(getContext());
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 3);
+        //设置header
+        manager.setSpanSizeLookup(new SectionedSpanSizeLookup(mAdapter, manager));
+        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setAdapter(mAdapter);
+        HotelEntity entity = JsonUtils.analysisJsonFile(getContext(), "json");
+        mAdapter.setData(entity.allTagsList);
     }
-    @OnClick(R.id.ll_friend_zone)
-    public void friendZone(){
+
+//    @OnClick(R.id.ll_friend_zone)
+    public void friendZone() {
         CircleZoneActivity.startAction(getContext());
     }
-    @OnClick(R.id.ll_daynight_toggle)
-    public void dayNightToggle(){
+
+//    @OnClick(R.id.ll_daynight_toggle)
+    public void dayNightToggle() {
         ChangeModeController.toggleThemeSetting(getActivity());
     }
-    @OnClick(R.id.ll_daynight_about)
-    public void about(){
+
+//    @OnClick(R.id.ll_daynight_about)
+    public void about() {
         AboutActivity.startAction(getContext());
     }
 }

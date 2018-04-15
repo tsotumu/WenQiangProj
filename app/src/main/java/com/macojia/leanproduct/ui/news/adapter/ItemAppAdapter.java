@@ -1,25 +1,19 @@
 package com.macojia.leanproduct.ui.news.adapter;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
 
 import com.aspsine.irecyclerview.universaladapter.ViewHolderHelper;
 import com.aspsine.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
-import com.aspsine.irecyclerview.universaladapter.recyclerview.MultiItemRecycleViewAdapter;
-import com.aspsine.irecyclerview.universaladapter.recyclerview.MultiItemTypeSupport;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.app.AppConstant;
 import com.macojia.leanproduct.bean.ItemApp;
-import com.macojia.leanproduct.ui.news.activity.AboutActivity;
-import com.macojia.leanproduct.ui.news.activity.CompreIndexActivity;
-import com.macojia.leanproduct.ui.news.activity.CostIndexActivity;
-import com.macojia.leanproduct.ui.news.activity.EfficiencyIndexActivity;
-import com.macojia.leanproduct.ui.news.activity.NewsChannelActivity;
-import com.macojia.leanproduct.ui.news.activity.NewsDetailActivity;
-import com.macojia.leanproduct.ui.news.activity.QualityIndexActivity;
-import com.macojia.leanproduct.ui.news.activity.YieldIndexActivity;
+import com.macojia.leanproduct.activity.news.AboutActivity;
+import com.macojia.leanproduct.activity.news.CompreIndexActivity;
+import com.macojia.leanproduct.activity.news.CostIndexActivity;
+import com.macojia.leanproduct.activity.news.EfficiencyIndexActivity;
+import com.macojia.leanproduct.activity.news.NewsChannelActivity;
+import com.macojia.leanproduct.activity.news.QualityIndexActivity;
+import com.macojia.leanproduct.activity.news.YieldIndexActivity;
 import com.macojia.common.commonutils.LogUtils;
 
 import java.util.List;
@@ -80,31 +74,31 @@ public class ItemAppAdapter extends CommonRecycleViewAdapter<ItemApp> {
 
                 //ItemApp itemApp = mDatas.get();
                // String pos = ""+holder.getLayoutPosition();
-              //  LogUtils.logd(pos,itemApp.getName());
+              //  LogUtil.logd(pos,itemApp.getName());
                /* if(itemApp.getName().equals(AppConstant.QUALITY_ITEM)){
 
-                    NewsChannelActivity.startAction(mContext);
+                    NewsChannelActivity.startActivity(mContext);
                 }
                 else if(itemApp.getName().equals(AppConstant.EFFICIENCY_ITEM)){
-                    AboutActivity.startAction(mContext);
+                    AboutActivity.startActivity(mContext);
                 }
                 else if(itemApp.getName().equals(AppConstant.YIELD_ITEM)){
-                    NewsChannelActivity.startAction(mContext);
+                    NewsChannelActivity.startActivity(mContext);
                 }
                 else if(itemApp.getName().equals(AppConstant.CONSUME_ITEM)){
-                    NewsChannelActivity.startAction(mContext);
+                    NewsChannelActivity.startActivity(mContext);
                 }
                 else if(itemApp.getName().equals(AppConstant.COMPREHENSIVE_ITEM)){
-                    NewsChannelActivity.startAction(mContext);
+                    NewsChannelActivity.startActivity(mContext);
                 }
                 else if(itemApp.getName().equals(AppConstant.FORECAST_ITEM)){
-                    NewsChannelActivity.startAction(mContext);
+                    NewsChannelActivity.startActivity(mContext);
                 }
                 else if(itemApp.getName().equals(AppConstant.FEEDBACK_ITEM)){
-                    NewsChannelActivity.startAction(mContext);
+                    NewsChannelActivity.startActivity(mContext);
                 }
                 else if(itemApp.getName().equals(AppConstant.REPAIR_ITEM)){
-                    AboutActivity.startAction(mContext);
+                    AboutActivity.startActivity(mContext);
                 }else{
 
                 }*/

@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.app.AppConstant;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.NewsChannelTable;
-import com.macojia.leanproduct.ui.news.activity.NewsChannelActivity;
+import com.macojia.leanproduct.activity.news.NewsChannelActivity;
 import com.macojia.leanproduct.ui.main.contract.NewsMainContract;
 import com.macojia.leanproduct.ui.news.fragment.NewsFrament;
 import com.macojia.leanproduct.ui.main.model.NewsMainModel;

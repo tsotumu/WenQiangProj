@@ -15,7 +15,7 @@ import com.aspsine.irecyclerview.widget.LoadMoreFooterView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.app.AppConstant;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.VideoData;
 import com.macojia.leanproduct.ui.news.contract.VideosListContract;
 import com.macojia.leanproduct.ui.news.model.VideosListModel;

@@ -1,7 +1,7 @@
 package com.macojia.leanproduct.ui.main.model;
 
 import com.macojia.leanproduct.app.AppApplication;
-import com.macojia.leanproduct.app.AppConstant;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.leanproduct.db.NewsChannelTableManager;
 import com.macojia.leanproduct.ui.main.contract.NewsMainContract;

@@ -1,6 +1,6 @@
 package com.macojia.leanproduct.ui.news.presenter;
 
-import com.macojia.leanproduct.app.AppConstant;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.leanproduct.ui.news.contract.NewsChannelContract;
 import com.macojia.common.baserx.RxSubscriber;

@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.app.AppConstant;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.ImageLoaderUtils;

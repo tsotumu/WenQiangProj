@@ -8,7 +8,7 @@ import android.view.View;
 import com.aspsine.irecyclerview.universaladapter.ViewHolderHelper;
 import com.aspsine.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.app.AppConstant;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.leanproduct.ui.news.event.ChannelItemMoveEvent;
 import com.macojia.leanproduct.widget.ItemDragHelperCallback;

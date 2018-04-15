@@ -23,7 +23,7 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.macojia.leanproduct.app.AppConstant;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.common.baserx.RxBus;
 import com.macojia.common.baserx.RxManager;
 

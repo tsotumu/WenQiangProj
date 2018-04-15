@@ -69,5 +69,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <item name="content_index" type="id">content_index</item>
+    <item name="group_index" type="id">group_index</item>
+
 
 </resources>

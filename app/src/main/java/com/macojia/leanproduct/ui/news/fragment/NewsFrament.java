@@ -9,7 +9,7 @@ import com.aspsine.irecyclerview.OnRefreshListener;
 import com.aspsine.irecyclerview.animation.ScaleInAnimation;
 import com.aspsine.irecyclerview.widget.LoadMoreFooterView;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.app.AppConstant;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.NewsSummary;
 import com.macojia.leanproduct.ui.news.adapter.NewListAdapter;
 import com.macojia.leanproduct.ui.news.contract.NewsListContract;
