@@ -66,9 +66,6 @@ public class QualityIndexActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
        // mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
        // mTfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_listview_chart);
 
         ListView lv = (ListView) findViewById(R.id.listView1);
 
