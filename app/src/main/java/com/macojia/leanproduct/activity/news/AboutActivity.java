@@ -16,7 +16,7 @@ import com.macojia.common.base.BaseActivity;
 
 import butterknife.Bind;
 
-import static com.macojia.leanproduct.R.layout.act_about;
+import static com.macojia.leanproduct.R.layout.activity_about_us;
 
 /**
  * des:关于
@@ -56,7 +56,7 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return act_about;
+        return activity_about_us;
     }
 
     @Override

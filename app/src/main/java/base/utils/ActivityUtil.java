@@ -1,6 +1,7 @@
 package base.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import com.macojia.leanproduct.R;
@@ -12,10 +13,10 @@ import com.macojia.leanproduct.activity.MainActivity;
 
 public class ActivityUtil {
 
-    public static void startActivity(Activity activity) {
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
-        activity.overridePendingTransition(R.anim.fade_in,
+    public static void startActivity(Activity context, Class activity) {
+        Intent intent = new Intent(context, activity);
+        context.startActivity(intent);
+        context.overridePendingTransition(R.anim.fade_in,
                 com.macojia.common.R.anim.fade_out);
     }
 }
