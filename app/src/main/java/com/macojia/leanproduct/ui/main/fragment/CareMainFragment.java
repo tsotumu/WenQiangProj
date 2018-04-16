@@ -2,6 +2,7 @@ package com.macojia.leanproduct.ui.main.fragment;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -23,11 +24,13 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
- * des:关注主页
+ * des:视窗首页
  * Created by xsf
  * on 2016.09.17:07
  */
 public class CareMainFragment extends BaseFragment {
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
     @Bind(R.id.view_recyclerView)
     RecyclerView mRecyclerView;
 

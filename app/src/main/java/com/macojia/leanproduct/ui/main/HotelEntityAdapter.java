@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.activity.news.YieldIndexActivity;
 import com.macojia.leanproduct.ui.main.model.DescHolder;
 import com.macojia.leanproduct.ui.main.model.HeaderHolder;
 import com.macojia.leanproduct.ui.main.model.HotelEntity;
@@ -49,8 +50,8 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HeaderHolde
     @Override
     protected int getItemCountForSection(int section) {
         int count = allTagList.get(section).tagInfoList.size();
-        if (count >= 8 && !mBooleanMap.get(section)) {
-            count = 8;
+        if (count >= 6 && !mBooleanMap.get(section)) {
+            count = 6;
         }
 
         return HotelUtils.isEmpty(allTagList.get(section).tagInfoList) ? 0 : count;
@@ -114,6 +115,9 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HeaderHolde
                 int groupIndex = (int)v.getTag(R.id.group_index);
                 int contentIndex = (int)v.getTag(R.id.content_index);
                 String data = allTagList.get(groupIndex).tagInfoList.get(contentIndex).tagName;
+                if(data.equals("汉庭")){
+                    YieldIndexActivity.startAction(mContext);
+                }
                 LogUtil.d("onClick", "data is: " + data);
             }
         });
