@@ -1,11 +1,9 @@
 package base.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.activity.MainActivity;
 
 /**
  * Created by LC on 2018/4/15.

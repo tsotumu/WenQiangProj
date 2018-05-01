@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,29 +12,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/text_margin">
+
         <TextView
             android:id="@+id/news_detail_from_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="精益生产介绍"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="?attr/dayNightOneTextColor"
-            android:textSize="@dimen/font_normal"
-            android:text="精益生产介绍"/>
+            android:textSize="@dimen/font_normal" />
+
         <TextView
             android:id="@+id/tv_code_des"
-            android:layout_below="@+id/news_detail_from_tv"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/news_detail_from_tv"
             android:layout_marginTop="15dp"
-            android:textColor="?attr/dayNightTwoTextColor"
-            android:textSize="@dimen/font_normal"
             android:text="@string/care_about_wechat"
-            android:layout_height="wrap_content" />
+            android:textColor="?attr/dayNightTwoTextColor"
+            android:textSize="@dimen/font_normal" />
+
         <ImageView
             android:layout_width="150dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/qrcode"
-            android:layout_margin="10dp"
+            android:layout_height="150dp"
             android:layout_below="@+id/tv_code_des"
-            android:layout_height="150dp" />
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/qrcode" />
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

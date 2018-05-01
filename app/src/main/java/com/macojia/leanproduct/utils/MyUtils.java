@@ -39,6 +39,7 @@ public class MyUtils {
             tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         }
     }
+
     private static int calculateTabWidth(TabLayout tabLayout) {
         int tabWidth = 0;
         for (int i = 0; i < tabLayout.getChildCount(); i++) {
@@ -48,9 +49,11 @@ public class MyUtils {
         }
         return tabWidth;
     }
+
     public static int getScreenWith() {
         return AppApplication.getAppContext().getResources().getDisplayMetrics().widthPixels;
     }
+
     public static View getRootView(Activity context) {
         return ((ViewGroup) context.findViewById(android.R.id.content)).getChildAt(0);
     }

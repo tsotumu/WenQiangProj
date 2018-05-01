@@ -12,6 +12,17 @@ import android.os.Parcelable;
 public class Result implements Parcelable {
 
 
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
+        @Override
+        public Result createFromParcel(Parcel source) {
+            return new Result(source);
+        }
+
+        @Override
+        public Result[] newArray(int size) {
+            return new Result[size];
+        }
+    };
     /**
      * status : 1
      * msg : {"user":{"account":"15999761380","createTime":1460444414000,"id":51,"isCoutier":"0","phone":"15999761380","status":"0"},"userToken":"0f31fdd97a44fe324c18053a2d8e3d3f","lsRebate":{"courierCash":0,"courierCashInCode":"2854cb93620140a146fd4ac02ae13f27","id":11,"lastUpdateTime":1460343614000,"rebate":0,"rebateInCode":"2854cb93620140a146fd4ac02ae13f27","status":"0","userId":51}}
@@ -25,6 +36,14 @@ public class Result implements Parcelable {
      */
 
     private String msg;
+
+    public Result() {
+    }
+
+    protected Result(Parcel in) {
+        this.status = in.readString();
+        this.msg = in.readString();
+    }
 
     public String getStatus() {
         return status;
@@ -52,26 +71,6 @@ public class Result implements Parcelable {
         dest.writeString(this.status);
         dest.writeString(this.msg);
     }
-
-    public Result() {
-    }
-
-    protected Result(Parcel in) {
-        this.status = in.readString();
-        this.msg = in.readString();
-    }
-
-    public static final Creator<Result> CREATOR = new Creator<Result>() {
-        @Override
-        public Result createFromParcel(Parcel source) {
-            return new Result(source);
-        }
-
-        @Override
-        public Result[] newArray(int size) {
-            return new Result[size];
-        }
-    };
 
     @Override
     public String toString() {

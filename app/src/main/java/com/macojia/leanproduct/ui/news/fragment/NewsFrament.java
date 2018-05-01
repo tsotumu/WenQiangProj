@@ -8,15 +8,15 @@ import com.aspsine.irecyclerview.OnLoadMoreListener;
 import com.aspsine.irecyclerview.OnRefreshListener;
 import com.aspsine.irecyclerview.animation.ScaleInAnimation;
 import com.aspsine.irecyclerview.widget.LoadMoreFooterView;
+import com.macojia.common.base.BaseFragment;
+import com.macojia.common.commonwidget.LoadingTip;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.NewsSummary;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.news.adapter.NewListAdapter;
 import com.macojia.leanproduct.ui.news.contract.NewsListContract;
 import com.macojia.leanproduct.ui.news.model.NewsListModel;
 import com.macojia.leanproduct.ui.news.presenter.NewsListPresenter;
-import com.macojia.common.base.BaseFragment;
-import com.macojia.common.commonwidget.LoadingTip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> 
 
     private String mNewsId;
     private String mNewsType;
-    private int mStartPage=0;
+    private int mStartPage = 0;
 
     // 标志位，标志已经初始化完成。
     private boolean isPrepared;
@@ -68,7 +68,7 @@ public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> 
         irc.setOnRefreshListener(this);
         irc.setOnLoadMoreListener(this);
         //数据为空才重新发起请求
-        if(newListAdapter.getSize()<=0) {
+        if (newListAdapter.getSize() <= 0) {
             mStartPage = 0;
             mPresenter.getNewsListDataRequest(mNewsType, mNewsId, mStartPage);
         }
@@ -120,8 +120,8 @@ public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> 
 
     @Override
     public void showLoading(String title) {
-        if( newListAdapter.getPageBean().isRefresh()) {
-            if(newListAdapter.getSize()<=0) {
+        if (newListAdapter.getPageBean().isRefresh()) {
+            if (newListAdapter.getSize() <= 0) {
                 loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
             }
         }
@@ -134,13 +134,13 @@ public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> 
 
     @Override
     public void showErrorTip(String msg) {
-        if( newListAdapter.getPageBean().isRefresh()) {
-            if(newListAdapter.getSize()<=0) {
+        if (newListAdapter.getPageBean().isRefresh()) {
+            if (newListAdapter.getSize() <= 0) {
                 loadedTip.setLoadingTip(LoadingTip.LoadStatus.error);
                 loadedTip.setTips(msg);
             }
             irc.setRefreshing(false);
-        }else{
+        } else {
             irc.setLoadMoreStatus(LoadMoreFooterView.Status.ERROR);
         }
     }

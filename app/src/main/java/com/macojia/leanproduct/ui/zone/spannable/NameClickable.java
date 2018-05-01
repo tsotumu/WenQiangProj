@@ -4,8 +4,8 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 
-import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.app.AppApplication;
 
 
 /**

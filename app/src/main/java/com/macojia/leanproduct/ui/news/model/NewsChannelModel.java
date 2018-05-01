@@ -1,14 +1,14 @@
 package com.macojia.leanproduct.ui.news.model;
 
-import com.macojia.leanproduct.app.AppApplication;
-import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.api.ApiConstants;
-import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.bean.NewsChannelTable;
-import com.macojia.leanproduct.db.NewsChannelTableManager;
-import com.macojia.leanproduct.ui.news.contract.NewsChannelContract;
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.ACache;
+import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.api.ApiConstants;
+import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.bean.NewsChannelTable;
+import com.macojia.leanproduct.constant.AppConstant;
+import com.macojia.leanproduct.db.NewsChannelTableManager;
+import com.macojia.leanproduct.ui.news.contract.NewsChannelContract;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,9 +30,9 @@ public class NewsChannelModel implements NewsChannelContract.Model {
             @Override
             public void call(Subscriber<? super List<NewsChannelTable>> subscriber) {
                 ArrayList<NewsChannelTable> newsChannelTableList = (ArrayList<NewsChannelTable>) ACache.get(AppApplication.getAppContext()).getAsObject(AppConstant.CHANNEL_MINE);
-               if(newsChannelTableList==null){
-                   newsChannelTableList= (ArrayList<NewsChannelTable>) NewsChannelTableManager.loadNewsChannelsStatic();
-               }
+                if (newsChannelTableList == null) {
+                    newsChannelTableList = (ArrayList<NewsChannelTable>) NewsChannelTableManager.loadNewsChannelsStatic();
+                }
                 subscriber.onNext(newsChannelTableList);
                 subscriber.onCompleted();
             }
@@ -45,16 +45,16 @@ public class NewsChannelModel implements NewsChannelContract.Model {
             @Override
             public void call(Subscriber<? super List<NewsChannelTable>> subscriber) {
                 ArrayList<NewsChannelTable> newsChannelTableList = (ArrayList<NewsChannelTable>) ACache.get(AppApplication.getAppContext()).getAsObject(AppConstant.CHANNEL_MORE);
-               if(newsChannelTableList==null) {
-                   List<String> channelName = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name));
-                   List<String> channelId = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_id));
-                   newsChannelTableList = new ArrayList<>();
-                   for (int i = 0; i < channelName.size(); i++) {
-                       NewsChannelTable entity = new NewsChannelTable(channelName.get(i), channelId.get(i)
-                               , ApiConstants.getType(channelId.get(i)), i <= 5, i, false);
-                       newsChannelTableList.add(entity);
-                   }
-               }
+                if (newsChannelTableList == null) {
+                    List<String> channelName = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name));
+                    List<String> channelId = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_id));
+                    newsChannelTableList = new ArrayList<>();
+                    for (int i = 0; i < channelName.size(); i++) {
+                        NewsChannelTable entity = new NewsChannelTable(channelName.get(i), channelId.get(i)
+                                , ApiConstants.getType(channelId.get(i)), i <= 5, i, false);
+                        newsChannelTableList.add(entity);
+                    }
+                }
                 subscriber.onNext(newsChannelTableList);
                 subscriber.onCompleted();
             }
@@ -63,10 +63,10 @@ public class NewsChannelModel implements NewsChannelContract.Model {
 
     @Override
     public Observable<String> swapDb(final ArrayList<NewsChannelTable> newsChannelTableList, int fromPosition, int toPosition) {
-       return Observable.create(new Observable.OnSubscribe<String>() {
+        return Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
-                ACache.get(AppApplication.getAppContext()).put(AppConstant.CHANNEL_MINE,newsChannelTableList);
+                ACache.get(AppApplication.getAppContext()).put(AppConstant.CHANNEL_MINE, newsChannelTableList);
                 subscriber.onNext("");
                 subscriber.onCompleted();
             }
@@ -79,8 +79,8 @@ public class NewsChannelModel implements NewsChannelContract.Model {
         return Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
-                ACache.get(AppApplication.getAppContext()).put(AppConstant.CHANNEL_MINE,mineChannelTableList);
-                ACache.get(AppApplication.getAppContext()).put(AppConstant.CHANNEL_MORE,moreChannelTableList);
+                ACache.get(AppApplication.getAppContext()).put(AppConstant.CHANNEL_MINE, mineChannelTableList);
+                ACache.get(AppApplication.getAppContext()).put(AppConstant.CHANNEL_MORE, moreChannelTableList);
                 subscriber.onNext("");
                 subscriber.onCompleted();
             }

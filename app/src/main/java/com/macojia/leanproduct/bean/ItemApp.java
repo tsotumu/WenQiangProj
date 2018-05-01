@@ -20,12 +20,12 @@ public class ItemApp implements Serializable {
         return name;
     }
 
-    public int getImage() {
-        return image;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getImage() {
+        return image;
     }
 
     public void setImage(int image) {

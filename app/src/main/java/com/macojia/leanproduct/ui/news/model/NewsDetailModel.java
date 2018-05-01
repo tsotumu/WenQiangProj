@@ -1,10 +1,10 @@
 package com.macojia.leanproduct.ui.news.model;
 
+import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.leanproduct.api.Api;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.bean.NewsDetail;
 import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
-import com.macojia.common.baserx.RxSchedulers;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class NewsDetailModel implements NewsDetailContract.Model {
 
     @Override
     public Observable<NewsDetail> getOneNewsData(final String postId) {
-        return Api.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewDetail(Api.getCacheControl(),postId)
+        return Api.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewDetail(Api.getCacheControl(), postId)
                 .map(new Func1<Map<String, NewsDetail>, NewsDetail>() {
                     @Override
                     public NewsDetail call(Map<String, NewsDetail> map) {
@@ -32,6 +32,7 @@ public class NewsDetailModel implements NewsDetailContract.Model {
                 })
                 .compose(RxSchedulers.<NewsDetail>io_main());
     }
+
     private void changeNewsDetail(NewsDetail newsDetail) {
         List<NewsDetail.ImgBean> imgSrcs = newsDetail.getImg();
         if (isChange(imgSrcs)) {

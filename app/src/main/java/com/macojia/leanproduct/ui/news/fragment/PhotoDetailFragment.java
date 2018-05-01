@@ -3,11 +3,11 @@ package com.macojia.leanproduct.ui.news.fragment;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.ImageLoaderUtils;
+import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.constant.AppConstant;
 
 import java.util.concurrent.TimeUnit;
 
@@ -65,7 +65,7 @@ public class PhotoDetailFragment extends BaseFragment {
 
                     @Override
                     public void onNext(Long aLong) {
-                        ImageLoaderUtils.displayBigPhoto(getContext(),photoView,mImgSrc);
+                        ImageLoaderUtils.displayBigPhoto(getContext(), photoView, mImgSrc);
                     }
                 }));
     }
@@ -74,7 +74,7 @@ public class PhotoDetailFragment extends BaseFragment {
         photoView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
             @Override
             public void onPhotoTap(View view, float v, float v1) {
-                mRxManager.post(AppConstant.PHOTO_TAB_CLICK,"");
+                mRxManager.post(AppConstant.PHOTO_TAB_CLICK, "");
             }
         });
     }

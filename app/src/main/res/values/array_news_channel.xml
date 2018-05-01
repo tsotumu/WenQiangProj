@@ -15,7 +15,7 @@
         <item>物耗</item>
         <item>工艺</item>
         <item>质量</item>
-        <item>培养</item>
+        <!--<item>培养</item>
         <item>文化</item>
         <item>游戏</item>
         <item>时尚</item>
@@ -36,7 +36,7 @@
         <item>暴雪</item>
         <item>亲子</item>
         <item>CBA</item>
-        <item>消息</item>
+        <item>消息</item>-->
     </string-array>
 
     <string-array name="news_channel_id_static">

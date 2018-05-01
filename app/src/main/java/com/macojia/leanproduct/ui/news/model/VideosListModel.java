@@ -1,11 +1,11 @@
 package com.macojia.leanproduct.ui.news.model;
 
+import com.macojia.common.baserx.RxSchedulers;
+import com.macojia.common.commonutils.TimeUtil;
 import com.macojia.leanproduct.api.Api;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.bean.VideoData;
 import com.macojia.leanproduct.ui.news.contract.VideosListContract;
-import com.macojia.common.baserx.RxSchedulers;
-import com.macojia.common.commonutils.TimeUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,7 @@ public class VideosListModel implements VideosListContract.Model {
 
     @Override
     public Observable<List<VideoData>> getVideosListData(final String type, int startPage) {
-        return Api.getDefault(HostType.NETEASE_NEWS_VIDEO).getVideoList(Api.getCacheControl(),type,startPage)
+        return Api.getDefault(HostType.NETEASE_NEWS_VIDEO).getVideoList(Api.getCacheControl(), type, startPage)
                 .flatMap(new Func1<Map<String, List<VideoData>>, Observable<VideoData>>() {
                     @Override
                     public Observable<VideoData> call(Map<String, List<VideoData>> map) {

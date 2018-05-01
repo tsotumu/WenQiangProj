@@ -1,5 +1,6 @@
 package com.macojia.common.base;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -58,10 +59,12 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
     public T mPresenter;
     public E mModel;
     public RxManager mRxManager;
+    public Activity mActivity;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mActivity = getActivity();
         if (rootView == null)
             rootView = inflater.inflate(getLayoutResource(), container, false);
         mRxManager=new RxManager();

@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.aspsine.irecyclerview.baseadapter.BaseAblistViewAdapter;
-import com.macojia.leanproduct.R;
 import com.macojia.common.commonutils.ImageLoaderUtils;
 import com.macojia.common.commonutils.ViewHolderUtil;
 import com.macojia.common.imagePager.BigImagePagerActivity;
+import com.macojia.leanproduct.R;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class NinePicturesAdapter extends BaseAblistViewAdapter<String> {
     private int picturnNum = 0;
     private boolean isDelete = false;//当前是否显示删除按钮
     private OnClickAddListener onClickAddListener;
-    private boolean isAdd=true;//当前是否显示添加按钮
+    private boolean isAdd = true;//当前是否显示添加按钮
 
 
     public NinePicturesAdapter(Context context, int picturnNum, OnClickAddListener onClickAddListener) {
@@ -86,22 +86,22 @@ public class NinePicturesAdapter extends BaseAblistViewAdapter<String> {
 
     @Override
     public void setData(List<String> d) {
-        boolean hasAdd=false;
+        boolean hasAdd = false;
         for (int i = 0; i < d.size(); i++) {
-            if(TextUtils.isEmpty(d.get(i))){
-                hasAdd=true;
+            if (TextUtils.isEmpty(d.get(i))) {
+                hasAdd = true;
                 break;
             }
         }
         super.setData(d);
-        if(!hasAdd){
+        if (!hasAdd) {
             showAdd();
         }
     }
 
     @Override
     public void addAll(List<String> d) {
-        if(isAdd){
+        if (isAdd) {
             HideAdd();
         }
         super.addAll(d);
@@ -111,45 +111,48 @@ public class NinePicturesAdapter extends BaseAblistViewAdapter<String> {
     /**
      * 移除add按钮
      */
-    public void autoHideShowAdd(){
-        int lastPosition=getData().size()-1;
-            if(lastPosition==picturnNum&&getData().get(lastPosition)!=null&&TextUtils.isEmpty(getData().get(lastPosition))){
-                getData().remove(lastPosition);
-                isAdd=false;
-                notifyDataSetChanged();
-            }else if(!isAdd){
-                showAdd();
-            }
+    public void autoHideShowAdd() {
+        int lastPosition = getData().size() - 1;
+        if (lastPosition == picturnNum && getData().get(lastPosition) != null && TextUtils.isEmpty(getData().get(lastPosition))) {
+            getData().remove(lastPosition);
+            isAdd = false;
+            notifyDataSetChanged();
+        } else if (!isAdd) {
+            showAdd();
+        }
     }
+
     /**
      * 移除add按钮
      */
-    public void HideAdd(){
-        int lastPosition=getData().size()-1;
-        if(getData().get(lastPosition)!=null&&TextUtils.isEmpty(getData().get(lastPosition))){
+    public void HideAdd() {
+        int lastPosition = getData().size() - 1;
+        if (getData().get(lastPosition) != null && TextUtils.isEmpty(getData().get(lastPosition))) {
             getData().remove(lastPosition);
-            isAdd=false;
+            isAdd = false;
             notifyDataSetChanged();
         }
     }
+
     /**
      * 显示add按钮
      */
-    public void showAdd(){
-        if(getData().size()<picturnNum){
-            addAt(getData().size(),"");
-            isAdd=true;
+    public void showAdd() {
+        if (getData().size() < picturnNum) {
+            addAt(getData().size(), "");
+            isAdd = true;
             notifyDataSetChanged();
         }
     }
 
     /**
      * 获取图片张数
+     *
      * @return
      */
-   public int getPhotoCount(){
-       return isAdd==true?getCount()-1:getCount();
-   }
+    public int getPhotoCount() {
+        return isAdd == true ? getCount() - 1 : getCount();
+    }
 
     /**
      * 加号接口

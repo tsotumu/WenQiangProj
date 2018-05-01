@@ -4,9 +4,13 @@ import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.aspsine.irecyclerview.bean.PageBean;
+import com.macojia.common.baseapp.AppCache;
+import com.macojia.common.commonutils.JsonUtils;
+import com.macojia.common.commonutils.LogUtils;
+import com.macojia.common.commonutils.ToastUitl;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.Result;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.zone.DatasUtil;
 import com.macojia.leanproduct.ui.zone.bean.CircleItem;
 import com.macojia.leanproduct.ui.zone.bean.CommentConfig;
@@ -14,10 +18,6 @@ import com.macojia.leanproduct.ui.zone.bean.CommentItem;
 import com.macojia.leanproduct.ui.zone.bean.FavortItem;
 import com.macojia.leanproduct.ui.zone.contract.CircleZoneContract;
 import com.macojia.leanproduct.ui.zone.widget.GoodView;
-import com.macojia.common.baseapp.AppCache;
-import com.macojia.common.commonutils.JsonUtils;
-import com.macojia.common.commonutils.LogUtils;
-import com.macojia.common.commonutils.ToastUitl;
 import com.wevey.selector.dialog.DialogOnClickListener;
 import com.wevey.selector.dialog.MDAlertDialog;
 
@@ -33,6 +33,12 @@ import rx.functions.Action1;
  * on 2016.07.15:57
  */
 public class CircleZonePresenter extends CircleZoneContract.Presenter {
+    /**
+     * 删除朋友圈
+     *
+     * @param circleId
+     */
+    MDAlertDialog mdAlertDialog;
     //点赞效果
     private GoodView mGoodView;
 
@@ -114,15 +120,9 @@ public class CircleZonePresenter extends CircleZoneContract.Presenter {
 
     }
 
-    /**
-     * 删除朋友圈
-     *
-     * @param circleId
-     */
-     MDAlertDialog mdAlertDialog;
     @Override
     public void deleteCircle(final String circleId, final int position) {
-       mdAlertDialog = new MDAlertDialog.Builder(mContext)
+        mdAlertDialog = new MDAlertDialog.Builder(mContext)
                 .setHeight(0.25f)  //屏幕高度*0.3
                 .setWidth(0.7f)  //屏幕宽度*0.7
                 .setTitleVisible(true)

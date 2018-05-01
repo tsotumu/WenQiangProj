@@ -2,14 +2,14 @@ package com.macojia.leanproduct.ui.zone.contract;
 
 
 import com.aspsine.irecyclerview.bean.PageBean;
+import com.macojia.common.base.BaseModel;
+import com.macojia.common.base.BasePresenter;
+import com.macojia.common.base.BaseView;
 import com.macojia.leanproduct.bean.Result;
 import com.macojia.leanproduct.ui.zone.bean.CircleItem;
 import com.macojia.leanproduct.ui.zone.bean.CommentConfig;
 import com.macojia.leanproduct.ui.zone.bean.CommentItem;
 import com.macojia.leanproduct.ui.zone.bean.FavortItem;
-import com.macojia.common.base.BaseModel;
-import com.macojia.common.base.BasePresenter;
-import com.macojia.common.base.BaseView;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public interface CircleZoneContract {
 
         Observable<Result> deleteFavort(String publishId, String publishUserId);
 
-        Observable<Result> addComment(String publishUserId,CommentItem circleItem);
+        Observable<Result> addComment(String publishUserId, CommentItem circleItem);
 
         Observable<Result> deleteComment(String commentId);
     }
@@ -54,7 +54,7 @@ public interface CircleZoneContract {
 
         void update2AddComment(int circlePosition, CommentItem addItem);
 
-        void update2DeleteComment(int circlePosition, String commentId,int commentPosition);
+        void update2DeleteComment(int circlePosition, String commentId, int commentPosition);
 
         void updateEditTextBodyVisible(int visibility, CommentConfig commentConfig);
 
@@ -83,7 +83,7 @@ public interface CircleZoneContract {
         public abstract void addComment(final String content, final CommentConfig config);
 
         //删除评论
-        public abstract void deleteComment(final int circlePosition, final String commentId,int commentPosition);
+        public abstract void deleteComment(final int circlePosition, final String commentId, int commentPosition);
 
         //显示评论输入框
         public abstract void showEditTextBody(CommentConfig commentConfig);

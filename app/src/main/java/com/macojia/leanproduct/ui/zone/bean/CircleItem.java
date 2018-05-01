@@ -4,8 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
-import com.macojia.leanproduct.ui.zone.widget.ImageUtil;
 import com.macojia.common.baseapp.AppCache;
+import com.macojia.leanproduct.ui.zone.widget.ImageUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +54,17 @@ public class CircleItem implements Parcelable {
 //                userNickname (string, optional): 回复昵称
 //    }
 
+    public static final Creator<CircleItem> CREATOR = new Creator<CircleItem>() {
+        @Override
+        public CircleItem createFromParcel(Parcel source) {
+            return new CircleItem(source);
+        }
+
+        @Override
+        public CircleItem[] newArray(int size) {
+            return new CircleItem[size];
+        }
+    };
     private String address;
     private String appointUserNickname;
     private String appointUserid;
@@ -70,11 +81,38 @@ public class CircleItem implements Parcelable {
     private String icon;
     private String userId;
     private String nickName;
-    private List<FavortItem> goodjobs=new ArrayList<>();
-    private List<CommentItem> replys=new ArrayList<>();
+    private List<FavortItem> goodjobs = new ArrayList<>();
+    private List<CommentItem> replys = new ArrayList<>();
     private String linkImg;
     private String linkTitle;
     private int takeTimes;//接单总数
+
+    public CircleItem() {
+    }
+
+    protected CircleItem(Parcel in) {
+        this.address = in.readString();
+        this.appointUserNickname = in.readString();
+        this.appointUserid = in.readString();
+        this.content = in.readString();
+        this.createTime = in.readLong();
+        this.goodjobCount = in.readInt();
+        this.id = in.readString();
+        this.isvalid = in.readString();
+        this.latitude = in.readDouble();
+        this.longitude = in.readDouble();
+        this.pictures = in.readString();
+        this.replyCount = in.readInt();
+        this.type = in.readInt();
+        this.icon = in.readString();
+        this.userId = in.readString();
+        this.nickName = in.readString();
+        this.goodjobs = in.createTypedArrayList(FavortItem.CREATOR);
+        this.replys = in.createTypedArrayList(CommentItem.CREATOR);
+        this.linkImg = in.readString();
+        this.linkTitle = in.readString();
+        this.takeTimes = in.readInt();
+    }
 
     public int getTakeTimes() {
         return takeTimes;
@@ -244,13 +282,10 @@ public class CircleItem implements Parcelable {
         this.linkTitle = linkTitle;
     }
 
-    public CircleItem() {
-    }
-
     public String getCurUserFavortId() {
         String userId = "";
         String myId = AppCache.getInstance().getUserId();
-        if (goodjobs!=null&&!TextUtils.isEmpty(myId) && goodjobs.size() > 0) {
+        if (goodjobs != null && !TextUtils.isEmpty(myId) && goodjobs.size() > 0) {
             for (FavortItem item : goodjobs) {
                 if (myId.equals(item.getUserId())) {
                     userId = item.getUserId();
@@ -312,40 +347,4 @@ public class CircleItem implements Parcelable {
         dest.writeString(this.linkTitle);
         dest.writeInt(this.takeTimes);
     }
-
-    protected CircleItem(Parcel in) {
-        this.address = in.readString();
-        this.appointUserNickname = in.readString();
-        this.appointUserid = in.readString();
-        this.content = in.readString();
-        this.createTime = in.readLong();
-        this.goodjobCount = in.readInt();
-        this.id = in.readString();
-        this.isvalid = in.readString();
-        this.latitude = in.readDouble();
-        this.longitude = in.readDouble();
-        this.pictures = in.readString();
-        this.replyCount = in.readInt();
-        this.type = in.readInt();
-        this.icon = in.readString();
-        this.userId = in.readString();
-        this.nickName = in.readString();
-        this.goodjobs = in.createTypedArrayList(FavortItem.CREATOR);
-        this.replys = in.createTypedArrayList(CommentItem.CREATOR);
-        this.linkImg = in.readString();
-        this.linkTitle = in.readString();
-        this.takeTimes = in.readInt();
-    }
-
-    public static final Creator<CircleItem> CREATOR = new Creator<CircleItem>() {
-        @Override
-        public CircleItem createFromParcel(Parcel source) {
-            return new CircleItem(source);
-        }
-
-        @Override
-        public CircleItem[] newArray(int size) {
-            return new CircleItem[size];
-        }
-    };
 }

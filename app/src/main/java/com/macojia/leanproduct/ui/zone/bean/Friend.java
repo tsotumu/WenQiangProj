@@ -9,6 +9,17 @@ import android.os.Parcelable;
  * on 2016.07.17:57
  */
 public class Friend implements Parcelable {
+    public static final Creator<Friend> CREATOR = new Creator<Friend>() {
+        @Override
+        public Friend createFromParcel(Parcel source) {
+            return new Friend(source);
+        }
+
+        @Override
+        public Friend[] newArray(int size) {
+            return new Friend[size];
+        }
+    };
     private String realName;
     private String avater;
     private String sex;
@@ -112,6 +123,70 @@ public class Friend implements Parcelable {
     private String groupId;
     private String applyStatus;
 
+    public Friend() {
+    }
+
+    protected Friend(Parcel in) {
+        this.realName = in.readString();
+        this.avater = in.readString();
+        this.sex = in.readString();
+        this.status = in.readString();
+        this.mood = in.readString();
+        this.nickName = in.readString();
+        this.createTime = in.readString();
+        this.birthday = in.readString();
+        this.phone = in.readString();
+        this.sort = in.readString();
+        this.invitationUserId = in.readString();
+        this.phoneMac = in.readString();
+        this.workspace = in.readString();
+        this.endTime = in.readString();
+        this.password = in.readString();
+        this.phoneModel = in.readString();
+        this.livespace = in.readString();
+        this.city = in.readString();
+        this.isCoutier = in.readString();
+        this.isfriend = in.readString();
+        this.startTime = in.readString();
+        this.id = in.readString();
+        this.vocation = in.readString();
+        this.qualification = in.readString();
+        this.flagMsg = in.readString();
+        this.fStatus = in.readString();
+        this.rownum_ = in.readInt();
+        this.order = in.readString();
+        this.totalCount = in.readInt();
+        this.page = in.readInt();
+        this.toNumber = in.readInt();
+        this.age = in.readString();
+        this.signature = in.readString();
+        this.roleId = in.readInt();
+        this.icon = in.readString();
+        this.hometown = in.readString();
+        this.tradePassword = in.readString();
+        this.fromNumber = in.readInt();
+        this.avocation = in.readString();
+        this.whetherPushMsg = in.readString();
+        this.rows = in.readInt();
+        this.picture = in.readString();
+        this.roleTypeId = in.readInt();
+        this.flag = in.readInt();
+        this.source = in.readString();
+        this.account = in.readString();
+        this.constellatory = in.readString();
+        this.totalPage = in.readInt();
+        this.clevel = in.readString();
+        this.latitude = in.readDouble();
+        this.longitude = in.readDouble();
+        this.totalStars = in.readInt();
+        this.totalTimes = in.readInt();
+        this.userId = in.readString();
+        this.distance = in.readString();
+        this.friendName = in.readString();
+        this.groupId = in.readString();
+        this.applyStatus = in.readString();
+    }
+
     public String getApplyStatus() {
         return applyStatus;
     }
@@ -131,6 +206,11 @@ public class Friend implements Parcelable {
     public String getMood() {
         return mood;
     }
+
+    public void setMood(String mood) {
+        this.mood = mood;
+    }
+
     public String getDistance() {
         return distance;
     }
@@ -145,10 +225,6 @@ public class Friend implements Parcelable {
 
     public void setGroupId(String groupId) {
         this.groupId = groupId;
-    }
-
-    public void setMood(String mood) {
-        this.mood = mood;
     }
 
     public String getRealName() {
@@ -575,9 +651,6 @@ public class Friend implements Parcelable {
         this.userId = userId;
     }
 
-    public Friend() {
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -644,77 +717,4 @@ public class Friend implements Parcelable {
         dest.writeString(this.groupId);
         dest.writeString(this.applyStatus);
     }
-
-    protected Friend(Parcel in) {
-        this.realName = in.readString();
-        this.avater = in.readString();
-        this.sex = in.readString();
-        this.status = in.readString();
-        this.mood = in.readString();
-        this.nickName = in.readString();
-        this.createTime = in.readString();
-        this.birthday = in.readString();
-        this.phone = in.readString();
-        this.sort = in.readString();
-        this.invitationUserId = in.readString();
-        this.phoneMac = in.readString();
-        this.workspace = in.readString();
-        this.endTime = in.readString();
-        this.password = in.readString();
-        this.phoneModel = in.readString();
-        this.livespace = in.readString();
-        this.city = in.readString();
-        this.isCoutier = in.readString();
-        this.isfriend = in.readString();
-        this.startTime = in.readString();
-        this.id = in.readString();
-        this.vocation = in.readString();
-        this.qualification = in.readString();
-        this.flagMsg = in.readString();
-        this.fStatus = in.readString();
-        this.rownum_ = in.readInt();
-        this.order = in.readString();
-        this.totalCount = in.readInt();
-        this.page = in.readInt();
-        this.toNumber = in.readInt();
-        this.age = in.readString();
-        this.signature = in.readString();
-        this.roleId = in.readInt();
-        this.icon = in.readString();
-        this.hometown = in.readString();
-        this.tradePassword = in.readString();
-        this.fromNumber = in.readInt();
-        this.avocation = in.readString();
-        this.whetherPushMsg = in.readString();
-        this.rows = in.readInt();
-        this.picture = in.readString();
-        this.roleTypeId = in.readInt();
-        this.flag = in.readInt();
-        this.source = in.readString();
-        this.account = in.readString();
-        this.constellatory = in.readString();
-        this.totalPage = in.readInt();
-        this.clevel = in.readString();
-        this.latitude = in.readDouble();
-        this.longitude = in.readDouble();
-        this.totalStars = in.readInt();
-        this.totalTimes = in.readInt();
-        this.userId = in.readString();
-        this.distance = in.readString();
-        this.friendName = in.readString();
-        this.groupId = in.readString();
-        this.applyStatus = in.readString();
-    }
-
-    public static final Creator<Friend> CREATOR = new Creator<Friend>() {
-        @Override
-        public Friend createFromParcel(Parcel source) {
-            return new Friend(source);
-        }
-
-        @Override
-        public Friend[] newArray(int size) {
-            return new Friend[size];
-        }
-    };
 }

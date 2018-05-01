@@ -9,10 +9,11 @@ public class VideoChannelTable {
     private String channelId;
     private String channelName;
 
-    public VideoChannelTable(String channelId,String channelName){
-        this.channelId=channelId;
-        this.channelName=channelName;
+    public VideoChannelTable(String channelId, String channelName) {
+        this.channelId = channelId;
+        this.channelName = channelName;
     }
+
     public String getChannelName() {
         return channelName;
     }

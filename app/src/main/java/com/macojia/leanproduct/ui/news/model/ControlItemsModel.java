@@ -1,12 +1,12 @@
 package com.macojia.leanproduct.ui.news.model;
 
-import com.macojia.leanproduct.app.AppApplication;
-import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.bean.ItemApp;
-import com.macojia.leanproduct.db.ControlItemTableManager;
-import com.macojia.leanproduct.ui.news.contract.ControlItemContract;
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.ACache;
+import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.bean.ItemApp;
+import com.macojia.leanproduct.constant.AppConstant;
+import com.macojia.leanproduct.db.ControlItemTableManager;
+import com.macojia.leanproduct.ui.news.contract.ControlItemContract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +27,8 @@ public class ControlItemsModel implements ControlItemContract.Model {
             @Override
             public void call(Subscriber<? super List<ItemApp>> subscriber) {
                 ArrayList<ItemApp> controlItemsTableList = (ArrayList<ItemApp>) ACache.get(AppApplication.getAppContext()).getAsObject(AppConstant.CONTROL_ITEMS);
-                if(controlItemsTableList==null){
-                    controlItemsTableList= (ArrayList<ItemApp>) ControlItemTableManager.loadControlItemTable();
+                if (controlItemsTableList == null) {
+                    controlItemsTableList = (ArrayList<ItemApp>) ControlItemTableManager.loadControlItemTable();
                 }
                 subscriber.onNext(controlItemsTableList);
                 subscriber.onCompleted();

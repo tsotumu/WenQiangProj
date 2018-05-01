@@ -11,11 +11,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.macojia.common.baseapp.AppCache;
+import com.macojia.common.commonutils.FormatUtil;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.ui.zone.bean.CommentItem;
 import com.macojia.leanproduct.ui.zone.presenter.CircleZonePresenter;
-import com.macojia.common.baseapp.AppCache;
-import com.macojia.common.commonutils.FormatUtil;
 
 
 /**
@@ -29,16 +29,16 @@ public class CommentDialog extends Dialog implements
     private Context mContext;
     private CircleZonePresenter mPresenter;
     private CommentItem mCommentItem;
-    private int mCirclePosition,commentPosition;
+    private int mCirclePosition, commentPosition;
 
-    public CommentDialog(Context context,CircleZonePresenter presenter,
-                         CommentItem commentItem, int circlePosition,int commentPosition) {
+    public CommentDialog(Context context, CircleZonePresenter presenter,
+                         CommentItem commentItem, int circlePosition, int commentPosition) {
         super(context, R.style.CustomProgressDialog);
         mContext = context;
         this.mPresenter = presenter;
         this.mCommentItem = commentItem;
         this.mCirclePosition = circlePosition;
-        this.commentPosition=commentPosition;
+        this.commentPosition = commentPosition;
         setCancelable(true);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_comment, null);
         setContentView(view);
@@ -85,7 +85,7 @@ public class CommentDialog extends Dialog implements
                 break;
             case R.id.deleteTv:
                 if (mPresenter != null && mCommentItem != null) {
-                    mPresenter.deleteComment(mCirclePosition, FormatUtil.checkValue(mCommentItem.getId()),commentPosition);
+                    mPresenter.deleteComment(mCirclePosition, FormatUtil.checkValue(mCommentItem.getId()), commentPosition);
                 }
                 dismiss();
                 break;

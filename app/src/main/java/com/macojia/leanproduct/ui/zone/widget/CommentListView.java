@@ -21,42 +21,42 @@ public class CommentListView extends LinearLayout {
         super(context);
     }
 
-    public CommentListView(Context context, AttributeSet attrs){
+    public CommentListView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
     }
 
-    public CommentListView(Context context, AttributeSet attrs, int defStyle){
+    public CommentListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
 
-    public void setAdapter(CommentAdapter adapter){
+    public void setAdapter(CommentAdapter adapter) {
         adapter.bindListView(this);
     }
 
-    public void setOnItemClick(OnItemClickListener listener){
+    public void setOnItemClick(OnItemClickListener listener) {
         mOnItemClickListener = listener;
     }
 
-    public void setOnItemLongClick(OnItemLongClickListener listener){
+    public void setOnItemLongClick(OnItemLongClickListener listener) {
         mOnItemLongClickListener = listener;
     }
 
-    public OnItemClickListener getOnItemClickListener(){
+    public OnItemClickListener getOnItemClickListener() {
         return mOnItemClickListener;
     }
 
-    public OnItemLongClickListener getOnItemLongClickListener(){
+    public OnItemLongClickListener getOnItemLongClickListener() {
         return mOnItemLongClickListener;
     }
 
 
-    public static interface OnItemClickListener{
+    public static interface OnItemClickListener {
         public void onItemClick(int position);
     }
 
-    public static interface OnItemLongClickListener{
+    public static interface OnItemLongClickListener {
         public void onItemLongClick(int position);
     }
 }

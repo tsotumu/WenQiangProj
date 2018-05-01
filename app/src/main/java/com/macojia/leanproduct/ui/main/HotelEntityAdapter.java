@@ -1,6 +1,5 @@
 package com.macojia.leanproduct.ui.main;
 
-import android.accounts.AccountAuthenticatorActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,14 +7,12 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.activity.news.AboutActivity;
-import com.macojia.leanproduct.app.AppApplication;
-import com.macojia.leanproduct.ui.main.model.DescHolder;
-import com.macojia.leanproduct.ui.main.model.HeaderHolder;
-import com.macojia.leanproduct.ui.main.model.HotelEntity;
+import com.macojia.leanproduct.pojo.DescHolder;
+import com.macojia.leanproduct.pojo.HeaderHolder;
+import com.macojia.leanproduct.pojo.HotelEntity;
+import com.macojia.leanproduct.ui.activity.news.AboutActivity;
 
 import java.util.ArrayList;
 
@@ -117,8 +114,8 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HeaderHolde
         holder.descView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int groupIndex = (int)v.getTag(R.id.group_index);
-                int contentIndex = (int)v.getTag(R.id.content_index);
+                int groupIndex = (int) v.getTag(R.id.group_index);
+                int contentIndex = (int) v.getTag(R.id.content_index);
                 String data = allTagList.get(groupIndex).tagInfoList.get(contentIndex).tagName;
                 LogUtil.d("onClick", "data is: " + data);
                 ActivityUtil.startActivity((Activity) mContext, AboutActivity.class);

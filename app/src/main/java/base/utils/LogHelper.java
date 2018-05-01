@@ -21,7 +21,7 @@ public abstract class LogHelper {
         return android.os.Process.myPid() + toStringBuffer.toString() + " ";
     }
 
-    public static void printStack(){
+    public static void printStack() {
         if (BuildConfig.DEBUG) {
             StackTraceElement traceElement[] = ((new Exception()).getStackTrace());
             for (StackTraceElement stackTraceElement : traceElement) {

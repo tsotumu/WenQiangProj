@@ -1,12 +1,12 @@
 package com.macojia.leanproduct.ui.zone.model;
 
+import com.macojia.common.baseapp.AppCache;
+import com.macojia.common.baserx.RxSchedulers;
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.bean.Result;
 import com.macojia.leanproduct.ui.zone.DatasUtil;
 import com.macojia.leanproduct.ui.zone.bean.CommentItem;
 import com.macojia.leanproduct.ui.zone.contract.CircleZoneContract;
-import com.macojia.common.baseapp.AppCache;
-import com.macojia.common.baserx.RxSchedulers;
-import com.macojia.common.commonutils.LogUtils;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -19,6 +19,7 @@ import rx.Subscriber;
 public class ZoneModel implements CircleZoneContract.Model {
     /**
      * 获取未读条数
+     *
      * @return
      */
     @Override
@@ -35,6 +36,7 @@ public class ZoneModel implements CircleZoneContract.Model {
 
     /**
      * 获取列表
+     *
      * @param type
      * @param userId
      * @param page
@@ -49,13 +51,14 @@ public class ZoneModel implements CircleZoneContract.Model {
                 Result result = DatasUtil.getZoneListDatas();
                 subscriber.onNext(result);
                 subscriber.onCompleted();
-                LogUtils.logd("result"+result.toString());
+                LogUtils.logd("result" + result.toString());
             }
         }).compose(RxSchedulers.<Result>io_main());
     }
 
     /**
      * 删除说说
+     *
      * @param circleId
      * @param position
      * @return
@@ -75,6 +78,7 @@ public class ZoneModel implements CircleZoneContract.Model {
 
     /**
      * 增加点赞
+     *
      * @param publishId
      * @param publishUserId
      * @return
@@ -94,6 +98,7 @@ public class ZoneModel implements CircleZoneContract.Model {
 
     /**
      * 取消点赞
+     *
      * @param publishId
      * @param publishUserId
      * @return
@@ -113,6 +118,7 @@ public class ZoneModel implements CircleZoneContract.Model {
 
     /**
      * 增加评论
+     *
      * @param publishUserId
      * @param circleItem
      * @return
@@ -132,6 +138,7 @@ public class ZoneModel implements CircleZoneContract.Model {
 
     /**
      * 删除评论
+     *
      * @param commentId
      * @return
      */

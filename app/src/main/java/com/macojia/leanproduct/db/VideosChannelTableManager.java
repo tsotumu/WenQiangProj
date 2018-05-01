@@ -17,8 +17,8 @@
 package com.macojia.leanproduct.db;
 
 
-import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.bean.VideoChannelTable;
 
 import java.util.ArrayList;
@@ -29,12 +29,13 @@ public class VideosChannelTableManager {
 
     /**
      * 加载视频类型
+     *
      * @return
      */
     public static List<VideoChannelTable> loadVideosChannelsMine() {
         List<String> channelName = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.video_channel_name));
         List<String> channelId = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.video_channel_id));
-        ArrayList<VideoChannelTable>newsChannelTables=new ArrayList<>();
+        ArrayList<VideoChannelTable> newsChannelTables = new ArrayList<>();
         for (int i = 0; i < channelName.size(); i++) {
             VideoChannelTable entity = new VideoChannelTable(channelId.get(i), channelName.get(i));
             newsChannelTables.add(entity);

@@ -23,10 +23,10 @@ import android.support.annotation.Nullable;
 import android.text.Html;
 import android.widget.TextView;
 
-import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.api.Api;
 import com.macojia.leanproduct.api.HostType;
+import com.macojia.leanproduct.app.AppApplication;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -45,13 +45,13 @@ import rx.schedulers.Schedulers;
  * @version 1.0 2016/6/19
  */
 public class URLImageGetter implements Html.ImageGetter {
+    private static final String mFilePath = AppApplication.getAppContext().getCacheDir().getAbsolutePath();
+    public Subscription mSubscription;
     private TextView mTextView;
     private int mPicWidth;
     private String mNewsBody;
     private int mPicCount;
     private int mPicTotal;
-    private static final String mFilePath = AppApplication.getAppContext().getCacheDir().getAbsolutePath();
-    public Subscription mSubscription;
 
     public URLImageGetter(TextView textView, String newsBody, int picTotal) {
         mTextView = textView;
@@ -93,7 +93,7 @@ public class URLImageGetter implements Html.ImageGetter {
     @NonNull
     private Drawable getDrawableFromNet(final String source) {
         mSubscription = Api.getDefault(HostType.NEWS_DETAIL_HTML_PHOTO)
-                .getNewsBodyHtmlPhoto(Api.getCacheControl(),source)
+                .getNewsBodyHtmlPhoto(Api.getCacheControl(), source)
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

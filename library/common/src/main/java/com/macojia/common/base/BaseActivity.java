@@ -80,8 +80,8 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         if (mPresenter != null) {
             mPresenter.mContext = this;
         }
-        this.initPresenter();
-        this.initView();
+        initPresenter();
+        initView();
     }
 
     /**

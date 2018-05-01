@@ -49,7 +49,7 @@ public class TaskQueue extends Thread {
                 }
 
             } catch (InterruptedException e) {
-                if (BuildConfig.DEBUG)  LogUtil.error(e);
+                if (BuildConfig.DEBUG) LogUtil.error(e);
             }
         }
     }

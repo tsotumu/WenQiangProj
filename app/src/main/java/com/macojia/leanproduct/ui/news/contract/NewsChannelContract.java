@@ -1,9 +1,9 @@
 package com.macojia.leanproduct.ui.news.contract;
 
-import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.common.base.BaseModel;
 import com.macojia.common.base.BasePresenter;
 import com.macojia.common.base.BaseView;
+import com.macojia.leanproduct.bean.NewsChannelTable;
 
 import java.util.ArrayList;
 import java.util.List;

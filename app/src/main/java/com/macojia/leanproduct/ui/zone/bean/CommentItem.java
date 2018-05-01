@@ -11,6 +11,17 @@ import android.os.Parcelable;
 public class CommentItem implements Parcelable {
 
 
+    public static final Creator<CommentItem> CREATOR = new Creator<CommentItem>() {
+        @Override
+        public CommentItem createFromParcel(Parcel source) {
+            return new CommentItem(source);
+        }
+
+        @Override
+        public CommentItem[] newArray(int size) {
+            return new CommentItem[size];
+        }
+    };
     /**
      * appointUserNickname : string
      * appointUserid : 0
@@ -40,6 +51,21 @@ public class CommentItem implements Parcelable {
         this.publishId = publishId;
         this.userId = userId;
         this.userNickname = userNickname;
+    }
+
+    public CommentItem() {
+    }
+
+    protected CommentItem(Parcel in) {
+        this.appointUserNickname = in.readString();
+        this.appointUserid = in.readString();
+        this.content = in.readString();
+        this.createTime = in.readString();
+        this.id = in.readString();
+        this.pictures = in.readString();
+        this.publishId = in.readString();
+        this.userId = in.readString();
+        this.userNickname = in.readString();
     }
 
     public String getUserNickname() {
@@ -114,9 +140,6 @@ public class CommentItem implements Parcelable {
         this.userId = userId;
     }
 
-    public CommentItem() {
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -134,28 +157,4 @@ public class CommentItem implements Parcelable {
         dest.writeString(this.userId);
         dest.writeString(this.userNickname);
     }
-
-    protected CommentItem(Parcel in) {
-        this.appointUserNickname = in.readString();
-        this.appointUserid = in.readString();
-        this.content = in.readString();
-        this.createTime = in.readString();
-        this.id = in.readString();
-        this.pictures = in.readString();
-        this.publishId = in.readString();
-        this.userId = in.readString();
-        this.userNickname = in.readString();
-    }
-
-    public static final Creator<CommentItem> CREATOR = new Creator<CommentItem>() {
-        @Override
-        public CommentItem createFromParcel(Parcel source) {
-            return new CommentItem(source);
-        }
-
-        @Override
-        public CommentItem[] newArray(int size) {
-            return new CommentItem[size];
-        }
-    };
 }

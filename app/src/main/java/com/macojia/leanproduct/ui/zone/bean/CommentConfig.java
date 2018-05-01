@@ -6,16 +6,6 @@ package com.macojia.leanproduct.ui.zone.bean;
  * on 2016.07.11:11
  */
 public class CommentConfig {
-    public static enum Type{
-        PUBLIC("public"), REPLY("reply");
-
-        private String value;
-        private Type(String value){
-            this.value = value;
-        }
-
-    }
-
     public int circlePosition;
     public int commentPosition;
     public Type commentType;
@@ -24,7 +14,7 @@ public class CommentConfig {
     private String id;//被评论人id
     private String name;//被评论人name
     private String headUrl;
-    private boolean isOpen=false;
+    private boolean isOpen = false;
 
     public String getPublishUserId() {
         return publishUserId;
@@ -96,6 +86,17 @@ public class CommentConfig {
 
     public void setCommentType(Type commentType) {
         this.commentType = commentType;
+    }
+
+    public static enum Type {
+        PUBLIC("public"), REPLY("reply");
+
+        private String value;
+
+        private Type(String value) {
+            this.value = value;
+        }
+
     }
 
 
