@@ -40,6 +40,8 @@
         <activity android:name=".activity.news.EfficiencyIndexActivity"/>
         <activity android:name=".activity.news.CompreIndexActivity"/>
         <activity android:name=".activity.news.CostIndexActivity"/>
+        <activity android:name=".activity.news.ForecastProgressActivity"/>
+
         <!-- 友盟统计 -->
         <meta-data
             android:name="UMENG_APPKEY"

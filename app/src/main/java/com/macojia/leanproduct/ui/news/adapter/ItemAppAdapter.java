@@ -6,6 +6,7 @@ import android.view.View;
 import com.aspsine.irecyclerview.universaladapter.ViewHolderHelper;
 import com.aspsine.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.activity.news.ForecastProgressActivity;
 import com.macojia.leanproduct.bean.ItemApp;
 import com.macojia.leanproduct.activity.news.AboutActivity;
 import com.macojia.leanproduct.activity.news.CompreIndexActivity;
@@ -68,7 +69,7 @@ public class ItemAppAdapter extends CommonRecycleViewAdapter<ItemApp> {
                     NewsChannelActivity.startAction(mContext);
                 }
                 if(pos==9){
-                    AboutActivity.startAction(mContext);
+                    ForecastProgressActivity.startAction(mContext);
                 }
 
 
