@@ -10,8 +10,8 @@ import android.text.style.ClickableSpan;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
-import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.app.AppApplication;
 
 
 /**
@@ -20,44 +20,46 @@ import com.macojia.leanproduct.R;
  * on 2016.07.11:14
  */
 public class CircleMovementMethod extends BaseMovementMethod {
-    public final String TAG = CircleMovementMethod.class.getSimpleName();
     public final static int DEFAULT_COLOR = R.color.transparent;
-    private int mTextViewBgColorId ;
+    public final String TAG = CircleMovementMethod.class.getSimpleName();
+    private int mTextViewBgColorId;
     private int mClickableSpanBgClorId;
 
     private BackgroundColorSpan mBgSpan;
     private ClickableSpan[] mClickLinks;
     private boolean isPassToTv = true;
+
+    public CircleMovementMethod() {
+        mTextViewBgColorId = DEFAULT_COLOR;
+        mClickableSpanBgClorId = DEFAULT_COLOR;
+    }
+
+    public CircleMovementMethod(int clickableSpanBgClorId) {
+        mClickableSpanBgClorId = clickableSpanBgClorId;
+        mTextViewBgColorId = DEFAULT_COLOR;
+    }
+
+    public CircleMovementMethod(int clickableSpanBgClorId, int textViewBgColorId) {
+        mClickableSpanBgClorId = clickableSpanBgClorId;
+        mTextViewBgColorId = textViewBgColorId;
+    }
+
     /**
      * true：响应textview的点击事件， false：响应设置的clickableSpan事件
      */
     public boolean isPassToTv() {
         return isPassToTv;
     }
-    private void setPassToTv(boolean isPassToTv){
+
+    private void setPassToTv(boolean isPassToTv) {
         this.isPassToTv = isPassToTv;
-    }
-
-    public CircleMovementMethod(){
-        mTextViewBgColorId = DEFAULT_COLOR;
-        mClickableSpanBgClorId = DEFAULT_COLOR;
-    }
-
-    public CircleMovementMethod(int clickableSpanBgClorId){
-        mClickableSpanBgClorId = clickableSpanBgClorId;
-        mTextViewBgColorId = DEFAULT_COLOR;
-    }
-
-    public CircleMovementMethod(int clickableSpanBgClorId, int textViewBgColorId){
-        mClickableSpanBgClorId = clickableSpanBgClorId;
-        mTextViewBgColorId = textViewBgColorId;
     }
 
     public boolean onTouchEvent(TextView widget, Spannable buffer,
                                 MotionEvent event) {
 
         int action = event.getAction();
-        if(action == MotionEvent.ACTION_DOWN){
+        if (action == MotionEvent.ACTION_DOWN) {
             int x = (int) event.getX();
             int y = (int) event.getY();
 
@@ -72,7 +74,7 @@ public class CircleMovementMethod extends BaseMovementMethod {
             int off = layout.getOffsetForHorizontal(line, x);
 
             mClickLinks = buffer.getSpans(off, off, ClickableSpan.class);
-            if(mClickLinks.length > 0){
+            if (mClickLinks.length > 0) {
                 // 点击的是Span区域，不要把点击事件传递
                 setPassToTv(false);
                 Selection.setSelection(buffer,
@@ -84,29 +86,29 @@ public class CircleMovementMethod extends BaseMovementMethod {
                         buffer.getSpanStart(mClickLinks[0]),
                         buffer.getSpanEnd(mClickLinks[0]),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            }else{
+            } else {
                 setPassToTv(true);
                 // textview选中效果
                 widget.setBackgroundResource(mTextViewBgColorId);
             }
 
-        }else if(action == MotionEvent.ACTION_UP){
-            if(mClickLinks.length > 0){
+        } else if (action == MotionEvent.ACTION_UP) {
+            if (mClickLinks.length > 0) {
                 mClickLinks[0].onClick(widget);
-                if(mBgSpan != null){
+                if (mBgSpan != null) {
                     buffer.removeSpan(mBgSpan);
                 }
-            }else{
-                if(mBgSpan != null){
+            } else {
+                if (mBgSpan != null) {
                     buffer.removeSpan(mBgSpan);
                 }
             }
             Selection.removeSelection(buffer);
             widget.setBackgroundResource(DEFAULT_COLOR);
-        }else if(action == MotionEvent.ACTION_MOVE){
+        } else if (action == MotionEvent.ACTION_MOVE) {
 
-        }else{
-            if(mBgSpan != null){
+        } else {
+            if (mBgSpan != null) {
                 buffer.removeSpan(mBgSpan);
             }
             widget.setBackgroundResource(DEFAULT_COLOR);

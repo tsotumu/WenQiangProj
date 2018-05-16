@@ -6,11 +6,11 @@ def releaseTime() {
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24"
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "macojia.com.leanproduct"
-        minSdkVersion 15
+        minSdkVersion 23
         targetSdkVersion 24
         versionCode 4
         versionName "1.0.3"

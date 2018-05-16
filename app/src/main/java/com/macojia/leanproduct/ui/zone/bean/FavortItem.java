@@ -11,99 +11,99 @@ import android.os.Parcelable;
 public class FavortItem implements Parcelable {
 
 
-	/**
-	 * createTime : 2016-07-20T06:33:40.458Z
-	 * id : 0
-	 * publishId : 0
-	 * userId : 0
-	 * userNickname : string
-	 */
+    public static final Creator<FavortItem> CREATOR = new Creator<FavortItem>() {
+        @Override
+        public FavortItem createFromParcel(Parcel source) {
+            return new FavortItem(source);
+        }
 
-	private String createTime;
-	private String id;
-	private String publishId;
-	private String userId;
-	private String userNickname;
+        @Override
+        public FavortItem[] newArray(int size) {
+            return new FavortItem[size];
+        }
+    };
+    /**
+     * createTime : 2016-07-20T06:33:40.458Z
+     * id : 0
+     * publishId : 0
+     * userId : 0
+     * userNickname : string
+     */
 
-	public String getUserNickname() {
-		return userNickname;
-	}
+    private String createTime;
+    private String id;
+    private String publishId;
+    private String userId;
+    private String userNickname;
 
-	public void setUserNickname(String userNickname) {
-		this.userNickname = userNickname;
-	}
+    public FavortItem() {
+    }
 
-	public String getCreateTime() {
-		return createTime;
-	}
+    public FavortItem(String publishId, String userId, String userNickname) {
+        this.publishId = publishId;
+        this.userId = userId;
+        this.userNickname = userNickname;
+    }
 
-	public void setCreateTime(String createTime) {
-		this.createTime = createTime;
-	}
+    protected FavortItem(Parcel in) {
+        this.createTime = in.readString();
+        this.id = in.readString();
+        this.publishId = in.readString();
+        this.userId = in.readString();
+        this.userNickname = in.readString();
+    }
 
-	public String getId() {
-		return id;
-	}
+    public String getUserNickname() {
+        return userNickname;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
+    }
 
-	public String getPublishId() {
-		return publishId;
-	}
+    public String getCreateTime() {
+        return createTime;
+    }
 
-	public void setPublishId(String publishId) {
-		this.publishId = publishId;
-	}
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
 
-	public String getUserId() {
-		return userId;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public FavortItem() {
-	}
-	public FavortItem(String publishId, String userId,String userNickname) {
-		this.publishId=publishId;
-		this.userId=userId;
-		this.userNickname=userNickname;
-	}
+    public String getPublishId() {
+        return publishId;
+    }
 
-	@Override
-	public int describeContents() {
-		return 0;
-	}
+    public void setPublishId(String publishId) {
+        this.publishId = publishId;
+    }
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(this.createTime);
-		dest.writeString(this.id);
-		dest.writeString(this.publishId);
-		dest.writeString(this.userId);
-		dest.writeString(this.userNickname);
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	protected FavortItem(Parcel in) {
-		this.createTime = in.readString();
-		this.id = in.readString();
-		this.publishId = in.readString();
-		this.userId = in.readString();
-		this.userNickname = in.readString();
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public static final Creator<FavortItem> CREATOR = new Creator<FavortItem>() {
-		@Override
-		public FavortItem createFromParcel(Parcel source) {
-			return new FavortItem(source);
-		}
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-		@Override
-		public FavortItem[] newArray(int size) {
-			return new FavortItem[size];
-		}
-	};
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.createTime);
+        dest.writeString(this.id);
+        dest.writeString(this.publishId);
+        dest.writeString(this.userId);
+        dest.writeString(this.userNickname);
+    }
 }

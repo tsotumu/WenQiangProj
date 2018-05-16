@@ -30,11 +30,11 @@ public class GirlData {
         isError = error;
     }
 
-    public void setResults(List<PhotoGirl> results) {
-        this.results = results;
-    }
-
     public List<PhotoGirl> getResults() {
         return results;
+    }
+
+    public void setResults(List<PhotoGirl> results) {
+        this.results = results;
     }
 }

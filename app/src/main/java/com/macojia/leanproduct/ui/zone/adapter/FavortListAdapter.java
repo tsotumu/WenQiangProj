@@ -7,8 +7,8 @@ import android.text.SpannableStringBuilder;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ImageSpan;
 
-import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.ui.zone.bean.FavortItem;
 import com.macojia.leanproduct.ui.zone.spannable.CircleMovementMethod;
 import com.macojia.leanproduct.ui.zone.spannable.NameClickable;
@@ -36,8 +36,8 @@ public class FavortListAdapter {
     }
 
     @NonNull
-    public void bindListView(FavortListView listview){
-        if(listview == null){
+    public void bindListView(FavortListView listview) {
+        if (listview == null) {
             throw new IllegalArgumentException("FavortListView is null ....");
         }
         mListView = listview;
@@ -45,14 +45,14 @@ public class FavortListAdapter {
 
 
     public int getCount() {
-        if(datas != null && datas.size() > 0){
+        if (datas != null && datas.size() > 0) {
             return datas.size();
         }
         return 0;
     }
 
     public Object getItem(int position) {
-        if(datas != null && datas.size() > position){
+        if (datas != null && datas.size() > position) {
             return datas.get(position);
         }
         return null;
@@ -62,21 +62,21 @@ public class FavortListAdapter {
         return position;
     }
 
-    public void notifyDataSetChanged(){
-        if(mListView == null){
+    public void notifyDataSetChanged() {
+        if (mListView == null) {
             throw new NullPointerException("listview is null, please bindListView first...");
         }
         SpannableStringBuilder builder = new SpannableStringBuilder();
-        if(datas != null && datas.size() > 0){
+        if (datas != null && datas.size() > 0) {
             //添加点赞图标
             builder.append(setImageSpan());
             //builder.append("  ");
             FavortItem item = null;
-            for (int i=0; i<datas.size(); i++){
+            for (int i = 0; i < datas.size(); i++) {
                 item = datas.get(i);
-                if(item != null){
+                if (item != null) {
                     builder.append(setClickableSpan(item.getUserNickname(), i));
-                    if(i != datas.size()-1){
+                    if (i != datas.size() - 1) {
                         builder.append(", ");
                     }
                 }
@@ -94,11 +94,11 @@ public class FavortListAdapter {
         return subjectSpanText;
     }
 
-    private SpannableString setImageSpan(){
+    private SpannableString setImageSpan() {
         String text = "  ";
         SpannableString imgSpanText = new SpannableString(text);
         imgSpanText.setSpan(new ImageSpan(AppApplication.getAppContext(), R.drawable.dianzansmal, DynamicDrawableSpan.ALIGN_BASELINE),
-                0 , 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return imgSpanText;
     }
 }

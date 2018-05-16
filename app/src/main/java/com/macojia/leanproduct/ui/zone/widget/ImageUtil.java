@@ -11,17 +11,18 @@ import java.io.File;
  * on 2016.04.10:36
  */
 public class ImageUtil {
-private static String BASE_PHOTO_URL="";
+    private static String BASE_PHOTO_URL = "";
+
     /**
      * @param url
      * @return
      */
     public static String getImageUrl(String url) {
         if (!TextUtils.isEmpty(url)) {
-            if (url.contains("http")||new File(url).isFile()) {
+            if (url.contains("http") || new File(url).isFile()) {
                 return url;
             } else {
-                return BASE_PHOTO_URL+url;
+                return BASE_PHOTO_URL + url;
             }
         } else {
             return "";

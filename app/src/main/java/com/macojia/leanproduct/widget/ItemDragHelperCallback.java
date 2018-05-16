@@ -25,16 +25,12 @@ public class ItemDragHelperCallback extends ItemTouchHelper.Callback {
     private OnItemMoveListener mOnItemMoveListener;
     private boolean mIsLongPressEnabled;
 
-    public void setLongPressEnabled(boolean longPressEnabled) {
-        mIsLongPressEnabled = longPressEnabled;
-    }
-
-    public interface OnItemMoveListener {
-        boolean onItemMove(int fromPosition, int toPosition);
-    }
-
     public ItemDragHelperCallback(OnItemMoveListener onItemMoveListener) {
         mOnItemMoveListener = onItemMoveListener;
+    }
+
+    public void setLongPressEnabled(boolean longPressEnabled) {
+        mIsLongPressEnabled = longPressEnabled;
     }
 
     @Override
@@ -80,5 +76,9 @@ public class ItemDragHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
 
+    }
+
+    public interface OnItemMoveListener {
+        boolean onItemMove(int fromPosition, int toPosition);
     }
 }

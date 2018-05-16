@@ -10,6 +10,17 @@ import android.os.Parcelable;
  */
 public class New implements Parcelable {
 
+    public static final Creator<New> CREATOR = new Creator<New>() {
+        @Override
+        public New createFromParcel(Parcel source) {
+            return new New(source);
+        }
+
+        @Override
+        public New[] newArray(int size) {
+            return new New[size];
+        }
+    };
     /**
      * createTime : 2016-07-21T05:57:12.133Z
      * id : 0
@@ -31,6 +42,22 @@ public class New implements Parcelable {
     private String userId;
     private String content;
     private String operaUserIcon;
+
+    public New() {
+    }
+
+    protected New(Parcel in) {
+        this.createTime = in.readLong();
+        this.id = in.readString();
+        this.isRead = in.readString();
+        this.publishId = in.readString();
+        this.readTime = in.readString();
+        this.replyId = in.readString();
+        this.source = in.readString();
+        this.userId = in.readString();
+        this.content = in.readString();
+        this.operaUserIcon = in.readString();
+    }
 
     public String getReplyId() {
         return replyId;
@@ -130,32 +157,4 @@ public class New implements Parcelable {
         dest.writeString(this.content);
         dest.writeString(this.operaUserIcon);
     }
-
-    public New() {
-    }
-
-    protected New(Parcel in) {
-        this.createTime = in.readLong();
-        this.id = in.readString();
-        this.isRead = in.readString();
-        this.publishId = in.readString();
-        this.readTime = in.readString();
-        this.replyId = in.readString();
-        this.source = in.readString();
-        this.userId = in.readString();
-        this.content = in.readString();
-        this.operaUserIcon = in.readString();
-    }
-
-    public static final Creator<New> CREATOR = new Creator<New>() {
-        @Override
-        public New createFromParcel(Parcel source) {
-            return new New(source);
-        }
-
-        @Override
-        public New[] newArray(int size) {
-            return new New[size];
-        }
-    };
 }

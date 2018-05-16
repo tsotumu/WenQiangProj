@@ -10,23 +10,24 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.ui.zone.DatasUtil;
 import com.macojia.common.commonutils.FormatUtil;
 import com.macojia.common.commonutils.ImageLoaderUtils;
 import com.macojia.common.commonwidget.WaveView;
+import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.ui.zone.DatasUtil;
 
 /**
  * des:圈子消息头
  * Created by xsf
  * on 2016.07.15:18
  */
-public class ZoneHeaderView extends LinearLayout{
-    private ImageView img_avater,img_newest_avater;
-    private TextView tv_name,tv_not_read_new;
+public class ZoneHeaderView extends LinearLayout {
+    private ImageView img_avater, img_newest_avater;
+    private TextView tv_name, tv_not_read_new;
     private LinearLayout ll_not_read_news_root;
     private RelativeLayout rl_not_read_news_root;
     private WaveView waveView;
+
     public ZoneHeaderView(Context context) {
         super(context);
         initView();
@@ -51,7 +52,7 @@ public class ZoneHeaderView extends LinearLayout{
     private void initView() {
         View view = inflate(getContext(), R.layout.item_zone_header, null);
         img_avater = (ImageView) view.findViewById(R.id.img_avater);
-        waveView= (WaveView) view.findViewById(R.id.wave_view);
+        waveView = (WaveView) view.findViewById(R.id.wave_view);
         img_newest_avater = (ImageView) view.findViewById(R.id.img_newest_avater);
         tv_name = (TextView) view.findViewById(R.id.tv_name);
         tv_not_read_new = (TextView) view.findViewById(R.id.tv_not_read_new);
@@ -73,22 +74,24 @@ public class ZoneHeaderView extends LinearLayout{
         });
         addView(view);
     }
+
     /**
      * 设置基本信息
      */
-    public void setData(String name,String avater){
+    public void setData(String name, String avater) {
         tv_name.setText(FormatUtil.checkValue(name));
-        ImageLoaderUtils.displayRound(getContext(),img_avater, DatasUtil.getRandomPhotoUrl());
+        ImageLoaderUtils.displayRound(getContext(), img_avater, DatasUtil.getRandomPhotoUrl());
     }
+
     /**
      * 设置未读消息值
      */
-    public void setNotReadMsgData(int num,String avater){
-        if(num>0){
+    public void setNotReadMsgData(int num, String avater) {
+        if (num > 0) {
             ll_not_read_news_root.setVisibility(View.VISIBLE);
-            ImageLoaderUtils.displayRound(getContext(),img_newest_avater, DatasUtil.getRandomPhotoUrl());
+            ImageLoaderUtils.displayRound(getContext(), img_newest_avater, DatasUtil.getRandomPhotoUrl());
             tv_not_read_new.setText(String.format(getResources().getString(R.string.circle_zone_not_read_news), String.valueOf(num)));
-        }else{
+        } else {
             ll_not_read_news_root.setVisibility(View.GONE);
         }
 

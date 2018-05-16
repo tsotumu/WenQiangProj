@@ -35,9 +35,9 @@ public class SectionedSpanSizeLookup extends GridLayoutManager.SpanSizeLookup {
     @Override
     public int getSpanSize(int position) {
 
-        if(adapter.isSectionHeaderPosition(position) || adapter.isSectionFooterPosition(position)){
+        if (adapter.isSectionHeaderPosition(position) || adapter.isSectionFooterPosition(position)) {
             return layoutManager.getSpanCount();
-        }else{
+        } else {
             return 1;
         }
 

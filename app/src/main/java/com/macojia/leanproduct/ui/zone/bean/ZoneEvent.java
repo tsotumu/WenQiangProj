@@ -15,46 +15,53 @@ public class ZoneEvent {
     private String userId;
     private String addOrDelete;
     private String type;
+
     //新增动态
-    public ZoneEvent(CircleItem circleItem,String type){
-        this.circleItem=circleItem;
-        this.type=type;
+    public ZoneEvent(CircleItem circleItem, String type) {
+        this.circleItem = circleItem;
+        this.type = type;
     }
+
     //删除动态
-    public ZoneEvent(String circleId, int position,String type){
-        this.circleId=circleId;
-        this.circlrPosition=position;
-        this.type=type;
+    public ZoneEvent(String circleId, int position, String type) {
+        this.circleId = circleId;
+        this.circlrPosition = position;
+        this.type = type;
     }
+
     //新增评论
-    public ZoneEvent(CommentItem commentItem,int circlrPosition,String type){
-        this.commentItem=commentItem;
-        this.circlrPosition=circlrPosition;
-        this.type=type;
+    public ZoneEvent(CommentItem commentItem, int circlrPosition, String type) {
+        this.commentItem = commentItem;
+        this.circlrPosition = circlrPosition;
+        this.type = type;
     }
+
     //删除评论
-    public ZoneEvent(int circlePosition, String commentId,String type){
-        this.circlrPosition=circlePosition;
-        this.commentId=commentId;
-        this.type=type;
+    public ZoneEvent(int circlePosition, String commentId, String type) {
+        this.circlrPosition = circlePosition;
+        this.commentId = commentId;
+        this.type = type;
     }
+
     //新增点赞
-    public ZoneEvent(int circlePosition, FavortItem addItem,String addOrDelete,String type){
-        this.addItem=addItem;
-        this.circlrPosition=circlePosition;
-        this.addOrDelete=addOrDelete;
-        this.type=type;
+    public ZoneEvent(int circlePosition, FavortItem addItem, String addOrDelete, String type) {
+        this.addItem = addItem;
+        this.circlrPosition = circlePosition;
+        this.addOrDelete = addOrDelete;
+        this.type = type;
     }
+
     //删除点赞
-    public ZoneEvent(int circlePosition,String userId,String addOrDelete,String type){
-        this.circlrPosition=circlePosition;
-        this.userId=userId;
-        this.addOrDelete=addOrDelete;
-        this.type=type;
+    public ZoneEvent(int circlePosition, String userId, String addOrDelete, String type) {
+        this.circlrPosition = circlePosition;
+        this.userId = userId;
+        this.addOrDelete = addOrDelete;
+        this.type = type;
     }
+
     //所有信息已为已读
-    public ZoneEvent(String type){
-        this.type=type;
+    public ZoneEvent(String type) {
+        this.type = type;
     }
 
     public FavortItem getAddItem() {

@@ -14,14 +14,14 @@ import com.aspsine.irecyclerview.universaladapter.recyclerview.CommonRecycleView
 import com.aspsine.irecyclerview.widget.LoadMoreFooterView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.macojia.common.base.BaseFragment;
+import com.macojia.common.commonwidget.LoadingTip;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.bean.VideoData;
+import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.news.contract.VideosListContract;
 import com.macojia.leanproduct.ui.news.model.VideosListModel;
 import com.macojia.leanproduct.ui.news.presenter.VideoListPresenter;
-import com.macojia.common.base.BaseFragment;
-import com.macojia.common.commonwidget.LoadingTip;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class VideosFragment extends BaseFragment<VideoListPresenter, VideosListM
     private CommonRecycleViewAdapter<VideoData> videoListAdapter;
 
     private String mVideoType;
-    private int mStartPage=0;
+    private int mStartPage = 0;
 
     @Override
     protected int getLayoutResource() {
@@ -54,22 +54,23 @@ public class VideosFragment extends BaseFragment<VideoListPresenter, VideosListM
     public void initPresenter() {
         mPresenter.setVM(this, mModel);
     }
+
     @Override
     protected void initView() {
         if (getArguments() != null) {
             mVideoType = getArguments().getString(AppConstant.VIDEO_TYPE);
         }
         irc.setLayoutManager(new LinearLayoutManager(getContext()));
-        videoListAdapter =new CommonRecycleViewAdapter<VideoData>(getContext(),R.layout.item_video_list) {
+        videoListAdapter = new CommonRecycleViewAdapter<VideoData>(getContext(), R.layout.item_video_list) {
             @Override
             public void convert(ViewHolderHelper helper, VideoData videoData) {
-                helper.setImageRoundUrl(R.id.iv_logo,videoData.getTopicImg());
-                helper.setText(R.id.tv_from,videoData.getTopicName());
-                helper.setText(R.id.tv_play_time,String.format(getResources().getString(R.string.video_play_times), String.valueOf(videoData.getPlayCount())));
-                JCVideoPlayerStandard jcVideoPlayerStandard=helper.getView(R.id.videoplayer);
+                helper.setImageRoundUrl(R.id.iv_logo, videoData.getTopicImg());
+                helper.setText(R.id.tv_from, videoData.getTopicName());
+                helper.setText(R.id.tv_play_time, String.format(getResources().getString(R.string.video_play_times), String.valueOf(videoData.getPlayCount())));
+                JCVideoPlayerStandard jcVideoPlayerStandard = helper.getView(R.id.videoplayer);
                 boolean setUp = jcVideoPlayerStandard.setUp(
                         videoData.getMp4_url(), JCVideoPlayer.SCREEN_LAYOUT_LIST,
-                        TextUtils.isEmpty(videoData.getDescription())?videoData.getTitle()+"":videoData.getDescription());
+                        TextUtils.isEmpty(videoData.getDescription()) ? videoData.getTitle() + "" : videoData.getDescription());
                 if (setUp) {
                     Glide.with(mContext).load(videoData.getCover())
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -88,6 +89,7 @@ public class VideosFragment extends BaseFragment<VideoListPresenter, VideosListM
             public void onChildViewAttachedToWindow(View view) {
 
             }
+
             @Override
             public void onChildViewDetachedFromWindow(View view) {
                 if (JCVideoPlayerManager.listener() != null) {
@@ -99,12 +101,13 @@ public class VideosFragment extends BaseFragment<VideoListPresenter, VideosListM
             }
         });
         //数据为空才重新发起请求
-        if(videoListAdapter.getSize()<=0) {
+        if (videoListAdapter.getSize() <= 0) {
             //发起请求
-            mStartPage=0;
+            mStartPage = 0;
             mPresenter.getVideosListDataRequest(mVideoType, mStartPage);
         }
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -156,8 +159,8 @@ public class VideosFragment extends BaseFragment<VideoListPresenter, VideosListM
 
     @Override
     public void showLoading(String title) {
-        if( videoListAdapter.getPageBean().isRefresh()) {
-            if(videoListAdapter.getSize()<=0) {
+        if (videoListAdapter.getPageBean().isRefresh()) {
+            if (videoListAdapter.getSize() <= 0) {
                 loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
             }
         }
@@ -170,13 +173,13 @@ public class VideosFragment extends BaseFragment<VideoListPresenter, VideosListM
 
     @Override
     public void showErrorTip(String msg) {
-        if( videoListAdapter.getPageBean().isRefresh()) {
-            if(videoListAdapter.getSize()<=0) {
+        if (videoListAdapter.getPageBean().isRefresh()) {
+            if (videoListAdapter.getSize() <= 0) {
                 loadedTip.setLoadingTip(LoadingTip.LoadStatus.error);
                 loadedTip.setTips(msg);
                 irc.setRefreshing(false);
             }
-        }else{
+        } else {
             irc.setLoadMoreStatus(LoadMoreFooterView.Status.ERROR);
         }
     }

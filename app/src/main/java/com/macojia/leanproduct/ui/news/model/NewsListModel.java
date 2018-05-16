@@ -1,12 +1,12 @@
 package com.macojia.leanproduct.ui.news.model;
 
+import com.macojia.common.baserx.RxSchedulers;
+import com.macojia.common.commonutils.TimeUtil;
 import com.macojia.leanproduct.api.Api;
 import com.macojia.leanproduct.api.ApiConstants;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.bean.NewsSummary;
 import com.macojia.leanproduct.ui.news.contract.NewsListContract;
-import com.macojia.common.baserx.RxSchedulers;
-import com.macojia.common.commonutils.TimeUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +23,7 @@ import rx.functions.Func2;
 public class NewsListModel implements NewsListContract.Model {
     /**
      * 获取新闻列表
+     *
      * @param type
      * @param id
      * @param startPage
@@ -30,7 +31,7 @@ public class NewsListModel implements NewsListContract.Model {
      */
     @Override
     public Observable<List<NewsSummary>> getNewsListData(final String type, final String id, final int startPage) {
-       return Api.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewsList(Api.getCacheControl(),type, id, startPage)
+        return Api.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewsList(Api.getCacheControl(), type, id, startPage)
                 .flatMap(new Func1<Map<String, List<NewsSummary>>, Observable<NewsSummary>>() {
                     @Override
                     public Observable<NewsSummary> call(Map<String, List<NewsSummary>> map) {

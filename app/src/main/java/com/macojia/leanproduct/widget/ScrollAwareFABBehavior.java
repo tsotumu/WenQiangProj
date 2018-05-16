@@ -23,16 +23,17 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.common.baserx.RxBus;
 import com.macojia.common.baserx.RxManager;
+import com.macojia.leanproduct.constant.AppConstant;
 
 public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
     RxManager rxManager;
+
     public ScrollAwareFABBehavior(Context context, AttributeSet attrs) {
         super();
-        if (rxManager==null){
-            rxManager=new RxManager();
+        if (rxManager == null) {
+            rxManager = new RxManager();
         }
     }
 
@@ -52,9 +53,9 @@ public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
         if (dyConsumed > 0 && child.getVisibility() == View.VISIBLE) {
             child.hide();
-            RxBus.getInstance().post(AppConstant.MENU_SHOW_HIDE,false);
+            RxBus.getInstance().post(AppConstant.MENU_SHOW_HIDE, false);
         } else if (dyConsumed < 0 && child.getVisibility() != View.VISIBLE) {
-            RxBus.getInstance().post(AppConstant.MENU_SHOW_HIDE,true);
+            RxBus.getInstance().post(AppConstant.MENU_SHOW_HIDE, true);
             child.show();
         }
     }

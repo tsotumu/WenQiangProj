@@ -36,13 +36,13 @@
         app:layout_scrollFlags="scroll|enterAlways"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:title="@string/news"
-        app:titleTextColor="@color/white"/>
+        app:titleTextColor="@color/white" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/view_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"/>
-
+        android:layout_marginTop="14dp" />
 
 
 </LinearLayout>

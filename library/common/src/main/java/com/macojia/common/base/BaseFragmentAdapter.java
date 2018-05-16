@@ -18,32 +18,32 @@ import java.util.List;
  */
 public class BaseFragmentAdapter extends FragmentPagerAdapter {
 
-    List<Fragment> fragmentList = new ArrayList<Fragment>();
+    List<Fragment> mFragmentList = new ArrayList<Fragment>();
     private List<String> mTitles;
 
-    public BaseFragmentAdapter(FragmentManager fm, List<Fragment> fragmentList) {
+    public BaseFragmentAdapter(FragmentManager fm, List<Fragment> nFragmentList) {
         super(fm);
-        this.fragmentList = fragmentList;
+        this.mFragmentList = nFragmentList;
     }
 
-    public BaseFragmentAdapter(FragmentManager fm, List<Fragment> fragmentList, List<String> mTitles) {
+    public BaseFragmentAdapter(FragmentManager fm, List<Fragment> nFragmentList, List<String> mTitles) {
         super(fm);
         this.mTitles = mTitles;
-        setFragments(fm,fragmentList,mTitles);
+        setFragments(fm, nFragmentList,mTitles);
     }
     //刷新fragment
     public void setFragments(FragmentManager fm,List<Fragment> fragments,List<String> mTitles) {
         this.mTitles = mTitles;
-        if (this.fragmentList != null) {
+        if (this.mFragmentList != null) {
             FragmentTransaction ft = fm.beginTransaction();
-            for (Fragment f : this.fragmentList) {
+            for (Fragment f : this.mFragmentList) {
                 ft.remove(f);
             }
             ft.commitAllowingStateLoss();
             ft = null;
             fm.executePendingTransactions();
         }
-        this.fragmentList = fragments;
+        this.mFragmentList = fragments;
         notifyDataSetChanged();
     }
 
@@ -54,12 +54,12 @@ public class BaseFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return fragmentList.get(position);
+        return mFragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return fragmentList.size();
+        return mFragmentList.size();
     }
 
 }

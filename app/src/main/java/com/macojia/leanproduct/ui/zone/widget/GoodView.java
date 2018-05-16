@@ -58,6 +58,13 @@ public class GoodView extends PopupWindow implements IGoodView {
         initView();
     }
 
+    private static int getTextViewHeight(TextView textView, int width) {
+        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.AT_MOST);
+        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        textView.measure(widthMeasureSpec, heightMeasureSpec);
+        return textView.getMeasuredHeight();
+    }
+
     private void initView() {
         RelativeLayout layout = new RelativeLayout(mContext);
         RelativeLayout.LayoutParams params =
@@ -103,13 +110,6 @@ public class GoodView extends PopupWindow implements IGoodView {
         int w = (int) mGood.getPaint().measureText(text);
         setWidth(w);
         setHeight(mDistance + getTextViewHeight(mGood, w));
-    }
-
-    private static int getTextViewHeight(TextView textView, int width) {
-        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.AT_MOST);
-        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        textView.measure(widthMeasureSpec, heightMeasureSpec);
-        return textView.getMeasuredHeight();
     }
 
     /**

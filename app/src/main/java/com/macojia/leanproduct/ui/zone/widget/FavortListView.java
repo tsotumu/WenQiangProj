@@ -16,13 +16,6 @@ import com.macojia.leanproduct.ui.zone.spannable.ISpanClick;
 public class FavortListView extends TextView {
     private ISpanClick mSpanClickListener;
 
-    public void setSpanClickListener(ISpanClick listener){
-        mSpanClickListener = listener;
-    }
-    public ISpanClick getSpanClickListener(){
-        return  mSpanClickListener;
-    }
-
     public FavortListView(Context context) {
         super(context);
     }
@@ -35,7 +28,15 @@ public class FavortListView extends TextView {
         super(context, attrs, defStyle);
     }
 
-    public void setAdapter(FavortListAdapter adapter){
+    public ISpanClick getSpanClickListener() {
+        return mSpanClickListener;
+    }
+
+    public void setSpanClickListener(ISpanClick listener) {
+        mSpanClickListener = listener;
+    }
+
+    public void setAdapter(FavortListAdapter adapter) {
         adapter.bindListView(this);
     }
 

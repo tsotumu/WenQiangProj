@@ -20,6 +20,6 @@ public class NameClickListener implements ISpanClick {
 
     @Override
     public void onClick(int position) {
-        ToastUitl.showShort("点击了"+position);
+        ToastUitl.showShort("点击了" + position);
     }
 }

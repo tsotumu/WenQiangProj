@@ -5,8 +5,6 @@ import android.util.Log;
 import com.macojia.leanproduct.BuildConfig;
 import com.macojia.leanproduct.constant.LogFilterDef;
 
-import base.async.utils.LogHelper;
-
 /**
  * Created by LC on 2018/4/15.
  */

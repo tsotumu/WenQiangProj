@@ -65,6 +65,15 @@
     <string name="friend_zone_about">关于</string>
     <string name="care_main_title">我关注的</string>
     <string name="care_about_wechat">更多精彩要闻，请及时查看精益生产APP！</string>
+    
+    <!-- 管控 -->
+    <string name="control_quality_index">质量指标</string>
+    <string name="control_yield_index">产量指标</string>
+    <string name="control_cost_index">消耗指标</string>
+    <string name="control_effiency_index">效率指标</string>
+    <string name="control_compre_index">综合指标</string>
+    <string name="control_maintain_guidance">维修指导</string>
+    <string name="control_progress">进度查询</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

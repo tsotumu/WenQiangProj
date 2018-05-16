@@ -2,7 +2,7 @@
     package="com.macojia.leanproduct">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".ui.activity.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".activity.news.PhotosDetailActivity"
             android:theme="@style/BaseAppTheme.Trans"
             />
@@ -41,12 +42,67 @@
         <activity android:name=".activity.news.CompreIndexActivity"/>
         <activity android:name=".activity.news.CostIndexActivity"/>
         <activity android:name=".activity.news.ForecastProgressActivity"/>
+=======
+        <activity
+            android:name=".ui.activity.news.PhotosDetailActivity"
+            android:theme="@style/BaseAppTheme.Trans" />
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.news.NewsDetailActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.news.NewsBrowserActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.news.NewsPhotoDetailActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.news.NewsChannelActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.zone.CircleZoneActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.zone.CirclePublishActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.news.AboutActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.control.QualityIndexActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.news.CompreIndexActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.control.ComprehensiveIndexActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.control.CostIndexActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.control.QualityFeedBackActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.control.EfficiencyIndexActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.control.MaintainGuidanceActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.control.ProgressPredictActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.activity.control.YieldIndexActivity"
+            android:launchMode="singleInstance" />
+>>>>>>> a5b4c9037d4c7acca49595cd10d66f4674e6f1d9
 
         <!-- 友盟统计 -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="57e8e398e0f55ae655000723" >
-        </meta-data>
+            android:value="57e8e398e0f55ae655000723"></meta-data>
     </application>
 
 </manifest>

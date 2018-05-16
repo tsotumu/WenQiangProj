@@ -1,5 +1,6 @@
 package com.macojia.leanproduct.ui.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
@@ -8,13 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.activity.news.YieldIndexActivity;
-import com.macojia.leanproduct.ui.main.model.DescHolder;
-import com.macojia.leanproduct.ui.main.model.HeaderHolder;
-import com.macojia.leanproduct.ui.main.model.HotelEntity;
+import com.macojia.leanproduct.pojo.DescHolder;
+import com.macojia.leanproduct.pojo.HeaderHolder;
+import com.macojia.leanproduct.pojo.HotelEntity;
+import com.macojia.leanproduct.ui.activity.news.AboutActivity;
 
 import java.util.ArrayList;
 
+import base.utils.ActivityUtil;
 import base.utils.HotelUtils;
 import base.utils.LogUtil;
 
@@ -50,8 +52,8 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HeaderHolde
     @Override
     protected int getItemCountForSection(int section) {
         int count = allTagList.get(section).tagInfoList.size();
-        if (count >= 6 && !mBooleanMap.get(section)) {
-            count = 6;
+        if (count >= 8 && !mBooleanMap.get(section)) {
+            count = 8;
         }
 
         return HotelUtils.isEmpty(allTagList.get(section).tagInfoList) ? 0 : count;
@@ -112,13 +114,11 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HeaderHolde
         holder.descView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int groupIndex = (int)v.getTag(R.id.group_index);
-                int contentIndex = (int)v.getTag(R.id.content_index);
+                int groupIndex = (int) v.getTag(R.id.group_index);
+                int contentIndex = (int) v.getTag(R.id.content_index);
                 String data = allTagList.get(groupIndex).tagInfoList.get(contentIndex).tagName;
-                if(data.equals("汉庭")){
-                    YieldIndexActivity.startAction(mContext);
-                }
                 LogUtil.d("onClick", "data is: " + data);
+                ActivityUtil.startActivity((Activity) mContext, AboutActivity.class);
             }
         });
     }

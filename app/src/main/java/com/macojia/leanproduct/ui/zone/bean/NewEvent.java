@@ -8,9 +8,10 @@ package com.macojia.leanproduct.ui.zone.bean;
 public class NewEvent {
     private int count;
     private String type;
-    public NewEvent(int count, String type){
-        this.count=count;
-        this.type=type;
+
+    public NewEvent(int count, String type) {
+        this.count = count;
+        this.type = type;
     }
 
     public int getCount() {

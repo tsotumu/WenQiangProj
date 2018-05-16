@@ -20,8 +20,6 @@ package com.macojia.leanproduct.db;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.bean.ItemApp;
-import com.macojia.leanproduct.bean.VideoChannelTable;
-import com.macojia.common.commonutils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +29,7 @@ public class ControlItemTableManager {
 
     /**
      * 加载管控条目
+     *
      * @return
      */
     public static List<ItemApp> loadControlItemTable() {
@@ -44,7 +43,7 @@ public class ControlItemTableManager {
         itemImages.add(R.mipmap.control_item_5);
         itemImages.add(R.mipmap.control_item_6);
         itemImages.add(R.mipmap.control_item_7);
-        ArrayList<ItemApp> ControlItemTables=new ArrayList<>();
+        ArrayList<ItemApp> ControlItemTables = new ArrayList<>();
         for (int i = 0; i < itemNames.size(); i++) {
             ItemApp entity = new ItemApp(itemNames.get(i), itemImages.get(i));
             ControlItemTables.add(entity);

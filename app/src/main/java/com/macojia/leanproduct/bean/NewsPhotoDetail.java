@@ -23,8 +23,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsPhotoDetail implements Parcelable {
+    public static final Creator<NewsPhotoDetail> CREATOR = new Creator<NewsPhotoDetail>() {
+        @Override
+        public NewsPhotoDetail createFromParcel(Parcel source) {
+            return new NewsPhotoDetail(source);
+        }
+
+        @Override
+        public NewsPhotoDetail[] newArray(int size) {
+            return new NewsPhotoDetail[size];
+        }
+    };
     private String title;
     private List<Picture> pictures;
+
+    public NewsPhotoDetail() {
+    }
+
+    protected NewsPhotoDetail(Parcel in) {
+        this.title = in.readString();
+        this.pictures = new ArrayList<>();
+        in.readList(this.pictures, Picture.class.getClassLoader());
+    }
 
     public String getTitle() {
         return title;
@@ -42,8 +62,39 @@ public class NewsPhotoDetail implements Parcelable {
         this.pictures = pictures;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.title);
+        dest.writeList(this.pictures);
+    }
+
     public static class Picture implements Parcelable {
+        public static final Creator<Picture> CREATOR = new Creator<Picture>() {
+            @Override
+            public Picture createFromParcel(Parcel source) {
+                return new Picture(source);
+            }
+
+            @Override
+            public Picture[] newArray(int size) {
+                return new Picture[size];
+            }
+        };
         private String title;
+        private String imgSrc;
+
+        public Picture() {
+        }
+
+        protected Picture(Parcel in) {
+            this.title = in.readString();
+            this.imgSrc = in.readString();
+        }
 
         public String getImgSrc() {
             return imgSrc;
@@ -61,8 +112,6 @@ public class NewsPhotoDetail implements Parcelable {
             this.title = title;
         }
 
-        private String imgSrc;
-
         @Override
         public int describeContents() {
             return 0;
@@ -73,57 +122,5 @@ public class NewsPhotoDetail implements Parcelable {
             dest.writeString(this.title);
             dest.writeString(this.imgSrc);
         }
-
-        public Picture() {
-        }
-
-        protected Picture(Parcel in) {
-            this.title = in.readString();
-            this.imgSrc = in.readString();
-        }
-
-        public static final Creator<Picture> CREATOR = new Creator<Picture>() {
-            @Override
-            public Picture createFromParcel(Parcel source) {
-                return new Picture(source);
-            }
-
-            @Override
-            public Picture[] newArray(int size) {
-                return new Picture[size];
-            }
-        };
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.title);
-        dest.writeList(this.pictures);
-    }
-
-    public NewsPhotoDetail() {
-    }
-
-    protected NewsPhotoDetail(Parcel in) {
-        this.title = in.readString();
-        this.pictures = new ArrayList<>();
-        in.readList(this.pictures, Picture.class.getClassLoader());
-    }
-
-    public static final Creator<NewsPhotoDetail> CREATOR = new Creator<NewsPhotoDetail>() {
-        @Override
-        public NewsPhotoDetail createFromParcel(Parcel source) {
-            return new NewsPhotoDetail(source);
-        }
-
-        @Override
-        public NewsPhotoDetail[] newArray(int size) {
-            return new NewsPhotoDetail[size];
-        }
-    };
 }

@@ -16,12 +16,14 @@
             android:scaleType="centerCrop"
             android:src="@drawable/bgkobe"
             android:visibility="visible" />
+
         <com.macojia.common.commonwidget.WaveView
             android:id="@+id/wave_view"
             android:layout_width="match_parent"
             android:layout_height="15dp"
             android:layout_alignBottom="@+id/img_bg"
             android:layout_gravity="bottom" />
+
         <ImageView
             android:id="@+id/img_avater"
             android:layout_width="60dp"
