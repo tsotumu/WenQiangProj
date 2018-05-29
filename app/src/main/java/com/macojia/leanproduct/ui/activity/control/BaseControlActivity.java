@@ -31,7 +31,7 @@ public abstract class BaseControlActivity extends BaseActivity {
     com.github.mikephil.charting.charts.BarChart mBarChart;
 
     @Override
-    final public int getLayoutId() {
+    public int getLayoutId() {
         return R.layout.activity_control;
     }
 
@@ -54,6 +54,14 @@ public abstract class BaseControlActivity extends BaseActivity {
                 }
             }
         });
+        drawChart();
+    }
+
+    public void setPageTitle(int rId) {
+        mToolbar.setTitle(rId);
+    }
+
+    protected void drawChart() {
 
         // apply styling
         //  data.setValueTypeface(mTfLight);
@@ -84,10 +92,7 @@ public abstract class BaseControlActivity extends BaseActivity {
         // do not forget to refresh the chart
 //            mBarChart.invalidate();
         mBarChart.animateY(700);
-    }
 
-    public void setPageTitle(int rId) {
-        mToolbar.setTitle(rId);
     }
 
     /**
@@ -95,7 +100,7 @@ public abstract class BaseControlActivity extends BaseActivity {
      *
      * @return
      */
-    private BarData generateData(int cnt) {
+    protected BarData generateData(int cnt) {
 
         ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
 
