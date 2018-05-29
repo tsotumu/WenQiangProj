@@ -73,7 +73,12 @@
     <string name="control_effiency_index">效率指标</string>
     <string name="control_compre_index">综合指标</string>
     <string name="control_maintain_guidance">维修指导</string>
-    <string name="control_progress">进度查询</string>
+    <string name="control_quality_feedback">质量反馈</string>
+    <string name="control_progress">进度预测</string>
+    <string name="control_title_feedback">请输入要查询的钢印号</string>
+    <string name="control_searchbutton_feedback">查  询</string>
+    <string name="control_number_feedback">钢印号:</string>
+    <string name="control_hint_feedback">输入产品上的钢印标识，例如:687B120</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

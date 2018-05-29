@@ -1,6 +1,7 @@
 package com.macojia.leanproduct.ui.activity.control;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.activity.news.ForecastProgressActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,4 +40,5 @@ public class QualityIndexActivity extends BaseControlActivity {
         super.initView();
         setPageTitle(R.string.control_quality_index);
     }
+
 }
