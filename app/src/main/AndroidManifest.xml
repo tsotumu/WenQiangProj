@@ -24,25 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".activity.news.PhotosDetailActivity"
-            android:theme="@style/BaseAppTheme.Trans"
-            />
-        <activity android:name=".activity.MainActivity"/>
-        <activity android:name=".activity.news.NewsDetailActivity"/>
-        <activity android:name=".activity.news.NewsBrowserActivity"/>
-        <activity android:name=".activity.news.NewsPhotoDetailActivity"/>
-        <activity android:name=".activity.news.NewsChannelActivity"/>
-        <activity android:name=".activity.zone.CircleZoneActivity"/>
-        <activity android:name=".activity.zone.CirclePublishActivity"/>
-        <activity android:name=".activity.news.AboutActivity"/>
-        <activity android:name=".activity.news.QualityIndexActivity"/>
-        <activity android:name=".activity.news.YieldIndexActivity"/>
-        <activity android:name=".activity.news.EfficiencyIndexActivity"/>
-        <activity android:name=".activity.news.CompreIndexActivity"/>
-        <activity android:name=".activity.news.CostIndexActivity"/>
-        <activity android:name=".activity.news.ForecastProgressActivity"/>
-=======
+        <activity android:name=".ui.activity.control.ForecastProgressActivity"
+            android:theme="@style/BaseAppTheme.Trans" />
         <activity
             android:name=".ui.activity.news.PhotosDetailActivity"
             android:theme="@style/BaseAppTheme.Trans" />
@@ -92,12 +75,8 @@
             android:name=".ui.activity.control.MaintainGuidanceActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.control.ProgressPredictActivity"
-            android:launchMode="singleInstance" />
-        <activity
             android:name=".ui.activity.control.YieldIndexActivity"
             android:launchMode="singleInstance" />
->>>>>>> a5b4c9037d4c7acca49595cd10d66f4674e6f1d9
 
         <!-- 友盟统计 -->
         <meta-data

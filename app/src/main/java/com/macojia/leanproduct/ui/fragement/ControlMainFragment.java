@@ -1,8 +1,6 @@
 package com.macojia.leanproduct.ui.fragement;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,12 +13,12 @@ import com.aspsine.irecyclerview.universaladapter.recyclerview.CommonRecycleView
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.ui.activity.control.ForecastProgressActivity;
 import com.macojia.leanproduct.bean.ItemApp;
 import com.macojia.leanproduct.ui.activity.control.ComprehensiveIndexActivity;
 import com.macojia.leanproduct.ui.activity.control.CostIndexActivity;
 import com.macojia.leanproduct.ui.activity.control.EfficiencyIndexActivity;
 import com.macojia.leanproduct.ui.activity.control.MaintainGuidanceActivity;
-import com.macojia.leanproduct.ui.activity.control.ProgressPredictActivity;
 import com.macojia.leanproduct.ui.activity.control.QualityFeedBackActivity;
 import com.macojia.leanproduct.ui.activity.control.QualityIndexActivity;
 import com.macojia.leanproduct.ui.activity.control.YieldIndexActivity;
@@ -106,45 +104,45 @@ public class ControlMainFragment extends BaseFragment<ControlItemsPresenter, Con
                 public void onClick(View view) {
                     int pos = holder.getLayoutPosition();
                     LogUtils.logd("我的" + pos);
-                    switch (pos){
+                    switch (pos) {
                         // 产量指标
-                        case 2:{
+                        case 2: {
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, YieldIndexActivity.class);
                             break;
                         }
                         // 质量指标
-                        case 3:{
+                        case 3: {
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, QualityIndexActivity.class);
                             break;
                         }
                         //消耗指标
-                        case 4:{
+                        case 4: {
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, CostIndexActivity.class);
                             break;
                         }
                         //效率指标
-                        case 5:{
+                        case 5: {
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, EfficiencyIndexActivity.class);
                             break;
                         }
                         //综合指标
-                        case 6:{
+                        case 6: {
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, ComprehensiveIndexActivity.class);
                             break;
                         }
                         // 质量反馈
-                        case 7:{
+                        case 7: {
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, QualityFeedBackActivity.class);
                             break;
                         }
                         // 维修指导
-                        case 8:{
+                        case 8: {
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, MaintainGuidanceActivity.class);
                             break;
                         }
                         // 进度预测
-                        case 9:{
-                            ActivityUtil.startActivity(ControlMainFragment.this.mActivity, ProgressPredictActivity.class);
+                        case 9: {
+                            ForecastProgressActivity.startAction(mContext);
                             break;
                         }
                     }
