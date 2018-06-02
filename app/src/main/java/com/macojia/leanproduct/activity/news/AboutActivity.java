@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.activity.news;
+package com.macojia.leanproduct.activity.news;
 
 import android.content.Context;
 import android.content.Intent;

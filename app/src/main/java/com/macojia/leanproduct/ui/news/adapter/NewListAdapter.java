@@ -14,8 +14,8 @@ import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.bean.NewsPhotoDetail;
 import com.macojia.leanproduct.bean.NewsSummary;
-import com.macojia.leanproduct.ui.activity.news.NewsDetailActivity;
-import com.macojia.leanproduct.ui.activity.news.NewsPhotoDetailActivity;
+import com.macojia.leanproduct.activity.news.NewsDetailActivity;
+import com.macojia.leanproduct.activity.news.NewsPhotoDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;

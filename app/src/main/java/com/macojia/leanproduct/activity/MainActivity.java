@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.activity;
+package com.macojia.leanproduct.activity;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -18,9 +18,9 @@ import com.macojia.common.daynightmodeutils.ChangeModeController;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.TabEntity;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.ui.fragement.FirstFragment;
 import com.macojia.leanproduct.ui.fragement.CareMainFragment;
 import com.macojia.leanproduct.ui.fragement.ControlMainFragment;
+import com.macojia.leanproduct.ui.fragement.FirstFragment;
 import com.macojia.leanproduct.ui.fragement.VideoMainFragment;
 
 import java.util.ArrayList;
@@ -36,8 +36,10 @@ import rx.functions.Action1;
  */
 public class MainActivity extends BaseActivity {
     private static int tabLayoutHeight;
+
     @Bind(R.id.tab_layout)
     CommonTabLayout mTabLayout;
+
     private String[] mTitles = {"首页", "管控", "微视", "视窗"};
     private int[] mIconUnselectIds = {
             R.mipmap.ic_home_normal,

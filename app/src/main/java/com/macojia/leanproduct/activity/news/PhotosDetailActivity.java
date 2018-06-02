@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.activity.news;
+package com.macojia.leanproduct.activity.news;
 
 import android.content.Context;
 import android.content.Intent;
@@ -58,7 +58,7 @@ public class PhotosDetailActivity extends AppCompatActivity implements PullBackL
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarCompat.translucentStatusBar(this);
-        setContentView(R.layout.act_photo_detail);
+        setContentView(R.layout.activity_photo_detail);
         ButterKnife.bind(this);
         initView();
     }

@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.activity.news;
+package com.macojia.leanproduct.activity.news;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,11 +30,11 @@ import butterknife.Bind;
 import rx.functions.Action1;
 
 /**
- * des:综合指标详情
+ * des:选择关注频道
  * Created by xsf
  * on 2016.09.11:51
  */
-public class CompreIndexActivity extends BaseActivity<NewsChanelPresenter, NewsChannelModel> implements NewsChannelContract.View {
+public class NewsChannelActivity extends BaseActivity<NewsChanelPresenter, NewsChannelModel> implements NewsChannelContract.View {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.news_channel_mine_rv)
@@ -51,13 +51,13 @@ public class CompreIndexActivity extends BaseActivity<NewsChanelPresenter, NewsC
      * @param context
      */
     public static void startAction(Context context) {
-        Intent intent = new Intent(context, CompreIndexActivity.class);
+        Intent intent = new Intent(context, NewsChannelActivity.class);
         context.startActivity(intent);
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.act_news_channel;
+        return R.layout.activity_news_channel;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.activity.news;
+package com.macojia.leanproduct.activity.news;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -97,7 +97,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
 
     @Override
     public int getLayoutId() {
-        return R.layout.act_news_detail;
+        return R.layout.activity_news_detail;
     }
 
     @Override

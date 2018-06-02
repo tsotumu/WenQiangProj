@@ -1,20 +1,22 @@
 package com.macojia.leanproduct.ui.fragement;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.base.BaseFragmentAdapter;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.activity.news.NewsChannelActivity;
 import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.pojo.NewsMainContractBase;
 import com.macojia.leanproduct.pojo.NewsMainModel;
-import com.macojia.leanproduct.ui.activity.news.NewsChannelActivity;
 import com.macojia.leanproduct.ui.main.presenter.NewsMainPresenter;
 import com.macojia.leanproduct.ui.news.fragment.NewsFrament;
 import com.macojia.leanproduct.utils.MyUtils;
@@ -29,19 +31,16 @@ import butterknife.OnClick;
  * 首页。
  */
 public class FirstFragment extends BaseFragment<NewsMainPresenter, NewsMainModel> implements NewsMainContractBase.View {
-
-
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-
     @Bind(R.id.tabs)
     TabLayout tabs;
-
     @Bind(R.id.add_channel_iv)
     ImageView addChannelIv;
-
     @Bind(R.id.view_pager)
     ViewPager viewPager;
+    @Bind(R.id.fab)
+    FloatingActionButton fab;
 
     private BaseFragmentAdapter fragmentAdapter;
 
@@ -58,6 +57,12 @@ public class FirstFragment extends BaseFragment<NewsMainPresenter, NewsMainModel
     @Override
     public void initView() {
         mPresenter.lodeMineChannelsRequest();
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mRxManager.post(AppConstant.NEWS_LIST_TO_TOP, "");
+            }
+        });
     }
 
     @OnClick(R.id.add_channel_iv)

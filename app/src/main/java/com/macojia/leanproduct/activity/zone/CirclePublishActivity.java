@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.activity.zone;
+package com.macojia.leanproduct.activity.zone;
 
 import android.content.Context;
 import android.content.Intent;
@@ -61,7 +61,7 @@ public class CirclePublishActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public int getLayoutId() {
-        return R.layout.act_publish_zone;
+        return R.layout.activity_publish_zone;
     }
 
     @Override

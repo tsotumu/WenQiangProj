@@ -18,7 +18,7 @@ import com.macojia.common.commonwidget.LoadingTip;
 import com.macojia.common.commonwidget.NormalTitleBar;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.PhotoGirl;
-import com.macojia.leanproduct.ui.activity.news.PhotosDetailActivity;
+import com.macojia.leanproduct.activity.news.PhotosDetailActivity;
 import com.macojia.leanproduct.ui.news.contract.PhotoListContract;
 import com.macojia.leanproduct.ui.news.model.PhotosListModel;
 import com.macojia.leanproduct.ui.news.presenter.PhotosListPresenter;
@@ -47,7 +47,7 @@ public class PhotosMainFragment extends BaseFragment<PhotosListPresenter, Photos
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.act_photos_list;
+        return R.layout.activity_photos_list;
     }
 
     @Override

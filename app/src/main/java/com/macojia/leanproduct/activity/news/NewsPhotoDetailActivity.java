@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.activity.news;
+package com.macojia.leanproduct.activity.news;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -56,7 +56,7 @@ public class NewsPhotoDetailActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.act_news_photo_detail;
+        return R.layout.activity_news_photo_detail;
     }
 
     @Override

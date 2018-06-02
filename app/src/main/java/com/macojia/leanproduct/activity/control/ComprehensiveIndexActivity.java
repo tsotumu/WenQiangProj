@@ -1,6 +1,5 @@
-package com.macojia.leanproduct.ui.activity.control;
+package com.macojia.leanproduct.activity.control;
 
-import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
 
 /**

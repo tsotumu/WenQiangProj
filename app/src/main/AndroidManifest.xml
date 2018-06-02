@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,58 +24,58 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.control.ForecastProgressActivity"
+        <activity android:name=".activity.control.ForecastProgressActivity"
             android:theme="@style/BaseAppTheme.Trans" />
         <activity
-            android:name=".ui.activity.news.PhotosDetailActivity"
+            android:name=".activity.news.PhotosDetailActivity"
             android:theme="@style/BaseAppTheme.Trans" />
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.news.NewsDetailActivity"
+            android:name=".activity.news.NewsDetailActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.news.NewsBrowserActivity"
+            android:name=".activity.news.NewsBrowserActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.news.NewsPhotoDetailActivity"
+            android:name=".activity.news.NewsPhotoDetailActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.news.NewsChannelActivity"
+            android:name=".activity.news.NewsChannelActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.zone.CircleZoneActivity"
+            android:name=".activity.zone.CircleZoneActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.zone.CirclePublishActivity"
+            android:name=".activity.zone.CirclePublishActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.news.AboutActivity"
+            android:name=".activity.news.AboutActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.control.QualityIndexActivity"
+            android:name=".activity.control.QualityIndexActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.news.CompreIndexActivity"
+            android:name=".activity.news.CompreIndexActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.control.ComprehensiveIndexActivity"
+            android:name=".activity.control.ComprehensiveIndexActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.control.CostIndexActivity"
+            android:name=".activity.control.CostIndexActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.control.QualityFeedBackActivity"
+            android:name=".activity.control.QualityFeedBackActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.control.EfficiencyIndexActivity"
+            android:name=".activity.control.EfficiencyIndexActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.control.MaintainGuidanceActivity"
+            android:name=".activity.control.MaintainGuidanceActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".ui.activity.control.YieldIndexActivity"
+            android:name=".activity.control.YieldIndexActivity"
             android:launchMode="singleInstance" />
 
         <!-- 友盟统计 -->

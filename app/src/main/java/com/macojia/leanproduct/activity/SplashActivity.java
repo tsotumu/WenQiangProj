@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.activity;
+package com.macojia.leanproduct.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -27,7 +27,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.act_splash;
+        return R.layout.activity_splash;
     }
 
     @Override

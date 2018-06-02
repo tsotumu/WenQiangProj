@@ -6,16 +6,9 @@ import android.view.View;
 import com.aspsine.irecyclerview.universaladapter.ViewHolderHelper;
 import com.aspsine.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.activity.news.ForecastProgressActivity;
 import com.macojia.leanproduct.bean.ItemApp;
 
 import com.macojia.common.commonutils.LogUtils;
-import com.macojia.leanproduct.ui.activity.control.CostIndexActivity;
-import com.macojia.leanproduct.ui.activity.control.EfficiencyIndexActivity;
-import com.macojia.leanproduct.ui.activity.control.QualityIndexActivity;
-import com.macojia.leanproduct.ui.activity.control.YieldIndexActivity;
-import com.macojia.leanproduct.ui.activity.news.CompreIndexActivity;
-import com.macojia.leanproduct.ui.activity.news.NewsChannelActivity;
 
 import java.util.List;
 

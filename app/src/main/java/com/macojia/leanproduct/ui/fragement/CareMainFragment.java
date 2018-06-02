@@ -9,8 +9,8 @@ import com.macojia.common.daynightmodeutils.ChangeModeController;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.pojo.HotelEntity;
 import com.macojia.leanproduct.pojo.SectionedSpanSizeLookup;
-import com.macojia.leanproduct.ui.activity.news.AboutActivity;
-import com.macojia.leanproduct.ui.activity.zone.CircleZoneActivity;
+import com.macojia.leanproduct.activity.news.AboutActivity;
+import com.macojia.leanproduct.activity.zone.CircleZoneActivity;
 import com.macojia.leanproduct.ui.main.HotelEntityAdapter;
 
 import base.utils.JsonUtils;

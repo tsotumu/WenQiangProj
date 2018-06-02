@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.activity.news;
+package com.macojia.leanproduct.activity.news;
 
 
 import android.content.Context;
@@ -36,7 +36,7 @@ public class NewsBrowserActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.act_news_browser;
+        return R.layout.activity_news_browser;
     }
 
     @Override

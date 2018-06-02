@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.activity.zone;
+package com.macojia.leanproduct.activity.zone;
 
 import android.content.Context;
 import android.content.Intent;
