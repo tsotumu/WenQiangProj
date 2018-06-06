@@ -8,6 +8,11 @@ import com.macojia.leanproduct.R;
 
 public class ComprehensiveIndexActivity extends BaseControlActivity {
     @Override
+    public int getLayoutId() {
+        return R.layout.activity_comprehensiveindex;
+    }
+
+    @Override
     public void initPresenter() {
 
     }
@@ -15,6 +20,10 @@ public class ComprehensiveIndexActivity extends BaseControlActivity {
     @Override
     public void initView() {
         super.initView();
-        setPageTitle(R.string.control_compre_index);
+    }
+
+    @Override
+    public int getTitleId() {
+        return R.string.comprehenindex;
     }
 }

@@ -27,14 +27,6 @@ import butterknife.Bind;
 public abstract class BaseControlActivity extends BaseActivity {
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.view_chart)
-    com.github.mikephil.charting.charts.BarChart mBarChart;
-
-    @Override
-    public int getLayoutId() {
-        return R.layout.activity_control;
-    }
-
     @Override
     public void initPresenter() {
 
@@ -42,8 +34,7 @@ public abstract class BaseControlActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        mBarChart = (BarChart) findViewById(R.id.view_chart);
-
+        mToolbar.setTitle(getTitleId());
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,70 +45,7 @@ public abstract class BaseControlActivity extends BaseActivity {
                 }
             }
         });
-        drawChart();
     }
 
-    public void setPageTitle(int rId) {
-        mToolbar.setTitle(rId);
-    }
-
-    protected void drawChart() {
-
-        // apply styling
-        //  data.setValueTypeface(mTfLight);
-        BarData data = generateData(0);
-        data.setValueTextColor(Color.BLACK);
-        mBarChart.getDescription().setEnabled(false);
-        mBarChart.setDrawGridBackground(false);
-
-        XAxis xAxis = mBarChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        //  xAxis.setTypeface(mTfLight);
-        xAxis.setDrawGridLines(false);
-
-        YAxis leftAxis = mBarChart.getAxisLeft();
-        //  leftAxis.setTypeface(mTfLight);
-        leftAxis.setLabelCount(5, false);
-        leftAxis.setSpaceTop(15f);
-
-        YAxis rightAxis = mBarChart.getAxisRight();
-        //  rightAxis.setTypeface(mTfLight);
-        rightAxis.setLabelCount(5, false);
-        rightAxis.setSpaceTop(15f);
-
-        // set data
-        mBarChart.setData(data);
-        mBarChart.setFitBars(true);
-
-        // do not forget to refresh the chart
-//            mBarChart.invalidate();
-        mBarChart.animateY(700);
-
-    }
-
-    /**
-     * generates a random ChartData object with just one DataSet
-     *
-     * @return
-     */
-    protected BarData generateData(int cnt) {
-
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-
-        for (int i = 0; i < 12; i++) {
-            entries.add(new BarEntry(i, (float) (Math.random() * 70) + 30));
-        }
-
-        BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
-        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
-        d.setBarShadowColor(Color.rgb(203, 203, 203));
-
-        ArrayList<IBarDataSet> sets = new ArrayList<IBarDataSet>();
-        sets.add(d);
-
-        BarData cd = new BarData(sets);
-        cd.setBarWidth(0.9f);
-        return cd;
-    }
-
+    public abstract int getTitleId();
 }

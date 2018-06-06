@@ -8,6 +8,11 @@ import com.macojia.leanproduct.R;
 
 public class MaintainGuidanceActivity extends BaseControlActivity {
     @Override
+    public int getLayoutId() {
+        return R.layout.activity_maintain_guidance;
+    }
+
+    @Override
     public void initPresenter() {
 
     }
@@ -15,6 +20,10 @@ public class MaintainGuidanceActivity extends BaseControlActivity {
     @Override
     public void initView() {
         super.initView();
-        setPageTitle(R.string.control_maintain_guidance);
+    }
+
+    @Override
+    public int getTitleId() {
+        return R.string.repairguide;
     }
 }

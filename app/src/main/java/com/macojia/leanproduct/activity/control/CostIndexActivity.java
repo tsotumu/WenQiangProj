@@ -8,6 +8,11 @@ import com.macojia.leanproduct.R;
 
 public class CostIndexActivity extends BaseControlActivity {
     @Override
+    public int getLayoutId() {
+        return R.layout.activity_costindex;
+    }
+
+    @Override
     public void initPresenter() {
 
     }
@@ -15,7 +20,11 @@ public class CostIndexActivity extends BaseControlActivity {
     @Override
     public void initView() {
         super.initView();
-        setPageTitle(R.string.control_cost_index);
+    }
+
+    @Override
+    public int getTitleId() {
+        return R.string.control_cost_index;
     }
 
 }

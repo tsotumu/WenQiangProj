@@ -81,17 +81,17 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
         intent.putExtra(AppConstant.NEWS_POST_ID, postId);
         intent.putExtra(AppConstant.NEWS_IMG_RES, imgUrl);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    /*    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptions options = ActivityOptions
                     .makeSceneTransitionAnimation((Activity) mContext, view, AppConstant.TRANSITION_ANIMATION_NEWS_PHOTOS);
             mContext.startActivity(intent, options.toBundle());
         } else {
-
+*/
             //让新的Activity从一个小的范围扩大到全屏
             ActivityOptionsCompat options = ActivityOptionsCompat
                     .makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
             ActivityCompat.startActivity((Activity) mContext, intent, options.toBundle());
-        }
+        /*}*/
 
     }
 
