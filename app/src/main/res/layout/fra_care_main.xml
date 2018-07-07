@@ -6,37 +6,6 @@
     android:orientation="vertical"
     app:cardBackgroundColor="?attr/dayNightBackground"
     app:dayNightBackgroundAttr="dayNightBackground">
-    <!--<FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/main_color">
-        <TextView
-            android:layout_width="match_parent"
-            android:text="精益生产-视窗"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/white"
-            android:layout_height="45dp"
-            android:textSize="20sp"/>
-    </FrameLayout>
-    <LinearLayout
-        android:id="@+id/shichuang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/view_recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-        </LinearLayout>-->
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/main_color"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:title="@string/news"
-        app:titleTextColor="@color/white" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/view_recyclerView"

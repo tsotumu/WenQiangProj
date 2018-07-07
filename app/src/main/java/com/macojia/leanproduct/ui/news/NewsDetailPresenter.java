@@ -1,10 +1,9 @@
-package com.macojia.leanproduct.ui.news.presenter;
+package com.macojia.leanproduct.ui.news;
 
 import com.macojia.common.baserx.RxSubscriber;
 import com.macojia.common.commonutils.ToastUitl;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.NewsDetail;
-import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
 
 /**
  * des:新闻详情

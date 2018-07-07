@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
  * Created by xsf
  * on 2016.07.12:38
  */
+
 /***************使用例子*********************/
 //1.mvp模式
 //public class SampleFragment extends BaseFragment<NewsChanelPresenter, NewsChannelModel>implements NewsChannelContract.View {
@@ -32,7 +33,7 @@ import butterknife.ButterKnife;
 //
 //    @Override
 //    public void initPresenter() {
-//        mPresenter.setVM(this, mModel);
+//        mPresenter.setView_Model(this, mModel);
 //    }
 //
 //    @Override
@@ -54,10 +55,10 @@ import butterknife.ButterKnife;
 //    public void initView() {
 //    }
 //}
-public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel> extends Fragment {
+public abstract class BaseFragment<PresenterType extends BasePresenter, ModelType extends BaseModel> extends Fragment {
     protected View rootView;
-    public T mPresenter;
-    public E mModel;
+    public PresenterType mPresenter;
+    public ModelType mModel;
     public RxManager mRxManager;
     public Activity mActivity;
 
@@ -67,21 +68,24 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
         mActivity = getActivity();
         if (rootView == null)
             rootView = inflater.inflate(getLayoutResource(), container, false);
-        mRxManager=new RxManager();
+        mRxManager = new RxManager();
         ButterKnife.bind(this, rootView);
-        mPresenter = TUtil.getT(this, 0);
-        mModel=  TUtil.getT(this,1);
-        if(mPresenter!=null){
-            mPresenter.mContext=this.getActivity();
+        mPresenter = TUtil.getT(this, 0); // 设置mPresenter为第一个模板参数值。
+        mModel = TUtil.getT(this, 1); // 设置mModel为第二个模板参数值。
+        if (mPresenter != null) {
+            mPresenter.mContext = this.getActivity();
         }
         initPresenter();
         initView();
         return rootView;
     }
+
     //获取布局文件
     protected abstract int getLayoutResource();
+
     //简单页面无需mvp就不用管此方法即可,完美兼容各种实际场景的变通
     public abstract void initPresenter();
+
     //初始化view
     protected abstract void initView();
 
@@ -124,7 +128,6 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
         }
         startActivity(intent);
     }
-
 
 
     /**
@@ -180,19 +183,19 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
     }
 
 
-    public void showToastWithImg(String text,int res) {
-        ToastUitl.showToastWithImg(text,res);
+    public void showToastWithImg(String text, int res) {
+        ToastUitl.showToastWithImg(text, res);
     }
 
     /**
      * 网络访问错误提醒
      */
     public void showNetErrorTip() {
-        ToastUitl.showToastWithImg(getText(R.string.net_error).toString(),R.drawable.ic_wifi_off);
+        ToastUitl.showToastWithImg(getText(R.string.net_error).toString(), R.drawable.ic_wifi_off);
     }
 
     public void showNetErrorTip(String error) {
-        ToastUitl.showToastWithImg(error,R.drawable.ic_wifi_off);
+        ToastUitl.showToastWithImg(error, R.drawable.ic_wifi_off);
     }
 
     @Override
@@ -203,7 +206,6 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
             mPresenter.onDestroy();
         mRxManager.clear();
     }
-
 
 
 }

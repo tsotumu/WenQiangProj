@@ -1,16 +1,16 @@
-package com.macojia.leanproduct.ui.fragement;
+package com.macojia.leanproduct.ui.news;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.base.BaseFragmentAdapter;
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.activity.news.NewsChannelActivity;
 import com.macojia.leanproduct.bean.NewsChannelTable;
@@ -18,7 +18,6 @@ import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.pojo.NewsMainContractBase;
 import com.macojia.leanproduct.pojo.NewsMainModel;
 import com.macojia.leanproduct.ui.main.presenter.NewsMainPresenter;
-import com.macojia.leanproduct.ui.news.fragment.NewsFrament;
 import com.macojia.leanproduct.utils.MyUtils;
 
 import java.util.ArrayList;
@@ -28,11 +27,9 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
- * 首页。
+ * 新闻页。
  */
-public class FirstFragment extends BaseFragment<NewsMainPresenter, NewsMainModel> implements NewsMainContractBase.View {
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
+public class NewsFragment extends BaseFragment<NewsMainPresenter, NewsMainModel> implements NewsMainContractBase.View {
     @Bind(R.id.tabs)
     TabLayout tabs;
     @Bind(R.id.add_channel_iv)
@@ -40,7 +37,7 @@ public class FirstFragment extends BaseFragment<NewsMainPresenter, NewsMainModel
     @Bind(R.id.view_pager)
     ViewPager viewPager;
     @Bind(R.id.fab)
-    FloatingActionButton fab;
+    FloatingActionButton mFloatBtn;
 
     private BaseFragmentAdapter fragmentAdapter;
 
@@ -51,13 +48,13 @@ public class FirstFragment extends BaseFragment<NewsMainPresenter, NewsMainModel
 
     @Override
     public void initPresenter() {
-        mPresenter.setVM(this, mModel);
+        mPresenter.setView_Model(this, mModel);
     }
 
     @Override
     public void initView() {
-        mPresenter.lodeMineChannelsRequest();
-        fab.setOnClickListener(new View.OnClickListener() {
+        mPresenter.lodeChannelsRequest();
+        mFloatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mRxManager.post(AppConstant.NEWS_LIST_TO_TOP, "");
@@ -71,7 +68,9 @@ public class FirstFragment extends BaseFragment<NewsMainPresenter, NewsMainModel
     }
 
     @Override
-    public void returnMineNewsChannels(List<NewsChannelTable> newsChannelsMine) {
+    public void returnNewsChannels(List<NewsChannelTable> newsChannelsMine) {
+        LogUtils.logd("return news channels");
+        LogUtils.logd(newsChannelsMine.toString());
         if (newsChannelsMine != null) {
             List<String> channelNames = new ArrayList<>();
             List<Fragment> mNewsFragmentList = new ArrayList<>();
@@ -110,8 +109,8 @@ public class FirstFragment extends BaseFragment<NewsMainPresenter, NewsMainModel
         });
     }
 
-    private NewsFrament createListFragments(NewsChannelTable newsChannel) {
-        NewsFrament fragment = new NewsFrament();
+    private NewsChildFragment createListFragments(NewsChannelTable newsChannel) {
+        NewsChildFragment fragment = new NewsChildFragment();
         Bundle bundle = new Bundle();
         bundle.putString(AppConstant.NEWS_ID, newsChannel.getNewsChannelId());
         bundle.putString(AppConstant.NEWS_TYPE, newsChannel.getNewsChannelType());

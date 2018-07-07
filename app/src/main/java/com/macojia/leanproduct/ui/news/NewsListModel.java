@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.news.model;
+package com.macojia.leanproduct.ui.news;
 
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.TimeUtil;
@@ -6,7 +6,6 @@ import com.macojia.leanproduct.api.Api;
 import com.macojia.leanproduct.api.ApiConstants;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.bean.NewsSummary;
-import com.macojia.leanproduct.ui.news.contract.NewsListContract;
 
 import java.util.List;
 import java.util.Map;

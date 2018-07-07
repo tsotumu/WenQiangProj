@@ -20,11 +20,12 @@ import com.macojia.leanproduct.bean.TabEntity;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.fragement.CareMainFragment;
 import com.macojia.leanproduct.ui.fragement.ControlMainFragment;
-import com.macojia.leanproduct.ui.fragement.FirstFragment;
+import com.macojia.leanproduct.ui.news.NewsFragment;
 import com.macojia.leanproduct.ui.fragement.VideoMainFragment;
 
 import java.util.ArrayList;
 
+import base.utils.ResourceUtil;
 import butterknife.Bind;
 import cn.hugeterry.updatefun.UpdateFunGO;
 import cn.hugeterry.updatefun.config.UpdateKey;
@@ -40,7 +41,7 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.tab_layout)
     CommonTabLayout mTabLayout;
 
-    private String[] mTitles = {"首页", "管控", "微视", "视窗"};
+    private int[] mTitles = {R.string.home, R.string.control, R.string.weiguan, R.string.shichuang};
     private int[] mIconUnselectIds = {
             R.mipmap.ic_home_normal,
             R.mipmap.ic_girl_normal,
@@ -52,7 +53,7 @@ public class MainActivity extends BaseActivity {
             R.mipmap.ic_video_selected,
             R.mipmap.ic_care_selected};
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
-    private FirstFragment firstFragment;
+    private NewsFragment newsFragment;
     // private PhotosMainFragment photosMainFragment;
     private VideoMainFragment videoMainFragment;
     private CareMainFragment careMainFragment;
@@ -100,14 +101,14 @@ public class MainActivity extends BaseActivity {
 
     private void initTab() {
         for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+            mTabEntities.add(new TabEntity(ResourceUtil.getString(mTitles[i]), mIconSelectIds[i], mIconUnselectIds[i]));
         }
         mTabLayout.setTabData(mTabEntities);
         //点击监听
         mTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                SwitchTo(position);
+                switchFragment(position);
             }
 
             @Override
@@ -116,76 +117,77 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    /**
-     * 初始化碎片
-     */
     private void initFragment(Bundle savedInstanceState) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         int currentTabPosition = 0;
         if (savedInstanceState != null) {
-            firstFragment = (FirstFragment) getSupportFragmentManager().findFragmentByTag("firstFragment");
+            newsFragment = (NewsFragment) getSupportFragmentManager().findFragmentByTag("newsFragment");
             //  photosMainFragment = (PhotosMainFragment) getSupportFragmentManager().findFragmentByTag("photosMainFragment");
             videoMainFragment = (VideoMainFragment) getSupportFragmentManager().findFragmentByTag("videoMainFragment");
             careMainFragment = (CareMainFragment) getSupportFragmentManager().findFragmentByTag("careMainFragment");
             controlMainFragment = (ControlMainFragment) getSupportFragmentManager().findFragmentByTag("controlMainFragment");
             currentTabPosition = savedInstanceState.getInt(AppConstant.HOME_CURRENT_TAB_POSITION);
         } else {
-            firstFragment = new FirstFragment();
+            newsFragment = new NewsFragment();
             //      photosMainFragment = new PhotosMainFragment();
             videoMainFragment = new VideoMainFragment();
             careMainFragment = new CareMainFragment();
             controlMainFragment = new ControlMainFragment();
-            transaction.add(R.id.fl_body, firstFragment, "firstFragment");
+            transaction.add(R.id.fl_container, newsFragment, "newsFragment");
             //     transaction.add(R.id.fl_body, photosMainFragment, "photosMainFragment");
-            transaction.add(R.id.fl_body, videoMainFragment, "videoMainFragment");
-            transaction.add(R.id.fl_body, careMainFragment, "careMainFragment");
-            transaction.add(R.id.fl_body, controlMainFragment, "controlMainFragment");
+            transaction.add(R.id.fl_container, videoMainFragment, "videoMainFragment");
+            transaction.add(R.id.fl_container, careMainFragment, "careMainFragment");
+            transaction.add(R.id.fl_container, controlMainFragment, "controlMainFragment");
         }
         transaction.commit();
-        SwitchTo(currentTabPosition);
+        switchFragment(currentTabPosition);
         mTabLayout.setCurrentTab(currentTabPosition);
     }
 
-    private void SwitchTo(int position) {
+    private void switchFragment(int position) {
         LogUtils.logd("主页菜单position" + position);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (position) {
-            //首页
-            case 0:
+            case 0: {
+                //首页
                 transaction.hide(controlMainFragment);
                 //     transaction.hide(photosMainFragment);
                 transaction.hide(videoMainFragment);
                 transaction.hide(careMainFragment);
-                transaction.show(firstFragment);
+                transaction.show(newsFragment);
                 transaction.commitAllowingStateLoss();
                 break;
-            // 管控
-            case 1:
-                transaction.hide(firstFragment);
+            }
+            case 1: {
+                // 管控
+                transaction.hide(newsFragment);
                 transaction.hide(videoMainFragment);
                 transaction.hide(careMainFragment);
                 //transaction.show(photosMainFragment);
                 transaction.show(controlMainFragment);
                 transaction.commitAllowingStateLoss();
                 break;
-            //视频
-            case 2:
-                transaction.hide(firstFragment);
+            }
+            case 2: {
+                //视频
+                transaction.hide(newsFragment);
                 // transaction.hide(photosMainFragment);
                 transaction.hide(controlMainFragment);
                 transaction.hide(careMainFragment);
                 transaction.show(videoMainFragment);
                 transaction.commitAllowingStateLoss();
                 break;
-            //关注
-            case 3:
-                transaction.hide(firstFragment);
+            }
+            case 3: {
+                //关注
+                transaction.hide(newsFragment);
                 // transaction.hide(photosMainFragment);
                 transaction.hide(controlMainFragment);
                 transaction.hide(videoMainFragment);
                 transaction.show(careMainFragment);
                 transaction.commitAllowingStateLoss();
                 break;
+            }
             default:
                 break;
         }

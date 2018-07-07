@@ -1,9 +1,8 @@
-package com.macojia.leanproduct.ui.news.presenter;
+package com.macojia.leanproduct.ui.news;
 
 import com.macojia.common.baserx.RxSubscriber;
 import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.ui.news.contract.NewsChannelContract;
 
 import java.util.ArrayList;
 import java.util.List;

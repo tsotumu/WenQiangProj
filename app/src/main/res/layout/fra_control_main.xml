@@ -7,16 +7,6 @@
     app:cardBackgroundColor="?attr/dayNightBackground"
     app:dayNightBackgroundAttr="dayNightBackground">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/main_color"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:title="@string/news"
-        app:titleTextColor="@color/white" />
-
     <com.aspsine.irecyclerview.IRecyclerView
         android:id="@+id/irc"
         android:layout_width="match_parent"

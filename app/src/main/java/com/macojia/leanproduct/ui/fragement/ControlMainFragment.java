@@ -37,9 +37,6 @@ import butterknife.Bind;
  * on 2018.03.25 03:40
  */
 public class ControlMainFragment extends BaseFragment<ControlItemsPresenter, ControlItemsModel> implements ControlItemContract.View {
-
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
     @Bind(R.id.irc)
     IRecyclerView controlItemsMineRv;
     private ItemAppAdapter itemAppAdapter;
@@ -51,7 +48,7 @@ public class ControlMainFragment extends BaseFragment<ControlItemsPresenter, Con
 
     @Override
     public void initPresenter() {
-        mPresenter.setVM(this, mModel);
+        mPresenter.setView_Model(this, mModel);
     }
 
     @Override

@@ -2,7 +2,8 @@
     <string name="app_name">Lean Production</string>
 
     <!--menu-->
-    <string name="news">精益生产</string>
+    <string name="title">精益生产</string>
+
     <string name="zhihu">知乎</string>
     <string name="photo">图片</string>
     <string name="video">视频</string>
@@ -16,6 +17,7 @@
     <!-- 共享过度动画 -->
     <string name="transition_photos">transition_animation_news_photos</string>
 
+    <string name="home">首页</string>
     <!-- 新闻 -->
     <string name="photo_collections">图集：%1$s</string>
     <string name="news_from">%1$s %2$s</string>
@@ -32,6 +34,7 @@
     <string name="more_channel">更多频道</string>
     <string name="channel_manage">频道管理</string>
     <!-- 管控 -->
+    <string name="control">管控</string>
     <string name="qualityindex">质量指标</string>
     <string name="yieldindex">产量指标</string>
     <string name="costindex">消耗指标</string>
@@ -40,6 +43,9 @@
     <string name="qualityfeedback">质量反馈</string>
     <string name="repairguide">维修指导</string>
     <string name="processpredict">进度预测</string>
+
+    <string name="weiguan">微视</string>
+    <string name="shichuang">视窗</string>
 
     <!-- 图片 -->
     <string name="girl_title">靓妹纸</string>
@@ -65,7 +71,7 @@
     <string name="friend_zone_about">关于</string>
     <string name="care_main_title">我关注的</string>
     <string name="care_about_wechat">更多精彩要闻，请及时查看精益生产APP！</string>
-    
+
     <!-- 管控 -->
     <string name="control_quality_index">质量指标</string>
     <string name="control_yield_index">产量指标</string>

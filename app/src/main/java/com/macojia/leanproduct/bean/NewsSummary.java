@@ -118,6 +118,12 @@ public class NewsSummary implements Parcelable {
         in.readList(this.imgextra, ImgextraBean.class.getClassLoader());
     }
 
+    @Override
+    public String toString() {
+        return "news: title->" + title + " digest->" + digest;
+    }
+
+
     public String getPostid() {
         return postid;
     }
@@ -157,7 +163,6 @@ public class NewsSummary implements Parcelable {
     public void setHasImg(int hasImg) {
         this.hasImg = hasImg;
     }
-
     public String getDigest() {
         return digest;
     }

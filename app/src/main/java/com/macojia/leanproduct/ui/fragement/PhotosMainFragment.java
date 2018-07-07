@@ -52,7 +52,7 @@ public class PhotosMainFragment extends BaseFragment<PhotosListPresenter, Photos
 
     @Override
     public void initPresenter() {
-        mPresenter.setVM(this, mModel);
+        mPresenter.setView_Model(this, mModel);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.news.fragment;
+package com.macojia.leanproduct.ui.video;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,9 +19,6 @@ import com.macojia.common.commonwidget.LoadingTip;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.VideoData;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.ui.news.contract.VideosListContract;
-import com.macojia.leanproduct.ui.news.model.VideosListModel;
-import com.macojia.leanproduct.ui.news.presenter.VideoListPresenter;
 
 import java.util.List;
 
@@ -52,7 +49,7 @@ public class VideosFragment extends BaseFragment<VideoListPresenter, VideosListM
 
     @Override
     public void initPresenter() {
-        mPresenter.setVM(this, mModel);
+        mPresenter.setView_Model(this, mModel);
     }
 
     @Override

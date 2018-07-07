@@ -22,8 +22,6 @@ import butterknife.Bind;
  * on 2016.09.17:07
  */
 public class CareMainFragment extends BaseFragment {
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
     @Bind(R.id.view_recyclerView)
     RecyclerView mRecyclerView;
 

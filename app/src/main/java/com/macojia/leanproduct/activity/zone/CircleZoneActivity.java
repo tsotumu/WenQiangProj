@@ -114,7 +114,7 @@ public class CircleZoneActivity extends BaseActivity<CircleZonePresenter, ZoneMo
 
     @Override
     public void initPresenter() {
-        mPresenter.setVM(this, mModel);
+        mPresenter.setView_Model(this, mModel);
     }
 
     /**

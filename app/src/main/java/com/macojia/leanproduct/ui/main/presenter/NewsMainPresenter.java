@@ -25,18 +25,18 @@ public class NewsMainPresenter extends NewsMainContractBase.Presenter {
             @Override
             public void call(List<NewsChannelTable> newsChannelTables) {
                 if (newsChannelTables != null) {
-                    mView.returnMineNewsChannels(newsChannelTables);
+                    mView.returnNewsChannels(newsChannelTables);
                 }
             }
         });
     }
 
     @Override
-    public void lodeMineChannelsRequest() {
-        mRxManage.add(mModel.lodeMineNewsChannels().subscribe(new RxSubscriber<List<NewsChannelTable>>(mContext, false) {
+    public void lodeChannelsRequest() {
+        mRxManage.add(mModel.loadNewsChannels().subscribe(new RxSubscriber<List<NewsChannelTable>>(mContext, false) {
             @Override
             protected void _onNext(List<NewsChannelTable> newsChannelTables) {
-                mView.returnMineNewsChannels(newsChannelTables);
+                mView.returnNewsChannels(newsChannelTables);
             }
 
             @Override

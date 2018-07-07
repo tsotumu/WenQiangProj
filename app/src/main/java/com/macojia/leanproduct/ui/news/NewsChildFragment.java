@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.news.fragment;
+package com.macojia.leanproduct.ui.news;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -9,14 +9,11 @@ import com.aspsine.irecyclerview.OnRefreshListener;
 import com.aspsine.irecyclerview.animation.ScaleInAnimation;
 import com.aspsine.irecyclerview.widget.LoadMoreFooterView;
 import com.macojia.common.base.BaseFragment;
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.common.commonwidget.LoadingTip;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.NewsSummary;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.ui.news.adapter.NewListAdapter;
-import com.macojia.leanproduct.ui.news.contract.NewsListContract;
-import com.macojia.leanproduct.ui.news.model.NewsListModel;
-import com.macojia.leanproduct.ui.news.presenter.NewsListPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +25,13 @@ import butterknife.Bind;
  * Created by xsf
  * on 2016.09.17:30
  */
-public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> implements NewsListContract.View, OnRefreshListener, OnLoadMoreListener {
+public class NewsChildFragment extends BaseFragment<NewsListPresenter, NewsListModel> implements NewsListContract.View, OnRefreshListener, OnLoadMoreListener {
     @Bind(R.id.irc)
-    IRecyclerView irc;
+    IRecyclerView mRecylerView;
     @Bind(R.id.loadedTip)
     LoadingTip loadedTip;
-    private NewListAdapter newListAdapter;
-    private List<NewsSummary> datas = new ArrayList<>();
+    private NewsListAdapter newListAdapter;
+    private List<NewsSummary> mNewsDataList = new ArrayList<>();
 
     private String mNewsId;
     private String mNewsType;
@@ -51,7 +48,7 @@ public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> 
 
     @Override
     public void initPresenter() {
-        mPresenter.setVM(this, mModel);
+        mPresenter.setView_Model(this, mModel);
     }
 
     @Override
@@ -60,13 +57,13 @@ public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> 
             mNewsId = getArguments().getString(AppConstant.NEWS_ID);
             mNewsType = getArguments().getString(AppConstant.NEWS_TYPE);
         }
-        irc.setLayoutManager(new LinearLayoutManager(getContext()));
-        datas.clear();
-        newListAdapter = new NewListAdapter(getContext(), datas);
+        mRecylerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mNewsDataList.clear();
+        newListAdapter = new NewsListAdapter(getContext(), mNewsDataList);
         newListAdapter.openLoadAnimation(new ScaleInAnimation());
-        irc.setAdapter(newListAdapter);
-        irc.setOnRefreshListener(this);
-        irc.setOnLoadMoreListener(this);
+        mRecylerView.setAdapter(newListAdapter);
+        mRecylerView.setOnRefreshListener(this);
+        mRecylerView.setOnLoadMoreListener(this);
         //数据为空才重新发起请求
         if (newListAdapter.getSize() <= 0) {
             mStartPage = 0;
@@ -77,17 +74,19 @@ public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> 
 
     @Override
     public void returnNewsListData(List<NewsSummary> newsSummaries) {
+        LogUtils.logd("news list:");
+        LogUtils.logd(newsSummaries.toString());
         if (newsSummaries != null) {
             mStartPage += 20;
             if (newListAdapter.getPageBean().isRefresh()) {
-                irc.setRefreshing(false);
+                mRecylerView.setRefreshing(false);
                 newListAdapter.replaceAll(newsSummaries);
             } else {
                 if (newsSummaries.size() > 0) {
-                    irc.setLoadMoreStatus(LoadMoreFooterView.Status.GONE);
+                    mRecylerView.setLoadMoreStatus(LoadMoreFooterView.Status.GONE);
                     newListAdapter.addAll(newsSummaries);
                 } else {
-                    irc.setLoadMoreStatus(LoadMoreFooterView.Status.THE_END);
+                    mRecylerView.setLoadMoreStatus(LoadMoreFooterView.Status.THE_END);
                 }
             }
         }
@@ -98,7 +97,7 @@ public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> 
      */
     @Override
     public void scrolltoTop() {
-        irc.smoothScrollToPosition(0);
+        mRecylerView.smoothScrollToPosition(0);
     }
 
     @Override
@@ -106,7 +105,7 @@ public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> 
         newListAdapter.getPageBean().setRefresh(true);
         mStartPage = 0;
         //发起请求
-        irc.setRefreshing(true);
+        mRecylerView.setRefreshing(true);
         mPresenter.getNewsListDataRequest(mNewsType, mNewsId, mStartPage);
     }
 
@@ -114,7 +113,7 @@ public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> 
     public void onLoadMore(View loadMoreView) {
         newListAdapter.getPageBean().setRefresh(false);
         //发起请求
-        irc.setLoadMoreStatus(LoadMoreFooterView.Status.LOADING);
+        mRecylerView.setLoadMoreStatus(LoadMoreFooterView.Status.LOADING);
         mPresenter.getNewsListDataRequest(mNewsType, mNewsId, mStartPage);
     }
 
@@ -139,9 +138,9 @@ public class NewsFrament extends BaseFragment<NewsListPresenter, NewsListModel> 
                 loadedTip.setLoadingTip(LoadingTip.LoadStatus.error);
                 loadedTip.setTips(msg);
             }
-            irc.setRefreshing(false);
+            mRecylerView.setRefreshing(false);
         } else {
-            irc.setLoadMoreStatus(LoadMoreFooterView.Status.ERROR);
+            mRecylerView.setLoadMoreStatus(LoadMoreFooterView.Status.ERROR);
         }
     }
 

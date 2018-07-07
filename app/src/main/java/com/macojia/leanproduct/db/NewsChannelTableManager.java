@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NewsChannelTableManager {
-
+    private final static int CHANNEL_AMOUNT = 5;
     /**
      * 加载新闻类型
      *
@@ -51,12 +51,12 @@ public class NewsChannelTableManager {
      * @return
      */
     public static List<NewsChannelTable> loadNewsChannelsStatic() {
-        List<String> channelName = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name_static));
-        List<String> channelId = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_id_static));
+        List<String> channelNameList = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name_static));
+        List<String> channelIdList = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_id_static));
         ArrayList<NewsChannelTable> newsChannelTables = new ArrayList<>();
-        for (int i = 0; i < channelName.size(); i++) {
-            NewsChannelTable entity = new NewsChannelTable(channelName.get(i), channelId.get(i)
-                    , ApiConstants.getType(channelId.get(i)), i <= 5, i, true);
+        for (int i = 0; i < channelNameList.size(); i++) {
+            NewsChannelTable entity = new NewsChannelTable(channelNameList.get(i), channelIdList.get(i)
+                    , ApiConstants.getType(channelIdList.get(i)), i <= CHANNEL_AMOUNT, i, true);
             newsChannelTables.add(entity);
         }
         return newsChannelTables;

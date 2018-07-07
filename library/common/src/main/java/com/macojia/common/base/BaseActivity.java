@@ -37,7 +37,7 @@ import butterknife.ButterKnife;
 //
 //    @Override
 //    public void initPresenter() {
-//        mPresenter.setVM(this, mModel);
+//        mPresenter.setView_Model(this, mModel);
 //    }
 //
 //    @Override
@@ -59,9 +59,9 @@ import butterknife.ButterKnife;
 //    public void initView() {
 //    }
 //}
-public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel> extends AppCompatActivity {
-    public T mPresenter;
-    public E mModel;
+public abstract class BaseActivity<PresenterType extends BasePresenter, ModelType extends BaseModel> extends AppCompatActivity {
+    public PresenterType mPresenter;
+    public ModelType mModel;
     public Context mContext;
     public RxManager mRxManager;
     private boolean isConfigChange = false;

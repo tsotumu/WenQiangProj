@@ -1,7 +1,6 @@
 package com.macojia.leanproduct.activity.news;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -27,9 +26,9 @@ import com.macojia.common.commonutils.TimeUtil;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.NewsDetail;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
-import com.macojia.leanproduct.ui.news.model.NewsDetailModel;
-import com.macojia.leanproduct.ui.news.presenter.NewsDetailPresenter;
+import com.macojia.leanproduct.ui.news.NewsDetailContract;
+import com.macojia.leanproduct.ui.news.NewsDetailModel;
+import com.macojia.leanproduct.ui.news.NewsDetailPresenter;
 import com.macojia.leanproduct.widget.URLImageGetter;
 
 import java.util.List;
@@ -102,7 +101,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
 
     @Override
     public void initPresenter() {
-        mPresenter.setVM(this, mModel);
+        mPresenter.setView_Model(this, mModel);
     }
 
     @Override

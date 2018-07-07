@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.news.model;
+package com.macojia.leanproduct.ui.news;
 
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.ACache;
@@ -8,7 +8,6 @@ import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.db.NewsChannelTableManager;
-import com.macojia.leanproduct.ui.news.contract.NewsChannelContract;
 
 import java.util.ArrayList;
 import java.util.Arrays;

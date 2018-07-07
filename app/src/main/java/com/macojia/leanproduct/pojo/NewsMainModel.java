@@ -2,6 +2,7 @@ package com.macojia.leanproduct.pojo;
 
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.ACache;
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
@@ -20,14 +21,18 @@ import rx.Subscriber;
  */
 public class NewsMainModel implements NewsMainContractBase.Model {
     @Override
-    public Observable<List<NewsChannelTable>> lodeMineNewsChannels() {
+    public Observable<List<NewsChannelTable>> loadNewsChannels() {
 
         return Observable.create(new Observable.OnSubscribe<List<NewsChannelTable>>() {
             @Override
             public void call(Subscriber<? super List<NewsChannelTable>> subscriber) {
                 ArrayList<NewsChannelTable> newsChannelTableList = (ArrayList<NewsChannelTable>) ACache.get(AppApplication.getAppContext()).getAsObject(AppConstant.CHANNEL_MINE);
+//                LogUtils.logd("from cache.");
+//                LogUtils.logd(newsChannelTableList.toString());
                 if (newsChannelTableList == null) {
+//                    LogUtils.logd("load news channels.");
                     newsChannelTableList = (ArrayList<NewsChannelTable>) NewsChannelTableManager.loadNewsChannelsStatic();
+                    LogUtils.logd(newsChannelTableList.toString());
                     ACache.get(AppApplication.getAppContext()).put(AppConstant.CHANNEL_MINE, newsChannelTableList);
                 }
                 subscriber.onNext(newsChannelTableList);

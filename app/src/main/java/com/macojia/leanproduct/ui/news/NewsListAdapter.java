@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.news.adapter;
+package com.macojia.leanproduct.ui.news;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -25,11 +25,11 @@ import java.util.List;
  * Created by xsf
  * on 2016.09.10:49
  */
-public class NewListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
+public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
     public static final int TYPE_ITEM = 0;
     public static final int TYPE_PHOTO_ITEM = 1;
 
-    public NewListAdapter(Context context, final List<NewsSummary> datas) {
+    public NewsListAdapter(Context context, final List<NewsSummary> datas) {
         super(context, datas, new MultiItemTypeSupport<NewsSummary>() {
 
             @Override
