@@ -12,7 +12,7 @@ import com.macojia.common.base.BaseFragment;
 import com.macojia.common.base.BaseFragmentAdapter;
 import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.activity.news.NewsChannelActivity;
+import com.macojia.leanproduct.ui.news.activity.NewsChannelActivity;
 import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.pojo.NewsMainContractBase;

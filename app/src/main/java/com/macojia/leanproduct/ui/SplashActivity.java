@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.activity;
+package com.macojia.leanproduct.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;

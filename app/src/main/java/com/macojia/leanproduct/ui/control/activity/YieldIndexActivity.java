@@ -1,7 +1,8 @@
-package com.macojia.leanproduct.activity.control;
+package com.macojia.leanproduct.ui.control.activity;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.chart.ChartItem;
 import com.macojia.leanproduct.chart.HorizonBarChartItem;
@@ -31,13 +33,14 @@ import butterknife.Bind;
  * 产量指标。
  */
 
-public class YieldIndexActivity extends BaseControlActivity {
+public class YieldIndexActivity extends BaseActivity {
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
     @Bind(R.id.lv_yield)
     ListView mListView;
 
     @Override
     public void initView() {
-        super.initView();
 
         ArrayList<ChartItem> list = new ArrayList<ChartItem>();
 
@@ -49,9 +52,22 @@ public class YieldIndexActivity extends BaseControlActivity {
         mListView.setAdapter(new ChartDataAdapter(getApplicationContext(), list));
     }
 
-    @Override
     public int getTitleId() {
         return R.string.control_yield_index;
+    }
+
+    private void initToolBar() {
+        mToolbar.setTitle(getTitleId());
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    finishAfterTransition();
+                } else {
+                    finish();
+                }
+            }
+        });
     }
 
     @Override
@@ -59,29 +75,10 @@ public class YieldIndexActivity extends BaseControlActivity {
         return R.layout.activity_yieldindex;
     }
 
-    private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
+    @Override
+    public void initPresenter() {
 
-        public ChartDataAdapter(Context context, List<ChartItem> objects) {
-            super(context, 0, objects);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return getItem(position).getView(position, convertView, getContext());
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            // return the views type
-            return getItem(position).getItemType();
-        }
-
-        @Override
-        public int getViewTypeCount() {
-            return 2; // we have 3 different item-types
-        }
     }
-
 
     private LineData generateDataLine(int cnt) {
 
@@ -134,5 +131,28 @@ public class YieldIndexActivity extends BaseControlActivity {
         BarData cd = new BarData(d);
         cd.setBarWidth(0.9f);
         return cd;
+    }
+
+    private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
+
+        public ChartDataAdapter(Context context, List<ChartItem> objects) {
+            super(context, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return getItem(position).getView(position, convertView, getContext());
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            // return the views type
+            return getItem(position).getItemType();
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return 2; // we have 3 different item-types
+        }
     }
 }

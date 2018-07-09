@@ -30,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by xsf
  * on 2016.06.15:47
  */
-public class Api {
+public class NetworkUtil {
     //读超时长，单位：毫秒
     public static final int READ_TIME_OUT = 7676;
     //连接时长，单位：毫秒
@@ -49,7 +49,7 @@ public class Api {
      * (假如请求了服务器并在a时刻返回响应结果，则在max-age规定的秒数内，浏览器将不会发送对应的请求到服务器，数据由缓存直接返回)时则不会使用缓存而请求服务器
      */
     private static final String CACHE_CONTROL_AGE = "max-age=0";
-    private static SparseArray<Api> sRetrofitManager = new SparseArray<>(HostType.TYPE_COUNT);
+    private static SparseArray<NetworkUtil> sRetrofitManager = new SparseArray<>(HostType.TYPE_COUNT);
 
     /*************************缓存设置*********************/
 /*
@@ -104,7 +104,7 @@ public class Api {
 
 
     //构造方法私有
-    private Api(int hostType) {
+    private NetworkUtil(int hostType) {
         //开启Log
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -147,9 +147,9 @@ public class Api {
      *                 EWS_DETAIL_HTML_PHOTO:3新闻详情html图片)
      */
     public static ApiService getDefault(int hostType) {
-        Api retrofitManager = sRetrofitManager.get(hostType);
+        NetworkUtil retrofitManager = sRetrofitManager.get(hostType);
         if (retrofitManager == null) {
-            retrofitManager = new Api(hostType);
+            retrofitManager = new NetworkUtil(hostType);
             sRetrofitManager.put(hostType, retrofitManager);
         }
         return retrofitManager.movieService;
@@ -161,9 +161,9 @@ public class Api {
      * @return
      */
     public static OkHttpClient getOkHttpClient() {
-        Api retrofitManager = sRetrofitManager.get(HostType.NETEASE_NEWS_VIDEO);
+        NetworkUtil retrofitManager = sRetrofitManager.get(HostType.NETEASE_NEWS_VIDEO);
         if (retrofitManager == null) {
-            retrofitManager = new Api(HostType.NETEASE_NEWS_VIDEO);
+            retrofitManager = new NetworkUtil(HostType.NETEASE_NEWS_VIDEO);
             sRetrofitManager.put(HostType.NETEASE_NEWS_VIDEO, retrofitManager);
         }
         return retrofitManager.okHttpClient;

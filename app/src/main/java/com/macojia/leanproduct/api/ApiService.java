@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
@@ -57,4 +58,8 @@ public interface ApiService {
             @Header("Cache-Control") String cacheControl,
             @Path("type") String type,
             @Path("startPage") int startPage);
+
+    @GET("rank")
+    Call<String> getRank(
+            @Query("key") String key, @Query("area") String area);
 }

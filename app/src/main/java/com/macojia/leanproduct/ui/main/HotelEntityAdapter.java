@@ -12,7 +12,7 @@ import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.pojo.DescHolder;
 import com.macojia.leanproduct.pojo.HeaderHolder;
 import com.macojia.leanproduct.pojo.HotelEntity;
-import com.macojia.leanproduct.activity.news.AboutActivity;
+import com.macojia.leanproduct.ui.news.activity.AboutActivity;
 
 import java.util.ArrayList;
 

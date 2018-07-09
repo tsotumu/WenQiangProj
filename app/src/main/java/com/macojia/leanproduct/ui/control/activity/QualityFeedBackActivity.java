@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.activity.control;
+package com.macojia.leanproduct.ui.control.activity;
 
 import android.os.Build;
 import android.os.Bundle;

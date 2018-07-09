@@ -1,7 +1,9 @@
-package com.macojia.leanproduct.activity.control;
+package com.macojia.leanproduct.ui.control.activity;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,6 +17,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.chart.ChartItem;
 import com.macojia.leanproduct.chart.HorizonBarChartItem;
@@ -31,7 +34,9 @@ import butterknife.Bind;
  * Created by xsf
  * on 2016.09.11:51
  */
-public class QualityIndexActivity extends BaseControlActivity {
+public class QualityIndexActivity extends BaseActivity {
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
     @Bind(R.id.lv_quality)
     ListView mListView;
 
@@ -47,7 +52,7 @@ public class QualityIndexActivity extends BaseControlActivity {
 
     @Override
     public void initView() {
-        super.initView();
+        initToolBar();
 
         ArrayList<ChartItem> list = new ArrayList<ChartItem>();
 
@@ -59,10 +64,25 @@ public class QualityIndexActivity extends BaseControlActivity {
         mListView.setAdapter(new ChartDataAdapter(getApplicationContext(), list));
     }
 
-    @Override
     public int getTitleId() {
         return R.string.qualityindex;
     }
+
+
+    private void initToolBar() {
+        mToolbar.setTitle(getTitleId());
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    finishAfterTransition();
+                } else {
+                    finish();
+                }
+            }
+        });
+    }
+
 
     private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
 

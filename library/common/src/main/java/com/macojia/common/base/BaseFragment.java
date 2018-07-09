@@ -56,11 +56,11 @@ import butterknife.ButterKnife;
 //    }
 //}
 public abstract class BaseFragment<PresenterType extends BasePresenter, ModelType extends BaseModel> extends Fragment {
-    protected View rootView;
     public PresenterType mPresenter;
     public ModelType mModel;
     public RxManager mRxManager;
     public Activity mActivity;
+    protected View rootView;
 
     @Nullable
     @Override

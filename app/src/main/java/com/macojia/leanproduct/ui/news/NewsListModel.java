@@ -2,9 +2,9 @@ package com.macojia.leanproduct.ui.news;
 
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.TimeUtil;
-import com.macojia.leanproduct.api.Api;
 import com.macojia.leanproduct.api.ApiConstants;
 import com.macojia.leanproduct.api.HostType;
+import com.macojia.leanproduct.api.NetworkUtil;
 import com.macojia.leanproduct.bean.NewsSummary;
 
 import java.util.List;
@@ -30,27 +30,25 @@ public class NewsListModel implements NewsListContract.Model {
      */
     @Override
     public Observable<List<NewsSummary>> getNewsListData(final String type, final String id, final int startPage) {
-        return Api.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewsList(Api.getCacheControl(), type, id, startPage)
-                .flatMap(new Func1<Map<String, List<NewsSummary>>, Observable<NewsSummary>>() {
-                    @Override
-                    public Observable<NewsSummary> call(Map<String, List<NewsSummary>> map) {
-                        if (id.endsWith(ApiConstants.HOUSE_ID)) {
-                            // 房产实际上针对地区的它的id与返回key不同
-                            return Observable.from(map.get("北京"));
-                        }
-                        return Observable.from(map.get(id));
-                    }
-                })
-                //转化时间
-                .map(new Func1<NewsSummary, NewsSummary>() {
-                    @Override
-                    public NewsSummary call(NewsSummary newsSummary) {
-                        String ptime = TimeUtil.formatDate(newsSummary.getPtime());
-                        newsSummary.setPtime(ptime);
-                        return newsSummary;
-                    }
-                })
-                .distinct()//去重
+        Observable<Map<String, List<NewsSummary>>> listObserver = NetworkUtil.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewsList(NetworkUtil.getCacheControl(), type, id, startPage);
+        Observable<NewsSummary> newsSummaryObservable = listObserver.flatMap(new Func1<Map<String, List<NewsSummary>>, Observable<NewsSummary>>() {
+            @Override
+            public Observable<NewsSummary> call(Map<String, List<NewsSummary>> map) {
+                if (id.endsWith(ApiConstants.HOUSE_ID)) {
+                    // 房产实际上针对地区的它的id与返回key不同
+                    return Observable.from(map.get("北京"));
+                }
+                return Observable.from(map.get(id));
+            }
+        });
+        return newsSummaryObservable.map(new Func1<NewsSummary, NewsSummary>() {
+            @Override
+            public NewsSummary call(NewsSummary newsSummary) {
+                String ptime = TimeUtil.formatDate(newsSummary.getPtime());
+                newsSummary.setPtime(ptime);
+                return newsSummary;
+            }
+        }).distinct()//去重
                 .toSortedList(new Func2<NewsSummary, NewsSummary, Integer>() {
                     @Override
                     public Integer call(NewsSummary newsSummary, NewsSummary newsSummary2) {

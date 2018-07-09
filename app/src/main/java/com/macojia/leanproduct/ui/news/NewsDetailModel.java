@@ -1,7 +1,7 @@
 package com.macojia.leanproduct.ui.news;
 
 import com.macojia.common.baserx.RxSchedulers;
-import com.macojia.leanproduct.api.Api;
+import com.macojia.leanproduct.api.NetworkUtil;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.bean.NewsDetail;
 
@@ -20,7 +20,7 @@ public class NewsDetailModel implements NewsDetailContract.Model {
 
     @Override
     public Observable<NewsDetail> getOneNewsData(final String postId) {
-        return Api.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewDetail(Api.getCacheControl(), postId)
+        return NetworkUtil.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewDetail(NetworkUtil.getCacheControl(), postId)
                 .map(new Func1<Map<String, NewsDetail>, NewsDetail>() {
                     @Override
                     public NewsDetail call(Map<String, NewsDetail> map) {

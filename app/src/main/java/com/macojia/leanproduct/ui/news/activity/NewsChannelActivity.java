@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.activity.news;
+package com.macojia.leanproduct.ui.news.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,11 +16,11 @@ import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.ui.news.adapter.ChannelAdapter;
-import com.macojia.leanproduct.ui.news.NewsChannelContract;
-import com.macojia.leanproduct.ui.news.event.ChannelItemMoveEvent;
-import com.macojia.leanproduct.ui.news.NewsChannelModel;
 import com.macojia.leanproduct.ui.news.NewsChanelPresenter;
+import com.macojia.leanproduct.ui.news.NewsChannelContract;
+import com.macojia.leanproduct.ui.news.NewsChannelModel;
+import com.macojia.leanproduct.ui.news.adapter.ChannelAdapter;
+import com.macojia.leanproduct.ui.news.event.ChannelItemMoveEvent;
 import com.macojia.leanproduct.widget.ItemDragHelperCallback;
 
 import java.util.ArrayList;

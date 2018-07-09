@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".ui.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,55 +24,55 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.control.ForecastProgressActivity"
+        <activity android:name=".ui.control.activity.ForecastProgressActivity"
             android:theme="@style/BaseAppTheme.Trans" />
         <activity
-            android:name=".activity.news.PhotosDetailActivity"
+            android:name=".ui.news.activity.PhotosDetailActivity"
             android:theme="@style/BaseAppTheme.Trans" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".ui.MainActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.news.NewsDetailActivity"
+            android:name=".ui.news.activity.NewsDetailActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.news.NewsBrowserActivity"
+            android:name=".ui.news.activity.NewsBrowserActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.news.NewsPhotoDetailActivity"
+            android:name=".ui.news.activity.NewsPhotoDetailActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.news.NewsChannelActivity"
+            android:name=".ui.news.activity.NewsChannelActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.zone.CircleZoneActivity"
+            android:name=".ui.zone.activity.CircleZoneActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.zone.CirclePublishActivity"
+            android:name=".ui.zone.activity.CirclePublishActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.news.AboutActivity"
+            android:name=".ui.news.activity.AboutActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.control.QualityIndexActivity"
+            android:name=".ui.control.activity.QualityIndexActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.control.ComprehensiveIndexActivity"
+            android:name=".ui.control.activity.ComprehensiveIndexActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.control.CostIndexActivity"
+            android:name=".ui.control.activity.CostIndexActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.control.QualityFeedBackActivity"
+            android:name=".ui.control.activity.QualityFeedBackActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.control.EfficiencyIndexActivity"
+            android:name=".ui.control.activity.EfficiencyIndexActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.control.MaintainGuidanceActivity"
+            android:name=".ui.control.activity.MaintainGuidanceActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".activity.control.YieldIndexActivity"
+            android:name=".ui.control.activity.YieldIndexActivity"
             android:launchMode="singleInstance" />
 
         <!-- 友盟统计 -->

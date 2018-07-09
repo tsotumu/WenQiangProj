@@ -1,22 +1,11 @@
-package com.macojia.leanproduct.activity.control;
+package com.macojia.leanproduct.ui.control.activity;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
-
-import java.util.ArrayList;
 
 import butterknife.Bind;
 
@@ -24,9 +13,14 @@ import butterknife.Bind;
  * Created by LC on 2018/5/1.
  */
 
-public abstract class BaseControlActivity extends BaseActivity {
+public class MaintainGuidanceActivity extends BaseActivity {
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
+
+    public int getLayoutId() {
+        return R.layout.activity_maintain_guidance;
+    }
+
     @Override
     public void initPresenter() {
 
@@ -34,6 +28,11 @@ public abstract class BaseControlActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        initToolBar();
+    }
+
+
+    private void initToolBar() {
         mToolbar.setTitle(getTitleId());
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,5 +46,7 @@ public abstract class BaseControlActivity extends BaseActivity {
         });
     }
 
-    public abstract int getTitleId();
+    public int getTitleId() {
+        return R.string.repairguide;
+    }
 }

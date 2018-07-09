@@ -2,15 +2,14 @@ package com.macojia.leanproduct.ui.fragement;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.daynightmodeutils.ChangeModeController;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.pojo.HotelEntity;
 import com.macojia.leanproduct.pojo.SectionedSpanSizeLookup;
-import com.macojia.leanproduct.activity.news.AboutActivity;
-import com.macojia.leanproduct.activity.zone.CircleZoneActivity;
+import com.macojia.leanproduct.ui.news.activity.AboutActivity;
+import com.macojia.leanproduct.ui.zone.activity.CircleZoneActivity;
 import com.macojia.leanproduct.ui.main.HotelEntityAdapter;
 
 import base.utils.JsonUtils;

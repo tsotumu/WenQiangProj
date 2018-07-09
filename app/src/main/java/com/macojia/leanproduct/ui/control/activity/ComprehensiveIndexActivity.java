@@ -1,7 +1,9 @@
-package com.macojia.leanproduct.activity.control;
+package com.macojia.leanproduct.ui.control.activity;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
 
 import java.util.ArrayList;
@@ -27,13 +30,15 @@ import butterknife.Bind;
  * Created by LC on 2018/5/1.
  */
 
-public class CostIndexActivity extends BaseControlActivity {
-    @Bind(R.id.lv_cost)
+public class ComprehensiveIndexActivity extends BaseActivity {
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
+    @Bind(R.id.lv_copmprehensive)
     ListView mListView;
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_costindex;
+        return R.layout.activity_comprehensiveindex;
     }
 
     @Override
@@ -43,7 +48,7 @@ public class CostIndexActivity extends BaseControlActivity {
 
     @Override
     public void initView() {
-        super.initView();
+        initToolBar();
 
         ArrayList<BarData> list = new ArrayList<BarData>();
 
@@ -56,9 +61,22 @@ public class CostIndexActivity extends BaseControlActivity {
         mListView.setAdapter(cda);
     }
 
-    @Override
+    private void initToolBar(){
+        mToolbar.setTitle(getTitleId());
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    finishAfterTransition();
+                } else {
+                    finish();
+                }
+            }
+        });
+    }
+
     public int getTitleId() {
-        return R.string.control_cost_index;
+        return R.string.comprehenindex;
     }
 
     private class ChartDataAdapter extends ArrayAdapter<BarData> {
@@ -72,11 +90,11 @@ public class CostIndexActivity extends BaseControlActivity {
 
             BarData data = getItem(position);
 
-            ViewHolder holder = null;
+            ChartDataAdapter.ViewHolder holder = null;
 
             if (convertView == null) {
 
-                holder = new ViewHolder();
+                holder = new ChartDataAdapter.ViewHolder();
 
                 convertView = LayoutInflater.from(getContext()).inflate(
                         R.layout.list_item_vitical_barchart, null);
@@ -85,7 +103,7 @@ public class CostIndexActivity extends BaseControlActivity {
                 convertView.setTag(holder);
 
             } else {
-                holder = (ViewHolder) convertView.getTag();
+                holder = (ChartDataAdapter.ViewHolder) convertView.getTag();
             }
 
             // apply styling
