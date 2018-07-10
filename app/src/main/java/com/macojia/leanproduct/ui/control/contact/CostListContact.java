@@ -16,12 +16,12 @@ import rx.Observable;
 public interface CostListContact {
     interface Model extends BaseModel {
         //请求获取消耗指标
-        Observable<List<CostIndexData>> getNewsListData(String type, final String id, int startPage);
+        Observable<List<CostIndexData>> getNewsListData();
     }
 
     interface View extends BaseView {
         //返回获取的消耗指标
-        void returnNewsListData(List<CostIndexData> newsSummaries);
+        void returnCostIndexListData(List<CostIndexData> costIndexData);
 
         //返回顶部
         void scrolltoTop();
@@ -29,6 +29,6 @@ public interface CostListContact {
 
     abstract static class Presenter extends BasePresenter<View, Model> {
         //发起获取消耗指标请求
-        public abstract void getCostListDataRequest(String type, final String id, int startPage);
+        public abstract void getCostListDataRequest();
     }
 }
