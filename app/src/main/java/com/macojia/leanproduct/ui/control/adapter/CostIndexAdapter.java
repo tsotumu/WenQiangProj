@@ -2,8 +2,6 @@ package com.macojia.leanproduct.ui.control.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +11,19 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.bean.control.CostIndexData;
-import com.macojia.leanproduct.chart.ChartItem;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LC on 2018/7/10.
@@ -26,15 +32,44 @@ import java.util.List;
 public class CostIndexAdapter extends ArrayAdapter<BarData> {
 
     public static CostIndexAdapter getAdapter(List<CostIndexData> data){
+        ArrayList<BarData> list = new ArrayList<BarData>();
+        for (int i = 0; i < data.size(); i++){
+            CostIndexData costIndexData = data.get(i);
+            list.add(generateData(costIndexData.mMachineData, i));
+        }
+//            Map<Integer, Float> integerFloatMap = data
+        CostIndexAdapter adapter = new CostIndexAdapter(AppApplication.getInstance(), list);
+        return adapter;
+    }
 
+    /**
+     * generates a random ChartData object with just one DataSet
+     *
+     * @return
+     */
+    private static BarData generateData(HashMap<Integer, Float> hashMap, int i) {
+        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
+
+        Iterator<Map.Entry<Integer, Float>> iterator = hashMap.entrySet().iterator();
+        while (iterator.hasNext()){
+            Map.Entry<Integer, Float> entry = iterator.next();
+            entries.add(new BarEntry(entry.getKey(), entry.getValue()));
+
+        }
+        BarDataSet barDataSet = new BarDataSet(entries, i + "号机器");
+        barDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        barDataSet.setBarShadowColor(Color.rgb(203, 203, 203));
+
+        ArrayList<IBarDataSet> sets = new ArrayList<IBarDataSet>();
+        sets.add(barDataSet);
+
+        BarData cd = new BarData(sets);
+        cd.setBarWidth(0.9f);
+        return cd;
     }
 
     public CostIndexAdapter(Context context, List<BarData> objects) {
         super(context, 0, objects);
-    }
-
-    private void setData(List<CostIndexData> data){
-        // TODO: 2018/7/10
     }
 
     @Override

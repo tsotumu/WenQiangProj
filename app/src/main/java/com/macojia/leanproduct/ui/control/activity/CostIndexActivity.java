@@ -69,28 +69,6 @@ public class CostIndexActivity extends BaseActivity<CostIndexPresenter, CostInde
         return R.string.control_cost_index;
     }
 
-    /**
-     * generates a random ChartData object with just one DataSet
-     *
-     * @return
-     */
-    private BarData generateData(int cnt) {
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-        for (int i = 0; i < 12; i++) {
-            entries.add(new BarEntry(i, (float) (Math.random() * 70) - 50));
-        }
-        BarDataSet d = new BarDataSet(entries, cnt + "号机器");
-        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
-        d.setBarShadowColor(Color.rgb(203, 203, 203));
-
-        ArrayList<IBarDataSet> sets = new ArrayList<IBarDataSet>();
-        sets.add(d);
-
-        BarData cd = new BarData(sets);
-        cd.setBarWidth(0.9f);
-        return cd;
-    }
-
     @Override
     public void showLoading(String title) {
 
@@ -112,10 +90,10 @@ public class CostIndexActivity extends BaseActivity<CostIndexPresenter, CostInde
 
         ArrayList<BarData> list = new ArrayList<BarData>();
         // 20 items
-        for (int i = 0; i < 19; i++) {
+       /* for (int i = 0; i < 19; i++) {
             list.add(generateData(i + 1));
-        }
-        CostIndexAdapter cda = new CostIndexAdapter();
+        }*/
+        CostIndexAdapter cda = CostIndexAdapter.getAdapter(costIndexData);
         mListView.setAdapter(cda);
     }
 
