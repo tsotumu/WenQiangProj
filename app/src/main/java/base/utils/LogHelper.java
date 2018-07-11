@@ -1,5 +1,6 @@
 package base.utils;
 
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.BuildConfig;
 
 import java.text.SimpleDateFormat;
@@ -25,7 +26,7 @@ public abstract class LogHelper {
         if (BuildConfig.DEBUG) {
             StackTraceElement traceElement[] = ((new Exception()).getStackTrace());
             for (StackTraceElement stackTraceElement : traceElement) {
-                if (BuildConfig.DEBUG) LogUtil.d("luowp", stackTraceElement.toString());
+                if (BuildConfig.DEBUG) LogUtils.logd(stackTraceElement.toString());
             }
         }
     }

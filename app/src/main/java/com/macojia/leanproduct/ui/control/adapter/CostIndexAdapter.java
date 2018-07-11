@@ -32,12 +32,11 @@ import java.util.Map;
 public class CostIndexAdapter extends ArrayAdapter<BarData> {
 
     public static CostIndexAdapter getAdapter(List<CostIndexData> data){
-        ArrayList<BarData> list = new ArrayList<BarData>();
+        ArrayList<BarData> list = new ArrayList<>();
         for (int i = 0; i < data.size(); i++){
             CostIndexData costIndexData = data.get(i);
-            list.add(generateData(costIndexData.mMachineData, i));
+            list.add(generateData(costIndexData.monthlyDataList, costIndexData.machineName));
         }
-//            Map<Integer, Float> integerFloatMap = data
         CostIndexAdapter adapter = new CostIndexAdapter(AppApplication.getInstance(), list);
         return adapter;
     }
@@ -47,25 +46,21 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
      *
      * @return
      */
-    private static BarData generateData(HashMap<Integer, Float> hashMap, int i) {
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-
-        Iterator<Map.Entry<Integer, Float>> iterator = hashMap.entrySet().iterator();
-        while (iterator.hasNext()){
-            Map.Entry<Integer, Float> entry = iterator.next();
-            entries.add(new BarEntry(entry.getKey(), entry.getValue()));
-
+    private static BarData generateData(List<CostIndexData.MonthlyData> monthlyDataList,  String dataTitle) {
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        for (int count = 0; count < monthlyDataList.size(); count++){
+            entries.add(new BarEntry(count, monthlyDataList.get(count).value));
         }
-        BarDataSet barDataSet = new BarDataSet(entries, i + "号机器");
+        BarDataSet barDataSet = new BarDataSet(entries, dataTitle);
         barDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         barDataSet.setBarShadowColor(Color.rgb(203, 203, 203));
 
         ArrayList<IBarDataSet> sets = new ArrayList<IBarDataSet>();
         sets.add(barDataSet);
 
-        BarData cd = new BarData(sets);
-        cd.setBarWidth(0.9f);
-        return cd;
+        BarData barData = new BarData(sets);
+        barData.setBarWidth(0.9f);
+        return barData;
     }
 
     public CostIndexAdapter(Context context, List<BarData> objects) {

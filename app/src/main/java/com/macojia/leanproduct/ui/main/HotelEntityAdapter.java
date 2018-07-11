@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 import base.utils.ActivityUtil;
 import base.utils.HotelUtils;
-import base.utils.LogUtil;
 
 /**
  * Created by lyd10892 on 2016/8/23.
@@ -117,7 +116,6 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HeaderHolde
                 int groupIndex = (int) v.getTag(R.id.group_index);
                 int contentIndex = (int) v.getTag(R.id.content_index);
                 String data = allTagList.get(groupIndex).tagInfoList.get(contentIndex).tagName;
-                LogUtil.d("onClick", "data is: " + data);
                 ActivityUtil.startActivity((Activity) mContext, AboutActivity.class);
             }
         });

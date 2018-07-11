@@ -1,0 +1,78 @@
+[
+  {
+    "machineName": "1号包装机",
+    "monthlyDataList": [
+      {
+        "value": 100
+      },
+      {
+        "value": 78
+      },
+      {
+        "value": 98
+      },
+      {
+        "value": 28
+      },
+      {
+        "value": 8
+      },
+      {
+        "value": -9
+      },
+      {
+        "value": 98
+      },
+      {
+        "value": 98
+      },
+      {
+        "value": 8
+      },
+      {
+        "value": 98
+      },
+      {
+        "value": 10
+      },
+      {
+        "value": -110
+      },
+      {
+        "value": 110
+      }
+    ]
+  },
+  {
+    "machineName": "2号装机",
+    "monthlyDataList": [
+      {
+        "value": 33
+      },
+      {
+        "value": 55
+      },
+      {
+        "value": 55
+      },
+      {
+        "value": 55
+      },
+      {
+        "value": 55
+      },
+      {
+        "value": 55
+      },
+      {
+        "value": 55
+      },
+      {
+        "value": 55
+      },
+      {
+        "value": 55
+      }
+    ]
+  }
+]

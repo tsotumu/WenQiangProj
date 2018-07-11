@@ -45,7 +45,7 @@ public class CareMainFragment extends BaseFragment {
         manager.setSpanSizeLookup(new SectionedSpanSizeLookup(mAdapter, manager));
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
-        HotelEntity entity = JsonUtils.analysisJsonFile(getContext(), "json");
+        HotelEntity entity = JsonUtils.analysisJsonFile(getContext(), "shichuang");
         mAdapter.setData(entity.allTagsList);
     }
 

@@ -21,7 +21,7 @@ public interface CostListContact {
 
     interface View extends BaseView {
         //返回获取的消耗指标
-        void returnCostIndexListData(List<CostIndexData> costIndexData);
+        void onCostIndexListDataReturn(List<CostIndexData> costIndexData);
 
         //返回顶部
         void scrolltoTop();

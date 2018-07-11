@@ -85,14 +85,9 @@ public class CostIndexActivity extends BaseActivity<CostIndexPresenter, CostInde
     }
 
     @Override
-    public void returnCostIndexListData(List<CostIndexData> costIndexData) {
+    public void onCostIndexListDataReturn(List<CostIndexData> costIndexData) {
         LogUtils.logd("Cost index test：" + costIndexData.toString());
 
-        ArrayList<BarData> list = new ArrayList<BarData>();
-        // 20 items
-       /* for (int i = 0; i < 19; i++) {
-            list.add(generateData(i + 1));
-        }*/
         CostIndexAdapter cda = CostIndexAdapter.getAdapter(costIndexData);
         mListView.setAdapter(cda);
     }

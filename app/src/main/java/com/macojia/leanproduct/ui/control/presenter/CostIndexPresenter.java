@@ -16,7 +16,7 @@ public class CostIndexPresenter extends CostListContact.Presenter {
         mRxManage.add(mModel.getNewsListData().subscribe(new RxSubscriber<List<CostIndexData>>(mContext, false) {
             @Override
             protected void _onNext(List<CostIndexData> newsChannelTables) {
-                mView.returnCostIndexListData(newsChannelTables);
+                mView.onCostIndexListDataReturn(newsChannelTables);
             }
 
             @Override

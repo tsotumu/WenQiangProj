@@ -51,7 +51,7 @@ public class Friend implements Parcelable {
      * totalCount : 0
      * page : 0
      * toNumber : 0
-     * age : 0
+     * value : 0
      * signature :
      * roleId : 0
      * icon : Image/20160615/1465955708189.jpg

@@ -4,10 +4,12 @@ package com.macojia.common.commonutils;
 import com.google.gson.Gson;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 /**
  * JSON解析二次封装
