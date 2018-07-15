@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -18,6 +19,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.bean.control.CostIndexData;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,6 +97,7 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
         holder.chart.getDescription().setEnabled(false);
         holder.chart.setDrawGridBackground(false);
 
+
         XAxis xAxis = holder.chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 //            xAxis.setTypeface(mTfLight);
@@ -121,7 +125,7 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
     }
 
     private class ViewHolder {
-
         BarChart chart;
+        TextView chartTitle;
     }
 }

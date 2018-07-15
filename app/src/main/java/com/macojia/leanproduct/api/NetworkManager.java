@@ -30,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by xsf
  * on 2016.06.15:47
  */
-public class NetworkUtil {
+public class NetworkManager {
     //读超时长，单位：毫秒
     public static final int READ_TIME_OUT = 7676;
     //连接时长，单位：毫秒
@@ -49,7 +49,7 @@ public class NetworkUtil {
      * (假如请求了服务器并在a时刻返回响应结果，则在max-age规定的秒数内，浏览器将不会发送对应的请求到服务器，数据由缓存直接返回)时则不会使用缓存而请求服务器
      */
     private static final String CACHE_CONTROL_AGE = "max-value=0";
-    private static SparseArray<NetworkUtil> sRetrofitManager = new SparseArray<>(HostType.TYPE_COUNT);
+    private static SparseArray<NetworkManager> sRetrofitManager = new SparseArray<>(HostType.TYPE_COUNT);
 
     /*************************缓存设置*********************/
 /*
@@ -99,12 +99,12 @@ public class NetworkUtil {
         }
     };
     public Retrofit retrofit;
-    public ApiService movieService;
+    public ApiService apiService;
     public OkHttpClient okHttpClient;
 
 
     //构造方法私有
-    private NetworkUtil(int hostType) {
+    private NetworkManager(int hostType) {
         //开启Log
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -137,9 +137,9 @@ public class NetworkUtil {
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(ApiConstants.getHost(hostType))
+                .baseUrl(NetworkConstants.getHost(hostType))
                 .build();
-        movieService = retrofit.create(ApiService.class);
+        apiService = retrofit.create(ApiService.class);
     }
 
     /**
@@ -147,12 +147,12 @@ public class NetworkUtil {
      *                 EWS_DETAIL_HTML_PHOTO:3新闻详情html图片)
      */
     public static ApiService getDefault(int hostType) {
-        NetworkUtil retrofitManager = sRetrofitManager.get(hostType);
+        NetworkManager retrofitManager = sRetrofitManager.get(hostType);
         if (retrofitManager == null) {
-            retrofitManager = new NetworkUtil(hostType);
+            retrofitManager = new NetworkManager(hostType);
             sRetrofitManager.put(hostType, retrofitManager);
         }
-        return retrofitManager.movieService;
+        return retrofitManager.apiService;
     }
 
     /**
@@ -161,9 +161,9 @@ public class NetworkUtil {
      * @return
      */
     public static OkHttpClient getOkHttpClient() {
-        NetworkUtil retrofitManager = sRetrofitManager.get(HostType.NETEASE_NEWS_VIDEO);
+        NetworkManager retrofitManager = sRetrofitManager.get(HostType.NETEASE_NEWS_VIDEO);
         if (retrofitManager == null) {
-            retrofitManager = new NetworkUtil(HostType.NETEASE_NEWS_VIDEO);
+            retrofitManager = new NetworkManager(HostType.NETEASE_NEWS_VIDEO);
             sRetrofitManager.put(HostType.NETEASE_NEWS_VIDEO, retrofitManager);
         }
         return retrofitManager.okHttpClient;

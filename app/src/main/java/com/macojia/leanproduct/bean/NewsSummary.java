@@ -120,7 +120,7 @@ public class NewsSummary implements Parcelable {
 
     @Override
     public String toString() {
-        return "news: title->" + title + " digest->" + digest;
+        return "news: title->" + title + " digest->" + digest + " imgSrc->" + imgsrc + " postId->" + postid + " postTime->" +ptime;
     }
 
 
@@ -163,6 +163,7 @@ public class NewsSummary implements Parcelable {
     public void setHasImg(int hasImg) {
         this.hasImg = hasImg;
     }
+
     public String getDigest() {
         return digest;
     }

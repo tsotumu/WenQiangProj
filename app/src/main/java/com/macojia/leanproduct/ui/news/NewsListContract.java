@@ -22,7 +22,7 @@ public interface NewsListContract {
 
     interface View extends BaseView {
         //返回获取的新闻
-        void returnNewsListData(List<NewsSummary> newsSummaries);
+        void OnNewsListDataReturned(List<NewsSummary> newsSummaries);
 
         //返回顶部
         void scrolltoTop();

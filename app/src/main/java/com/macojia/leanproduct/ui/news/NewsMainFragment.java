@@ -27,9 +27,9 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
- * 新闻页。
+ * 新闻子页面。
  */
-public class NewsFragment extends BaseFragment<NewsMainPresenter, NewsMainModel> implements NewsMainContractBase.View {
+public class NewsMainFragment extends BaseFragment<NewsMainPresenter, NewsMainModel> implements NewsMainContractBase.View {
     @Bind(R.id.tabs)
     TabLayout tabs;
     @Bind(R.id.add_channel_iv)
@@ -53,6 +53,7 @@ public class NewsFragment extends BaseFragment<NewsMainPresenter, NewsMainModel>
 
     @Override
     public void initView() {
+        LogUtils.logd("lodeChannelsRequest");
         mPresenter.lodeChannelsRequest();
         mFloatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,9 +69,8 @@ public class NewsFragment extends BaseFragment<NewsMainPresenter, NewsMainModel>
     }
 
     @Override
-    public void returnNewsChannels(List<NewsChannelTable> newsChannelsMine) {
-        LogUtils.logd("return news channels");
-        LogUtils.logd(newsChannelsMine.toString());
+    public void OnNewsChannelsReturned(List<NewsChannelTable> newsChannelsMine) {
+        LogUtils.logd("OnNewsChannelsReturned:\n" + newsChannelsMine);
         if (newsChannelsMine != null) {
             List<String> channelNames = new ArrayList<>();
             List<Fragment> mNewsFragmentList = new ArrayList<>();

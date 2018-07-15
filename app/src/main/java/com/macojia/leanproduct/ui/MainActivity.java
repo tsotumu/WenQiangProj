@@ -20,7 +20,7 @@ import com.macojia.leanproduct.bean.TabEntity;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.fragement.CareMainFragment;
 import com.macojia.leanproduct.ui.fragement.ControlMainFragment;
-import com.macojia.leanproduct.ui.news.NewsFragment;
+import com.macojia.leanproduct.ui.news.NewsMainFragment;
 import com.macojia.leanproduct.ui.fragement.VideoMainFragment;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity {
             R.mipmap.ic_video_selected,
             R.mipmap.ic_care_selected};
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
-    private NewsFragment newsFragment;
+    private NewsMainFragment newsFragment;
     // private PhotosMainFragment photosMainFragment;
     private VideoMainFragment videoMainFragment;
     private CareMainFragment careMainFragment;
@@ -121,14 +121,14 @@ public class MainActivity extends BaseActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         int currentTabPosition = 0;
         if (savedInstanceState != null) {
-            newsFragment = (NewsFragment) getSupportFragmentManager().findFragmentByTag("newsFragment");
+            newsFragment = (NewsMainFragment) getSupportFragmentManager().findFragmentByTag("newsFragment");
             //  photosMainFragment = (PhotosMainFragment) getSupportFragmentManager().findFragmentByTag("photosMainFragment");
             videoMainFragment = (VideoMainFragment) getSupportFragmentManager().findFragmentByTag("videoMainFragment");
             careMainFragment = (CareMainFragment) getSupportFragmentManager().findFragmentByTag("careMainFragment");
             controlMainFragment = (ControlMainFragment) getSupportFragmentManager().findFragmentByTag("controlMainFragment");
             currentTabPosition = savedInstanceState.getInt(AppConstant.HOME_CURRENT_TAB_POSITION);
         } else {
-            newsFragment = new NewsFragment();
+            newsFragment = new NewsMainFragment();
             //      photosMainFragment = new PhotosMainFragment();
             videoMainFragment = new VideoMainFragment();
             careMainFragment = new CareMainFragment();

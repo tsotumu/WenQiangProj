@@ -46,7 +46,7 @@ public class NewsListPresenter extends NewsListContract.Presenter {
 
             @Override
             protected void _onNext(List<NewsSummary> newsSummaries) {
-                mView.returnNewsListData(newsSummaries);
+                mView.OnNewsListDataReturned(newsSummaries);
                 mView.stopLoading();
             }
 

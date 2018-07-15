@@ -105,6 +105,11 @@ public class NewsDetail {
     private List<?> relative_sys;
     private List<?> apps;
 
+    @Override
+    public String toString() {
+        return "title->" + title + " source->" + getSource() + " postTime->" + ptime + " body->" + body + " imgSrc->" + img;
+    }
+
     public String getBody() {
         return body;
     }
@@ -334,6 +339,11 @@ public class NewsDetail {
         private String pixel;
         private String alt;
         private String src;
+
+        @Override
+        public String toString() {
+            return "ref->" + ref + " pixel->" + pixel + " alt->" + alt + " src->" + src;
+        }
 
         public String getRef() {
             return ref;

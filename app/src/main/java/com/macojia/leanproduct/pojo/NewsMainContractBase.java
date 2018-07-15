@@ -21,7 +21,7 @@ public interface NewsMainContractBase {
     }
 
     interface View extends BaseView {
-        void returnNewsChannels(List<NewsChannelTable> newsChannelsMine);
+        void OnNewsChannelsReturned(List<NewsChannelTable> newsChannelsMine);
     }
 
     abstract static class Presenter extends BasePresenter<View, Model> {

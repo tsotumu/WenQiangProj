@@ -1,7 +1,7 @@
 package com.macojia.leanproduct.ui.news.model;
 
 import com.macojia.common.baserx.RxSchedulers;
-import com.macojia.leanproduct.api.NetworkUtil;
+import com.macojia.leanproduct.api.NetworkManager;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.bean.GirlData;
 import com.macojia.leanproduct.bean.PhotoGirl;
@@ -20,8 +20,8 @@ import rx.functions.Func1;
 public class PhotosListModel implements PhotoListContract.Model {
     @Override
     public Observable<List<PhotoGirl>> getPhotosListData(int size, int page) {
-        return NetworkUtil.getDefault(HostType.GANK_GIRL_PHOTO)
-                .getPhotoList(NetworkUtil.getCacheControl(), size, page)
+        return NetworkManager.getDefault(HostType.GANK_GIRL_PHOTO)
+                .getPhotoList(NetworkManager.getCacheControl(), size, page)
                 .map(new Func1<GirlData, List<PhotoGirl>>() {
                     @Override
                     public List<PhotoGirl> call(GirlData girlData) {

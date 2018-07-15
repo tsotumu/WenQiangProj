@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.macojia.common.base.BaseActivity;
 import com.macojia.common.baserx.RxSchedulers;
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.common.commonutils.TimeUtil;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.NewsDetail;
@@ -44,8 +45,6 @@ import rx.Subscriber;
  * on 2016.09.16:57
  */
 public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDetailModel> implements NewsDetailContract.View {
-
-
     @Bind(R.id.news_detail_photo_iv)
     ImageView newsDetailPhotoIv;
     @Bind(R.id.mask_view)
@@ -64,6 +63,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
     ProgressBar progressBar;
     @Bind(R.id.fab)
     FloatingActionButton fab;
+
     private String postId;
     private URLImageGetter mUrlImageGetter;
     private String mNewsTitle;
@@ -86,10 +86,10 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
             mContext.startActivity(intent, options.toBundle());
         } else {
 */
-            //让新的Activity从一个小的范围扩大到全屏
-            ActivityOptionsCompat options = ActivityOptionsCompat
-                    .makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
-            ActivityCompat.startActivity((Activity) mContext, intent, options.toBundle());
+        //让新的Activity从一个小的范围扩大到全屏
+        ActivityOptionsCompat options = ActivityOptionsCompat
+                .makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
+        ActivityCompat.startActivity((Activity) mContext, intent, options.toBundle());
         /*}*/
 
     }
@@ -157,7 +157,8 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
     }
 
     @Override
-    public void returnOneNewsData(NewsDetail newsDetail) {
+    public void OnOneNewsDataReturned(NewsDetail newsDetail) {
+        LogUtils.logd("OnOneNewsDataReturned->" + newsDetail.toString());
         mShareLink = newsDetail.getShareLink();
         mNewsTitle = newsDetail.getTitle();
         String newsSource = newsDetail.getSource();

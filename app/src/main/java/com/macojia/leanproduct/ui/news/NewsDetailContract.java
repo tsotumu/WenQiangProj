@@ -20,7 +20,7 @@ public interface NewsDetailContract {
 
     interface View extends BaseView {
         //返回获取的新闻
-        void returnOneNewsData(NewsDetail newsDetail);
+        void OnOneNewsDataReturned(NewsDetail newsDetail);
     }
 
     abstract static class Presenter extends BasePresenter<View, Model> {

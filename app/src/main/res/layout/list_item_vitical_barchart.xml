@@ -4,6 +4,17 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
+    <TextView
+        android:id="@+id/tv_bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/tv_right_gray"
+        android:text="xxxxxxxxxxxxxxxxx"
+        android:textSize="10dp"
+        android:layout_gravity="center_horizontal"/>
+
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart"
         android:layout_width="match_parent"

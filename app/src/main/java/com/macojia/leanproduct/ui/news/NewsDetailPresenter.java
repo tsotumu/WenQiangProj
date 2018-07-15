@@ -16,7 +16,7 @@ public class NewsDetailPresenter extends NewsDetailContract.Presenter {
         mRxManage.add(mModel.getOneNewsData(postId).subscribe(new RxSubscriber<NewsDetail>(mContext) {
             @Override
             protected void _onNext(NewsDetail newsDetail) {
-                mView.returnOneNewsData(newsDetail);
+                mView.OnOneNewsDataReturned(newsDetail);
             }
 
             @Override

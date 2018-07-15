@@ -1,13 +1,16 @@
 package com.macojia.leanproduct.ui.news;
 
 import com.macojia.common.baserx.RxSchedulers;
-import com.macojia.leanproduct.api.NetworkUtil;
+import com.macojia.leanproduct.api.NetworkManager;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.bean.NewsDetail;
+import com.macojia.leanproduct.pojo.NewsDetailEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import base.utils.JsonUtils;
 import rx.Observable;
 import rx.functions.Func1;
 
@@ -20,10 +23,29 @@ public class NewsDetailModel implements NewsDetailContract.Model {
 
     @Override
     public Observable<NewsDetail> getOneNewsData(final String postId) {
-        return NetworkUtil.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewDetail(NetworkUtil.getCacheControl(), postId)
+        return NetworkManager.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewDetail(NetworkManager.getCacheControl(), postId)
                 .map(new Func1<Map<String, NewsDetail>, NewsDetail>() {
                     @Override
                     public NewsDetail call(Map<String, NewsDetail> map) {
+                        if (true) { // 测试本地数据。
+                            NewsDetailEntity newsDetailEntity = JsonUtils.analysisNewsDetailJsonFile("news_detail_data");
+                            NewsDetail newsDetail = new NewsDetail();
+                            newsDetail.setBody(newsDetailEntity.body);
+                            newsDetail.setTitle(newsDetailEntity.title);
+                            newsDetail.setSource(newsDetailEntity.source);
+                            newsDetail.setPtime(newsDetailEntity.postTime);
+                            ArrayList<NewsDetail.ImgBean> imgBeans = new ArrayList<>();
+                            for (int i = 0; i < newsDetailEntity.img.size(); i++){
+                                NewsDetail.ImgBean imgBean = new NewsDetail.ImgBean();
+                                imgBean.setSrc(newsDetailEntity.img.get(i).src);
+                                imgBean.setRef(newsDetailEntity.img.get(i).ref);
+                                imgBean.setAlt(newsDetailEntity.img.get(i).alt);
+                                imgBean.setPixel(newsDetailEntity.img.get(i).pixel);
+                                imgBeans.add(imgBean);
+                            }
+                            newsDetail.setImg(imgBeans);
+                            return newsDetail;
+                        }
                         NewsDetail newsDetail = map.get(postId);
                         changeNewsDetail(newsDetail);
                         return newsDetail;

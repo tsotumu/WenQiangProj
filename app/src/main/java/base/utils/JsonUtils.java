@@ -8,8 +8,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.macojia.leanproduct.BuildConfig;
+import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.bean.NewsDetail;
 import com.macojia.leanproduct.constant.LogFilterDef;
 import com.macojia.leanproduct.pojo.HotelEntity;
+import com.macojia.leanproduct.pojo.NewsDetailEntity;
+import com.macojia.leanproduct.pojo.NewsListEntity;
 import com.yuyh.library.imgsel.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -23,12 +27,28 @@ import static android.R.id.list;
 
 public class JsonUtils {
 
-    public static HotelEntity analysisJsonFile(Context context, String fileName) {
+    public static HotelEntity analysisHotelJsonFile(Context context, String fileName) {
         String content = FileUtils.readJsonFile(context, fileName);
         Gson gson = new Gson();
         HotelEntity entity = gson.fromJson(content, HotelEntity.class);
         if (BuildConfig.DEBUG) LogUtils.d(LogFilterDef.DATA_PARSE, content);
         if (BuildConfig.DEBUG) LogUtils.d(LogFilterDef.DATA_PARSE, entity.allTagsList.toString());
+        return entity;
+    }
+
+    public static NewsListEntity analysisNewsListJsonFile(String fileName) {
+        String content = FileUtils.readJsonFile(AppApplication.getAppContext(), fileName);
+        Gson gson = new Gson();
+        NewsListEntity entity = gson.fromJson(content, NewsListEntity.class);
+        if (BuildConfig.DEBUG) LogUtils.d(LogFilterDef.DATA_PARSE, content);
+        return entity;
+    }
+
+    public static NewsDetailEntity analysisNewsDetailJsonFile(String fileName) {
+        String content = FileUtils.readJsonFile(AppApplication.getAppContext(), fileName);
+        Gson gson = new Gson();
+        NewsDetailEntity entity = gson.fromJson(content, NewsDetailEntity.class);
+        if (BuildConfig.DEBUG) LogUtils.d(LogFilterDef.DATA_PARSE, content);
         return entity;
     }
 

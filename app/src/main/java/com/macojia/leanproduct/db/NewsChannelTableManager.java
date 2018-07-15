@@ -18,7 +18,7 @@ package com.macojia.leanproduct.db;
 
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.api.ApiConstants;
+import com.macojia.leanproduct.api.NetworkConstants;
 import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.bean.NewsChannelTable;
 
@@ -39,7 +39,7 @@ public class NewsChannelTableManager {
         ArrayList<NewsChannelTable> newsChannelTables = new ArrayList<>();
         for (int i = 0; i < channelName.size(); i++) {
             NewsChannelTable entity = new NewsChannelTable(channelName.get(i), channelId.get(i)
-                    , ApiConstants.getType(channelId.get(i)), i <= 5, i, false);
+                    , NetworkConstants.getType(channelId.get(i)), i <= 5, i, false);
             newsChannelTables.add(entity);
         }
         return newsChannelTables;
@@ -51,12 +51,19 @@ public class NewsChannelTableManager {
      * @return
      */
     public static List<NewsChannelTable> loadNewsChannelsStatic() {
-        List<String> channelNameList = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name_static));
+        // title 作为新闻自页面的标题
+        List<String> channelTitleList = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name_static));
+        //
         List<String> channelIdList = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_id_static));
         ArrayList<NewsChannelTable> newsChannelTables = new ArrayList<>();
-        for (int i = 0; i < channelNameList.size(); i++) {
-            NewsChannelTable entity = new NewsChannelTable(channelNameList.get(i), channelIdList.get(i)
-                    , ApiConstants.getType(channelIdList.get(i)), i <= CHANNEL_AMOUNT, i, true);
+        String title;
+        String id;
+        String type;
+        for (int i = 0; i < channelTitleList.size(); i++) {
+            title = channelTitleList.get(i);
+            id = channelTitleList.get(i);
+            type = NetworkConstants.getType(channelIdList.get(i));
+            NewsChannelTable entity = new NewsChannelTable(title, id, type, i <= CHANNEL_AMOUNT, i, true);
             newsChannelTables.add(entity);
         }
         return newsChannelTables;

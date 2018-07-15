@@ -25,7 +25,7 @@ public class NewsMainPresenter extends NewsMainContractBase.Presenter {
             @Override
             public void call(List<NewsChannelTable> newsChannelTables) {
                 if (newsChannelTables != null) {
-                    mView.returnNewsChannels(newsChannelTables);
+                    mView.OnNewsChannelsReturned(newsChannelTables);
                 }
             }
         });
@@ -36,7 +36,7 @@ public class NewsMainPresenter extends NewsMainContractBase.Presenter {
         mRxManage.add(mModel.loadNewsChannels().subscribe(new RxSubscriber<List<NewsChannelTable>>(mContext, false) {
             @Override
             protected void _onNext(List<NewsChannelTable> newsChannelTables) {
-                mView.returnNewsChannels(newsChannelTables);
+                mView.OnNewsChannelsReturned(newsChannelTables);
             }
 
             @Override

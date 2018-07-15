@@ -12,6 +12,11 @@ public class NewsChannelTable implements Serializable {
     private int newsChannelIndex;
     private Boolean newsChannelFixed;
 
+    @Override
+    public String toString() {
+        return "newsChannelName->" + newsChannelName + " id->" + newsChannelId + " type->" + newsChannelType + " select->" + newsChannelSelect + " index->" + newsChannelIndex;
+    }
+
     public NewsChannelTable() {
     }
 

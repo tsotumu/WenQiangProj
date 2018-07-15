@@ -16,13 +16,10 @@
  */
 package com.macojia.leanproduct.api;
 
-public class ApiConstants {
+public class NetworkConstants {
     public static final String NETEAST_HOST = "http://c.m.163.com/";
     public static final String END_URL = "-20.html";
     public static final String ENDDETAIL_URL = "/full.html";
-
-    // 新闻详情
-    public static final String NEWS_DETAIL = NETEAST_HOST + "nc/article/";
 
     // 头条TYPE
     public static final String HEADLINE_TYPE = "headline";

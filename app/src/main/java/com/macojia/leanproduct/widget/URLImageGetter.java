@@ -24,7 +24,7 @@ import android.text.Html;
 import android.widget.TextView;
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.api.NetworkUtil;
+import com.macojia.leanproduct.api.NetworkManager;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.app.AppApplication;
 
@@ -92,8 +92,8 @@ public class URLImageGetter implements Html.ImageGetter {
 
     @NonNull
     private Drawable getDrawableFromNet(final String source) {
-        mSubscription = NetworkUtil.getDefault(HostType.NEWS_DETAIL_HTML_PHOTO)
-                .getNewsBodyHtmlPhoto(NetworkUtil.getCacheControl(), source)
+        mSubscription = NetworkManager.getDefault(HostType.NEWS_DETAIL_HTML_PHOTO)
+                .getNewsBodyHtmlPhoto(NetworkManager.getCacheControl(), source)
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

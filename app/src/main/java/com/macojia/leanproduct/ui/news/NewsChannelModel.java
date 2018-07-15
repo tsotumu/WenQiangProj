@@ -2,8 +2,9 @@ package com.macojia.leanproduct.ui.news;
 
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.ACache;
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.api.ApiConstants;
+import com.macojia.leanproduct.api.NetworkConstants;
 import com.macojia.leanproduct.app.AppApplication;
 import com.macojia.leanproduct.bean.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
@@ -28,6 +29,7 @@ public class NewsChannelModel implements NewsChannelContract.Model {
         return Observable.create(new Observable.OnSubscribe<List<NewsChannelTable>>() {
             @Override
             public void call(Subscriber<? super List<NewsChannelTable>> subscriber) {
+                LogUtils.logd("lodeMineNewsChannels");
                 ArrayList<NewsChannelTable> newsChannelTableList = (ArrayList<NewsChannelTable>) ACache.get(AppApplication.getAppContext()).getAsObject(AppConstant.CHANNEL_MINE);
                 if (newsChannelTableList == null) {
                     newsChannelTableList = (ArrayList<NewsChannelTable>) NewsChannelTableManager.loadNewsChannelsStatic();
@@ -43,6 +45,7 @@ public class NewsChannelModel implements NewsChannelContract.Model {
         return Observable.create(new Observable.OnSubscribe<List<NewsChannelTable>>() {
             @Override
             public void call(Subscriber<? super List<NewsChannelTable>> subscriber) {
+                LogUtils.logd("lodeMoreNewsChannels");
                 ArrayList<NewsChannelTable> newsChannelTableList = (ArrayList<NewsChannelTable>) ACache.get(AppApplication.getAppContext()).getAsObject(AppConstant.CHANNEL_MORE);
                 if (newsChannelTableList == null) {
                     List<String> channelName = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name));
@@ -50,7 +53,7 @@ public class NewsChannelModel implements NewsChannelContract.Model {
                     newsChannelTableList = new ArrayList<>();
                     for (int i = 0; i < channelName.size(); i++) {
                         NewsChannelTable entity = new NewsChannelTable(channelName.get(i), channelId.get(i)
-                                , ApiConstants.getType(channelId.get(i)), i <= 5, i, false);
+                                , NetworkConstants.getType(channelId.get(i)), i <= 5, i, false);
                         newsChannelTableList.add(entity);
                     }
                 }
