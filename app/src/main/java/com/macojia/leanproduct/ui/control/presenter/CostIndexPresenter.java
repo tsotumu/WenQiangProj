@@ -24,6 +24,5 @@ public class CostIndexPresenter extends CostListContact.Presenter {
 
             }
         }));
-
     }
 }

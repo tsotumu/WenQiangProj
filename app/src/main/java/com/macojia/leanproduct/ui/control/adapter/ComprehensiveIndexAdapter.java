@@ -18,32 +18,32 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.app.AppApplication;
-import com.macojia.leanproduct.bean.control.CostIndexData;
+import com.macojia.leanproduct.bean.control.ComprehensiveIndexData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by LC on 2018/7/10.
+ * Created by LC on 2018/7/17.
  */
 
-public class CostIndexAdapter extends ArrayAdapter<BarData> {
+public class ComprehensiveIndexAdapter extends ArrayAdapter<BarData> {
     private List<String> titleList = new ArrayList<>();
 
-    public CostIndexAdapter(Context context, List<BarData> objects, List<String> titleList) {
+    public ComprehensiveIndexAdapter(Context context, List<BarData> objects, List<String> titleList) {
         super(context, 0, objects);
         this.titleList.addAll(titleList);
     }
 
-    public static CostIndexAdapter getAdapter(List<CostIndexData> data) {
+    public static ComprehensiveIndexAdapter getAdapter(List<ComprehensiveIndexData> data) {
         List<String> titleList = new ArrayList<>();
         ArrayList<BarData> list = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
-            CostIndexData costIndexData = data.get(i);
+            ComprehensiveIndexData costIndexData = data.get(i);
             list.add(generateData(costIndexData.monthlyDataList));
             titleList.add(costIndexData.machineName);
         }
-        CostIndexAdapter adapter = new CostIndexAdapter(AppApplication.getInstance(), list, titleList);
+        ComprehensiveIndexAdapter adapter = new ComprehensiveIndexAdapter(AppApplication.getInstance(), list, titleList);
         return adapter;
     }
 
@@ -52,7 +52,7 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
      *
      * @return
      */
-    private static BarData generateData(List<CostIndexData.MonthlyData> monthlyDataList) {
+    private static BarData generateData(List<ComprehensiveIndexData.MonthlyData> monthlyDataList) {
         ArrayList<BarEntry> entries = new ArrayList<>();
         for (int count = 0; count < monthlyDataList.size(); count++) {
             entries.add(new BarEntry(count, monthlyDataList.get(count).value));
@@ -97,9 +97,7 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
 //            data.setValueTypeface(mTfLight);
         data.setValueTextColor(Color.BLACK);
         holder.chart.getDescription().setEnabled(false);
-        holder.chart.getLegend().setFormSize(0);
         holder.chart.setDrawGridBackground(false);
-
 
         XAxis xAxis = holder.chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
