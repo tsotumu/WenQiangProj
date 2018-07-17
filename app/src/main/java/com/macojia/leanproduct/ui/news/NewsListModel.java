@@ -44,7 +44,7 @@ public class NewsListModel implements NewsListContract.Model {
 
 
                     List<NewsSummary> newsSummaryList = new ArrayList<>();
-                    NewsListEntity newsListEntity = base.utils.JsonUtils.analysisNewsListJsonFile("news_list_data");
+                    NewsListEntity newsListEntity = base.utils.JsonUtils.analysisNewsJsonFile(NewsListEntity.class, "news_list_data");
                     ArrayList<NewsListEntity.NewsDigest> digests = newsListEntity.newsList;
                     for (int i = 0; i < digests.size(); i++) {
                         NewsSummary newsSummary = new NewsSummary();

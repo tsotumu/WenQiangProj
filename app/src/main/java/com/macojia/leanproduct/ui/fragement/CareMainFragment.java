@@ -8,9 +8,9 @@ import com.macojia.common.daynightmodeutils.ChangeModeController;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.pojo.HotelEntity;
 import com.macojia.leanproduct.pojo.SectionedSpanSizeLookup;
+import com.macojia.leanproduct.ui.main.HotelEntityAdapter;
 import com.macojia.leanproduct.ui.news.activity.AboutActivity;
 import com.macojia.leanproduct.ui.zone.activity.CircleZoneActivity;
-import com.macojia.leanproduct.ui.main.HotelEntityAdapter;
 
 import base.utils.JsonUtils;
 import butterknife.Bind;
@@ -45,7 +45,7 @@ public class CareMainFragment extends BaseFragment {
         manager.setSpanSizeLookup(new SectionedSpanSizeLookup(mAdapter, manager));
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
-        HotelEntity entity = JsonUtils.analysisHotelJsonFile(getContext(), "shichuang");
+        HotelEntity entity = JsonUtils.analysisNewsJsonFile(HotelEntity.class, "shichuang");
         mAdapter.setData(entity.allTagsList);
     }
 

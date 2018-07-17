@@ -28,7 +28,7 @@ public class NewsDetailModel implements NewsDetailContract.Model {
                     @Override
                     public NewsDetail call(Map<String, NewsDetail> map) {
                         if (true) { // 测试本地数据。
-                            NewsDetailEntity newsDetailEntity = JsonUtils.analysisNewsDetailJsonFile("news_detail_data");
+                            NewsDetailEntity newsDetailEntity = JsonUtils.analysisNewsJsonFile(NewsDetailEntity.class, "news_detail_data");
                             NewsDetail newsDetail = new NewsDetail();
                             newsDetail.setBody(newsDetailEntity.body);
                             newsDetail.setTitle(newsDetailEntity.title);
