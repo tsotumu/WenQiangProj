@@ -15,7 +15,7 @@ import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.VideoChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.db.VideosChannelTableManager;
-import com.macojia.leanproduct.ui.video.VideosFragment;
+import com.macojia.leanproduct.ui.video.VideoChildFragment;
 import com.macojia.leanproduct.utils.MyUtils;
 
 import java.util.ArrayList;
@@ -30,8 +30,6 @@ import butterknife.ButterKnife;
  * on 2016.09.16:45
  */
 public class VideoMainFragment extends BaseFragment {
-
-
     @Bind(R.id.tabs)
     TabLayout tabs;
     @Bind(R.id.view_pager)
@@ -42,7 +40,7 @@ public class VideoMainFragment extends BaseFragment {
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.app_bar_video;
+        return R.layout.video_main_fragment;
     }
 
     @Override
@@ -91,8 +89,8 @@ public class VideoMainFragment extends BaseFragment {
         });
     }
 
-    private VideosFragment createListFragments(VideoChannelTable videoChannelTable) {
-        VideosFragment fragment = new VideosFragment();
+    private VideoChildFragment createListFragments(VideoChannelTable videoChannelTable) {
+        VideoChildFragment fragment = new VideoChildFragment();
         Bundle bundle = new Bundle();
         bundle.putString(AppConstant.VIDEO_TYPE, videoChannelTable.getChannelId());
         fragment.setArguments(bundle);

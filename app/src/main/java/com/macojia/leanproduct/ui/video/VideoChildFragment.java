@@ -32,7 +32,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
  * Created by xsf
  * on 2016.09.17:30
  */
-public class VideosFragment extends BaseFragment<VideoListPresenter, VideosListModel> implements VideosListContract.View, OnRefreshListener, OnLoadMoreListener {
+public class VideoChildFragment extends BaseFragment<VideoListPresenter, VideosListModel> implements VideosListContract.View, OnRefreshListener, OnLoadMoreListener {
     @Bind(R.id.irc)
     IRecyclerView irc;
     @Bind(R.id.loadedTip)
@@ -44,7 +44,7 @@ public class VideosFragment extends BaseFragment<VideoListPresenter, VideosListM
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.framents_news;
+        return R.layout.child_fragment;
     }
 
     @Override

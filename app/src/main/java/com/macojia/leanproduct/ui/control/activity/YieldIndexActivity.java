@@ -19,9 +19,15 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.chart.ChartItem;
 import com.macojia.leanproduct.chart.HorizonBarChartItem;
 import com.macojia.leanproduct.chart.LineChartItem;
+import com.macojia.leanproduct.ui.control.adapter.YieldAdapter;
+import com.macojia.leanproduct.ui.control.contact.YieldListContact;
+import com.macojia.leanproduct.ui.control.model.YieldModel;
+import com.macojia.leanproduct.ui.control.presenter.YieldPresenter;
+import com.macojia.leanproduct.ui.news.contract.ControlItemContract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +39,7 @@ import butterknife.Bind;
  * 产量指标。
  */
 
-public class YieldIndexActivity extends BaseActivity {
+public class YieldIndexActivity extends BaseActivity<YieldPresenter, YieldModel> implements YieldListContact.View{
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
     @Bind(R.id.lv_yield)
@@ -41,15 +47,8 @@ public class YieldIndexActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
-        ArrayList<ChartItem> list = new ArrayList<ChartItem>();
-
-        list.add(new HorizonBarChartItem(generateDataBar(1), getApplicationContext()));
-        // 30 items
-        for (int i = 0; i < 19; i++) {
-            list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));
-        }
-        mListView.setAdapter(new ChartDataAdapter(getApplicationContext(), list));
+        initToolBar();
+        mPresenter.getListDataRequest();
     }
 
     public int getTitleId() {
@@ -77,7 +76,7 @@ public class YieldIndexActivity extends BaseActivity {
 
     @Override
     public void initPresenter() {
-
+        mPresenter.setView_Model(this, mModel);
     }
 
     private LineData generateDataLine(int cnt) {
@@ -133,26 +132,36 @@ public class YieldIndexActivity extends BaseActivity {
         return cd;
     }
 
-    private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
+    @Override
+    public void showLoading(String title) {
 
-        public ChartDataAdapter(Context context, List<ChartItem> objects) {
-            super(context, 0, objects);
-        }
+    }
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return getItem(position).getView(position, convertView, getContext());
-        }
+    @Override
+    public void stopLoading() {
 
-        @Override
-        public int getItemViewType(int position) {
-            // return the views type
-            return getItem(position).getItemType();
-        }
+    }
 
-        @Override
-        public int getViewTypeCount() {
-            return 2; // we have 3 different item-types
+    @Override
+    public void showErrorTip(String msg) {
+
+    }
+
+    @Override
+    public void onListDataReturn(List<YieldIndexData> indexData) {
+
+        ArrayList<ChartItem> list = new ArrayList<ChartItem>();
+
+        list.add(new HorizonBarChartItem(generateDataBar(1), getApplicationContext()));
+        // 30 items
+        for (int i = 0; i < 19; i++) {
+            list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));
         }
+        mListView.setAdapter(new YieldAdapter(getApplicationContext(), list));
+    }
+
+    @Override
+    public void scrolltoTop() {
+
     }
 }

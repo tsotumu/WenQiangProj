@@ -26,6 +26,7 @@ public class VideosListModel implements VideosListContract.Model {
                 .flatMap(new Func1<Map<String, List<VideoData>>, Observable<VideoData>>() {
                     @Override
                     public Observable<VideoData> call(Map<String, List<VideoData>> map) {
+
                         return Observable.from(map.get(type));
                     }
                 })

@@ -43,7 +43,7 @@ public class NewsChildFragment extends BaseFragment<NewsListPresenter, NewsListM
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.framents_news;
+        return R.layout.child_fragment;
     }
 
     @Override
