@@ -60,6 +60,11 @@ public class VideoData {
     private String ptime;
     private String topicName;
 
+    @Override
+    public String toString() {
+        return "title->" + getTitle() + " playCount->" +getPlayCount() + " des->" + getDescription() + " url->" +getMp4_url() + " topicName->" + getTopicName() + " cover->" + getCover();
+    }
+
     public String getTopicImg() {
         return topicImg;
     }

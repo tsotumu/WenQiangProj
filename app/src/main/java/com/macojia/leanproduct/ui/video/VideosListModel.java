@@ -1,11 +1,15 @@
 package com.macojia.leanproduct.ui.video;
 
 import com.macojia.common.baserx.RxSchedulers;
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.common.commonutils.TimeUtil;
-import com.macojia.leanproduct.api.NetworkManager;
+import com.macojia.leanproduct.BuildConfig;
 import com.macojia.leanproduct.api.HostType;
+import com.macojia.leanproduct.api.NetworkManager;
 import com.macojia.leanproduct.bean.VideoData;
+import com.macojia.leanproduct.pojo.VideoListEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +30,31 @@ public class VideosListModel implements VideosListContract.Model {
                 .flatMap(new Func1<Map<String, List<VideoData>>, Observable<VideoData>>() {
                     @Override
                     public Observable<VideoData> call(Map<String, List<VideoData>> map) {
-
-                        return Observable.from(map.get(type));
+//                        if (BuildConfig.DEBUG) {
+                            VideoListEntity newsListEntity = base.utils.JsonUtils.analysisNewsJsonFile(VideoListEntity.class, "video_list_data");
+                        if (BuildConfig.DEBUG) LogUtils.logd("aasfasfdasfdasdfasdf" + newsListEntity.dataList.toString());
+                            final List<VideoData> videoDataList = new ArrayList<>();
+                            for (int i = 0; i < newsListEntity.dataList.size(); i++) {
+                                VideoData videoData = new VideoData();
+                                videoData.setCover(newsListEntity.dataList.get(i).cover);
+                                videoData.setDescription(newsListEntity.dataList.get(i).des);
+                                videoData.setPlayCount(newsListEntity.dataList.get(i).play_count);
+                                videoData.setTitle(newsListEntity.dataList.get(i).title);
+                                videoData.setTopicName(newsListEntity.dataList.get(i).topic_name);
+                                videoData.setMp4_url(newsListEntity.dataList.get(i).url);
+                                videoData.setPtime(newsListEntity.dataList.get(i).ptime);
+                                videoDataList.add(videoData);
+                            }/*
+                            return Observable.create(new Observable.OnSubscribe<VideoData>() {
+                                @Override
+                                public void call(Subscriber<? super VideoData> subscriber) {
+                                    subscriber.onNext(videoDataList.get(0));
+                                    subscriber.onCompleted();
+                                }
+                            });*/
+                            return Observable.from(videoDataList);
+//                        }
+//                        return Observable.from(map.get(type));
                     }
                 })
                 //转化时间
