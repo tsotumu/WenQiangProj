@@ -24,7 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.control.activity.ForecastProgressActivity"
+        <activity
+            android:name=".ui.control.activity.ForecastProgressActivity"
             android:theme="@style/BaseAppTheme.Trans" />
         <activity
             android:name=".ui.news.activity.PhotosDetailActivity"
@@ -43,12 +44,6 @@
             android:launchMode="singleInstance" />
         <activity
             android:name=".ui.news.activity.NewsChannelActivity"
-            android:launchMode="singleInstance" />
-        <activity
-            android:name=".ui.zone.activity.CircleZoneActivity"
-            android:launchMode="singleInstance" />
-        <activity
-            android:name=".ui.zone.activity.CirclePublishActivity"
             android:launchMode="singleInstance" />
         <activity
             android:name=".ui.news.activity.AboutActivity"
@@ -74,11 +69,9 @@
         <activity
             android:name=".ui.control.activity.YieldIndexActivity"
             android:launchMode="singleInstance" />
-
-        <!-- 友盟统计 -->
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="57e8e398e0f55ae655000723"></meta-data>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:launchMode="singleInstance" />
     </application>
 
 </manifest>

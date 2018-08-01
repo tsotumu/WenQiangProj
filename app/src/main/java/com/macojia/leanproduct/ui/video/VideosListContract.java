@@ -3,7 +3,7 @@ package com.macojia.leanproduct.ui.video;
 import com.macojia.common.base.BaseModel;
 import com.macojia.common.base.BasePresenter;
 import com.macojia.common.base.BaseView;
-import com.macojia.leanproduct.bean.VideoData;
+import com.macojia.leanproduct.bean.video.VideoData;
 
 import java.util.List;
 

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.base.BaseFragmentAdapter;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.bean.VideoChannelTable;
+import com.macojia.leanproduct.bean.video.VideoChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.db.VideosChannelTableManager;
 import com.macojia.leanproduct.ui.video.VideoChildFragment;

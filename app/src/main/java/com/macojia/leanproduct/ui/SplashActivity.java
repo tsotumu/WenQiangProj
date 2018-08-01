@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.ui.login.LoginActivity;
 
 import base.utils.ActivityUtil;
 import butterknife.Bind;
@@ -56,7 +57,7 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                ActivityUtil.startActivity(SplashActivity.this, MainActivity.class);
+                ActivityUtil.startActivity(SplashActivity.this, LoginActivity.class);
                 finish();
             }
 

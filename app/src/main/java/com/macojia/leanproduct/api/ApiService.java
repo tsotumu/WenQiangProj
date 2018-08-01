@@ -2,10 +2,10 @@ package com.macojia.leanproduct.api;
 
 import com.macojia.common.basebean.BaseRespose;
 import com.macojia.leanproduct.bean.GirlData;
-import com.macojia.leanproduct.bean.NewsDetail;
-import com.macojia.leanproduct.bean.NewsSummary;
+import com.macojia.leanproduct.bean.news.NewsDetail;
+import com.macojia.leanproduct.bean.news.NewsSummary;
 import com.macojia.leanproduct.bean.User;
-import com.macojia.leanproduct.bean.VideoData;
+import com.macojia.leanproduct.bean.video.VideoData;
 
 import java.util.List;
 import java.util.Map;

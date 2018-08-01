@@ -25,11 +25,11 @@ import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.LogUtils;
 import com.macojia.common.commonutils.TimeUtil;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.bean.NewsDetail;
+import com.macojia.leanproduct.bean.news.NewsDetail;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.ui.news.NewsDetailContract;
-import com.macojia.leanproduct.ui.news.NewsDetailModel;
-import com.macojia.leanproduct.ui.news.NewsDetailPresenter;
+import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
+import com.macojia.leanproduct.ui.news.model.NewsDetailModel;
+import com.macojia.leanproduct.ui.news.presenter.NewsDetailPresenter;
 import com.macojia.leanproduct.widget.URLImageGetter;
 
 import java.util.List;

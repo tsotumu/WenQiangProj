@@ -19,9 +19,14 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.bean.control.QualityIndexData;
 import com.macojia.leanproduct.chart.ChartItem;
 import com.macojia.leanproduct.chart.HorizonBarChartItem;
 import com.macojia.leanproduct.chart.LineChartItem;
+import com.macojia.leanproduct.ui.control.adapter.QualityIndexAdapter;
+import com.macojia.leanproduct.ui.control.contact.QualityIndexContract;
+import com.macojia.leanproduct.ui.control.model.QualityIndexModel;
+import com.macojia.leanproduct.ui.control.presenter.QualityIndexPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +39,7 @@ import butterknife.Bind;
  * Created by xsf
  * on 2016.09.11:51
  */
-public class QualityIndexActivity extends BaseActivity {
+public class QualityIndexActivity extends BaseActivity<QualityIndexPresenter, QualityIndexModel> implements QualityIndexContract.View{
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
     @Bind(R.id.lv_quality)
@@ -47,21 +52,13 @@ public class QualityIndexActivity extends BaseActivity {
 
     @Override
     public void initPresenter() {
-
+        mPresenter.setView_Model(this, mModel);
     }
 
     @Override
     public void initView() {
         initToolBar();
-
-        ArrayList<ChartItem> list = new ArrayList<ChartItem>();
-
-        list.add(new HorizonBarChartItem(generateDataBar(1), getApplicationContext()));
-        // 30 items
-        for (int i = 0; i < 19; i++) {
-            list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));
-        }
-        mListView.setAdapter(new ChartDataAdapter(getApplicationContext(), list));
+        mPresenter.getListDataRequest();
     }
 
     public int getTitleId() {
@@ -83,28 +80,38 @@ public class QualityIndexActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void showLoading(String title) {
 
-    private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
+    }
 
-        public ChartDataAdapter(Context context, List<ChartItem> objects) {
-            super(context, 0, objects);
+    @Override
+    public void stopLoading() {
+
+    }
+
+    @Override
+    public void showErrorTip(String msg) {
+
+    }
+
+    @Override
+    public void onIndexListDataReturn(List<QualityIndexData> costIndexData) {
+
+        ArrayList<ChartItem> list = new ArrayList<ChartItem>();
+
+        list.add(new HorizonBarChartItem(generateDataBar(1), getApplicationContext()));
+        // 30 items
+        for (int i = 0; i < 19; i++) {
+            list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));
         }
+        mListView.setAdapter(QualityIndexAdapter.getAdapter());
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return getItem(position).getView(position, convertView, getContext());
-        }
+    }
 
-        @Override
-        public int getItemViewType(int position) {
-            // return the views type
-            return getItem(position).getItemType();
-        }
+    @Override
+    public void scrolltoTop() {
 
-        @Override
-        public int getViewTypeCount() {
-            return 2; // we have 3 different item-types
-        }
     }
 
 

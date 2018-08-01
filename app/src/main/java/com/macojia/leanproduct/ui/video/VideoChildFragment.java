@@ -19,7 +19,7 @@ import com.macojia.common.commonutils.LogUtils;
 import com.macojia.common.commonwidget.LoadingTip;
 import com.macojia.leanproduct.BuildConfig;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.bean.VideoData;
+import com.macojia.leanproduct.bean.video.VideoData;
 import com.macojia.leanproduct.constant.AppConstant;
 
 import java.util.List;

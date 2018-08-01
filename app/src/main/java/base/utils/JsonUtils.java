@@ -1,18 +1,10 @@
 package base.utils;
 
-import android.content.Context;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.macojia.leanproduct.BuildConfig;
 import com.macojia.leanproduct.app.AppApplication;
-import com.macojia.leanproduct.constant.LogFilterDef;
-import com.macojia.leanproduct.pojo.HotelEntity;
-import com.macojia.leanproduct.pojo.NewsDetailEntity;
-import com.macojia.leanproduct.pojo.NewsListEntity;
-import com.yuyh.library.imgsel.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +19,6 @@ public class JsonUtils {
         String content = FileUtils.readJsonFile(AppApplication.getAppContext(), fileName);
         Gson gson = new Gson();
         Type entity = gson.fromJson(content, EntityType);
-        if (BuildConfig.DEBUG) LogUtils.d(LogFilterDef.DATA_PARSE, content);
         return entity;
 
     }

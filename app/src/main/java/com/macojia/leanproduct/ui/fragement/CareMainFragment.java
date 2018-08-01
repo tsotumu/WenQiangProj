@@ -10,7 +10,6 @@ import com.macojia.leanproduct.pojo.HotelEntity;
 import com.macojia.leanproduct.pojo.SectionedSpanSizeLookup;
 import com.macojia.leanproduct.ui.main.HotelEntityAdapter;
 import com.macojia.leanproduct.ui.news.activity.AboutActivity;
-import com.macojia.leanproduct.ui.zone.activity.CircleZoneActivity;
 
 import base.utils.JsonUtils;
 import butterknife.Bind;
@@ -47,11 +46,6 @@ public class CareMainFragment extends BaseFragment {
         mRecyclerView.setAdapter(mAdapter);
         HotelEntity entity = JsonUtils.analysisNewsJsonFile(HotelEntity.class, "shichuang");
         mAdapter.setData(entity.allTagsList);
-    }
-
-    //    @OnClick(R.id.ll_friend_zone)
-    public void friendZone() {
-        CircleZoneActivity.startAction(getContext());
     }
 
     //    @OnClick(R.id.ll_daynight_toggle)

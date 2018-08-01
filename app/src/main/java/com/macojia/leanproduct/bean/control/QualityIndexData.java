@@ -4,5 +4,5 @@ package com.macojia.leanproduct.bean.control;
  * Created by LC on 2018/7/9.
  */
 
-public class QualityIndexData {
+public class QualityIndexData extends CostIndexData{
 }

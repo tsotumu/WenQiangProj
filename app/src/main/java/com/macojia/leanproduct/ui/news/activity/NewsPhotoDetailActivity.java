@@ -15,7 +15,7 @@ import com.macojia.common.base.BaseActivity;
 import com.macojia.common.base.BaseFragmentAdapter;
 import com.macojia.common.commonwidget.ViewPagerFixed;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.bean.NewsPhotoDetail;
+import com.macojia.leanproduct.bean.news.NewsPhotoDetail;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.news.fragment.PhotoDetailFragment;
 

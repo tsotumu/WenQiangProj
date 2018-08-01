@@ -3,7 +3,7 @@ package com.macojia.leanproduct.pojo;
 import com.macojia.common.base.BaseModel;
 import com.macojia.common.base.BasePresenter;
 import com.macojia.common.base.BaseView;
-import com.macojia.leanproduct.bean.NewsChannelTable;
+import com.macojia.leanproduct.bean.news.NewsChannelTable;
 
 import java.util.List;
 

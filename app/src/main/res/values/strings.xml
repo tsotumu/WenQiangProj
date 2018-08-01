@@ -4,16 +4,8 @@
     <!--menu-->
     <string name="title">精益生产</string>
 
-    <string name="zhihu">知乎</string>
     <string name="photo">图片</string>
-    <string name="video">视频</string>
-    <string name="tools">设置</string>
-    <string name="no_photo_mode">无图模式</string>
-    <string name="night_mode">夜间模式</string>
-    <string name="about">关于</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <!-- 共享过度动画 -->
     <string name="transition_photos">transition_animation_news_photos</string>
 
@@ -36,11 +28,8 @@
     <!-- 管控 -->
     <string name="control">管控</string>
     <string name="qualityindex">质量指标</string>
-    <string name="yieldindex">产量指标</string>
-    <string name="costindex">消耗指标</string>
     <string name="efficiencyindex">效率指标</string>
     <string name="comprehenindex">综合指标</string>
-    <string name="qualityfeedback">质量反馈</string>
     <string name="repairguide">维修指导</string>
     <string name="processpredict">进度预测</string>
 
@@ -50,37 +39,16 @@
     <!-- 图片 -->
     <string name="girl_title">靓妹纸</string>
     <string name="girl">妹纸</string>
-    <string name="set_wallpaper">设为壁纸</string>
     <!--视频-->
-    <string name="videos">视频</string>
     <string name="video_play_times">%1$s次播放</string>
 
     <!--动态 -->
-    <string name="circle_zone">精益生产动态</string>
-    <string name="zone_img_position">circle_img_position</string>
-    <string name="circle_zone_not_read_news">%1$s条新消息</string>
-    <string name="expand">全文</string>
-    <string name="shink">收起</string>
-    <string name="nick_name">世锋日上</string>
-    <string name="save">提交</string>
-    <string name="circle_publish_empty">发表内容不能为空！</string>
-    <string name="zone_publish_title">发表说说</string>
-    <string name="zone_toggle_theme_title">切换主题</string>
-    <string name="friend_zone_title">好友动态</string>
-    <string name="friend_zone_toggle">日夜模式切换</string>
-    <string name="friend_zone_about">关于</string>
-    <string name="care_main_title">我关注的</string>
     <string name="care_about_wechat">更多精彩要闻，请及时查看精益生产APP！</string>
 
     <!-- 管控 -->
-    <string name="control_quality_index">质量指标</string>
     <string name="control_yield_index">产量指标</string>
     <string name="control_cost_index">消耗指标</string>
-    <string name="control_effiency_index">效率指标</string>
-    <string name="control_compre_index">综合指标</string>
-    <string name="control_maintain_guidance">维修指导</string>
     <string name="control_quality_feedback">质量反馈</string>
-    <string name="control_progress">进度预测</string>
     <string name="control_title_feedback">请输入要查询的钢印号</string>
     <string name="control_searchbutton_feedback">查  询</string>
     <string name="control_number_feedback">钢印号:</string>
@@ -92,7 +60,18 @@
     <item name="content_index" type="id">content_index</item>
     <item name="group_index" type="id">group_index</item>
 
+
     <string name="x_label">（月份）</string>
     <string name="y_label">（数量）</string>
+
+    <string name="login_success">登陆成功</string>
+    <string name="login">登陆</string>
+    <string name="Username">用户名</string>
+    <string name="Password">密码</string>
+    <string name="forgot_your_password">找回密码？</string>
+    <string name="go">进入</string>
+    <string name="repeat_password">确认密码</string>
+    <string name="next">下一步</string>
+    <string name="register">注册账号</string>
 
 </resources>

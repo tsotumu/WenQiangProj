@@ -12,8 +12,8 @@ import com.aspsine.irecyclerview.universaladapter.recyclerview.MultiItemTypeSupp
 import com.macojia.common.commonutils.DisplayUtil;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.app.AppApplication;
-import com.macojia.leanproduct.bean.NewsPhotoDetail;
-import com.macojia.leanproduct.bean.NewsSummary;
+import com.macojia.leanproduct.bean.news.NewsPhotoDetail;
+import com.macojia.leanproduct.bean.news.NewsSummary;
 import com.macojia.leanproduct.ui.news.activity.NewsDetailActivity;
 import com.macojia.leanproduct.ui.news.activity.NewsPhotoDetailActivity;
 

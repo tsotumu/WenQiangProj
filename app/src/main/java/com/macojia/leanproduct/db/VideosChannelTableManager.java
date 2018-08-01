@@ -19,7 +19,7 @@ package com.macojia.leanproduct.db;
 
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.app.AppApplication;
-import com.macojia.leanproduct.bean.VideoChannelTable;
+import com.macojia.leanproduct.bean.video.VideoChannelTable;
 
 import java.util.ArrayList;
 import java.util.Arrays;

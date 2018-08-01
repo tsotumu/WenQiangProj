@@ -1,9 +1,10 @@
-package com.macojia.leanproduct.ui.video;
+package com.macojia.leanproduct.ui.news.presenter;
 
 import com.macojia.common.baserx.RxSubscriber;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.bean.video.VideoData;
+import com.macojia.leanproduct.bean.news.NewsSummary;
 import com.macojia.leanproduct.constant.AppConstant;
+import com.macojia.leanproduct.ui.news.contract.NewsListContract;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import rx.functions.Action1;
  * Created by xsf
  * on 2016.09.14:53
  */
-public class VideoListPresenter extends VideosListContract.Presenter {
+public class NewsListPresenter extends NewsListContract.Presenter {
 
     @Override
     public void onStart() {
@@ -29,14 +30,15 @@ public class VideoListPresenter extends VideosListContract.Presenter {
     }
 
     /**
-     * 获取视频列表请求
+     * 请求获取列表数据
      *
      * @param type
+     * @param id
      * @param startPage
      */
     @Override
-    public void getVideosListDataRequest(String type, int startPage) {
-        mRxManage.add(mModel.getVideosListData(type, startPage).subscribe(new RxSubscriber<List<VideoData>>(mContext, false) {
+    public void getNewsListDataRequest(String type, String id, int startPage) {
+        mRxManage.add(mModel.getNewsListData(type, id, startPage).subscribe(new RxSubscriber<List<NewsSummary>>(mContext, false) {
             @Override
             public void onStart() {
                 super.onStart();
@@ -44,8 +46,8 @@ public class VideoListPresenter extends VideosListContract.Presenter {
             }
 
             @Override
-            protected void _onNext(List<VideoData> videoDatas) {
-                mView.returnVideosListData(videoDatas);
+            protected void _onNext(List<NewsSummary> newsSummaries) {
+                mView.OnNewsListDataReturned(newsSummaries);
                 mView.stopLoading();
             }
 

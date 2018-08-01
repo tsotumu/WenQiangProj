@@ -13,7 +13,6 @@
         app:navigationIcon="@drawable/ic_arrow_back"
         app:title="@string/control_quality_feedback" />
     <TextView
-        android:id="@+id/control_title_feedback"
         android:layout_width="match_parent"
         android:padding="20dp"
         android:layout_height="wrap_content"
@@ -29,7 +28,6 @@
         android:paddingLeft="10dp"
         android:orientation="horizontal">
         <TextView
-            android:id="@+id/control_hintinfo_feedback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="50px"
