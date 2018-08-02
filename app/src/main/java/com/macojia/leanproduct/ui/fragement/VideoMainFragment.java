@@ -93,6 +93,7 @@ public class VideoMainFragment extends BaseFragment {
         VideoChildFragment fragment = new VideoChildFragment();
         Bundle bundle = new Bundle();
         bundle.putString(AppConstant.VIDEO_TYPE, videoChannelTable.getChannelId());
+        bundle.putString(VideoChildFragment.EXTRA_TYPE, videoChannelTable.getChannelName());
         fragment.setArguments(bundle);
         return fragment;
     }

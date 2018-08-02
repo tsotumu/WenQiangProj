@@ -92,5 +92,7 @@
     <item name="content_index" type="id">content_index</item>
     <item name="group_index" type="id">group_index</item>
 
+    <string name="x_label">（月份）</string>
+    <string name="y_label">（数量）</string>
 
 </resources>

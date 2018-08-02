@@ -15,7 +15,9 @@ import com.aspsine.irecyclerview.widget.LoadMoreFooterView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.macojia.common.base.BaseFragment;
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.common.commonwidget.LoadingTip;
+import com.macojia.leanproduct.BuildConfig;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.VideoData;
 import com.macojia.leanproduct.constant.AppConstant;
@@ -38,6 +40,8 @@ public class VideoChildFragment extends BaseFragment<VideoListPresenter, VideosL
     @Bind(R.id.loadedTip)
     LoadingTip loadedTip;
     private CommonRecycleViewAdapter<VideoData> videoListAdapter;
+    public final static String EXTRA_TYPE = "type";
+    private String extra_type;
 
     private String mVideoType;
     private int mStartPage = 0;
@@ -56,6 +60,7 @@ public class VideoChildFragment extends BaseFragment<VideoListPresenter, VideosL
     protected void initView() {
         if (getArguments() != null) {
             mVideoType = getArguments().getString(AppConstant.VIDEO_TYPE);
+            extra_type = getArguments().getString(EXTRA_TYPE);
         }
         irc.setLayoutManager(new LinearLayoutManager(getContext()));
         videoListAdapter = new CommonRecycleViewAdapter<VideoData>(getContext(), R.layout.item_video_list) {
@@ -98,10 +103,11 @@ public class VideoChildFragment extends BaseFragment<VideoListPresenter, VideosL
             }
         });
         //数据为空才重新发起请求
-        if (videoListAdapter.getSize() <= 0) {
+        if (BuildConfig.DEBUG || videoListAdapter.getSize() <= 0) {
             //发起请求
             mStartPage = 0;
             mPresenter.getVideosListDataRequest(mVideoType, mStartPage);
+            LogUtils.logd(extra_type + "->getVideosListDataRequest" );
         }
     }
 

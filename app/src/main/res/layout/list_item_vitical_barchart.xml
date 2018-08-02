@@ -1,23 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_bar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:textColor="@color/tv_right_gray"
         android:text="xxxxxxxxxxxxxxxxx"
+        android:textColor="@color/tv_right_gray"
         android:textSize="10dp"
-        android:layout_gravity="center_horizontal"/>
+        android:textStyle="bold" />
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart"
+        android:layout_below="@id/tv_bar_title"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="200dp"
+        tools:background="@color/gray" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_label_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/y_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@id/chart"
+        android:textSize="8dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_label_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/x_label"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="26dp"
+        android:layout_alignBottom="@id/chart"
+        android:textSize="8dp"
+        />
+
+</RelativeLayout>
