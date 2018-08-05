@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package com.macojia.leanproduct.utils;
+package base.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

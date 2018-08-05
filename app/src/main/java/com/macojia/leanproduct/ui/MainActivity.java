@@ -77,10 +77,6 @@ public class MainActivity extends BaseActivity {
                 startAnimation(hideOrShow);
             }
         });
-        Explode explode = new Explode();
-        explode.setDuration(500);
-        getWindow().setExitTransition(explode);
-        getWindow().setEnterTransition(explode);
     }
 
     @Override
@@ -156,7 +152,6 @@ public class MainActivity extends BaseActivity {
             case 0: {
                 //首页
                 transaction.hide(controlMainFragment);
-                //     transaction.hide(photosMainFragment);
                 transaction.hide(videoMainFragment);
                 transaction.hide(careMainFragment);
                 transaction.show(newsFragment);
@@ -168,7 +163,6 @@ public class MainActivity extends BaseActivity {
                 transaction.hide(newsFragment);
                 transaction.hide(videoMainFragment);
                 transaction.hide(careMainFragment);
-                //transaction.show(photosMainFragment);
                 transaction.show(controlMainFragment);
                 transaction.commitAllowingStateLoss();
                 break;
@@ -176,7 +170,6 @@ public class MainActivity extends BaseActivity {
             case 2: {
                 //视频
                 transaction.hide(newsFragment);
-                // transaction.hide(photosMainFragment);
                 transaction.hide(controlMainFragment);
                 transaction.hide(careMainFragment);
                 transaction.show(videoMainFragment);
@@ -186,7 +179,6 @@ public class MainActivity extends BaseActivity {
             case 3: {
                 //关注
                 transaction.hide(newsFragment);
-                // transaction.hide(photosMainFragment);
                 transaction.hide(controlMainFragment);
                 transaction.hide(videoMainFragment);
                 transaction.show(careMainFragment);

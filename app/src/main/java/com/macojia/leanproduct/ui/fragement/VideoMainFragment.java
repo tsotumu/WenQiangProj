@@ -16,7 +16,7 @@ import com.macojia.leanproduct.bean.video.VideoChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.db.VideosChannelTableManager;
 import com.macojia.leanproduct.ui.video.VideoChildFragment;
-import com.macojia.leanproduct.utils.MyUtils;
+import base.utils.MyUtils;
 
 import java.util.ArrayList;
 import java.util.List;

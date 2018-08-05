@@ -9,6 +9,6 @@ import com.macojia.leanproduct.ui.control.contact.YieldListContact;
 public class YieldPresenter extends YieldListContact.Presenter {
     @Override
     public void getListDataRequest() {
-
+        mModel.geListData();
     }
 }

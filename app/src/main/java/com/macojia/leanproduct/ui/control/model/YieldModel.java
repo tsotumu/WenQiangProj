@@ -1,11 +1,9 @@
 package com.macojia.leanproduct.ui.control.model;
 
-import android.database.Observable;
-
 import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.ui.control.contact.YieldListContact;
 
-import java.util.List;
+import base.utils.JsonUtils;
 
 /**
  * Created by Administrator on 2018/7/24.
@@ -13,7 +11,7 @@ import java.util.List;
 
 public class YieldModel implements YieldListContact.Model {
     @Override
-    public Observable<List<YieldIndexData>> geListData() {
-        return null;
+    public YieldIndexData geListData() {
+        return JsonUtils.analysisNewsJsonFile(YieldIndexData.class, "yield_index.json");
     }
 }

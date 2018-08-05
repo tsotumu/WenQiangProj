@@ -17,8 +17,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.macojia.common.commonwidget.StatusBarCompat;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.utils.MyUtils;
-import com.macojia.leanproduct.utils.SystemUiVisibilityUtil;
+import base.utils.MyUtils;
+import base.utils.SystemUiVisibilityUtil;
 import com.macojia.leanproduct.widget.PullBackLayout;
 
 import butterknife.Bind;

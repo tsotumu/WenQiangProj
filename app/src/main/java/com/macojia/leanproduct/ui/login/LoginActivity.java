@@ -41,11 +41,10 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.bt_go)
     public void GoMain(){
-        Explode explode = new Explode();
-        explode.setDuration(500);
-
-        getWindow().setExitTransition(explode);
-        getWindow().setEnterTransition(explode);
+//        Explode explode = new Explode();
+//        explode.setDuration(500);
+//
+//        getWindow().setExitTransition(explode);
         ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
         Intent i2 = new Intent(LoginActivity.this,MainActivity.class);
         startActivity(i2, oc2.toBundle());

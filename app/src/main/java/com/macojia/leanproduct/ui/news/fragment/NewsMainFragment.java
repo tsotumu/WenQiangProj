@@ -18,7 +18,7 @@ import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.pojo.NewsMainContractBase;
 import com.macojia.leanproduct.ui.control.model.NewsMainModel;
 import com.macojia.leanproduct.ui.news.presenter.NewsMainPresenter;
-import com.macojia.leanproduct.utils.MyUtils;
+import base.utils.MyUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -17,7 +17,7 @@ import com.aspsine.irecyclerview.RefreshTrigger;
 /**
  * Created by jaydenxiao on 16/9/7.
  */
-public class AndroidVsIosHeaderView extends FrameLayout implements RefreshTrigger {
+public class ListLoadingHeaderView extends FrameLayout implements RefreshTrigger {
 
     private ImageView ivBatMan;
 
@@ -29,17 +29,17 @@ public class AndroidVsIosHeaderView extends FrameLayout implements RefreshTrigge
 
     AnimatorSet btnSexAnimatorSet ;
 
-    public AndroidVsIosHeaderView(Context context) {
+    public ListLoadingHeaderView(Context context) {
         this(context, null);
     }
 
-    public AndroidVsIosHeaderView(Context context, AttributeSet attrs) {
+    public ListLoadingHeaderView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public AndroidVsIosHeaderView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ListLoadingHeaderView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        inflate(context, R.layout.layout_irecyclerview_bat_vs_supper_refresh_header_view, this);
+        inflate(context, R.layout.list_loading_refresh_header_view, this);
         ivBatMan = (ImageView) findViewById(R.id.ivBatMan);
         ivSuperMan = (ImageView) findViewById(R.id.ivSuperMan);
         ivVs = (ImageView) findViewById(R.id.imageView);

@@ -13,7 +13,7 @@
         app:dayNightBackgroundAttr="dayNightBackground"
         app:loadMoreEnabled="true"
         app:refreshEnabled="true"
-        app:refreshHeaderLayout="@layout/layout_irecyclerview_refresh_header" />
+        app:refreshHeaderLayout="@layout/layout_irecycler_view_refresh_header" />
 
     <com.macojia.common.commonwidget.LoadingTip
         android:id="@+id/loadedTip"

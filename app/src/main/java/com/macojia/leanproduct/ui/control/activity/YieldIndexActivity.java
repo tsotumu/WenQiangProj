@@ -1,12 +1,9 @@
 package com.macojia.leanproduct.ui.control.activity;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.github.mikephil.charting.data.BarData;
@@ -27,10 +24,8 @@ import com.macojia.leanproduct.ui.control.adapter.YieldAdapter;
 import com.macojia.leanproduct.ui.control.contact.YieldListContact;
 import com.macojia.leanproduct.ui.control.model.YieldModel;
 import com.macojia.leanproduct.ui.control.presenter.YieldPresenter;
-import com.macojia.leanproduct.ui.news.contract.ControlItemContract;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 
@@ -148,7 +143,7 @@ public class YieldIndexActivity extends BaseActivity<YieldPresenter, YieldModel>
     }
 
     @Override
-    public void onListDataReturn(List<YieldIndexData> indexData) {
+    public void onListDataReturn(YieldIndexData indexData) {
 
         ArrayList<ChartItem> list = new ArrayList<ChartItem>();
 
