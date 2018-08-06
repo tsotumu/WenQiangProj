@@ -14,7 +14,7 @@ import rx.Observable;
 public interface YieldListContact {
     interface Model extends BaseModel {
         //请求获取消耗指标
-        YieldIndexData geListData();
+        Observable<YieldIndexData> geListData();
     }
 
     interface View extends BaseView {

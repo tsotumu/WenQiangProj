@@ -100,7 +100,7 @@ public class QualityIndexActivity extends BaseActivity<QualityIndexPresenter, Qu
 
         ArrayList<ChartItem> list = new ArrayList<ChartItem>();
 
-        list.add(new HorizonBarChartItem(generateDataBar(1), getApplicationContext()));
+        list.add(new HorizonBarChartItem(generateDataBar(1), getApplicationContext(), "产量年度指标", "指标", "包装机号"));
         // 30 items
         for (int i = 0; i < 19; i++) {
             list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));

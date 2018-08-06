@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -14,12 +15,17 @@ import com.github.mikephil.charting.data.ChartData;
 import com.macojia.leanproduct.R;
 
 public class HorizonBarChartItem extends ChartItem {
-    
-    private Typeface mTf;
-    
-    public HorizonBarChartItem(ChartData<?> cd, Context c) {
-        super(cd);
 
+    private Typeface mTf;
+    private String mTitle;
+    private String mXLabel;
+    private String mYLabel;
+
+    public HorizonBarChartItem(ChartData<?> cd, Context c, String title, String xLabel, String yLabel) {
+        super(cd);
+        mTitle = title;
+        mXLabel = xLabel;
+        mYLabel = yLabel;
         mTf = Typeface.createFromAsset(c.getAssets(), "OpenSans-Regular.ttf");
     }
 
@@ -40,6 +46,9 @@ public class HorizonBarChartItem extends ChartItem {
             convertView = LayoutInflater.from(c).inflate(
                     R.layout.list_item_barchart, null);
             holder.chart = (BarChart) convertView.findViewById(R.id.chart);
+            holder.titleView = (TextView) convertView.findViewById(R.id.tv_bar_title);
+            holder.xLabelView = (TextView) convertView.findViewById(R.id.tv_label_x);
+            holder.yLabelView = (TextView) convertView.findViewById(R.id.tv_label_y);
 
             convertView.setTag(holder);
 
@@ -47,7 +56,11 @@ public class HorizonBarChartItem extends ChartItem {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        holder.titleView.setText(mTitle);
+        holder.xLabelView.setText(mXLabel);
+        holder.yLabelView.setText(mYLabel);
         // apply styling
+        holder.chart.getLegend().setFormSize(0);
         holder.chart.getDescription().setEnabled(false);
         holder.chart.setDrawGridBackground(false);
         holder.chart.setDrawBarShadow(false);
@@ -57,13 +70,13 @@ public class HorizonBarChartItem extends ChartItem {
         xAxis.setTypeface(mTf);
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(true);
-        
+
         YAxis leftAxis = holder.chart.getAxisLeft();
         leftAxis.setTypeface(mTf);
         leftAxis.setLabelCount(5, false);
         leftAxis.setSpaceTop(20f);
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-       
+
         YAxis rightAxis = holder.chart.getAxisRight();
         rightAxis.setTypeface(mTf);
         rightAxis.setLabelCount(5, false);
@@ -71,19 +84,22 @@ public class HorizonBarChartItem extends ChartItem {
         rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         mChartData.setValueTypeface(mTf);
-        
+
         // set data
         holder.chart.setData((BarData) mChartData);
         holder.chart.setFitBars(true);
-        
+
         // do not forget to refresh the chart
 //        holder.chart.invalidate();
         holder.chart.animateY(700);
 
         return convertView;
     }
-    
+
     private static class ViewHolder {
         BarChart chart;
+        TextView titleView;
+        TextView xLabelView;
+        TextView yLabelView;
     }
 }

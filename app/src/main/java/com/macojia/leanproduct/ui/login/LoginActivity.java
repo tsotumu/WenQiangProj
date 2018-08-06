@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.transition.Explode;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -27,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText mEditUsrName;
     @Bind(R.id.et_password)
     EditText mEditPwd;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,14 +40,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.bt_go)
-    public void GoMain(){
+    public void GoMain() {
 //        Explode explode = new Explode();
 //        explode.setDuration(500);
 //
 //        getWindow().setExitTransition(explode);
-        ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
-        Intent i2 = new Intent(LoginActivity.this,MainActivity.class);
-        startActivity(i2, oc2.toBundle());
+//        ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
+        Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(i2/*, oc2.toBundle()*/);
         finish();
     }
 }

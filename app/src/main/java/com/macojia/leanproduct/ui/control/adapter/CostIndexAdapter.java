@@ -55,7 +55,6 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
         BarDataSet barDataSet = new BarDataSet(entries, "");
         barDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         barDataSet.setBarShadowColor(Color.rgb(203, 203, 203));
-        barDataSet.setStackLabels(new String[]{"asdf", "asdf"});
 
         ArrayList<IBarDataSet> sets = new ArrayList<IBarDataSet>();
         sets.add(barDataSet);
