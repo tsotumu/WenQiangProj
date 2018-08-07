@@ -25,7 +25,7 @@ public class ComprehensiveIndexModel implements ComprehensiveIndexContract.Model
 
                 ArrayList<ComprehensiveIndexData> costIndexList = new ArrayList<>();
                 if (BuildConfig.DEBUG) {
-                    String str = "[{'machineName':'1号包装机','monthlyDataList':[{'value':100},{'value':78},{'value':98},{'value':28},{'value':8},{'value':-9},{'value':98},{'value':98},{'value':8},{'value':98},{'value':10},{'value':-110},{'value':110}]},{'machineName':'2号装机','monthlyDataList':[{'value':33} ,{'value':55},{'value':55},{'value':55},{'value':55},{'value':55},{'value':55},{'value':55},{'value':55}]}]";
+                    String str = "[{'machineName':'1号包装机','matainDataPerMachine':[{'value':100},{'value':78},{'value':98},{'value':28},{'value':8},{'value':-9},{'value':98},{'value':98},{'value':8},{'value':98},{'value':10},{'value':-110},{'value':110}]},{'machineName':'2号装机','matainDataPerMachine':[{'value':33} ,{'value':55},{'value':55},{'value':55},{'value':55},{'value':55},{'value':55},{'value':55},{'value':55}]}]";
                     List<ComprehensiveIndexData> costIndexDataSource = base.utils.JsonUtils.parseJsonArrayWithGson(str, ComprehensiveIndexData.class);
                     LogUtils.logd("cost index data source: " + costIndexDataSource.toString());
                     costIndexList.addAll(costIndexDataSource);
