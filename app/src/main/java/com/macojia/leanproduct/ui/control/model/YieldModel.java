@@ -18,7 +18,7 @@ import rx.Subscriber;
 
 public class YieldModel implements YieldListContact.Model {
     @Override
-    public Observable<YieldIndexData> geListData() {
+    public Observable<YieldIndexData> getData() {
         return Observable.create(new Observable.OnSubscribe<YieldIndexData>() {
             @Override
             public void call(Subscriber<? super YieldIndexData> subscriber) {

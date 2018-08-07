@@ -56,9 +56,11 @@ public class HorizonBarChartItem extends ChartItem {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        holder.chart.getLegend().setFormSize(0);
         holder.titleView.setText(mTitle);
         holder.xLabelView.setText(mXLabel);
         holder.yLabelView.setText(mYLabel);
+
         // apply styling
         holder.chart.getLegend().setFormSize(0);
         holder.chart.getDescription().setEnabled(false);

@@ -61,8 +61,8 @@
     <item name="group_index" type="id">group_index</item>
 
 
-    <string name="x_label">（月份）</string>
-    <string name="y_label">（数量）</string>
+    <string name="x_label_month">（月份）</string>
+    <string name="y_label_index">（数量）</string>
 
     <string name="login_success">登陆成功</string>
     <string name="login">登陆</string>

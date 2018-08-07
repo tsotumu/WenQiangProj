@@ -1,16 +1,30 @@
 package com.macojia.leanproduct.ui.control.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.bean.control.QualityIndexData;
 import com.macojia.leanproduct.chart.ChartItem;
+import com.macojia.leanproduct.chart.HorizonBarChartItem;
+import com.macojia.leanproduct.chart.LineChartItem;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import base.utils.ResourceUtil;
 
 /**
  * Created by Administrator on 2018/7/17.
@@ -22,8 +36,45 @@ public class QualityIndexAdapter extends ArrayAdapter<ChartItem> {
         super(context, 0, objects);
     }
 
-    public static QualityIndexAdapter getAdapter(){
-        return new QualityIndexAdapter(AppApplication.getAppContext(), null);
+    private static LineData generateDataLine(int cnt) {
+
+        ArrayList<Entry> e1 = new ArrayList<Entry>();
+
+        for (int i = 0; i < 12; i++) {
+            e1.add(new Entry(i, (int) (Math.random() * 65) + 40));
+        }
+
+        LineDataSet lineDataSet = new LineDataSet(e1,"");
+        lineDataSet.setDrawValues(true);
+
+        ArrayList<Entry> e2 = new ArrayList<Entry>();
+
+        for (int i = 0; i < 6; i++) {
+            e2.add(new Entry(i, e1.get(i).getY() - 30));
+        }
+
+        ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
+        sets.add(lineDataSet);
+
+        LineData cd = new LineData(sets);
+        return cd;
+    }
+
+    private static BarData generateDataBar(int cnt) {
+
+        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
+
+        for (int i = 0; i < 19; i++) {
+            entries.add(new BarEntry(i, (int) (Math.random() * 70) + 30));
+        }
+
+        BarDataSet d = new BarDataSet(entries, "");
+        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        d.setHighLightAlpha(255);
+
+        BarData cd = new BarData(d);
+        cd.setBarWidth(0.9f);
+        return cd;
     }
 
     @Override
@@ -42,4 +93,16 @@ public class QualityIndexAdapter extends ArrayAdapter<ChartItem> {
         return 2; // we have 3 different item-types
     }
 
+
+    public static QualityIndexAdapter getAdapter(Context context, QualityIndexData qualityIndexData) {
+
+        ArrayList<ChartItem> list = new ArrayList<>();
+
+        list.add(new HorizonBarChartItem(generateDataBar(1), context, "质量年度指标", "指标", "包装机号"));
+        // 30 items
+        for (int i = 0; i < 19; i++) {
+            list.add(new LineChartItem(generateDataLine(i + 1), context, i + "号包装机", ResourceUtil.getString(R.string.x_label_month), ResourceUtil.getString(R.string.y_label_index)));
+        }
+        return new QualityIndexAdapter(AppApplication.getAppContext(), list);
+    }
 }

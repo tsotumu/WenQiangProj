@@ -2,9 +2,11 @@
 package com.macojia.leanproduct.chart;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -15,13 +17,20 @@ import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.LineData;
 import com.macojia.leanproduct.R;
 
+import base.utils.ResourceUtil;
+
 public class LineChartItem extends ChartItem {
 
     private Typeface mTf;
+    private String mTitle;
+    private String mXLabel;
+    private String mYLabel;
 
-    public LineChartItem(ChartData<?> cd, Context c) {
+    public LineChartItem(ChartData<?> cd, Context c, String title, String xLabel, String yLabel) {
         super(cd);
-
+        mTitle = title;
+        mXLabel = xLabel;
+        mYLabel = yLabel;
         mTf = Typeface.createFromAsset(c.getAssets(), "OpenSans-Regular.ttf");
     }
 
@@ -42,7 +51,9 @@ public class LineChartItem extends ChartItem {
             convertView = LayoutInflater.from(c).inflate(
                     R.layout.list_item_linechart, null);
             holder.chart = (LineChart) convertView.findViewById(R.id.chart);
-
+            holder.titleView = (TextView)convertView.findViewById(R.id.tv_bar_title);
+            holder.xLabelView = (TextView)convertView.findViewById(R.id.tv_label_x);
+            holder.yLabelView = (TextView)convertView.findViewById(R.id.tv_label_y);
             convertView.setTag(holder);
 
         } else {
@@ -51,8 +62,15 @@ public class LineChartItem extends ChartItem {
 
         // apply styling
         // holder.chart.setValueTypeface(mTf);
+        holder.chart.getLegend().setFormSize(0);
+        holder.titleView.setText(mTitle);
+        holder.xLabelView.setText(mXLabel);
+        holder.yLabelView.setText(mYLabel);
+
         holder.chart.getDescription().setEnabled(false);
         holder.chart.setDrawGridBackground(false);
+        holder.chart.setDrawMarkers(true);
+        holder.chart.getLegend().setFormSize(0);
 
         XAxis xAxis = holder.chart.getXAxis();
         xAxis.setPosition(XAxisPosition.BOTTOM);
@@ -70,7 +88,9 @@ public class LineChartItem extends ChartItem {
         rightAxis.setLabelCount(5, false);
         rightAxis.setDrawGridLines(false);
         rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-
+        mChartData.setValueTypeface(mTf);
+        mChartData.setValueTextColor(ResourceUtil.getColor(R.color.alpha_40_black));
+        mChartData.setValueTextSize(9f);
         // set data
         holder.chart.setData((LineData) mChartData);
 
@@ -83,5 +103,8 @@ public class LineChartItem extends ChartItem {
 
     private static class ViewHolder {
         LineChart chart;
+        TextView titleView;
+        TextView xLabelView;
+        TextView yLabelView;
     }
 }

@@ -1,7 +1,6 @@
 package com.macojia.leanproduct.ui.control.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -14,6 +13,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.chart.ChartItem;
 import com.macojia.leanproduct.chart.HorizonBarChartItem;
@@ -21,6 +21,8 @@ import com.macojia.leanproduct.chart.LineChartItem;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import base.utils.ResourceUtil;
 
 /**
  * Created by Administrator on 2018/7/24.
@@ -67,35 +69,17 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
 
     private static LineData generateDataLine(YieldIndexData.MonthlyIndex monthlyIndex) {
 
-        ArrayList<Entry> e1 = new ArrayList<Entry>();
+        ArrayList<Entry> monthlyDataSet = new ArrayList<Entry>();
 
         for (int i = 0; i < 12; i++) {
-            e1.add(new Entry(i, monthlyIndex.monthlyIndex.get(i)));
+            monthlyDataSet.add(new Entry(i, monthlyIndex.monthlyIndex.get(i)));
         }
 
-        LineDataSet dataSet = new LineDataSet(e1, "号包装机");
-        dataSet.setLineWidth(2.5f);
-        dataSet.setCircleRadius(4.5f);
-        dataSet.setHighLightColor(Color.rgb(244, 117, 117));
-        dataSet.setDrawValues(false);
-
-        ArrayList<Entry> e2 = new ArrayList<Entry>();
-
-        for (int i = 0; i < 6; i++) {
-            e2.add(new Entry(i, e1.get(i).getY() - 30));
-        }
-
-     /*   LineDataSet d2 = new LineDataSet(e2, "New DataSet " + cnt + ", (2)");
-        d2.setLineWidth(2.5f);
-        d2.setCircleRadius(4.5f);
-        d2.setHighLightColor(Color.rgb(244, 117, 117));
-        d2.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        d2.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        d2.setDrawValues(false);*/
+        LineDataSet dataSet = new LineDataSet(monthlyDataSet, "");
+        dataSet.setDrawValues(true);
 
         ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
         sets.add(dataSet);
-//        sets.add(d2);
 
         LineData cd = new LineData(sets);
         return cd;
@@ -107,7 +91,7 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
         list.add(new HorizonBarChartItem(generateDataBar(indexData.machineIndex), context, "产量年度指标", "指标", "包装机号"));
 
         for (int i = 0; i < 19; i++) {
-            list.add(new LineChartItem(generateDataLine(indexData.monthlyIndexPerMachine.get(i)), context));
+            list.add(new LineChartItem(generateDataLine(indexData.monthlyIndexPerMachine.get(i)), context, i + "号包装机", ResourceUtil.getString(R.string.x_label_month), ResourceUtil.getString(R.string.y_label_index)));
         }
 
         return new YieldAdapter(context, list);

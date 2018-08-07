@@ -16,12 +16,12 @@ import rx.Observable;
 public interface QualityIndexContract {
     interface Model extends BaseModel {
         //请求获取消耗指标
-        Observable<List<QualityIndexData>> getListData();
+        Observable<QualityIndexData> getData();
     }
 
     interface View extends BaseView {
         //返回获取的消耗指标
-        void onIndexListDataReturn(List<QualityIndexData> costIndexData);
+        void onIndexDataReturn(QualityIndexData costIndexData);
 
         //返回顶部
         void scrolltoTop();
@@ -29,6 +29,6 @@ public interface QualityIndexContract {
 
     abstract static class Presenter extends BasePresenter<View, Model> {
         //发起获取消耗指标请求
-        public abstract void getListDataRequest();
+        public abstract void getDataRequest();
     }
 }

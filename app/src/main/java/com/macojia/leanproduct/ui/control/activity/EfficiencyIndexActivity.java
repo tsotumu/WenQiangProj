@@ -50,13 +50,13 @@ public class EfficiencyIndexActivity extends BaseActivity {
 
     @Override
     public void initView() {
-initToolBar();
+        initToolBar();
         ArrayList<ChartItem> list = new ArrayList<ChartItem>();
 
         list.add(new HorizonBarChartItem(generateDataBar(1), getApplicationContext(), "产量年度指标", "指标", "包装机号"));
         // 30 items
         for (int i = 0; i < 19; i++) {
-            list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));
+            list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext(), "", "", ""));
         }
         mListView.setAdapter(new ChartDataAdapter(getApplicationContext(), list));
     }
@@ -79,31 +79,6 @@ initToolBar();
         return R.string.efficiencyindex;
     }
 
-
-    private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
-
-        public ChartDataAdapter(Context context, List<ChartItem> objects) {
-            super(context, 0, objects);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return getItem(position).getView(position, convertView, getContext());
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            // return the views type
-            return getItem(position).getItemType();
-        }
-
-        @Override
-        public int getViewTypeCount() {
-            return 2; // we have 3 different item-types
-        }
-    }
-
-
     private LineData generateDataLine(int cnt) {
 
         ArrayList<Entry> e1 = new ArrayList<Entry>();
@@ -113,10 +88,7 @@ initToolBar();
         }
 
         LineDataSet d1 = new LineDataSet(e1, cnt + "号包装机");
-        d1.setLineWidth(2.5f);
-        d1.setCircleRadius(4.5f);
-        d1.setHighLightColor(Color.rgb(244, 117, 117));
-        d1.setDrawValues(false);
+        d1.setDrawValues(true);
 
         ArrayList<Entry> e2 = new ArrayList<Entry>();
 
@@ -155,6 +127,29 @@ initToolBar();
         BarData cd = new BarData(d);
         cd.setBarWidth(0.9f);
         return cd;
+    }
+
+    private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
+
+        public ChartDataAdapter(Context context, List<ChartItem> objects) {
+            super(context, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return getItem(position).getView(position, convertView, getContext());
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            // return the views type
+            return getItem(position).getItemType();
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return 2; // we have 3 different item-types
+        }
     }
 
 }
