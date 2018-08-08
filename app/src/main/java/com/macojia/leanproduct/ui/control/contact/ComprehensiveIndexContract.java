@@ -16,12 +16,12 @@ import rx.Observable;
 public interface ComprehensiveIndexContract {
     interface Model extends BaseModel {
         //请求获取消耗指标
-        Observable<List<ComprehensiveIndexData>> getListData();
+        Observable<ComprehensiveIndexData> getData();
     }
 
     interface View extends BaseView {
         //返回获取的消耗指标
-        void onIndexListDataReturn(List<ComprehensiveIndexData> costIndexData);
+        void onDataReturn(ComprehensiveIndexData costIndexData);
 
         //返回顶部
         void scrolltoTop();
@@ -29,6 +29,6 @@ public interface ComprehensiveIndexContract {
 
     abstract static class Presenter extends BasePresenter<View, Model> {
         //发起获取消耗指标请求
-        public abstract void getCostListDataRequest();
+        public abstract void getDataRequest();
     }
 }

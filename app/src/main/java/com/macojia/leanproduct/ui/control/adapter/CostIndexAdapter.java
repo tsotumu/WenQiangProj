@@ -28,29 +28,25 @@ import java.util.List;
  */
 
 public class CostIndexAdapter extends ArrayAdapter<BarData> {
-    private List<String> titleList = new ArrayList<>();
 
-    public CostIndexAdapter(Context context, List<BarData> objects, List<String> titleList) {
+    public CostIndexAdapter(Context context, List<BarData> objects) {
         super(context, 0, objects);
-        this.titleList.addAll(titleList);
     }
 
-    public static CostIndexAdapter getAdapter(List<CostIndexData> data) {
-        List<String> titleList = new ArrayList<>();
+    public static CostIndexAdapter getAdapter(CostIndexData costIndexData) {
         ArrayList<BarData> list = new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {
-            CostIndexData costIndexData = data.get(i);
-            list.add(generateData(costIndexData.monthlyDataList));
-            titleList.add(costIndexData.machineName);
+        for (int i = 0; i < costIndexData.indexData.size(); i++) {
+            CostIndexData.MonthlyData monthlyData = costIndexData.indexData.get(i);
+            list.add(generateData(monthlyData));
         }
-        CostIndexAdapter adapter = new CostIndexAdapter(AppApplication.getInstance(), list, titleList);
+        CostIndexAdapter adapter = new CostIndexAdapter(AppApplication.getInstance(), list);
         return adapter;
     }
 
-    private static BarData generateData(List<CostIndexData.MonthlyData> monthlyDataList) {
+    private static BarData generateData(CostIndexData.MonthlyData monthlyDataList) {
         ArrayList<BarEntry> entries = new ArrayList<>();
-        for (int count = 0; count < monthlyDataList.size(); count++) {
-            entries.add(new BarEntry(count, monthlyDataList.get(count).value));
+        for (int count = 0; count < monthlyDataList.data.size(); count++) {
+            entries.add(new BarEntry(count, monthlyDataList.data.get(count)));
         }
         BarDataSet barDataSet = new BarDataSet(entries, "");
         barDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
@@ -86,7 +82,7 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.chartTitle.setText(titleList.get(position));
+        holder.chartTitle.setText(position + "号包装机");
 
         // apply styling
 //            data.setValueTypeface(mTfLight);
@@ -125,5 +121,7 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
     private class ViewHolder {
         BarChart chart;
         TextView chartTitle;
+        TextView xTextView;
+        TextView yTextView;
     }
 }

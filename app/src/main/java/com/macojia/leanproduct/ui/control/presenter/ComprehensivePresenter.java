@@ -12,11 +12,11 @@ import java.util.List;
 
 public class ComprehensivePresenter extends ComprehensiveIndexContract.Presenter {
     @Override
-    public void getCostListDataRequest() {
-        mRxManage.add(mModel.getListData().subscribe(new RxSubscriber<List<ComprehensiveIndexData>>(mContext, false) {
+    public void getDataRequest() {
+        mRxManage.add(mModel.getData().subscribe(new RxSubscriber<ComprehensiveIndexData>(mContext, false) {
             @Override
-            protected void _onNext(List<ComprehensiveIndexData> newsChannelTables) {
-                mView.onIndexListDataReturn(newsChannelTables);
+            protected void _onNext(ComprehensiveIndexData newsChannelTables) {
+                mView.onDataReturn(newsChannelTables);
             }
 
             @Override

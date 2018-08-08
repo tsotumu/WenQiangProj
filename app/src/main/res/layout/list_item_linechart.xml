@@ -20,6 +20,7 @@
         android:id="@+id/tv_label_y"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/tv_right_gray"
         android:text="@string/y_label_index"
         android:textSize="8dp" />
 
@@ -40,6 +41,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:text="@string/x_label_month"
+            android:textColor="@color/tv_right_gray"
             android:layout_marginBottom="20dp"
             android:textSize="8dp" />
     </RelativeLayout>

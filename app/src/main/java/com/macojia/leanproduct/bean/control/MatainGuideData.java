@@ -7,9 +7,13 @@ import java.util.List;
  */
 
 public class MatainGuideData {
-    public List<List<MatainData>> matainDataPerMachine;
+    public List<MatainDataPerMachine> maintainDataList;
 
-    public static class MatainData{
+    public static class MatainDataPerMachine {
+        public List<MatainData> data;
+    }
+
+    public static class MatainData {
         public String name;
         public int frequency;
     }

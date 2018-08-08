@@ -18,21 +18,18 @@ import rx.Subscriber;
 
 public class ComprehensiveIndexModel implements ComprehensiveIndexContract.Model{
     @Override
-    public Observable<List<ComprehensiveIndexData>> getListData() {
-        return Observable.create(new Observable.OnSubscribe<List<com.macojia.leanproduct.bean.control.ComprehensiveIndexData>>() {
+    public Observable<ComprehensiveIndexData> getData() {
+        return Observable.create(new Observable.OnSubscribe<com.macojia.leanproduct.bean.control.ComprehensiveIndexData>() {
             @Override
-            public void call(Subscriber<? super List<ComprehensiveIndexData>> subscriber) {
+            public void call(Subscriber<? super ComprehensiveIndexData> subscriber) {
 
-                ArrayList<ComprehensiveIndexData> costIndexList = new ArrayList<>();
+                ComprehensiveIndexData costIndexList = new ComprehensiveIndexData();
                 if (BuildConfig.DEBUG) {
-                    String str = "[{'machineName':'1号包装机','matainDataPerMachine':[{'value':100},{'value':78},{'value':98},{'value':28},{'value':8},{'value':-9},{'value':98},{'value':98},{'value':8},{'value':98},{'value':10},{'value':-110},{'value':110}]},{'machineName':'2号装机','matainDataPerMachine':[{'value':33} ,{'value':55},{'value':55},{'value':55},{'value':55},{'value':55},{'value':55},{'value':55},{'value':55}]}]";
-                    List<ComprehensiveIndexData> costIndexDataSource = base.utils.JsonUtils.parseJsonArrayWithGson(str, ComprehensiveIndexData.class);
-                    LogUtils.logd("cost index data source: " + costIndexDataSource.toString());
-                    costIndexList.addAll(costIndexDataSource);
+                    costIndexList = base.utils.JsonUtils.analysisNewsJsonFile(ComprehensiveIndexData.class, "comprehensive_index");
                 }
                 subscriber.onNext(costIndexList);
                 subscriber.onCompleted();
             }
-        }).compose(RxSchedulers.<List<com.macojia.leanproduct.bean.control.ComprehensiveIndexData>>io_main());
+        }).compose(RxSchedulers.<com.macojia.leanproduct.bean.control.ComprehensiveIndexData>io_main());
     }
 }

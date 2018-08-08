@@ -8,7 +8,7 @@ import android.widget.ListView;
 import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.control.MatainGuideData;
-import com.macojia.leanproduct.ui.control.adapter.MatainGuideAdapter;
+import com.macojia.leanproduct.ui.control.adapter.MaintainGuideAdapter;
 import com.macojia.leanproduct.ui.control.contact.MatainGuideConstract;
 import com.macojia.leanproduct.ui.control.model.MatainGuideModel;
 import com.macojia.leanproduct.ui.control.presenter.MatainGuidePresenter;
@@ -19,7 +19,7 @@ import butterknife.Bind;
  * Created by LC on 2018/5/1.
  */
 
-public class MaintainGuidanceActivity extends BaseActivity<MatainGuidePresenter, MatainGuideModel> implements MatainGuideConstract.View{
+public class MaintainGuidanceActivity extends BaseActivity<MatainGuidePresenter, MatainGuideModel> implements MatainGuideConstract.View {
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
     @Bind(R.id.lv_matain)
@@ -76,7 +76,7 @@ public class MaintainGuidanceActivity extends BaseActivity<MatainGuidePresenter,
 
     @Override
     public void onListDataReturn(MatainGuideData indexData) {
-        mListView.setAdapter(MatainGuideAdapter.getAdapter(indexData));
+        mListView.setAdapter(MaintainGuideAdapter.getAdapter(indexData));
 
     }
 

@@ -8,10 +8,9 @@ import java.util.List;
  */
 
 public class CostIndexData {
-    public String machineName;
-    public List<MonthlyData> monthlyDataList;
+    public List<MonthlyData> indexData;
 
     public static class MonthlyData {
-        public Integer value;
+        public List<Integer> data;
     }
 }

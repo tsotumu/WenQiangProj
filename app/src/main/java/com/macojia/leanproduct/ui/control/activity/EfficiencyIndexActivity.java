@@ -51,7 +51,6 @@ public class EfficiencyIndexActivity extends  BaseActivity<EfficiencyPresenter, 
     public void initPresenter() {
         mPresenter.setView_Model(this, mModel);
     }
-
     @Override
     public void initView() {
         initToolBar();

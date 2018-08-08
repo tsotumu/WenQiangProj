@@ -78,7 +78,7 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
         LineDataSet dataSet = new LineDataSet(monthlyDataSet, "");
         dataSet.setDrawValues(true);
 
-        ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
+        ArrayList<ILineDataSet> sets = new ArrayList<>();
         sets.add(dataSet);
 
         LineData cd = new LineData(sets);

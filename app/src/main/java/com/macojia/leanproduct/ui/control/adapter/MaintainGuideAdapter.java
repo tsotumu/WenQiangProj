@@ -27,20 +27,20 @@ import java.util.List;
  * Created by Administrator on 2018/8/8.
  */
 
-public class MatainGuideAdapter  extends ArrayAdapter<BarData> {
+public class MaintainGuideAdapter  extends ArrayAdapter<BarData> {
 
-    public MatainGuideAdapter(Context context, List<BarData> objects) {
+    public MaintainGuideAdapter(Context context, List<BarData> objects) {
         super(context, 0, objects);
     }
 
-    public static MatainGuideAdapter getAdapter(MatainGuideData data) {
+    public static MaintainGuideAdapter getAdapter(MatainGuideData data) {
         List<String> titleList = new ArrayList<>();
         ArrayList<BarData> list = new ArrayList<>();
-        for (int i = 0; i < data.matainDataPerMachine.size(); i++) {
-            List<MatainGuideData.MatainData> costIndexData = data.matainDataPerMachine.get(i);
+        for (int i = 0; i < data.maintainDataList.size(); i++) {
+            MatainGuideData.MatainDataPerMachine costIndexData = data.maintainDataList.get(i);
             list.add(generateData(costIndexData));
         }
-        MatainGuideAdapter adapter = new MatainGuideAdapter(AppApplication.getInstance(), list);
+        MaintainGuideAdapter adapter = new MaintainGuideAdapter(AppApplication.getInstance(), list);
         return adapter;
     }
 
@@ -49,10 +49,10 @@ public class MatainGuideAdapter  extends ArrayAdapter<BarData> {
      *
      * @return
      */
-    private static BarData generateData(List<MatainGuideData.MatainData> DataList) {
+    private static BarData generateData(MatainGuideData.MatainDataPerMachine dataList) {
         ArrayList<BarEntry> entries = new ArrayList<>();
-        for (int count = 0; count < DataList.size(); count++) {
-            entries.add(new BarEntry(count, DataList.get(count).frequency));
+        for (int count = 0; count < dataList.data.size(); count++) {
+            entries.add(new BarEntry(count, dataList.data.get(count).frequency));
         }
         BarDataSet barDataSet = new BarDataSet(entries, "");
         barDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
@@ -87,14 +87,13 @@ public class MatainGuideAdapter  extends ArrayAdapter<BarData> {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        holder.chartTitle.setText(position + "号包装机");
 
-//        holder.chartTitle.setText(titleList.get(position));
-
-        // apply styling
-//            data.setValueTypeface(mTfLight);
         data.setValueTextColor(Color.BLACK);
         holder.chart.getDescription().setEnabled(false);
         holder.chart.setDrawGridBackground(false);
+        holder.chart.getDescription().setEnabled(false);
+        holder.chart.getLegend().setFormSize(0);
 
         XAxis xAxis = holder.chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);

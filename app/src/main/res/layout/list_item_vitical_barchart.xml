@@ -20,10 +20,8 @@
         android:id="@+id/tv_label_y"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/chart"
-        android:layout_alignTop="@id/chart"
-        android:layout_alignParentLeft="true"
         android:text="@string/y_label_index"
+        android:textColor="@color/tv_right_gray"
         android:textSize="8dp" />
 
 
@@ -35,6 +33,7 @@
             android:id="@+id/chart"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginRight="8dp"
             tools:background="@color/gray" />
 
         <TextView
@@ -43,7 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="26dp"
+            android:textColor="@color/tv_right_gray"
             android:text="@string/x_label_month"
             android:textSize="8dp" />
     </RelativeLayout>

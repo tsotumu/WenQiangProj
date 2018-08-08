@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
     }
 
     @OnClick(R.id.bt_go)

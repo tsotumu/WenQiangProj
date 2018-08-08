@@ -1,16 +1,10 @@
 package com.macojia.leanproduct.ui.control.activity;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.macojia.common.base.BaseActivity;
 import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.R;
@@ -20,7 +14,6 @@ import com.macojia.leanproduct.ui.control.contact.CostListContact;
 import com.macojia.leanproduct.ui.control.model.CostIndexModel;
 import com.macojia.leanproduct.ui.control.presenter.CostIndexPresenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -48,7 +41,7 @@ public class CostIndexActivity extends BaseActivity<CostIndexPresenter, CostInde
     @Override
     public void initView() {
         initToolBar();
-        mPresenter.getCostListDataRequest();
+        mPresenter.getDataRequest();
     }
 
     private void initToolBar() {
@@ -85,11 +78,12 @@ public class CostIndexActivity extends BaseActivity<CostIndexPresenter, CostInde
     }
 
     @Override
-    public void onCostIndexListDataReturn(List<CostIndexData> costIndexData) {
+    public void onDataReturn(CostIndexData costIndexData) {
         LogUtils.logd("Cost index test：" + costIndexData.toString());
 
         CostIndexAdapter cda = CostIndexAdapter.getAdapter(costIndexData);
         mListView.setAdapter(cda);
+
     }
 
     @Override

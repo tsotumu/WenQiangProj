@@ -12,11 +12,11 @@ import java.util.List;
 
 public class CostIndexPresenter extends CostListContact.Presenter {
     @Override
-    public void getCostListDataRequest() {
-        mRxManage.add(mModel.getNewsListData().subscribe(new RxSubscriber<List<CostIndexData>>(mContext, false) {
+    public void getDataRequest() {
+        mRxManage.add(mModel.getData().subscribe(new RxSubscriber<CostIndexData>(mContext, false) {
             @Override
-            protected void _onNext(List<CostIndexData> newsChannelTables) {
-                mView.onCostIndexListDataReturn(newsChannelTables);
+            protected void _onNext(CostIndexData newsChannelTables) {
+                mView.onDataReturn(newsChannelTables);
             }
 
             @Override

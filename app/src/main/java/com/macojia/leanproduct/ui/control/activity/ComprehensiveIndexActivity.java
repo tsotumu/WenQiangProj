@@ -41,7 +41,7 @@ public class ComprehensiveIndexActivity extends BaseActivity<ComprehensivePresen
     @Override
     public void initView() {
         initToolBar();
-        mPresenter.getCostListDataRequest();
+        mPresenter.getDataRequest();
     }
 
     private void initToolBar(){
@@ -78,7 +78,7 @@ public class ComprehensiveIndexActivity extends BaseActivity<ComprehensivePresen
     }
 
     @Override
-    public void onIndexListDataReturn(List<ComprehensiveIndexData> comprehensiveData) {
+    public void onDataReturn(ComprehensiveIndexData comprehensiveData) {
         LogUtils.logd("Cost index test：" + comprehensiveData.toString());
 
         ComprehensiveIndexAdapter cda = ComprehensiveIndexAdapter.getAdapter(comprehensiveData);
