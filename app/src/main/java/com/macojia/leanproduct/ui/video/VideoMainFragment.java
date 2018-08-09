@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.fragement;
+package com.macojia.leanproduct.ui.video;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

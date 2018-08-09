@@ -18,7 +18,7 @@ package com.macojia.leanproduct.db;
 
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.AppApplication;
 import com.macojia.leanproduct.bean.ItemApp;
 
 import java.util.ArrayList;

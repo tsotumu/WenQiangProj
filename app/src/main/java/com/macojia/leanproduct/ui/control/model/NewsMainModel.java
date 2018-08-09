@@ -3,11 +3,11 @@ package com.macojia.leanproduct.ui.control.model;
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.ACache;
 import com.macojia.common.commonutils.LogUtils;
-import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.AppApplication;
 import com.macojia.leanproduct.bean.news.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.db.NewsChannelTableManager;
-import com.macojia.leanproduct.pojo.NewsMainContractBase;
+import com.macojia.leanproduct.ui.news.contract.NewsMainContractBase;
 
 import java.util.ArrayList;
 import java.util.List;

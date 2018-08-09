@@ -26,7 +26,7 @@ import android.widget.TextView;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.api.NetworkManager;
 import com.macojia.leanproduct.api.HostType;
-import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.AppApplication;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.transition.Explode;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
 
@@ -19,10 +18,10 @@ import com.macojia.common.daynightmodeutils.ChangeModeController;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.TabEntity;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.ui.fragement.CareMainFragment;
-import com.macojia.leanproduct.ui.fragement.ControlMainFragment;
+import com.macojia.leanproduct.ui.hotel.CareMainFragment;
+import com.macojia.leanproduct.ui.control.ControlMainFragment;
 import com.macojia.leanproduct.ui.news.fragment.NewsMainFragment;
-import com.macojia.leanproduct.ui.fragement.VideoMainFragment;
+import com.macojia.leanproduct.ui.video.VideoMainFragment;
 
 import java.util.ArrayList;
 

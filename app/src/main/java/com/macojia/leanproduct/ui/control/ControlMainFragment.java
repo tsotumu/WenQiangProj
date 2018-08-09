@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.fragement;
+package com.macojia.leanproduct.ui.control;
 
 import android.content.Context;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,11 +12,11 @@ import com.aspsine.irecyclerview.universaladapter.recyclerview.CommonRecycleView
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.ui.control.activity.ForecastProgressActivity;
 import com.macojia.leanproduct.bean.ItemApp;
 import com.macojia.leanproduct.ui.control.activity.ComprehensiveIndexActivity;
 import com.macojia.leanproduct.ui.control.activity.CostIndexActivity;
 import com.macojia.leanproduct.ui.control.activity.EfficiencyIndexActivity;
+import com.macojia.leanproduct.ui.control.activity.ForecastProgressActivity;
 import com.macojia.leanproduct.ui.control.activity.MaintainGuidanceActivity;
 import com.macojia.leanproduct.ui.control.activity.QualityFeedBackActivity;
 import com.macojia.leanproduct.ui.control.activity.QualityIndexActivity;

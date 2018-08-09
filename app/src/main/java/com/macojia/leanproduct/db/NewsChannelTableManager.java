@@ -19,7 +19,7 @@ package com.macojia.leanproduct.db;
 
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.api.NetworkConstants;
-import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.AppApplication;
 import com.macojia.leanproduct.bean.news.NewsChannelTable;
 
 import java.util.ArrayList;

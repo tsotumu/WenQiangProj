@@ -21,7 +21,7 @@ import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.AppApplication;
 
 /**
  * @author 咖枯

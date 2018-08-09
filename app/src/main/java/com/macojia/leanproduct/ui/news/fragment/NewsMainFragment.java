@@ -15,7 +15,7 @@ import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.ui.news.activity.NewsChannelActivity;
 import com.macojia.leanproduct.bean.news.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.pojo.NewsMainContractBase;
+import com.macojia.leanproduct.ui.news.contract.NewsMainContractBase;
 import com.macojia.leanproduct.ui.control.model.NewsMainModel;
 import com.macojia.leanproduct.ui.news.presenter.NewsMainPresenter;
 import base.utils.MyUtils;

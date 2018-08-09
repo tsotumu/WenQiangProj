@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.main;
+package com.macojia.leanproduct.ui.hotel;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,11 +7,10 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.pojo.DescHolder;
-import com.macojia.leanproduct.pojo.HeaderHolder;
-import com.macojia.leanproduct.pojo.HotelEntity;
+import com.macojia.leanproduct.bean.HotelEntity;
 import com.macojia.leanproduct.ui.news.activity.AboutActivity;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import base.utils.HotelUtils;
  * Created by lyd10892 on 2016/8/23.
  */
 
-public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HeaderHolder, DescHolder, RecyclerView.ViewHolder> {
+public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HotelEntityAdapter.HeaderHolder, HotelEntityAdapter.DescHolder, RecyclerView.ViewHolder> {
 
 
     public ArrayList<HotelEntity.TagsEntity> allTagList;
@@ -119,5 +118,38 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HeaderHolde
                 ActivityUtil.startActivity((Activity) mContext, AboutActivity.class);
             }
         });
+    }
+
+
+    public static class DescHolder extends RecyclerView.ViewHolder {
+        public TextView descView;
+
+        public DescHolder(View itemView) {
+            super(itemView);
+            initView();
+        }
+
+        private void initView() {
+            descView = (TextView) itemView.findViewById(R.id.tv_desc);
+        }
+    }
+
+    /**
+     * Created by lyd10892 on 2016/8/23.
+     */
+
+    public static class HeaderHolder extends RecyclerView.ViewHolder {
+        public TextView titleView;
+        public TextView openView;
+
+        public HeaderHolder(View itemView) {
+            super(itemView);
+            initView();
+        }
+
+        private void initView() {
+            titleView = (TextView) itemView.findViewById(R.id.tv_title);
+            openView = (TextView) itemView.findViewById(R.id.tv_open);
+        }
     }
 }

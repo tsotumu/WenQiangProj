@@ -1,8 +1,7 @@
-package com.macojia.leanproduct.app;
+package com.macojia.leanproduct;
 
 import com.macojia.common.baseapp.BaseApplication;
 import com.macojia.common.commonutils.LogUtils;
-import com.macojia.leanproduct.BuildConfig;
 
 /**
  * APPLICATION

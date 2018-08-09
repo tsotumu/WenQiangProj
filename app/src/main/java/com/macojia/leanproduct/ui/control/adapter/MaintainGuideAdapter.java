@@ -17,7 +17,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.AppApplication;
 import com.macojia.leanproduct.bean.control.MatainGuideData;
 
 import java.util.ArrayList;

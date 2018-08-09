@@ -2,7 +2,7 @@ package base.utils;
 
 import android.graphics.drawable.Drawable;
 
-import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.AppApplication;
 
 /**
  * Created by luowp on 2016/7/19.

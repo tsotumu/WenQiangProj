@@ -7,7 +7,7 @@ import com.macojia.leanproduct.BuildConfig;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.api.NetworkManager;
 import com.macojia.leanproduct.bean.video.VideoData;
-import com.macojia.leanproduct.pojo.VideoListEntity;
+import com.macojia.leanproduct.bean.VideoListEntity;
 
 import java.util.ArrayList;
 import java.util.List;

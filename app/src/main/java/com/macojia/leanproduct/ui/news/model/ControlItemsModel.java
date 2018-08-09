@@ -2,7 +2,7 @@ package com.macojia.leanproduct.ui.news.model;
 
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.ACache;
-import com.macojia.leanproduct.app.AppApplication;
+import com.macojia.leanproduct.AppApplication;
 import com.macojia.leanproduct.bean.ItemApp;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.db.ControlItemTableManager;

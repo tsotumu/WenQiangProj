@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.fragement;
+package com.macojia.leanproduct.ui.hotel;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -6,9 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.daynightmodeutils.ChangeModeController;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.pojo.HotelEntity;
-import com.macojia.leanproduct.pojo.SectionedSpanSizeLookup;
-import com.macojia.leanproduct.ui.main.HotelEntityAdapter;
+import com.macojia.leanproduct.bean.HotelEntity;
+import com.macojia.leanproduct.ui.hotel.HotelEntityAdapter;
+import com.macojia.leanproduct.ui.hotel.SectionedRecyclerViewAdapter;
 import com.macojia.leanproduct.ui.news.activity.AboutActivity;
 
 import base.utils.JsonUtils;
@@ -56,5 +56,31 @@ public class CareMainFragment extends BaseFragment {
     //    @OnClick(R.id.ll_daynight_about)
     public void about() {
         AboutActivity.startAction(getContext());
+    }
+
+    /**
+     * A SpanSizeLookup to draw section headers or footer spanning the whole width of the RecyclerView
+     * when using a GridLayoutManager
+     */
+    public static class SectionedSpanSizeLookup extends GridLayoutManager.SpanSizeLookup {
+
+        protected SectionedRecyclerViewAdapter<?, ?, ?> adapter = null;
+        protected GridLayoutManager layoutManager = null;
+
+        public SectionedSpanSizeLookup(SectionedRecyclerViewAdapter<?, ?, ?> adapter, GridLayoutManager layoutManager) {
+            this.adapter = adapter;
+            this.layoutManager = layoutManager;
+        }
+
+        @Override
+        public int getSpanSize(int position) {
+
+            if (adapter.isSectionHeaderPosition(position) || adapter.isSectionFooterPosition(position)) {
+                return layoutManager.getSpanCount();
+            } else {
+                return 1;
+            }
+
+        }
     }
 }

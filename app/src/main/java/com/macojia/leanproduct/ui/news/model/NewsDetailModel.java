@@ -4,7 +4,7 @@ import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.leanproduct.api.NetworkManager;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.bean.news.NewsDetail;
-import com.macojia.leanproduct.pojo.NewsDetailEntity;
+import com.macojia.leanproduct.bean.NewsDetailEntity;
 import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
 
 import java.util.ArrayList;

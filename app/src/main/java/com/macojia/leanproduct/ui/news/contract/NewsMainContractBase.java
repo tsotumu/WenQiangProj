@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.pojo;
+package com.macojia.leanproduct.ui.news.contract;
 
 import com.macojia.common.base.BaseModel;
 import com.macojia.common.base.BasePresenter;

@@ -7,7 +7,7 @@ import com.macojia.leanproduct.api.NetworkConstants;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.api.NetworkManager;
 import com.macojia.leanproduct.bean.news.NewsSummary;
-import com.macojia.leanproduct.pojo.NewsListEntity;
+import com.macojia.leanproduct.bean.NewsListEntity;
 import com.macojia.leanproduct.ui.news.contract.NewsListContract;
 
 import java.util.ArrayList;

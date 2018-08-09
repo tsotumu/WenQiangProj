@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.pojo;
+package com.macojia.leanproduct.bean;
 
 import java.util.ArrayList;
 
