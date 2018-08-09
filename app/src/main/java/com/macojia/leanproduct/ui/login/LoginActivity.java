@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.api.HostType;
+import com.macojia.leanproduct.api.NetworkManager;
 import com.macojia.leanproduct.ui.MainActivity;
 
 import butterknife.Bind;
@@ -48,5 +50,11 @@ public class LoginActivity extends AppCompatActivity {
         Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(i2/*, oc2.toBundle()*/);
         finish();
+    }
+
+    private void checkPwd(){
+        String inputUsrName = mEditUsrName.getText().toString();
+        String inputPwd = mEditPwd.getText().toString();
+        NetworkManager.getDefault(HostType.NETEASE_NEWS_VIDEO).login(inputUsrName, inputPwd);
     }
 }

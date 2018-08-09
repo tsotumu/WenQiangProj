@@ -25,14 +25,6 @@ import rx.functions.Func2;
  * on 2016.09.14:54
  */
 public class NewsListModel implements NewsListContract.Model {
-    /**
-     * 获取新闻列表
-     *
-     * @param type
-     * @param id
-     * @param startPage
-     * @return
-     */
     @Override
     public Observable<List<NewsSummary>> getNewsListData(final String type, final String id, final int startPage) {
         Observable<Map<String, List<NewsSummary>>> listObserver = NetworkManager.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewsList(NetworkManager.getCacheControl(), type, id, startPage);

@@ -42,7 +42,7 @@ public class ControlMainFragment extends BaseFragment<ControlItemsPresenter, Con
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.fra_control_main;
+        return R.layout.control_main_fragment;
     }
 
     @Override
