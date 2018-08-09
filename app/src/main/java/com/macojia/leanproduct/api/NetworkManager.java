@@ -147,12 +147,12 @@ public class NetworkManager {
      *                 EWS_DETAIL_HTML_PHOTO:3新闻详情html图片)
      */
     public static ApiService getDefault(int hostType) {
-        NetworkManager retrofitManager = sRetrofitManager.get(hostType);
-        if (retrofitManager == null) {
-            retrofitManager = new NetworkManager(hostType);
-            sRetrofitManager.put(hostType, retrofitManager);
+        NetworkManager networkManager = sRetrofitManager.get(hostType);
+        if (networkManager == null) {
+            networkManager = new NetworkManager(hostType);
+            sRetrofitManager.put(hostType, networkManager);
         }
-        return retrofitManager.apiService;
+        return networkManager.apiService;
     }
 
     /**
