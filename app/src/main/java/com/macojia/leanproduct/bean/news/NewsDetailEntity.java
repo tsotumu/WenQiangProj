@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.bean;
+package com.macojia.leanproduct.bean.news;
 
 import java.util.ArrayList;
 
@@ -11,9 +11,9 @@ public class NewsDetailEntity {
     public String body;
     public String source;
     public String postTime;
-    public ArrayList<ImgData> img;
+    public ArrayList<ImgBean> img;
 
-    public static class ImgData{
+    public static class ImgBean {
         public String ref;
         public String src;
         public String alt;

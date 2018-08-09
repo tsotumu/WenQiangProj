@@ -6,8 +6,7 @@ import com.macojia.common.commonutils.TimeUtil;
 import com.macojia.leanproduct.BuildConfig;
 import com.macojia.leanproduct.api.HostType;
 import com.macojia.leanproduct.api.NetworkManager;
-import com.macojia.leanproduct.bean.video.VideoData;
-import com.macojia.leanproduct.bean.VideoListEntity;
+import com.macojia.leanproduct.bean.video.VideoListEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,33 +25,33 @@ import rx.functions.Func2;
 public class VideosListModel implements VideosListContract.Model {
 
     @Override
-    public Observable<List<VideoData>> getVideosListData(final String type, int startPage) {
-        Observable<Map<String, List<VideoData>>> videoListMap = NetworkManager.getDefault(HostType.NETEASE_NEWS_VIDEO).getVideoList(NetworkManager.getCacheControl(), type, startPage);
-        return videoListMap.flatMap(new Func1<Map<String, List<VideoData>>, Observable<VideoData>>() {
+    public Observable<List<VideoListEntity.VideoEntity>> getVideosListData(final String type, int startPage) {
+        Observable<Map<String, List<VideoListEntity.VideoEntity>>> videoListMap = NetworkManager.getDefault(HostType.NETEASE_NEWS_VIDEO).getVideoList(NetworkManager.getCacheControl(), type, startPage);
+        return videoListMap.flatMap(new Func1<Map<String, List<VideoListEntity.VideoEntity>>, Observable<VideoListEntity.VideoEntity>>() {
             @Override
-            public Observable<VideoData> call(final Map<String, List<VideoData>> map) {
+            public Observable<VideoListEntity.VideoEntity> call(final Map<String, List<VideoListEntity.VideoEntity>> map) {
                         if (BuildConfig.DEBUG) {
                             VideoListEntity newsListEntity = base.utils.JsonUtils.analysisNewsJsonFile(VideoListEntity.class, "video_list_data");
                             if (BuildConfig.DEBUG)
                                 LogUtils.logd("aasfasfdasfdasdfasdf" + newsListEntity.dataList.toString());
-                            final List<VideoData> videoDataList = new ArrayList<>();
+                            final List<VideoListEntity.VideoEntity> videoDataList = new ArrayList<>();
                             for (int i = 0; i < newsListEntity.dataList.size(); i++) {
-                                VideoData videoData = new VideoData();
-                                videoData.setCover(newsListEntity.dataList.get(i).cover);
-                                videoData.setDescription(newsListEntity.dataList.get(i).des);
-                                videoData.setPlayCount(newsListEntity.dataList.get(i).play_count);
-                                videoData.setTitle(newsListEntity.dataList.get(i).title);
-                                videoData.setTopicName(newsListEntity.dataList.get(i).topic_name);
-                                videoData.setMp4_url(newsListEntity.dataList.get(i).url);
-                                videoData.setPtime(newsListEntity.dataList.get(i).ptime);
+                                VideoListEntity.VideoEntity videoData = new VideoListEntity.VideoEntity();
+                                videoData.cover = newsListEntity.dataList.get(i).cover;
+                                videoData.des = (newsListEntity.dataList.get(i).des);
+                                videoData.play_count = (newsListEntity.dataList.get(i).play_count);
+                                videoData.title = (newsListEntity.dataList.get(i).title);
+                                videoData.topic_name = (newsListEntity.dataList.get(i).topic_name);
+                                videoData.url = (newsListEntity.dataList.get(i).url);
+                                videoData.ptime = (newsListEntity.dataList.get(i).ptime);
                                 videoDataList.add(videoData);
                             }
 
                             return Observable.from(videoDataList);
                         }else {
-                            return Observable.create(new Observable.OnSubscribe<VideoData>() {
+                            return Observable.create(new Observable.OnSubscribe<VideoListEntity.VideoEntity>() {
                                 @Override
-                                public void call(Subscriber<? super VideoData> subscriber) {
+                                public void call(Subscriber<? super VideoListEntity.VideoEntity> subscriber) {
                                     subscriber.onCompleted();
                                 }
                             });
@@ -60,22 +59,22 @@ public class VideosListModel implements VideosListContract.Model {
 
         })
                 //转化时间
-                .map(new Func1<VideoData, VideoData>() {
+                .map(new Func1<VideoListEntity.VideoEntity, VideoListEntity.VideoEntity>() {
                     @Override
-                    public VideoData call(VideoData videoData) {
-                        String ptime = TimeUtil.formatDate(videoData.getPtime());
-                        videoData.setPtime(ptime);
+                    public VideoListEntity.VideoEntity call(VideoListEntity.VideoEntity videoData) {
+                        String ptime = TimeUtil.formatDate(videoData.ptime);
+                        videoData.ptime = ptime;
                         return videoData;
                     }
                 })
                 .distinct()//去重
-                .toSortedList(new Func2<VideoData, VideoData, Integer>() {
+                .toSortedList(new Func2<VideoListEntity.VideoEntity, VideoListEntity.VideoEntity, Integer>() {
                     @Override
-                    public Integer call(VideoData videoData, VideoData videoData2) {
-                        return videoData2.getPtime().compareTo(videoData.getPtime());
+                    public Integer call(VideoListEntity.VideoEntity videoData, VideoListEntity.VideoEntity videoData2) {
+                        return videoData2.ptime.compareTo(videoData.ptime);
                     }
                 })
                 //声明线程调度
-                .compose(RxSchedulers.<List<VideoData>>io_main());
+                .compose(RxSchedulers.<List<VideoListEntity.VideoEntity>>io_main());
     }
 }

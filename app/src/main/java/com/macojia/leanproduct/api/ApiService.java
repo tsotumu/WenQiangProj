@@ -1,11 +1,11 @@
 package com.macojia.leanproduct.api;
 
 import com.macojia.common.basebean.BaseRespose;
-import com.macojia.leanproduct.bean.GirlData;
+import com.macojia.leanproduct.bean.login.User;
 import com.macojia.leanproduct.bean.news.NewsDetail;
+import com.macojia.leanproduct.bean.news.NewsDetailEntity;
 import com.macojia.leanproduct.bean.news.NewsSummary;
-import com.macojia.leanproduct.bean.User;
-import com.macojia.leanproduct.bean.video.VideoData;
+import com.macojia.leanproduct.bean.video.VideoListEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -30,7 +30,7 @@ public interface ApiService {
     Observable<BaseRespose<User>> login(@Query("username") String username, @Query("password") String password);
 
     @GET("nc/article/{postId}/full.html")
-    Observable<Map<String, NewsDetail>> getNewDetail(
+    Observable<Map<String, NewsDetailEntity>> getNewDetail(
             @Header("Cache-Control") String cacheControl,
             @Path("postId") String postId);
 
@@ -47,14 +47,8 @@ public interface ApiService {
     //@Url，它允许我们直接传入一个请求的URL。这样以来我们可以将上一个请求的获得的url直接传入进来，baseUrl将被无视
     // baseUrl 需要符合标准，为空、""、或不合法将会报错
 
-    @GET("data/福利/{size}/{page}")
-    Observable<GirlData> getPhotoList(
-            @Header("Cache-Control") String cacheControl,
-            @Path("size") int size,
-            @Path("page") int page);
-
     @GET("nc/video/list/{type}/n/{startPage}-10.html")
-    Observable<Map<String, List<VideoData>>> getVideoList(
+    Observable<Map<String, List<VideoListEntity.VideoEntity>>> getVideoList(
             @Header("Cache-Control") String cacheControl,
             @Path("type") String type,
             @Path("startPage") int startPage);

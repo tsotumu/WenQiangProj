@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.bean.HotelEntity;
+import com.macojia.leanproduct.bean.hotel.HotelEntity;
 import com.macojia.leanproduct.ui.news.activity.AboutActivity;
 
 import java.util.ArrayList;

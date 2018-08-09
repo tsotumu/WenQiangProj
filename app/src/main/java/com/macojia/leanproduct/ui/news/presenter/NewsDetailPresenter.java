@@ -4,6 +4,7 @@ import com.macojia.common.baserx.RxSubscriber;
 import com.macojia.common.commonutils.ToastUitl;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.news.NewsDetail;
+import com.macojia.leanproduct.bean.news.NewsDetailEntity;
 import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
 
 /**
@@ -14,9 +15,9 @@ import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
 public class NewsDetailPresenter extends NewsDetailContract.Presenter {
     @Override
     public void getOneNewsDataRequest(String postId) {
-        mRxManage.add(mModel.getOneNewsData(postId).subscribe(new RxSubscriber<NewsDetail>(mContext) {
+        mRxManage.add(mModel.getOneNewsData(postId).subscribe(new RxSubscriber<NewsDetailEntity>(mContext) {
             @Override
-            protected void _onNext(NewsDetail newsDetail) {
+            protected void _onNext(NewsDetailEntity newsDetail) {
                 mView.OnOneNewsDataReturned(newsDetail);
             }
 

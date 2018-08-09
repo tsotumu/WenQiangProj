@@ -6,9 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.daynightmodeutils.ChangeModeController;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.bean.HotelEntity;
-import com.macojia.leanproduct.ui.hotel.HotelEntityAdapter;
-import com.macojia.leanproduct.ui.hotel.SectionedRecyclerViewAdapter;
+import com.macojia.leanproduct.bean.hotel.HotelEntity;
 import com.macojia.leanproduct.ui.news.activity.AboutActivity;
 
 import base.utils.JsonUtils;

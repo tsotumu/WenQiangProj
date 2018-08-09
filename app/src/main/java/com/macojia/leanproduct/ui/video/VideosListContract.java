@@ -3,7 +3,7 @@ package com.macojia.leanproduct.ui.video;
 import com.macojia.common.base.BaseModel;
 import com.macojia.common.base.BasePresenter;
 import com.macojia.common.base.BaseView;
-import com.macojia.leanproduct.bean.video.VideoData;
+import com.macojia.leanproduct.bean.video.VideoListEntity;
 
 import java.util.List;
 
@@ -17,12 +17,12 @@ import rx.Observable;
 public interface VideosListContract {
     interface Model extends BaseModel {
         //请求获取视频
-        Observable<List<VideoData>> getVideosListData(String type, int startPage);
+        Observable<List<VideoListEntity.VideoEntity>> getVideosListData(String type, int startPage);
     }
 
     interface View extends BaseView {
         //返回获取的视频
-        void returnVideosListData(List<VideoData> newsSummaries);
+        void returnVideosListData(List<VideoListEntity.VideoEntity> newsSummaries);
 
         //返回顶部
         void scrolltoTop();

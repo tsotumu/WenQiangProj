@@ -25,7 +25,7 @@ import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.LogUtils;
 import com.macojia.common.commonutils.TimeUtil;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.bean.news.NewsDetail;
+import com.macojia.leanproduct.bean.news.NewsDetailEntity;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
 import com.macojia.leanproduct.ui.news.model.NewsDetailModel;
@@ -157,13 +157,13 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
     }
 
     @Override
-    public void OnOneNewsDataReturned(NewsDetail newsDetail) {
+    public void OnOneNewsDataReturned(NewsDetailEntity newsDetail) {
         LogUtils.logd("OnOneNewsDataReturned->" + newsDetail.toString());
-        mShareLink = newsDetail.getShareLink();
-        mNewsTitle = newsDetail.getTitle();
-        String newsSource = newsDetail.getSource();
-        String newsTime = TimeUtil.formatDate(newsDetail.getPtime());
-        String newsBody = newsDetail.getBody();
+//        mShareLink = newsDetail.getShareLink();
+        mNewsTitle = newsDetail.title;
+        String newsSource = newsDetail.source;
+        String newsTime = TimeUtil.formatDate(newsDetail.postTime);
+        String newsBody = newsDetail.body;
         String NewsImgSrc = getImgSrcs(newsDetail);
 
         setToolBarLayout(mNewsTitle);
@@ -186,7 +186,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
                 .crossFade().into(newsDetailPhotoIv);
     }
 
-    private void setNewsDetailBodyTv(final NewsDetail newsDetail, final String newsBody) {
+    private void setNewsDetailBodyTv(final NewsDetailEntity newsDetail, final String newsBody) {
         mRxManager.add(Observable.timer(500, TimeUnit.MILLISECONDS)
                 .compose(RxSchedulers.<Long>io_main())
                 .subscribe(new Subscriber<Long>() {
@@ -208,8 +208,8 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
                 }));
     }
 
-    private void setBody(NewsDetail newsDetail, String newsBody) {
-        int imgTotal = newsDetail.getImg().size();
+    private void setBody(NewsDetailEntity newsDetail, String newsBody) {
+        int imgTotal = newsDetail.img.size();
         if (isShowBody(newsBody, imgTotal)) {
 //              mNewsDetailBodyTv.setMovementMethod(LinkMovementMethod.getInstance());//加这句才能让里面的超链接生效,实测经常卡机崩溃
             mUrlImageGetter = new URLImageGetter(newsDetailBodyTv, newsBody, imgTotal);
@@ -223,11 +223,11 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
         return imgTotal >= 2 && newsBody != null;
     }
 
-    private String getImgSrcs(NewsDetail newsDetail) {
-        List<NewsDetail.ImgBean> imgSrcs = newsDetail.getImg();
+    private String getImgSrcs(NewsDetailEntity newsDetail) {
+        List<NewsDetailEntity.ImgBean> imgSrcs = newsDetail.img;
         String imgSrc;
         if (imgSrcs != null && imgSrcs.size() > 0) {
-            imgSrc = imgSrcs.get(0).getSrc();
+            imgSrc = imgSrcs.get(0).src;
         } else {
             imgSrc = getIntent().getStringExtra(AppConstant.NEWS_IMG_RES);
         }

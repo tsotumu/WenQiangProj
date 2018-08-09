@@ -2,7 +2,7 @@ package com.macojia.leanproduct.ui.video;
 
 import com.macojia.common.baserx.RxSubscriber;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.bean.video.VideoData;
+import com.macojia.leanproduct.bean.video.VideoListEntity;
 import com.macojia.leanproduct.constant.AppConstant;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class VideoListPresenter extends VideosListContract.Presenter {
      */
     @Override
     public void getVideosListDataRequest(String type, int startPage) {
-        mRxManage.add(mModel.getVideosListData(type, startPage).subscribe(new RxSubscriber<List<VideoData>>(mContext, false) {
+        mRxManage.add(mModel.getVideosListData(type, startPage).subscribe(new RxSubscriber<List<VideoListEntity.VideoEntity>>(mContext, false) {
             @Override
             public void onStart() {
                 super.onStart();
@@ -44,7 +44,7 @@ public class VideoListPresenter extends VideosListContract.Presenter {
             }
 
             @Override
-            protected void _onNext(List<VideoData> videoDatas) {
+            protected void _onNext(List<VideoListEntity.VideoEntity> videoDatas) {
                 mView.returnVideosListData(videoDatas);
                 mView.stopLoading();
             }

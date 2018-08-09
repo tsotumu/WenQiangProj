@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.bean;
+package com.macojia.leanproduct.bean.hotel;
 
 import java.util.ArrayList;
 

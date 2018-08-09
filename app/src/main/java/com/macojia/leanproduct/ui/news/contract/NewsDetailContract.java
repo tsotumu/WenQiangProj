@@ -4,6 +4,7 @@ import com.macojia.common.base.BaseModel;
 import com.macojia.common.base.BasePresenter;
 import com.macojia.common.base.BaseView;
 import com.macojia.leanproduct.bean.news.NewsDetail;
+import com.macojia.leanproduct.bean.news.NewsDetailEntity;
 
 import rx.Observable;
 
@@ -15,12 +16,12 @@ import rx.Observable;
 public interface NewsDetailContract {
     interface Model extends BaseModel {
         //请求获取新闻
-        Observable<NewsDetail> getOneNewsData(String postId);
+        Observable<NewsDetailEntity> getOneNewsData(String postId);
     }
 
     interface View extends BaseView {
         //返回获取的新闻
-        void OnOneNewsDataReturned(NewsDetail newsDetail);
+        void OnOneNewsDataReturned(NewsDetailEntity newsDetail);
     }
 
     abstract static class Presenter extends BasePresenter<View, Model> {
