@@ -38,11 +38,16 @@ public class NewsListModel implements NewsListContract.Model {
                     ArrayList<NewsListEntity.NewsDigest> digests = newsListEntity.newsList;
                     for (int i = 0; i < digests.size(); i++) {
                         NewsSummary newsSummary = new NewsSummary();
-                        newsSummary.setDigest(digests.get(i).digest);
+                        newsSummary.setNews_cover(digests.get(i).news_cover);
+                        newsSummary.setNews_datetime(digests.get(i).news_datetime);
+                        newsSummary.setNews_title(digests.get(i).news_title);
+                        newsSummary.setNews_digest(digests.get(i).news_digest);
+                        newsSummary.setId(digests.get(i).id);
+                        /*newsSummary.setDigest(digests.get(i).digest);
                         newsSummary.setTitle(digests.get(i).title);
                         newsSummary.setPostid(digests.get(i).postId);
                         newsSummary.setImgsrc(digests.get(i).imgSrc);
-                        newsSummary.setPtime(digests.get(i).postTime);
+                        newsSummary.setPtime(digests.get(i).postTime);*/
                         newsSummaryList.add(newsSummary);
                         subscriber.onNext(newsSummaryList);
                         subscriber.onCompleted();
@@ -65,15 +70,15 @@ public class NewsListModel implements NewsListContract.Model {
         return newsSummaryObservable.map(new Func1<NewsSummary, NewsSummary>() {
             @Override
             public NewsSummary call(NewsSummary newsSummary) {
-                String ptime = TimeUtil.formatDate(newsSummary.getPtime());
-                newsSummary.setPtime(ptime);
+                String ptime = TimeUtil.formatDate(newsSummary.getNews_datetime());
+                newsSummary.setNews_datetime(ptime);
                 return newsSummary;
             }
         }).distinct()//去重
                 .toSortedList(new Func2<NewsSummary, NewsSummary, Integer>() {
                     @Override
                     public Integer call(NewsSummary newsSummary, NewsSummary newsSummary2) {
-                        return newsSummary2.getPtime().compareTo(newsSummary.getPtime());
+                        return newsSummary2.getNews_datetime().compareTo(newsSummary.getNews_datetime());
                     }
                 })
                 //声明线程调度

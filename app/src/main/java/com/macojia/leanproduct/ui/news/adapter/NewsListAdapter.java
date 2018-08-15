@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.ui.news;
+package com.macojia.leanproduct.ui.news.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -43,7 +43,7 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
 
             @Override
             public int getItemViewType(int position, NewsSummary msg) {
-                if (!TextUtils.isEmpty(msg.getDigest())) {
+                if (!TextUtils.isEmpty(msg.getNews_digest())) {
                     return TYPE_ITEM;
                 }
                 return TYPE_PHOTO_ITEM;
@@ -71,13 +71,13 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
      * @param position
      */
     private void setItemValues(final ViewHolderHelper holder, final NewsSummary newsSummary, final int position) {
-        String title = newsSummary.getLtitle();
+        String title = newsSummary.getNews_title();
         if (title == null) {
-            title = newsSummary.getTitle();
+            title = newsSummary.getNews_title();
         }
-        String ptime = newsSummary.getPtime();
-        String digest = newsSummary.getDigest();
-        String imgSrc = newsSummary.getImgsrc();
+        String ptime = newsSummary.getNews_datetime();
+        String digest = newsSummary.getNews_digest();
+        String imgSrc = newsSummary.getNews_cover();
 
         holder.setText(R.id.news_summary_title_tv, title);
         holder.setText(R.id.news_summary_ptime_tv, ptime);
@@ -86,7 +86,7 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
         holder.setOnClickListener(R.id.rl_root, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NewsDetailActivity.startAction(mContext, holder.getView(R.id.news_summary_photo_iv), newsSummary.getPostid(), newsSummary.getImgsrc());
+                NewsDetailActivity.startAction(mContext, holder.getView(R.id.news_summary_photo_iv), newsSummary.getId()+"", newsSummary.getNews_cover());
             }
         });
     }
@@ -99,8 +99,8 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
      * @param position
      */
     private void setPhotoItemValues(ViewHolderHelper holder, final NewsSummary newsSummary, int position) {
-        String title = newsSummary.getTitle();
-        String ptime = newsSummary.getPtime();
+        String title = newsSummary.getNews_title();
+        String ptime = newsSummary.getNews_datetime();
         holder.setText(R.id.news_summary_title_tv, title);
         holder.setText(R.id.news_summary_ptime_tv, ptime);
         setImageView(holder, newsSummary);
@@ -114,7 +114,7 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
 
     private NewsPhotoDetail getPhotoDetail(NewsSummary newsSummary) {
         NewsPhotoDetail newsPhotoDetail = new NewsPhotoDetail();
-        newsPhotoDetail.setTitle(newsSummary.getTitle());
+        newsPhotoDetail.setTitle(newsSummary.getNews_title());
         setPictures(newsSummary, newsPhotoDetail);
         return newsPhotoDetail;
     }
@@ -130,7 +130,7 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
                 setValuesAndAddToList(pictureList, null, entity.getImgsrc());
             }
         } else {
-            setValuesAndAddToList(pictureList, null, newsSummary.getImgsrc());
+            setValuesAndAddToList(pictureList, null, newsSummary.getNews_cover());
         }
 
         newsPhotoDetail.setPictures(pictureList);
@@ -196,7 +196,7 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
                 layoutParams.height = PhotoOneHeight;
             }
         } else {
-            imgSrcLeft = newsSummary.getImgsrc();
+            imgSrcLeft = newsSummary.getNews_cover();
 
             layoutParams.height = PhotoOneHeight;
         }

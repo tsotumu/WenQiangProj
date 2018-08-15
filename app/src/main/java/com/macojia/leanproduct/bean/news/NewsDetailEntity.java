@@ -7,10 +7,10 @@ import java.util.ArrayList;
  */
 
 public class NewsDetailEntity {
-    public String title;
-    public String body;
-    public String source;
-    public String postTime;
+    public String news_title;
+    public String news_content;
+    public String news_category;
+    public String news_datetime;
     public ArrayList<ImgBean> img;
 
     public static class ImgBean {

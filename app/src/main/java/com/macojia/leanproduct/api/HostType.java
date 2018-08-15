@@ -24,12 +24,12 @@ public class HostType {
     public static final int TYPE_COUNT = 3;
 
     /**
-     * 网易新闻视频的host
+     * 新闻视频的host
      */
     public static final int NETEASE_NEWS_VIDEO = 1;
 
     /**
-     * 新浪图片的host
+     * 图片的host
      */
     public static final int GANK_GIRL_PHOTO = 2;
 

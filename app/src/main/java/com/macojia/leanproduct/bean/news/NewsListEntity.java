@@ -11,11 +11,11 @@ public class NewsListEntity {
     public ArrayList<NewsDigest> newsList;
 
     public static class NewsDigest {
-        public String title;
-        public String digest;
-        public String imgSrc;
-        public String postId;
-        public String postTime;
+        public String news_title;
+        public String news_digest;
+        public String news_cover;
+        public int id;
+        public String news_datetime;
     }
 
 }

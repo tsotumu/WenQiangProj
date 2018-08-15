@@ -39,33 +39,12 @@ public class NewsSummary implements Parcelable {
             return new NewsSummary[size];
         }
     };
-    private String postid;
-    private boolean hasCover;
-    private int hasHead;
-    private int replyCount;
-    private int hasImg;
-    private String digest;
-    private boolean hasIcon;
-    private String docid;
-    private String title;
-    private String ltitle;
-    private int order;
-    private int priority;
-    private String lmodify;
-    private String boardid;
-    private String photosetID;
-    private String template;
-    private int votecount;
-    private String skipID;
-    private String alias;
-    private String skipType;
-    private String cid;
-    private int hasAD;
-    private String source;
-    private String ename;
-    private String imgsrc;
-    private String tname;
-    private String ptime;
+    private int id;
+    private String news_digest;
+    private String news_title;
+    private String news_cover;
+    private String news_datetime;
+
     /**
      * title : "悬崖村" 孩子上学需爬800米悬崖
      * tag : photoset
@@ -85,33 +64,11 @@ public class NewsSummary implements Parcelable {
     }
 
     protected NewsSummary(Parcel in) {
-        this.postid = in.readString();
-        this.hasCover = in.readByte() != 0;
-        this.hasHead = in.readInt();
-        this.replyCount = in.readInt();
-        this.hasImg = in.readInt();
-        this.digest = in.readString();
-        this.hasIcon = in.readByte() != 0;
-        this.docid = in.readString();
-        this.title = in.readString();
-        this.ltitle = in.readString();
-        this.order = in.readInt();
-        this.priority = in.readInt();
-        this.lmodify = in.readString();
-        this.boardid = in.readString();
-        this.photosetID = in.readString();
-        this.template = in.readString();
-        this.votecount = in.readInt();
-        this.skipID = in.readString();
-        this.alias = in.readString();
-        this.skipType = in.readString();
-        this.cid = in.readString();
-        this.hasAD = in.readInt();
-        this.source = in.readString();
-        this.ename = in.readString();
-        this.imgsrc = in.readString();
-        this.tname = in.readString();
-        this.ptime = in.readString();
+        this.id = in.readInt();
+        this.news_digest=in.readString();
+        this.news_title=in.readString();
+        this.news_cover=in.readString();
+        this.news_datetime=in.readString();
         this.ads = new ArrayList<AdsBean>();
         in.readList(this.ads, AdsBean.class.getClassLoader());
         this.imgextra = new ArrayList<ImgextraBean>();
@@ -120,224 +77,48 @@ public class NewsSummary implements Parcelable {
 
     @Override
     public String toString() {
-        return "news: title->" + title + " digest->" + digest + " imgSrc->" + imgsrc + " postId->" + postid + " postTime->" +ptime;
+        return "news: title->" + news_title + " digest->" + news_digest + " imgSrc->" + news_cover + " postId->" + id + " postTime->" + news_datetime;
     }
 
 
-    public String getPostid() {
-        return postid;
+    public int getId() {
+        return id;
     }
 
-    public void setPostid(String postid) {
-        this.postid = postid;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public boolean isHasCover() {
-        return hasCover;
+    public String getNews_digest() {
+        return news_digest;
     }
 
-    public void setHasCover(boolean hasCover) {
-        this.hasCover = hasCover;
+    public void setNews_digest(String news_digest) {
+        this.news_digest = news_digest;
     }
 
-    public int getHasHead() {
-        return hasHead;
+    public String getNews_title() {
+        return news_title;
     }
 
-    public void setHasHead(int hasHead) {
-        this.hasHead = hasHead;
+    public void setNews_title(String news_title) {
+        this.news_title = news_title;
     }
 
-    public int getReplyCount() {
-        return replyCount;
+    public String getNews_cover() {
+        return news_cover;
     }
 
-    public void setReplyCount(int replyCount) {
-        this.replyCount = replyCount;
+    public void setNews_cover(String news_cover) {
+        this.news_cover = news_cover;
     }
 
-    public int getHasImg() {
-        return hasImg;
+    public String getNews_datetime() {
+        return news_datetime;
     }
 
-    public void setHasImg(int hasImg) {
-        this.hasImg = hasImg;
-    }
-
-    public String getDigest() {
-        return digest;
-    }
-
-    public void setDigest(String digest) {
-        this.digest = digest;
-    }
-
-    public boolean isHasIcon() {
-        return hasIcon;
-    }
-
-    public void setHasIcon(boolean hasIcon) {
-        this.hasIcon = hasIcon;
-    }
-
-    public String getDocid() {
-        return docid;
-    }
-
-    public void setDocid(String docid) {
-        this.docid = docid;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getLtitle() {
-        return ltitle;
-    }
-
-    public void setLtitle(String ltitle) {
-        this.ltitle = ltitle;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public String getLmodify() {
-        return lmodify;
-    }
-
-    public void setLmodify(String lmodify) {
-        this.lmodify = lmodify;
-    }
-
-    public String getBoardid() {
-        return boardid;
-    }
-
-    public void setBoardid(String boardid) {
-        this.boardid = boardid;
-    }
-
-    public String getPhotosetID() {
-        return photosetID;
-    }
-
-    public void setPhotosetID(String photosetID) {
-        this.photosetID = photosetID;
-    }
-
-    public String getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(String template) {
-        this.template = template;
-    }
-
-    public int getVotecount() {
-        return votecount;
-    }
-
-    public void setVotecount(int votecount) {
-        this.votecount = votecount;
-    }
-
-    public String getSkipID() {
-        return skipID;
-    }
-
-    public void setSkipID(String skipID) {
-        this.skipID = skipID;
-    }
-
-    public String getAlias() {
-        return alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public String getSkipType() {
-        return skipType;
-    }
-
-    public void setSkipType(String skipType) {
-        this.skipType = skipType;
-    }
-
-    public String getCid() {
-        return cid;
-    }
-
-    public void setCid(String cid) {
-        this.cid = cid;
-    }
-
-    public int getHasAD() {
-        return hasAD;
-    }
-
-    public void setHasAD(int hasAD) {
-        this.hasAD = hasAD;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public String getEname() {
-        return ename;
-    }
-
-    public void setEname(String ename) {
-        this.ename = ename;
-    }
-
-    public String getImgsrc() {
-        return imgsrc;
-    }
-
-    public void setImgsrc(String imgsrc) {
-        this.imgsrc = imgsrc;
-    }
-
-    public String getTname() {
-        return tname;
-    }
-
-    public void setTname(String tname) {
-        this.tname = tname;
-    }
-
-    public String getPtime() {
-        return ptime;
-    }
-
-    public void setPtime(String ptime) {
-        this.ptime = ptime;
+    public void setNews_datetime(String news_datetime) {
+        this.news_datetime = news_datetime;
     }
 
     public List<AdsBean> getAds() {
@@ -363,33 +144,11 @@ public class NewsSummary implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.postid);
-        dest.writeByte(hasCover ? (byte) 1 : (byte) 0);
-        dest.writeInt(this.hasHead);
-        dest.writeInt(this.replyCount);
-        dest.writeInt(this.hasImg);
-        dest.writeString(this.digest);
-        dest.writeByte(hasIcon ? (byte) 1 : (byte) 0);
-        dest.writeString(this.docid);
-        dest.writeString(this.title);
-        dest.writeString(this.ltitle);
-        dest.writeInt(this.order);
-        dest.writeInt(this.priority);
-        dest.writeString(this.lmodify);
-        dest.writeString(this.boardid);
-        dest.writeString(this.photosetID);
-        dest.writeString(this.template);
-        dest.writeInt(this.votecount);
-        dest.writeString(this.skipID);
-        dest.writeString(this.alias);
-        dest.writeString(this.skipType);
-        dest.writeString(this.cid);
-        dest.writeInt(this.hasAD);
-        dest.writeString(this.source);
-        dest.writeString(this.ename);
-        dest.writeString(this.imgsrc);
-        dest.writeString(this.tname);
-        dest.writeString(this.ptime);
+        dest.writeInt(this.id);
+        dest.writeString(this.news_cover);
+        dest.writeString(this.news_datetime);
+        dest.writeString(this.news_digest);
+        dest.writeString(this.news_title);
         dest.writeList(this.ads);
         dest.writeList(this.imgextra);
     }

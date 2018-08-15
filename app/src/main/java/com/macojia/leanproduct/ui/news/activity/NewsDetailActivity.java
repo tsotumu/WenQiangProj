@@ -160,10 +160,10 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
     public void OnOneNewsDataReturned(NewsDetailEntity newsDetail) {
         LogUtils.logd("OnOneNewsDataReturned->" + newsDetail.toString());
 //        mShareLink = newsDetail.getShareLink();
-        mNewsTitle = newsDetail.title;
-        String newsSource = newsDetail.source;
-        String newsTime = TimeUtil.formatDate(newsDetail.postTime);
-        String newsBody = newsDetail.body;
+        mNewsTitle = newsDetail.news_title;
+        String newsSource = newsDetail.news_category;
+        String newsTime = TimeUtil.formatDate(newsDetail.news_datetime);
+        String newsBody = newsDetail.news_content;
         String NewsImgSrc = getImgSrcs(newsDetail);
 
         setToolBarLayout(mNewsTitle);

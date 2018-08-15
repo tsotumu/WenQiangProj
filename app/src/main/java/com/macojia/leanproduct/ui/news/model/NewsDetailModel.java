@@ -42,9 +42,9 @@ public class NewsDetailModel implements NewsDetailContract.Model {
     private void changeNewsDetail(NewsDetailEntity newsDetail) {
         List<NewsDetailEntity.ImgBean> imgSrcs = newsDetail.img;
         if (isChange(imgSrcs)) {
-            String newsBody = newsDetail.body;
+            String newsBody = newsDetail.news_content;
             newsBody = changeNewsBody(imgSrcs, newsBody);
-            newsDetail.body = newsBody;
+            newsDetail.news_content = newsBody;
         }
     }
 

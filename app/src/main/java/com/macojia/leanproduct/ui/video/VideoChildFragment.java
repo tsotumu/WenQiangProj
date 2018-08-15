@@ -67,14 +67,14 @@ public class VideoChildFragment extends BaseFragment<VideoListPresenter, VideosL
             @Override
             public void convert(ViewHolderHelper helper, VideoListEntity.VideoEntity videoData) {
 //                helper.setImageRoundUrl(R.id.iv_logo, videoData.getTopicImg());
-                helper.setText(R.id.tv_from, videoData.topic_name);
+                helper.setText(R.id.tv_from, videoData.video_topic);
                 helper.setText(R.id.tv_play_time, String.format(getResources().getString(R.string.video_play_times), String.valueOf(videoData.play_count)));
                 JCVideoPlayerStandard jcVideoPlayerStandard = helper.getView(R.id.videoplayer);
                 boolean setUp = jcVideoPlayerStandard.setUp(
-                        videoData.url, JCVideoPlayer.SCREEN_LAYOUT_LIST,
-                        TextUtils.isEmpty(videoData.des) ? videoData.title + "" : videoData.des);
+                        videoData.video_url, JCVideoPlayer.SCREEN_LAYOUT_LIST,
+                        TextUtils.isEmpty(videoData.video_digest) ? videoData.video_title + "" : videoData.video_digest);
                 if (setUp) {
-                    Glide.with(mContext).load(videoData.cover)
+                    Glide.with(mContext).load(videoData.video_cover)
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .centerCrop()
                             .error(com.macojia.common.R.drawable.ic_empty_picture)

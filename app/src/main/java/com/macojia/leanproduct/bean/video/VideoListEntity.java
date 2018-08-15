@@ -10,17 +10,17 @@ public class VideoListEntity {
     public ArrayList<VideoEntity> dataList;
 
     public static class VideoEntity {
-        public String url;
-        public String title;
-        public String cover;
+        public String video_url;;
+        public String video_title;;
+        public String video_cover;;
         public int play_count;
-        public String topic_name;
-        public String des;
-        public String ptime;
+        public String video_topic;;
+        public String video_digest;;
+        public String video_ptime;;
 
         @Override
         public String toString() {
-            return url + title;
+            return video_url + video_title;
         }
     }
 }

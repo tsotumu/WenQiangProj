@@ -14,7 +14,7 @@ import com.macojia.common.commonwidget.LoadingTip;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.news.NewsSummary;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.ui.news.NewsListAdapter;
+import com.macojia.leanproduct.ui.news.adapter.NewsListAdapter;
 import com.macojia.leanproduct.ui.news.contract.NewsListContract;
 import com.macojia.leanproduct.ui.news.model.NewsListModel;
 import com.macojia.leanproduct.ui.news.presenter.NewsListPresenter;

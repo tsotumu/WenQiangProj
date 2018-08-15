@@ -19,52 +19,47 @@ package com.macojia.leanproduct.bean.news;
 import java.util.List;
 
 public class NewsDetail {
-    private String body;
-    private String shareLink;
-    private String title;
-    private String source;
-    private String ptime;
+    private String news_content;
+    private String news_title;
+    private String news_category;
+    private String news_datetime;
     private List<ImgBean> img;
 
     @Override
     public String toString() {
-        return "title->" + title + " source->" + getSource() + " postTime->" + ptime + " body->" + body + " imgSrc->" + img;
+        return "title->" + news_title + " source->" +news_category + " postTime->" + news_datetime + " body->" + news_content + " imgSrc->" + img;
     }
 
-    public String getBody() {
-        return body;
+    public String getNews_content() {
+        return news_content;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setNews_content(String news_content) {
+        this.news_content = news_content;
     }
 
-    public String getShareLink() {
-        return shareLink;
+    public String getNews_title() {
+        return news_title;
     }
 
-    public String getTitle() {
-        return title;
+    public void setNews_title(String news_title) {
+        this.news_title = news_title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getNews_category() {
+        return news_category;
     }
 
-    public String getSource() {
-        return source;
+    public void setNews_category(String news_category) {
+        this.news_category = news_category;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public String getNews_datetime() {
+        return news_datetime;
     }
 
-    public String getPtime() {
-        return ptime;
-    }
-
-    public void setPtime(String ptime) {
-        this.ptime = ptime;
+    public void setNews_datetime(String news_datetime) {
+        this.news_datetime = news_datetime;
     }
 
     public List<ImgBean> getImg() {

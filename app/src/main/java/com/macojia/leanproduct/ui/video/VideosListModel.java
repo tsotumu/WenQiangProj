@@ -37,13 +37,13 @@ public class VideosListModel implements VideosListContract.Model {
                             final List<VideoListEntity.VideoEntity> videoDataList = new ArrayList<>();
                             for (int i = 0; i < newsListEntity.dataList.size(); i++) {
                                 VideoListEntity.VideoEntity videoData = new VideoListEntity.VideoEntity();
-                                videoData.cover = newsListEntity.dataList.get(i).cover;
-                                videoData.des = (newsListEntity.dataList.get(i).des);
+                                videoData.video_cover = newsListEntity.dataList.get(i).video_cover;
+                                videoData.video_digest = (newsListEntity.dataList.get(i).video_digest);
                                 videoData.play_count = (newsListEntity.dataList.get(i).play_count);
-                                videoData.title = (newsListEntity.dataList.get(i).title);
-                                videoData.topic_name = (newsListEntity.dataList.get(i).topic_name);
-                                videoData.url = (newsListEntity.dataList.get(i).url);
-                                videoData.ptime = (newsListEntity.dataList.get(i).ptime);
+                                videoData.video_title = (newsListEntity.dataList.get(i).video_title);
+                                videoData.video_topic = (newsListEntity.dataList.get(i).video_topic);
+                                videoData.video_url = (newsListEntity.dataList.get(i).video_url);
+                                videoData.video_ptime = (newsListEntity.dataList.get(i).video_ptime);
                                 videoDataList.add(videoData);
                             }
 
@@ -62,8 +62,8 @@ public class VideosListModel implements VideosListContract.Model {
                 .map(new Func1<VideoListEntity.VideoEntity, VideoListEntity.VideoEntity>() {
                     @Override
                     public VideoListEntity.VideoEntity call(VideoListEntity.VideoEntity videoData) {
-                        String ptime = TimeUtil.formatDate(videoData.ptime);
-                        videoData.ptime = ptime;
+                        String ptime = TimeUtil.formatDate(videoData.video_ptime);
+                        videoData.video_ptime = ptime;
                         return videoData;
                     }
                 })
@@ -71,7 +71,7 @@ public class VideosListModel implements VideosListContract.Model {
                 .toSortedList(new Func2<VideoListEntity.VideoEntity, VideoListEntity.VideoEntity, Integer>() {
                     @Override
                     public Integer call(VideoListEntity.VideoEntity videoData, VideoListEntity.VideoEntity videoData2) {
-                        return videoData2.ptime.compareTo(videoData.ptime);
+                        return videoData2.video_ptime.compareTo(videoData.video_ptime);
                     }
                 })
                 //声明线程调度
