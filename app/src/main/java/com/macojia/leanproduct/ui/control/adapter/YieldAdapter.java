@@ -20,6 +20,8 @@ import com.macojia.leanproduct.chart.HorizonBarChartItem;
 import com.macojia.leanproduct.chart.LineChartItem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import base.utils.ResourceUtil;
@@ -98,11 +100,21 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
                     context,
                     i + "号包装机",
                     ResourceUtil.getString(R.string.x_label_month),
-                    ResourceUtil.getString(R.string.y_label_index)
-                    )
+                    ResourceUtil.getString(R.string.y_label_index),
+                    getXAxis(monthlyIndexPerMachineBeen.get(i)))
             );
         }
 
         return new YieldAdapter(context, list);
+    }
+
+    private static String[] getXAxis(YieldIndexData.MonthlyIndexPerMachineBean monthlyIndexPerMachineBean){
+        ArrayList<String> axis = new ArrayList<>();
+        List<YieldIndexData.MonthlyIndexPerMachineBean.MonthlyIndexBean> monthlyIndex = monthlyIndexPerMachineBean.getMonthlyIndex();
+        for (YieldIndexData.MonthlyIndexPerMachineBean.MonthlyIndexBean monthlyIndexBean : monthlyIndex){
+            axis.add(monthlyIndexBean.getMonth());
+        }
+        String[] strings = new String[axis.size()];
+        return  axis.toArray(strings);
     }
 }

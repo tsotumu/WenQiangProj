@@ -36,6 +36,16 @@ public class LineChartItem extends ChartItem {
 //        mXAxis = strings;
     }
 
+    public LineChartItem(ChartData<?> cd, Context c, String title, String xLabel, String yLabel, String[] strings) {
+        super(cd);
+        mTitle = title;
+        mXLabel = xLabel;
+        mYLabel = yLabel;
+        mTf = Typeface.createFromAsset(c.getAssets(), "OpenSans-Regular.ttf");
+        mXAxis = strings;
+    }
+
+
     @Override
     public int getItemType() {
         return TYPE_LINECHART;
@@ -86,10 +96,12 @@ public class LineChartItem extends ChartItem {
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
         
         YAxis rightAxis = holder.chart.getAxisRight();
-        String[] strings = new String[]{
-            "asdf","asdf","asdf","asdf","asdf","asdf","asdf","asdf","asdf","asdf"
-        };
-        xAxis.setValueFormatter(new LabelFormatter(strings));
+        if (mXAxis == null) {
+            mXAxis = new String[]{
+                    "asdf", "asdf", "asdf", "asdf", "asdf", "asdf", "asdf", "asdf", "asdf", "asdf"
+            };
+        }
+        xAxis.setValueFormatter(new LabelFormatter(mXAxis));
         rightAxis.setTypeface(mTf);
         rightAxis.setLabelCount(5, false);
         rightAxis.setDrawGridLines(false);
