@@ -23,10 +23,10 @@ public abstract class LogHelper {
     }
 
     public static void printStack() {
-        if (BuildConfig.DEBUG) {
+        if (DebugUtil.DEBUG) {
             StackTraceElement traceElement[] = ((new Exception()).getStackTrace());
             for (StackTraceElement stackTraceElement : traceElement) {
-                if (BuildConfig.DEBUG) LogUtils.logd(stackTraceElement.toString());
+                if (DebugUtil.DEBUG) LogUtils.logd(stackTraceElement.toString());
             }
         }
     }

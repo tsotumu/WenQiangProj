@@ -6,6 +6,7 @@ import com.macojia.leanproduct.BuildConfig;
 import com.macojia.leanproduct.bean.control.MatainGuideData;
 import com.macojia.leanproduct.ui.control.contact.MatainGuideConstract;
 
+import base.utils.DebugUtil;
 import base.utils.JsonUtils;
 import rx.Observable;
 import rx.Subscriber;
@@ -22,7 +23,7 @@ public class MatainGuideModel implements MatainGuideConstract.Model {
             public void call(Subscriber<? super MatainGuideData> subscriber) {
 
                 MatainGuideData costIndexDataSource = new MatainGuideData();
-                if (BuildConfig.DEBUG) {
+                if (DebugUtil.DEBUG) {
                     costIndexDataSource = JsonUtils.analysisNewsJsonFile(MatainGuideData.class, "maintain_guide");
                     LogUtils.logd("cost index data source: " + costIndexDataSource.toString());
                 }

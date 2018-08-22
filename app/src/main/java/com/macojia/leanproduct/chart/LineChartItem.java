@@ -25,13 +25,15 @@ public class LineChartItem extends ChartItem {
     private String mTitle;
     private String mXLabel;
     private String mYLabel;
+    private String[] mXAxis;
 
-    public LineChartItem(ChartData<?> cd, Context c, String title, String xLabel, String yLabel) {
+    public LineChartItem(ChartData<?> cd, Context c, String title, String xLabel, String yLabel/*, String[] strings*/) {
         super(cd);
         mTitle = title;
         mXLabel = xLabel;
         mYLabel = yLabel;
         mTf = Typeface.createFromAsset(c.getAssets(), "OpenSans-Regular.ttf");
+//        mXAxis = strings;
     }
 
     @Override
@@ -84,6 +86,10 @@ public class LineChartItem extends ChartItem {
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
         
         YAxis rightAxis = holder.chart.getAxisRight();
+        String[] strings = new String[]{
+            "asdf","asdf","asdf","asdf","asdf","asdf","asdf","asdf","asdf","asdf"
+        };
+        xAxis.setValueFormatter(new LabelFormatter(strings));
         rightAxis.setTypeface(mTf);
         rightAxis.setLabelCount(5, false);
         rightAxis.setDrawGridLines(false);

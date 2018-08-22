@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import base.utils.DebugUtil;
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
@@ -30,9 +31,9 @@ public class VideosListModel implements VideosListContract.Model {
         return videoListMap.flatMap(new Func1<Map<String, List<VideoListEntity.VideoEntity>>, Observable<VideoListEntity.VideoEntity>>() {
             @Override
             public Observable<VideoListEntity.VideoEntity> call(final Map<String, List<VideoListEntity.VideoEntity>> map) {
-                        if (BuildConfig.DEBUG) {
+                        if (DebugUtil.DEBUG) {
                             VideoListEntity newsListEntity = base.utils.JsonUtils.analysisNewsJsonFile(VideoListEntity.class, "video_list_data");
-                            if (BuildConfig.DEBUG)
+                            if (DebugUtil.DEBUG)
                                 LogUtils.logd("aasfasfdasfdasdfasdf" + newsListEntity.dataList.toString());
                             final List<VideoListEntity.VideoEntity> videoDataList = new ArrayList<>();
                             for (int i = 0; i < newsListEntity.dataList.size(); i++) {

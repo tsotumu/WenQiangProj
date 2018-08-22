@@ -6,6 +6,7 @@ import com.macojia.leanproduct.BuildConfig;
 import com.macojia.leanproduct.bean.control.EfficiencyIndexData;
 import com.macojia.leanproduct.ui.control.contact.EfficiencyIndexContract;
 
+import base.utils.DebugUtil;
 import base.utils.JsonUtils;
 import rx.Observable;
 import rx.Subscriber;
@@ -22,7 +23,7 @@ public class EfficiencyModel implements EfficiencyIndexContract.Model {
             public void call(Subscriber<? super EfficiencyIndexData> subscriber) {
 
                 EfficiencyIndexData IndexDataSource = new EfficiencyIndexData();
-                if (BuildConfig.DEBUG) {
+                if (DebugUtil.DEBUG) {
                     IndexDataSource = JsonUtils.analysisNewsJsonFile(EfficiencyIndexData.class, "yield_index");
                     LogUtils.logd("efficiency_index data source: " + IndexDataSource.toString());
                 }

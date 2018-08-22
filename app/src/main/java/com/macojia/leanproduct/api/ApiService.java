@@ -1,6 +1,7 @@
 package com.macojia.leanproduct.api;
 
 import com.macojia.common.basebean.BaseRespose;
+import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.bean.login.User;
 import com.macojia.leanproduct.bean.news.NewsDetail;
 import com.macojia.leanproduct.bean.news.NewsDetailEntity;
@@ -28,6 +29,9 @@ public interface ApiService {
 
     @GET("login")
     Observable<BaseRespose<User>> login(@Query("username") String username, @Query("password") String password);
+
+    @GET("control/yield")
+    Observable<YieldIndexData> getYieldData();
 
     @GET("nc/article/{postId}/full.html")
     Observable<Map<String, NewsDetailEntity>> getNewDetail(

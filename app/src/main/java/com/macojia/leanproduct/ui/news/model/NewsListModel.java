@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import base.utils.DebugUtil;
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
@@ -28,7 +29,7 @@ public class NewsListModel implements NewsListContract.Model {
     @Override
     public Observable<List<NewsSummary>> getNewsListData(final String type, final String id, final int startPage) {
         Observable<Map<String, List<NewsSummary>>> listObserver = NetworkManager.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewsList(NetworkManager.getCacheControl(), type, id, startPage);
-        if (BuildConfig.DEBUG){ // 测试数据。
+        if (DebugUtil.DEBUG){ // 测试数据。
 //            listObserver.map.clear();
             return Observable.create(new Observable.OnSubscribe<List<NewsSummary>>() {
                 @Override

@@ -9,6 +9,7 @@ import com.macojia.leanproduct.ui.control.contact.ComprehensiveIndexContract;
 import java.util.ArrayList;
 import java.util.List;
 
+import base.utils.DebugUtil;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -24,7 +25,7 @@ public class ComprehensiveIndexModel implements ComprehensiveIndexContract.Model
             public void call(Subscriber<? super ComprehensiveIndexData> subscriber) {
 
                 ComprehensiveIndexData costIndexList = new ComprehensiveIndexData();
-                if (BuildConfig.DEBUG) {
+                if (DebugUtil.DEBUG) {
                     costIndexList = base.utils.JsonUtils.analysisNewsJsonFile(ComprehensiveIndexData.class, "comprehensive_index");
                 }
                 subscriber.onNext(costIndexList);

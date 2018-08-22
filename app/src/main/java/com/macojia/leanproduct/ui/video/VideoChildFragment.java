@@ -24,6 +24,7 @@ import com.macojia.leanproduct.constant.AppConstant;
 
 import java.util.List;
 
+import base.utils.DebugUtil;
 import butterknife.Bind;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerManager;
@@ -103,7 +104,7 @@ public class VideoChildFragment extends BaseFragment<VideoListPresenter, VideosL
             }
         });
         //数据为空才重新发起请求
-        if (BuildConfig.DEBUG || videoListAdapter.getSize() <= 0) {
+        if (DebugUtil.DEBUG || videoListAdapter.getSize() <= 0) {
             //发起请求
             mStartPage = 0;
             mPresenter.getVideosListDataRequest(mVideoType, mStartPage);

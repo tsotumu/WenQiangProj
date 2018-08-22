@@ -25,7 +25,7 @@ import java.util.List;
 import base.utils.ResourceUtil;
 
 /**
- * Created by Administrator on 2018/7/24.
+ * Created by LC on 2018/7/24.
  */
 
 public class YieldAdapter extends ArrayAdapter<ChartItem> {
@@ -54,7 +54,7 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
 
         ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
 
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i < data.size(); i++) {
             entries.add(new BarEntry(i, (data.get(i))));
         }
 
@@ -67,12 +67,12 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
         return cd;
     }
 
-    private static LineData generateDataLine(YieldIndexData.MonthlyIndex monthlyIndex) {
+    private static LineData generateDataLine(YieldIndexData.MonthlyIndexPerMachineBean monthlyIndex) {
 
         ArrayList<Entry> monthlyDataSet = new ArrayList<Entry>();
 
         for (int i = 0; i < 12; i++) {
-            monthlyDataSet.add(new Entry(i, monthlyIndex.monthlyIndex.get(i)));
+            monthlyDataSet.add(new Entry(i, monthlyIndex.getMonthlyIndex().get(i).getIndex()));
         }
 
         LineDataSet dataSet = new LineDataSet(monthlyDataSet, "");
@@ -88,10 +88,19 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
     public static YieldAdapter getAdapter(YieldIndexData indexData, Context context){
         ArrayList<ChartItem> list = new ArrayList<>();
 
-        list.add(new HorizonBarChartItem(generateDataBar(indexData.machineIndex), context, "产量年度指标", "指标", "包装机号"));
+        list.add(new HorizonBarChartItem(generateDataBar(indexData.getMachineIndex()), context, "产量年度指标", "指标", "包装机号"));
 
-        for (int i = 0; i < 19; i++) {
-            list.add(new LineChartItem(generateDataLine(indexData.monthlyIndexPerMachine.get(i)), context, i + "号包装机", ResourceUtil.getString(R.string.x_label_month), ResourceUtil.getString(R.string.y_label_index)));
+        List<YieldIndexData.MonthlyIndexPerMachineBean> monthlyIndexPerMachineBeen = indexData.getMonthlyIndexPerMachine();
+
+        for (int i = 0; i < monthlyIndexPerMachineBeen.size(); i++) {
+            list.add(new LineChartItem(
+                    generateDataLine(monthlyIndexPerMachineBeen.get(i)),
+                    context,
+                    i + "号包装机",
+                    ResourceUtil.getString(R.string.x_label_month),
+                    ResourceUtil.getString(R.string.y_label_index)
+                    )
+            );
         }
 
         return new YieldAdapter(context, list);

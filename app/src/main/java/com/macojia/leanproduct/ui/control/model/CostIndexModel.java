@@ -5,6 +5,7 @@ import com.macojia.leanproduct.BuildConfig;
 import com.macojia.leanproduct.bean.control.CostIndexData;
 import com.macojia.leanproduct.ui.control.contact.CostListContact;
 
+import base.utils.DebugUtil;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -24,7 +25,7 @@ public class CostIndexModel implements CostListContact.Model {
             public void call(Subscriber<? super CostIndexData> subscriber) {
 
                 CostIndexData costIndexList = new CostIndexData();
-                if (BuildConfig.DEBUG) {
+                if (DebugUtil.DEBUG) {
                     costIndexList = base.utils.JsonUtils.analysisNewsJsonFile(CostIndexData.class, "cost_index_json");
                 }
                 subscriber.onNext(costIndexList);

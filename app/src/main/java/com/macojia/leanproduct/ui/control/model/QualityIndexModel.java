@@ -8,6 +8,7 @@ import com.macojia.leanproduct.ui.control.contact.QualityIndexContract;
 
 import java.util.List;
 
+import base.utils.DebugUtil;
 import base.utils.JsonUtils;
 import rx.Observable;
 import rx.Subscriber;
@@ -24,7 +25,7 @@ public class QualityIndexModel implements QualityIndexContract.Model {
             public void call(Subscriber<? super QualityIndexData> subscriber) {
 
                 QualityIndexData costIndexDataSource = new QualityIndexData();
-                if (BuildConfig.DEBUG) {
+                if (DebugUtil.DEBUG) {
                     costIndexDataSource = JsonUtils.analysisNewsJsonFile(QualityIndexData.class, "yield_index");
                     LogUtils.logd("cost index data source: " + costIndexDataSource.toString());
                 }

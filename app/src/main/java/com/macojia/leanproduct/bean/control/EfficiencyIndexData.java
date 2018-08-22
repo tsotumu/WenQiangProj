@@ -8,7 +8,7 @@ import java.util.List;
 
 public class EfficiencyIndexData {
     public List<Integer> machineIndex;
-    public List<YieldIndexData.MonthlyIndex> monthlyIndexPerMachine;
+    public List<MonthlyIndex> monthlyIndexPerMachine;
 
     public static class MonthlyIndex {
         public List<Integer> monthlyIndex;
