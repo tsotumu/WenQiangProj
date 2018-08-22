@@ -98,7 +98,7 @@ public class LineChartItem extends ChartItem {
         YAxis rightAxis = holder.chart.getAxisRight();
         if (mXAxis == null) {
             mXAxis = new String[]{
-                    "asdf", "asdf", "asdf", "asdf", "asdf", "asdf", "asdf", "asdf", "asdf", "asdf"
+                    "2017.8", "2017.8", "2017.8", "2017.8", "2017.8", "2017.8", "2017.8", "2017.8", "2017.8", "2017.8"
             };
         }
         xAxis.setValueFormatter(new LabelFormatter(mXAxis));
