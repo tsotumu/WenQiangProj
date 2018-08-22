@@ -1,12 +1,14 @@
 package com.macojia.leanproduct.api;
 
 import com.macojia.common.basebean.BaseRespose;
+import com.macojia.leanproduct.bean.control.QualityIndexData;
 import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.bean.login.User;
 import com.macojia.leanproduct.bean.news.NewsDetail;
 import com.macojia.leanproduct.bean.news.NewsDetailEntity;
 import com.macojia.leanproduct.bean.news.NewsSummary;
 import com.macojia.leanproduct.bean.video.VideoListEntity;
+import com.macojia.leanproduct.ui.control.model.QualityIndexModel;
 
 import java.util.List;
 import java.util.Map;
@@ -32,6 +34,9 @@ public interface ApiService {
 
     @GET("control/yield")
     Observable<YieldIndexData> getYieldData();
+
+    @GET("control/quality")
+    Observable<QualityIndexData> getQualityData();
 
     @GET("nc/article/{postId}/full.html")
     Observable<Map<String, NewsDetailEntity>> getNewDetail(
