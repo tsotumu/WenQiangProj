@@ -11,9 +11,8 @@ import com.aspsine.irecyclerview.universaladapter.recyclerview.MultiItemRecycleV
 import com.aspsine.irecyclerview.universaladapter.recyclerview.MultiItemTypeSupport;
 import com.macojia.common.commonutils.DisplayUtil;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.AppApplication;
+import com.macojia.leanproduct.bean.news.NewsListData;
 import com.macojia.leanproduct.bean.news.NewsPhotoDetail;
-import com.macojia.leanproduct.bean.news.NewsSummary;
 import com.macojia.leanproduct.ui.news.activity.NewsDetailActivity;
 import com.macojia.leanproduct.ui.news.activity.NewsPhotoDetailActivity;
 
@@ -25,12 +24,12 @@ import java.util.List;
  * Created by xsf
  * on 2016.09.10:49
  */
-public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
+public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsListData.NewsListBean> {
     public static final int TYPE_ITEM = 0;
     public static final int TYPE_PHOTO_ITEM = 1;
 
-    public NewsListAdapter(Context context, final List<NewsSummary> datas) {
-        super(context, datas, new MultiItemTypeSupport<NewsSummary>() {
+    public NewsListAdapter(Context context, final List<NewsListData.NewsListBean> datas) {
+        super(context, datas, new MultiItemTypeSupport<NewsListData.NewsListBean>() {
 
             @Override
             public int getLayoutId(int type) {
@@ -42,7 +41,7 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
             }
 
             @Override
-            public int getItemViewType(int position, NewsSummary msg) {
+            public int getItemViewType(int position, NewsListData.NewsListBean msg) {
                 if (!TextUtils.isEmpty(msg.getNews_digest())) {
                     return TYPE_ITEM;
                 }
@@ -52,7 +51,7 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
     }
 
     @Override
-    public void convert(ViewHolderHelper holder, NewsSummary newsSummary) {
+    public void convert(ViewHolderHelper holder, NewsListData.NewsListBean newsSummary) {
         switch (holder.getLayoutId()) {
             case R.layout.item_news:
                 setItemValues(holder, newsSummary, getPosition(holder));
@@ -70,7 +69,7 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
      * @param newsSummary
      * @param position
      */
-    private void setItemValues(final ViewHolderHelper holder, final NewsSummary newsSummary, final int position) {
+    private void setItemValues(final ViewHolderHelper holder, final NewsListData.NewsListBean newsSummary, final int position) {
         String title = newsSummary.getNews_title();
         if (title == null) {
             title = newsSummary.getNews_title();
@@ -86,7 +85,7 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
         holder.setOnClickListener(R.id.rl_root, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NewsDetailActivity.startAction(mContext, holder.getView(R.id.news_summary_photo_iv), newsSummary.getId()+"", newsSummary.getNews_cover());
+                NewsDetailActivity.startAction(mContext, holder.getView(R.id.news_summary_photo_iv), newsSummary.getId() + "", newsSummary.getNews_cover());
             }
         });
     }
@@ -98,7 +97,7 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
      * @param holder
      * @param position
      */
-    private void setPhotoItemValues(ViewHolderHelper holder, final NewsSummary newsSummary, int position) {
+    private void setPhotoItemValues(ViewHolderHelper holder, final NewsListData.NewsListBean newsSummary, int position) {
         String title = newsSummary.getNews_title();
         String ptime = newsSummary.getNews_datetime();
         holder.setText(R.id.news_summary_title_tv, title);
@@ -112,26 +111,17 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
         });
     }
 
-    private NewsPhotoDetail getPhotoDetail(NewsSummary newsSummary) {
+    private NewsPhotoDetail getPhotoDetail(NewsListData.NewsListBean newsSummary) {
         NewsPhotoDetail newsPhotoDetail = new NewsPhotoDetail();
         newsPhotoDetail.setTitle(newsSummary.getNews_title());
         setPictures(newsSummary, newsPhotoDetail);
         return newsPhotoDetail;
     }
 
-    private void setPictures(NewsSummary newsSummary, NewsPhotoDetail newsPhotoDetail) {
+    private void setPictures(NewsListData.NewsListBean newsSummary, NewsPhotoDetail newsPhotoDetail) {
         List<NewsPhotoDetail.Picture> pictureList = new ArrayList<>();
-        if (newsSummary.getAds() != null) {
-            for (NewsSummary.AdsBean entity : newsSummary.getAds()) {
-                setValuesAndAddToList(pictureList, entity.getTitle(), entity.getImgsrc());
-            }
-        } else if (newsSummary.getImgextra() != null) {
-            for (NewsSummary.ImgextraBean entity : newsSummary.getImgextra()) {
-                setValuesAndAddToList(pictureList, null, entity.getImgsrc());
-            }
-        } else {
-            setValuesAndAddToList(pictureList, null, newsSummary.getNews_cover());
-        }
+
+        setValuesAndAddToList(pictureList, null, newsSummary.getNews_cover());
 
         newsPhotoDetail.setPictures(pictureList);
     }
@@ -146,7 +136,7 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
         pictureList.add(picture);
     }
 
-    private void setImageView(ViewHolderHelper holder, NewsSummary newsSummary) {
+    private void setImageView(ViewHolderHelper holder, NewsListData.NewsListBean newsSummary) {
         int PhotoThreeHeight = (int) DisplayUtil.dip2px(90);
         int PhotoTwoHeight = (int) DisplayUtil.dip2px(120);
         int PhotoOneHeight = (int) DisplayUtil.dip2px(150);
@@ -157,49 +147,10 @@ public class NewsListAdapter extends MultiItemRecycleViewAdapter<NewsSummary> {
         LinearLayout news_summary_photo_iv_group = holder.getView(R.id.news_summary_photo_iv_group);
         ViewGroup.LayoutParams layoutParams = news_summary_photo_iv_group.getLayoutParams();
 
-        if (newsSummary.getAds() != null) {
-            List<NewsSummary.AdsBean> adsBeanList = newsSummary.getAds();
-            int size = adsBeanList.size();
-            if (size >= 3) {
-                imgSrcLeft = adsBeanList.get(0).getImgsrc();
-                imgSrcMiddle = adsBeanList.get(1).getImgsrc();
-                imgSrcRight = adsBeanList.get(2).getImgsrc();
-                layoutParams.height = PhotoThreeHeight;
-                holder.setText(R.id.news_summary_title_tv, AppApplication.getAppContext()
-                        .getString(R.string.photo_collections, adsBeanList.get(0).getTitle()));
-            } else if (size >= 2) {
-                imgSrcLeft = adsBeanList.get(0).getImgsrc();
-                imgSrcMiddle = adsBeanList.get(1).getImgsrc();
+        imgSrcLeft = newsSummary.getNews_cover();
 
-                layoutParams.height = PhotoTwoHeight;
-            } else if (size >= 1) {
-                imgSrcLeft = adsBeanList.get(0).getImgsrc();
+        layoutParams.height = PhotoOneHeight;
 
-                layoutParams.height = PhotoOneHeight;
-            }
-        } else if (newsSummary.getImgextra() != null) {
-            int size = newsSummary.getImgextra().size();
-            if (size >= 3) {
-                imgSrcLeft = newsSummary.getImgextra().get(0).getImgsrc();
-                imgSrcMiddle = newsSummary.getImgextra().get(1).getImgsrc();
-                imgSrcRight = newsSummary.getImgextra().get(2).getImgsrc();
-
-                layoutParams.height = PhotoThreeHeight;
-            } else if (size >= 2) {
-                imgSrcLeft = newsSummary.getImgextra().get(0).getImgsrc();
-                imgSrcMiddle = newsSummary.getImgextra().get(1).getImgsrc();
-
-                layoutParams.height = PhotoTwoHeight;
-            } else if (size >= 1) {
-                imgSrcLeft = newsSummary.getImgextra().get(0).getImgsrc();
-
-                layoutParams.height = PhotoOneHeight;
-            }
-        } else {
-            imgSrcLeft = newsSummary.getNews_cover();
-
-            layoutParams.height = PhotoOneHeight;
-        }
 
         setPhotoImageView(holder, imgSrcLeft, imgSrcMiddle, imgSrcRight);
         news_summary_photo_iv_group.setLayoutParams(layoutParams);

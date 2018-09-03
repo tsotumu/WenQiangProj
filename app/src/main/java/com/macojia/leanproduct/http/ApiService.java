@@ -1,14 +1,12 @@
-package com.macojia.leanproduct.api;
+package com.macojia.leanproduct.http;
 
 import com.macojia.common.basebean.BaseRespose;
 import com.macojia.leanproduct.bean.control.QualityIndexData;
 import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.bean.login.User;
-import com.macojia.leanproduct.bean.news.NewsDetail;
+import com.macojia.leanproduct.bean.news.NewsListData;
 import com.macojia.leanproduct.bean.news.NewsDetailEntity;
-import com.macojia.leanproduct.bean.news.NewsSummary;
 import com.macojia.leanproduct.bean.video.VideoListEntity;
-import com.macojia.leanproduct.ui.control.model.QualityIndexModel;
 
 import java.util.List;
 import java.util.Map;
@@ -43,11 +41,14 @@ public interface ApiService {
             @Header("Cache-Control") String cacheControl,
             @Path("postId") String postId);
 
-    @GET("nc/article/{type}/{id}/{startPage}-20.html")
-    Observable<Map<String, List<NewsSummary>>> getNewsList(
-            @Header("Cache-Control") String cacheControl,
-            @Path("type") String type, @Path("id") String id,
-            @Path("startPage") int startPage);
+//    @GET("tlpcms/getNewsList/{startPage}")
+//    Observable<List<NewsSummary>> getNewsList(
+//            @Header("Cache-Control") String cacheControl,
+////            @Path("type") String type, @Path("id") String id,
+//            @Path("startPage") int startPage);
+
+    @GET("tlpcms/getNewsList")
+    Observable<NewsListData> getNewsList(@Query("startPage") String id);
 
     @GET
     Observable<ResponseBody> getNewsBodyHtmlPhoto(
@@ -65,4 +66,5 @@ public interface ApiService {
     @GET("rank")
     Call<String> getRank(
             @Query("key") String key, @Query("area") String area);
+
 }

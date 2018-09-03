@@ -1,20 +1,15 @@
 package com.macojia.leanproduct.ui.login;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.api.HostType;
-import com.macojia.leanproduct.api.NetworkManager;
+import com.macojia.leanproduct.http.NetworkManager;
 import com.macojia.leanproduct.ui.MainActivity;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -62,7 +57,7 @@ public class LoginActivity extends BaseActivity {
     private boolean isValidLogin() {
         String inputUsrName = mEditUsrName.getText().toString();
         String inputPwd = mEditPwd.getText().toString();
-        NetworkManager.getDefault(HostType.NETEASE_NEWS_VIDEO).login(inputUsrName, inputPwd);
+        NetworkManager.getDefault(0).login(inputUsrName, inputPwd);
         return true;
     }
 }

@@ -2,6 +2,7 @@ package com.macojia.leanproduct.ui.news.presenter;
 
 import com.macojia.common.baserx.RxSubscriber;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.bean.news.NewsListData;
 import com.macojia.leanproduct.bean.news.NewsSummary;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.news.contract.NewsListContract;
@@ -38,7 +39,7 @@ public class NewsListPresenter extends NewsListContract.Presenter {
      */
     @Override
     public void getNewsListDataRequest(String type, String id, int startPage) {
-        mRxManage.add(mModel.getNewsListData(type, id, startPage).subscribe(new RxSubscriber<List<NewsSummary>>(mContext, false) {
+        mRxManage.add(mModel.getNewsListData(type, id, startPage).subscribe(new RxSubscriber<NewsListData>(mContext, false) {
             @Override
             public void onStart() {
                 super.onStart();
@@ -46,7 +47,7 @@ public class NewsListPresenter extends NewsListContract.Presenter {
             }
 
             @Override
-            protected void _onNext(List<NewsSummary> newsSummaries) {
+            protected void _onNext(NewsListData newsSummaries) {
                 mView.OnNewsListDataReturned(newsSummaries);
                 mView.stopLoading();
             }

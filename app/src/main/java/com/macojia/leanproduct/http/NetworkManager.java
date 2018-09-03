@@ -1,4 +1,4 @@
-package com.macojia.leanproduct.api;
+package com.macojia.leanproduct.http;
 
 
 import android.support.annotation.NonNull;
@@ -49,7 +49,7 @@ public class NetworkManager {
      * (假如请求了服务器并在a时刻返回响应结果，则在max-age规定的秒数内，浏览器将不会发送对应的请求到服务器，数据由缓存直接返回)时则不会使用缓存而请求服务器
      */
     private static final String CACHE_CONTROL_AGE = "max-value=0";
-    private static SparseArray<NetworkManager> sRetrofitManager = new SparseArray<>(HostType.TYPE_COUNT);
+    private static NetworkManager networkManager;
 
     /*************************缓存设置*********************/
 /*
@@ -147,26 +147,20 @@ public class NetworkManager {
      *                 EWS_DETAIL_HTML_PHOTO:3新闻详情html图片)
      */
     public static ApiService getDefault(int hostType) {
-        NetworkManager networkManager = sRetrofitManager.get(hostType);
         if (networkManager == null) {
             networkManager = new NetworkManager(hostType);
-            sRetrofitManager.put(hostType, networkManager);
         }
         return networkManager.apiService;
-    }
-
-    /**
+    } /**
      * OkHttpClient
      *
      * @return
      */
     public static OkHttpClient getOkHttpClient() {
-        NetworkManager retrofitManager = sRetrofitManager.get(HostType.NETEASE_NEWS_VIDEO);
-        if (retrofitManager == null) {
-            retrofitManager = new NetworkManager(HostType.NETEASE_NEWS_VIDEO);
-            sRetrofitManager.put(HostType.NETEASE_NEWS_VIDEO, retrofitManager);
+        if (networkManager == null) {
+            networkManager = new NetworkManager(0);
         }
-        return retrofitManager.okHttpClient;
+        return networkManager.okHttpClient;
     }
 
     /**

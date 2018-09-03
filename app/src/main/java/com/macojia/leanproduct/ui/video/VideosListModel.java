@@ -3,9 +3,7 @@ package com.macojia.leanproduct.ui.video;
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.LogUtils;
 import com.macojia.common.commonutils.TimeUtil;
-import com.macojia.leanproduct.BuildConfig;
-import com.macojia.leanproduct.api.HostType;
-import com.macojia.leanproduct.api.NetworkManager;
+import com.macojia.leanproduct.http.NetworkManager;
 import com.macojia.leanproduct.bean.video.VideoListEntity;
 
 import java.util.ArrayList;
@@ -27,7 +25,7 @@ public class VideosListModel implements VideosListContract.Model {
 
     @Override
     public Observable<List<VideoListEntity.VideoEntity>> getVideosListData(final String type, int startPage) {
-        Observable<Map<String, List<VideoListEntity.VideoEntity>>> videoListMap = NetworkManager.getDefault(HostType.NETEASE_NEWS_VIDEO).getVideoList(NetworkManager.getCacheControl(), type, startPage);
+        Observable<Map<String, List<VideoListEntity.VideoEntity>>> videoListMap = NetworkManager.getDefault(0).getVideoList(NetworkManager.getCacheControl(), type, startPage);
         return videoListMap.flatMap(new Func1<Map<String, List<VideoListEntity.VideoEntity>>, Observable<VideoListEntity.VideoEntity>>() {
             @Override
             public Observable<VideoListEntity.VideoEntity> call(final Map<String, List<VideoListEntity.VideoEntity>> map) {

@@ -18,7 +18,7 @@ package com.macojia.leanproduct.db;
 
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.api.NetworkConstants;
+import com.macojia.leanproduct.http.NetworkConstants;
 import com.macojia.leanproduct.AppApplication;
 import com.macojia.leanproduct.bean.news.NewsChannelTable;
 

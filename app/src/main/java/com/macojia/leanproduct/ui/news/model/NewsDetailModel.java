@@ -1,12 +1,10 @@
 package com.macojia.leanproduct.ui.news.model;
 
 import com.macojia.common.baserx.RxSchedulers;
-import com.macojia.leanproduct.api.NetworkManager;
-import com.macojia.leanproduct.api.HostType;
+import com.macojia.leanproduct.http.NetworkManager;
 import com.macojia.leanproduct.bean.news.NewsDetailEntity;
 import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +21,7 @@ public class NewsDetailModel implements NewsDetailContract.Model {
 
     @Override
     public Observable<NewsDetailEntity> getOneNewsData(final String postId) {
-        return NetworkManager.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewDetail(NetworkManager.getCacheControl(), postId)
+        return NetworkManager.getDefault(0).getNewDetail(NetworkManager.getCacheControl(), postId)
                 .map(new Func1<Map<String, NewsDetailEntity>, NewsDetailEntity>() {
                     @Override
                     public NewsDetailEntity call(Map<String, NewsDetailEntity> map) {

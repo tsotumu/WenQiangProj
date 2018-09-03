@@ -5,5 +5,5 @@ package base.utils;
  */
 
 public class DebugUtil {
-    public final static boolean DEBUG = true;
+    public final static boolean DEBUG = false;
 }

@@ -1,20 +1,27 @@
 package com.macojia.leanproduct.ui.news.model;
 
 import com.macojia.common.baserx.RxSchedulers;
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.common.commonutils.TimeUtil;
-import com.macojia.leanproduct.BuildConfig;
-import com.macojia.leanproduct.api.NetworkConstants;
-import com.macojia.leanproduct.api.HostType;
-import com.macojia.leanproduct.api.NetworkManager;
+import com.macojia.leanproduct.bean.news.NewsListData;
+import com.macojia.leanproduct.http.HttpUtil;
+import com.macojia.leanproduct.http.NetworkConstants;
+import com.macojia.leanproduct.http.NetworkManager;
 import com.macojia.leanproduct.bean.news.NewsSummary;
 import com.macojia.leanproduct.bean.news.NewsListEntity;
 import com.macojia.leanproduct.ui.news.contract.NewsListContract;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import base.utils.DebugUtil;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+import retrofit2.Retrofit;
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
@@ -27,44 +34,40 @@ import rx.functions.Func2;
  */
 public class NewsListModel implements NewsListContract.Model {
     @Override
-    public Observable<List<NewsSummary>> getNewsListData(final String type, final String id, final int startPage) {
-        Observable<Map<String, List<NewsSummary>>> listObserver = NetworkManager.getDefault(HostType.NETEASE_NEWS_VIDEO).getNewsList(NetworkManager.getCacheControl(), type, id, startPage);
-        if (DebugUtil.DEBUG){ // 测试数据。
-//            listObserver.map.clear();
-            return Observable.create(new Observable.OnSubscribe<List<NewsSummary>>() {
+    public Observable<NewsListData> getNewsListData(final String type, final String id, final int startPage) {
+            Map<String, Object> params = new HashMap<>();
+            params.put("startPage", 0);
+            HttpUtil.makeLionHttpRequest(NetworkManager.getOkHttpClient(), NetworkConstants.NETS_LIST, params, new Callback() {
                 @Override
-                public void call(Subscriber<? super List<NewsSummary>> subscriber) {
-                    List<NewsSummary> newsSummaryList = new ArrayList<>();
-                    NewsListEntity newsListEntity = base.utils.JsonUtils.analysisNewsJsonFile(NewsListEntity.class, "news_list_data");
-                    ArrayList<NewsListEntity.NewsDigest> digests = newsListEntity.newsList;
-                    for (int i = 0; i < digests.size(); i++) {
-                        NewsSummary newsSummary = new NewsSummary();
-                        newsSummary.setNews_cover(digests.get(i).news_cover);
-                        newsSummary.setNews_datetime(digests.get(i).news_datetime);
-                        newsSummary.setNews_title(digests.get(i).news_title);
-                        newsSummary.setNews_digest(digests.get(i).news_digest);
-                        newsSummary.setId(digests.get(i).id);
-                        /*newsSummary.setDigest(digests.get(i).digest);
-                        newsSummary.setTitle(digests.get(i).title);
-                        newsSummary.setPostid(digests.get(i).postId);
-                        newsSummary.setImgsrc(digests.get(i).imgSrc);
-                        newsSummary.setPtime(digests.get(i).postTime);*/
-                        newsSummaryList.add(newsSummary);
-                        subscriber.onNext(newsSummaryList);
-                        subscriber.onCompleted();
-                    }
+                public void onFailure(Call call, IOException e) {
+                    LogUtils.logd(e.getMessage());
                 }
-            }).compose(RxSchedulers.<List<NewsSummary>>io_main());
-        }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+
+                }
+            });
+          /*  retrofit2.Call call =  NetworkManager.getDefault(0).getNewsList("0");
+            call.enqueue(new retrofit2.Callback() {
+                @Override
+                public void onResponse(retrofit2.Call call, retrofit2.Response response) {
+                    retrofit2.Response response1 = response;
+                    LogUtils.logd(response1.body().toString());
+                }
+
+                @Override
+                public void onFailure(retrofit2.Call call, Throwable t) {
+                    LogUtils.logd(t.getMessage());
+
+                }
+            });*/
+            return NetworkManager.getDefault(0).getNewsList("0");
 
 
-        Observable<NewsSummary> newsSummaryObservable = listObserver.flatMap(new Func1<Map<String, List<NewsSummary>>, Observable<NewsSummary>>() {
+      /*  Observable<NewsSummary> newsSummaryObservable = listObserver.flatMap(new Func1<Map<String, List<NewsSummary>>, Observable<NewsSummary>>() {
             @Override
             public Observable<NewsSummary> call(Map<String, List<NewsSummary>> map) {
-                if (id.endsWith(NetworkConstants.HOUSE_ID)) {
-                    // 房产实际上针对地区的它的id与返回key不同
-                    return Observable.from(map.get("北京"));
-                }
                 return Observable.from(map.get(id));
             }
         });
@@ -83,6 +86,6 @@ public class NewsListModel implements NewsListContract.Model {
                     }
                 })
                 //声明线程调度
-                .compose(RxSchedulers.<List<NewsSummary>>io_main());
+                .compose(RxSchedulers.<List<NewsSummary>>io_main());*/
     }
 }

@@ -2,7 +2,7 @@ package com.macojia.leanproduct.ui.control.model;
 
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.LogUtils;
-import com.macojia.leanproduct.api.NetworkManager;
+import com.macojia.leanproduct.http.NetworkManager;
 import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.ui.control.contact.YieldListContact;
 

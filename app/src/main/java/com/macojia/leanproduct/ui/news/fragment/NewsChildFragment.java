@@ -12,6 +12,7 @@ import com.macojia.common.base.BaseFragment;
 import com.macojia.common.commonutils.LogUtils;
 import com.macojia.common.commonwidget.LoadingTip;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.bean.news.NewsListData;
 import com.macojia.leanproduct.bean.news.NewsSummary;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.news.adapter.NewsListAdapter;
@@ -35,7 +36,7 @@ public class NewsChildFragment extends BaseFragment<NewsListPresenter, NewsListM
     @Bind(R.id.loadedTip)
     LoadingTip loadedTip;
     private NewsListAdapter newListAdapter;
-    private List<NewsSummary> mNewsDataList = new ArrayList<>();
+    private List<NewsListData.NewsListBean> mNewsDataList = new ArrayList<>();
 
     private String mNewsId;
     private String mNewsType;
@@ -77,17 +78,17 @@ public class NewsChildFragment extends BaseFragment<NewsListPresenter, NewsListM
 
 
     @Override
-    public void OnNewsListDataReturned(List<NewsSummary> newsSummaries) {
-        LogUtils.logd("OnNewsListDataReturned, newsId->" + mNewsId + " newsType->"+mNewsType + " newsSummary:\n" + newsSummaries);
+    public void OnNewsListDataReturned(NewsListData newsSummaries) {
+        LogUtils.logd("OnNewsListDataReturned, newsId->" + mNewsId + " newsType->"+mNewsType + " newsSummary:\n" + newsSummaries.getNewsList());
         if (newsSummaries != null) {
             mStartPage += 20;
             if (newListAdapter.getPageBean().isRefresh()) {
                 mRecylerView.setRefreshing(false);
-                newListAdapter.replaceAll(newsSummaries);
+                newListAdapter.replaceAll(newsSummaries.getNewsList());
             } else {
-                if (newsSummaries.size() > 0) {
+                if (newsSummaries.getNewsList().size() > 0) {
                     mRecylerView.setLoadMoreStatus(LoadMoreFooterView.Status.GONE);
-                    newListAdapter.addAll(newsSummaries);
+                    newListAdapter.addAll(newsSummaries.getNewsList());
                 } else {
                     mRecylerView.setLoadMoreStatus(LoadMoreFooterView.Status.THE_END);
                 }
