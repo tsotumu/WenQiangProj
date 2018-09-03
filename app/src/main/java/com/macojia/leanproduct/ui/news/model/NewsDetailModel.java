@@ -21,19 +21,7 @@ public class NewsDetailModel implements NewsDetailContract.Model {
 
     @Override
     public Observable<NewsDetailEntity> getOneNewsData(final String postId) {
-        return NetworkManager.getDefault(0).getNewDetail(NetworkManager.getCacheControl(), postId)
-                .map(new Func1<Map<String, NewsDetailEntity>, NewsDetailEntity>() {
-                    @Override
-                    public NewsDetailEntity call(Map<String, NewsDetailEntity> map) {
-                        if (true) { // 测试本地数据。
-                            NewsDetailEntity newsDetailEntity = JsonUtils.analysisNewsJsonFile(NewsDetailEntity.class, "news_detail_data");
-                            return newsDetailEntity;
-                        }
-                        NewsDetailEntity newsDetail = map.get(postId);
-                        changeNewsDetail(newsDetail);
-                        return newsDetail;
-                    }
-                })
+        return NetworkManager.getDefault(0).getNewDetail(postId)
                 .compose(RxSchedulers.<NewsDetailEntity>io_main());
     }
 

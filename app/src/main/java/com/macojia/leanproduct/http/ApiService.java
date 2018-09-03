@@ -4,8 +4,8 @@ import com.macojia.common.basebean.BaseRespose;
 import com.macojia.leanproduct.bean.control.QualityIndexData;
 import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.bean.login.User;
-import com.macojia.leanproduct.bean.news.NewsListData;
 import com.macojia.leanproduct.bean.news.NewsDetailEntity;
+import com.macojia.leanproduct.bean.news.NewsListData;
 import com.macojia.leanproduct.bean.video.VideoListEntity;
 
 import java.util.List;
@@ -36,10 +36,8 @@ public interface ApiService {
     @GET("control/quality")
     Observable<QualityIndexData> getQualityData();
 
-    @GET("nc/article/{postId}/full.html")
-    Observable<Map<String, NewsDetailEntity>> getNewDetail(
-            @Header("Cache-Control") String cacheControl,
-            @Path("postId") String postId);
+    @GET("lpcms/getNewDetail")
+    Observable<NewsDetailEntity> getNewDetail(@Query("id") String id);
 
 //    @GET("tlpcms/getNewsList/{startPage}")
 //    Observable<List<NewsSummary>> getNewsList(
@@ -47,8 +45,10 @@ public interface ApiService {
 ////            @Path("type") String type, @Path("id") String id,
 //            @Path("startPage") int startPage);
 
-    @GET("tlpcms/getNewsList")
-    Observable<NewsListData> getNewsList(@Query("startPage") String id);
+    @GET("lpcms/getNewsList")
+    Observable<NewsListData> getNewsList(
+            @Query("startPage") String startPage,
+            @Query("type") String type);
 
     @GET
     Observable<ResponseBody> getNewsBodyHtmlPhoto(

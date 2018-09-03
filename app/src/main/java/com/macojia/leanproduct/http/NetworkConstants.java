@@ -23,23 +23,10 @@ import java.lang.annotation.RetentionPolicy;
 
 public class NetworkConstants {
     public static final String NETEAST_HOST = "http://118.190.153.47:8080/";
-    public static final String NETS_LIST = "http://118.190.153.47:8080/tlpcms/getNewsList?startPage=0";
+    public static final String NEWS_LIST_TEST = "http://118.190.153.47:8080/lpcms/getNewsList?startPage=1&type=党建";
+    public static final String NEWS_LIST_TEST2 =     "http://118.190.153.47:8080/lpcms/getNewDetail?id=78";
     // 其他TYPE
     public static final String OTHER_TYPE = "list";
-
-    /**
-     * 新闻id获取类型
-     *
-     * @param id 新闻id
-     * @return 新闻类型
-     */
-    public static String getType(String id) {
-        switch (id) {
-            default:
-                break;
-        }
-        return OTHER_TYPE;
-    }
 
     /**
      * 获取对应的host

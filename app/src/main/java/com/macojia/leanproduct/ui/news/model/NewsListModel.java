@@ -1,31 +1,20 @@
 package com.macojia.leanproduct.ui.news.model;
 
-import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.LogUtils;
-import com.macojia.common.commonutils.TimeUtil;
 import com.macojia.leanproduct.bean.news.NewsListData;
 import com.macojia.leanproduct.http.HttpUtil;
 import com.macojia.leanproduct.http.NetworkConstants;
 import com.macojia.leanproduct.http.NetworkManager;
-import com.macojia.leanproduct.bean.news.NewsSummary;
-import com.macojia.leanproduct.bean.news.NewsListEntity;
 import com.macojia.leanproduct.ui.news.contract.NewsListContract;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import base.utils.DebugUtil;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
-import retrofit2.Retrofit;
 import rx.Observable;
-import rx.Subscriber;
-import rx.functions.Func1;
-import rx.functions.Func2;
 
 /**
  * des:获取新闻列表
@@ -34,10 +23,10 @@ import rx.functions.Func2;
  */
 public class NewsListModel implements NewsListContract.Model {
     @Override
-    public Observable<NewsListData> getNewsListData(final String type, final String id, final int startPage) {
-            Map<String, Object> params = new HashMap<>();
+    public Observable<NewsListData> getNewsListData(final String type, final int startPage) {
+     /*       Map<String, Object> params = new HashMap<>();
             params.put("startPage", 0);
-            HttpUtil.makeLionHttpRequest(NetworkManager.getOkHttpClient(), NetworkConstants.NETS_LIST, params, new Callback() {
+            HttpUtil.makeLionHttpRequest(NetworkManager.getOkHttpClient(), NetworkConstants.NEWS_LIST_TEST, params, new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     LogUtils.logd(e.getMessage());
@@ -48,7 +37,7 @@ public class NewsListModel implements NewsListContract.Model {
 
                 }
             });
-          /*  retrofit2.Call call =  NetworkManager.getDefault(0).getNewsList("0");
+            retrofit2.Call call =  NetworkManager.getDefault(0).getNewsList("1", "党建");
             call.enqueue(new retrofit2.Callback() {
                 @Override
                 public void onResponse(retrofit2.Call call, retrofit2.Response response) {
@@ -62,7 +51,7 @@ public class NewsListModel implements NewsListContract.Model {
 
                 }
             });*/
-            return NetworkManager.getDefault(0).getNewsList("0");
+            return NetworkManager.getDefault(0).getNewsList("1", type);
 
 
       /*  Observable<NewsSummary> newsSummaryObservable = listObserver.flatMap(new Func1<Map<String, List<NewsSummary>>, Observable<NewsSummary>>() {

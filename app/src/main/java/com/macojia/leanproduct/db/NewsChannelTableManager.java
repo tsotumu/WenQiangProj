@@ -28,22 +28,6 @@ import java.util.List;
 
 public class NewsChannelTableManager {
     private final static int CHANNEL_AMOUNT = 5;
-    /**
-     * 加载新闻类型
-     *
-     * @return
-     */
-    public static List<NewsChannelTable> loadNewsChannelsMine() {
-        List<String> channelName = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name));
-        List<String> channelId = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_id));
-        ArrayList<NewsChannelTable> newsChannelTables = new ArrayList<>();
-        for (int i = 0; i < channelName.size(); i++) {
-            NewsChannelTable entity = new NewsChannelTable(channelName.get(i), channelId.get(i)
-                    , NetworkConstants.getType(channelId.get(i)), i <= 5, i, false);
-            newsChannelTables.add(entity);
-        }
-        return newsChannelTables;
-    }
 
     /**
      * 加载固定新闻类型
@@ -53,17 +37,14 @@ public class NewsChannelTableManager {
     public static List<NewsChannelTable> loadNewsChannelsStatic() {
         // title 作为新闻自页面的标题
         List<String> channelTitleList = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name_static));
-        //
-        List<String> channelIdList = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_id_static));
+        List<String> channelIdList = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name_static));
         ArrayList<NewsChannelTable> newsChannelTables = new ArrayList<>();
         String title;
-        String id;
         String type;
         for (int i = 0; i < channelTitleList.size(); i++) {
             title = channelTitleList.get(i);
-            id = channelTitleList.get(i);
-            type = NetworkConstants.getType(channelIdList.get(i));
-            NewsChannelTable entity = new NewsChannelTable(title, id, type, i <= CHANNEL_AMOUNT, i, true);
+            type = channelIdList.get(i);
+            NewsChannelTable entity = new NewsChannelTable(title, type, i <= CHANNEL_AMOUNT, i, true);
             newsChannelTables.add(entity);
         }
         return newsChannelTables;

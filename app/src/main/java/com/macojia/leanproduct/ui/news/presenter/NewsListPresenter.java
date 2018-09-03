@@ -3,13 +3,12 @@ package com.macojia.leanproduct.ui.news.presenter;
 import com.macojia.common.baserx.RxSubscriber;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.news.NewsListData;
-import com.macojia.leanproduct.bean.news.NewsSummary;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.news.contract.NewsListContract;
 
-import java.util.List;
-
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * des:
@@ -32,14 +31,9 @@ public class NewsListPresenter extends NewsListContract.Presenter {
 
     /**
      * 请求获取列表数据
-     *
-     * @param type
-     * @param id
-     * @param startPage
-     */
-    @Override
-    public void getNewsListDataRequest(String type, String id, int startPage) {
-        mRxManage.add(mModel.getNewsListData(type, id, startPage).subscribe(new RxSubscriber<NewsListData>(mContext, false) {
+     * */
+    public void getNewsListDataRequest(String type, int startPage) {
+        mRxManage.add(mModel.getNewsListData(type, startPage).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new RxSubscriber<NewsListData>(mContext, false) {
             @Override
             public void onStart() {
                 super.onStart();

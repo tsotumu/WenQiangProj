@@ -4,9 +4,6 @@ import com.macojia.common.base.BaseModel;
 import com.macojia.common.base.BasePresenter;
 import com.macojia.common.base.BaseView;
 import com.macojia.leanproduct.bean.news.NewsListData;
-import com.macojia.leanproduct.bean.news.NewsSummary;
-
-import java.util.List;
 
 import rx.Observable;
 
@@ -18,7 +15,7 @@ import rx.Observable;
 public interface NewsListContract {
     interface Model extends BaseModel {
         //请求获取新闻
-        Observable<NewsListData> getNewsListData(String type, final String id, int startPage);
+        Observable<NewsListData> getNewsListData(String type, int startPage);
     }
 
     interface View extends BaseView {
@@ -31,6 +28,6 @@ public interface NewsListContract {
 
     abstract static class Presenter extends BasePresenter<View, Model> {
         //发起获取新闻请求
-        public abstract void getNewsListDataRequest(String type, final String id, int startPage);
+        public abstract void getNewsListDataRequest(String type, int startPage);
     }
 }

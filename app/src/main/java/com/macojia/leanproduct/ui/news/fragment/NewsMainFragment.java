@@ -109,10 +109,9 @@ public class NewsMainFragment extends BaseFragment<NewsMainPresenter, NewsMainMo
         });
     }
 
-    private NewsChildFragment createListFragments(NewsChannelTable newsChannel) {
-        NewsChildFragment fragment = new NewsChildFragment();
+    private NewsListFragment createListFragments(NewsChannelTable newsChannel) {
+        NewsListFragment fragment = new NewsListFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(AppConstant.NEWS_ID, newsChannel.getNewsChannelId());
         bundle.putString(AppConstant.NEWS_TYPE, newsChannel.getNewsChannelType());
         bundle.putInt(AppConstant.CHANNEL_POSITION, newsChannel.getNewsChannelIndex());
         fragment.setArguments(bundle);
