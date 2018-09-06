@@ -39,16 +39,14 @@ public interface ApiService {
     @GET("lpcms/getNewDetail")
     Observable<NewsDetailEntity> getNewDetail(@Query("id") String id);
 
-//    @GET("tlpcms/getNewsList/{startPage}")
-//    Observable<List<NewsSummary>> getNewsList(
-//            @Header("Cache-Control") String cacheControl,
-////            @Path("type") String type, @Path("id") String id,
-//            @Path("startPage") int startPage);
-
     @GET("lpcms/getNewsList")
     Observable<NewsListData> getNewsList(
             @Query("startPage") String startPage,
             @Query("type") String type);
+
+
+    @GET("lpcms/getMarkIndexData")
+    Observable<QualityIndexData> getControlList(@Query("markindex") String markindex);
 
     @GET
     Observable<ResponseBody> getNewsBodyHtmlPhoto(

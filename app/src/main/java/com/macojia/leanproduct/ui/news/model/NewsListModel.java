@@ -51,7 +51,7 @@ public class NewsListModel implements NewsListContract.Model {
 
                 }
             });*/
-            return NetworkManager.getDefault(0).getNewsList("1", type);
+            return NetworkManager.getDefault(0).getNewsList(Integer.valueOf(startPage).toString(), type);
 
 
       /*  Observable<NewsSummary> newsSummaryObservable = listObserver.flatMap(new Func1<Map<String, List<NewsSummary>>, Observable<NewsSummary>>() {

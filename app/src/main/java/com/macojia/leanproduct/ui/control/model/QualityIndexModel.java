@@ -2,8 +2,9 @@ package com.macojia.leanproduct.ui.control.model;
 
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.LogUtils;
-import com.macojia.leanproduct.http.NetworkManager;
+import com.macojia.leanproduct.bean.control.ControlType;
 import com.macojia.leanproduct.bean.control.QualityIndexData;
+import com.macojia.leanproduct.http.NetworkManager;
 import com.macojia.leanproduct.ui.control.contact.QualityIndexContract;
 
 import base.utils.DebugUtil;
@@ -18,7 +19,7 @@ import rx.Subscriber;
 public class QualityIndexModel implements QualityIndexContract.Model {
     @Override
     public Observable<QualityIndexData> getData() {
-        if (DebugUtil.DEBUG) {
+        if (DebugUtil.DEBUG && false) {
             return Observable.create(new Observable.OnSubscribe<QualityIndexData>() {
                 @Override
                 public void call(Subscriber<? super QualityIndexData> subscriber) {
@@ -31,7 +32,7 @@ public class QualityIndexModel implements QualityIndexContract.Model {
                 }
             }).compose(RxSchedulers.<QualityIndexData>io_main());
         } else {
-            return NetworkManager.getDefault(0).getQualityData();
+            return NetworkManager.getDefault(0).getControlList(ControlType.QUALITY_INDEX);
         }
     }
 }

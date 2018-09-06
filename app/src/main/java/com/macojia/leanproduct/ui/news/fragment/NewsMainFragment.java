@@ -31,7 +31,7 @@ import butterknife.OnClick;
  */
 public class NewsMainFragment extends BaseFragment<NewsMainPresenter, NewsMainModel> implements NewsMainContractBase.View {
     @Bind(R.id.tabs)
-    TabLayout tabs;
+    TabLayout tabLayout;
     @Bind(R.id.add_channel_iv)
     ImageView addChannelIv;
     @Bind(R.id.view_pager)
@@ -70,7 +70,7 @@ public class NewsMainFragment extends BaseFragment<NewsMainPresenter, NewsMainMo
 
     @Override
     public void OnNewsChannelsReturned(List<NewsChannelTable> newsChannelsMine) {
-        LogUtils.logd("OnNewsChannelsReturned:\n" + newsChannelsMine);
+        LogUtils.logd("OnNewsChannelsReturned->" + newsChannelsMine);
         if (newsChannelsMine != null) {
             List<String> channelNames = new ArrayList<>();
             List<Fragment> mNewsFragmentList = new ArrayList<>();
@@ -85,8 +85,8 @@ public class NewsMainFragment extends BaseFragment<NewsMainPresenter, NewsMainMo
                 fragmentAdapter.setFragments(getChildFragmentManager(), mNewsFragmentList, channelNames);
             }
             viewPager.setAdapter(fragmentAdapter);
-            tabs.setupWithViewPager(viewPager);
-            MyUtils.dynamicSetTabLayoutMode(tabs);
+            tabLayout.setupWithViewPager(viewPager);
+            MyUtils.dynamicSetTabLayoutMode(tabLayout);
             setPageChangeListener();
         }
     }

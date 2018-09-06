@@ -16,15 +16,16 @@
  */
 package com.macojia.leanproduct.http;
 
-import android.support.annotation.StringDef;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 public class NetworkConstants {
     public static final String NETEAST_HOST = "http://118.190.153.47:8080/";
     public static final String NEWS_LIST_TEST = "http://118.190.153.47:8080/lpcms/getNewsList?startPage=1&type=党建";
     public static final String NEWS_LIST_TEST2 =     "http://118.190.153.47:8080/lpcms/getNewDetail?id=78";
+    // http://118.190.153.47:8080/lpcms/getNewDetail?id=78
+    // http://118.190.153.47:8080/lpcms /getMarkIndexData?markindex=qualityindex
+    // http://118.190.153.47:8080/lpcms /getMarkIndexData?markindex=efficiencyindex
+    // http://118.190.153.47:8080/lpcms /getMarkIndexData?markindex=costindex
+    // http://118.190.153.47:8080/lpcms /getMarkIndexData?markindex=yieldindex
+
     // 其他TYPE
     public static final String OTHER_TYPE = "list";
 
@@ -38,11 +39,4 @@ public class NetworkConstants {
         return NETEAST_HOST;
     }
 
-    @StringDef({NetworkConstants.NEWS_TYPE.dangjian, NetworkConstants.NEWS_TYPE.shengchan, NetworkConstants.NEWS_TYPE.xianchang})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface NEWS_TYPE{
-        String dangjian = "dangjian";
-        String shengchan = "shengchan";
-        String xianchang = "xianchang";
-    }
 }

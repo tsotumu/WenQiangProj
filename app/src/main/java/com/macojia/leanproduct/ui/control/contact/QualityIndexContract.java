@@ -5,8 +5,6 @@ import com.macojia.common.base.BasePresenter;
 import com.macojia.common.base.BaseView;
 import com.macojia.leanproduct.bean.control.QualityIndexData;
 
-import java.util.List;
-
 import rx.Observable;
 
 /**
