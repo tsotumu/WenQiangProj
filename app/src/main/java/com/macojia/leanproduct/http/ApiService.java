@@ -33,9 +33,6 @@ public interface ApiService {
     @GET("control/yield")
     Observable<YieldIndexData> getYieldData();
 
-    @GET("control/quality")
-    Observable<QualityIndexData> getQualityData();
-
     @GET("lpcms/getNewDetail")
     Observable<NewsDetailEntity> getNewDetail(@Query("id") String id);
 

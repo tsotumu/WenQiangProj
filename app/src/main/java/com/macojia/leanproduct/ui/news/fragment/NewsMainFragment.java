@@ -110,9 +110,10 @@ public class NewsMainFragment extends BaseFragment<NewsMainPresenter, NewsMainMo
     }
 
     private NewsListFragment createListFragments(NewsChannelTable newsChannel) {
+        LogUtils.logd("create new List fragment->"+newsChannel.toString());
         NewsListFragment fragment = new NewsListFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(AppConstant.NEWS_TYPE, newsChannel.getNewsChannelType());
+        bundle.putString(AppConstant.NEWS_TYPE, newsChannel.getNewsChannelName());
         bundle.putInt(AppConstant.CHANNEL_POSITION, newsChannel.getNewsChannelIndex());
         fragment.setArguments(bundle);
         return fragment;

@@ -37,14 +37,12 @@ public class NewsChannelTableManager {
     public static List<NewsChannelTable> loadNewsChannelsStatic() {
         // title 作为新闻自页面的标题
         List<String> channelTitleList = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name_static));
-        List<String> channelIdList = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.news_channel_name_static));
         ArrayList<NewsChannelTable> newsChannelTables = new ArrayList<>();
         String title;
         String type;
         for (int i = 0; i < channelTitleList.size(); i++) {
             title = channelTitleList.get(i);
-            type = channelIdList.get(i);
-            NewsChannelTable entity = new NewsChannelTable(title, type, i <= CHANNEL_AMOUNT, i, true);
+            NewsChannelTable entity = new NewsChannelTable(title, title, i <= CHANNEL_AMOUNT, i, true);
             newsChannelTables.add(entity);
         }
         return newsChannelTables;

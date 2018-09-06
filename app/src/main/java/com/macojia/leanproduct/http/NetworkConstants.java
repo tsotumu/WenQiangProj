@@ -21,10 +21,10 @@ public class NetworkConstants {
     public static final String NEWS_LIST_TEST = "http://118.190.153.47:8080/lpcms/getNewsList?startPage=1&type=党建";
     public static final String NEWS_LIST_TEST2 =     "http://118.190.153.47:8080/lpcms/getNewDetail?id=78";
     // http://118.190.153.47:8080/lpcms/getNewDetail?id=78
-    // http://118.190.153.47:8080/lpcms /getMarkIndexData?markindex=qualityindex
-    // http://118.190.153.47:8080/lpcms /getMarkIndexData?markindex=efficiencyindex
-    // http://118.190.153.47:8080/lpcms /getMarkIndexData?markindex=costindex
-    // http://118.190.153.47:8080/lpcms /getMarkIndexData?markindex=yieldindex
+    // http://118.190.153.47:8080/lpcms/getMarkIndexData?markindex=qualityindex
+    // http://118.190.153.47:8080/lpcms/getMarkIndexData?markindex=efficiencyindex
+    // http://118.190.153.47:8080/lpcms/getMarkIndexData?markindex=costindex
+    // http://118.190.153.47:8080/lpcms/getMarkIndexData?markindex=yieldindex
 
     // 其他TYPE
     public static final String OTHER_TYPE = "list";

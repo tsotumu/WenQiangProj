@@ -28,12 +28,11 @@ public class NewsMainModel implements NewsMainContractBase.Model {
             @Override
             public void call(Subscriber<? super List<NewsChannelTable>> subscriber) {
                 ArrayList<NewsChannelTable> newsChannelTableList = (ArrayList<NewsChannelTable>) ACache.get(AppApplication.getAppContext()).getAsObject(AppConstant.CHANNEL_MINE);
-//                LogUtils.logd("from cache.");
-//                LogUtils.logd(newsChannelTableList.toString());
+                LogUtils.logd("from cache->" + newsChannelTableList.toString());
                 if (newsChannelTableList == null) {
-//                    LogUtils.logd("load news channels.");
+                    LogUtils.logd("load news channels.");
                     newsChannelTableList = (ArrayList<NewsChannelTable>) NewsChannelTableManager.loadNewsChannelsStatic();
-                    LogUtils.logd(newsChannelTableList.toString());
+                    LogUtils.logd("loadNewsChannelsStatic->" + newsChannelTableList.toString());
                     ACache.get(AppApplication.getAppContext()).put(AppConstant.CHANNEL_MINE, newsChannelTableList);
                 }
                 subscriber.onNext(newsChannelTableList);

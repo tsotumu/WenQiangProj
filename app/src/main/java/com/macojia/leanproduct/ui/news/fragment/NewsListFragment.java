@@ -39,9 +39,11 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter, NewsListMo
     private String mNewsType;
     private int mStartPage = 0;
 
-    // 标志位，标志已经初始化完成。
-    private boolean isPrepared;
-    private boolean isVisible;
+    @Override
+    public void onResume() {
+        super.onResume();
+        LogUtils.logd("current fragment type->" + mNewsType);
+    }
 
     @Override
     protected int getLayoutResource() {
