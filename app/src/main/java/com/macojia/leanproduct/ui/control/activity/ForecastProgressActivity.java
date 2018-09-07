@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.github.mikephil.charting.data.BarData;
@@ -16,6 +17,11 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.bean.control.ForcastData;
+import com.macojia.leanproduct.ui.control.adapter.ForcastAdapter;
+import com.macojia.leanproduct.ui.control.contact.ForcastContact;
+import com.macojia.leanproduct.ui.control.model.ForcastModel;
+import com.macojia.leanproduct.ui.control.presenter.ForcastPresenter;
 
 import java.util.ArrayList;
 
@@ -27,9 +33,13 @@ import butterknife.Bind;
  * Created by macojia
  * on 2018.04.21 08:50
  */
-public class ForecastProgressActivity extends BaseActivity{
+public class ForecastProgressActivity extends BaseActivity<ForcastPresenter, ForcastModel> implements ForcastContact.View{
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.lv_forcast)
+    ListView mListView;
+
+
     @Bind(R.id.tsbx)
     NumberProgressBar tsbx;//泰山八喜
     @Bind(R.id.tsyh)
@@ -61,17 +71,7 @@ public class ForecastProgressActivity extends BaseActivity{
 
     @Override
     public void initPresenter() {
-
-    }
-
-
-    /**
-     * 入口
-     * @param context
-     */
-    public static void startAction(Context context){
-        Intent intent = new Intent(context, ForecastProgressActivity.class);
-        context.startActivity(intent);
+        mPresenter.setView_Model(this, mModel);
     }
 
     @Override
@@ -100,6 +100,11 @@ public class ForecastProgressActivity extends BaseActivity{
 
     @Override
     public void initView() {
+        initToolBar();
+        mPresenter.getDataRequest();
+    }
+
+    private void initToolBar() {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,4 +143,29 @@ public class ForecastProgressActivity extends BaseActivity{
         return cd;
     }
 
+    @Override
+    public void onIndexDataReturn(ForcastData costIndexData) {
+        mListView.setAdapter(ForcastAdapter.getAdapter(getApplicationContext(), costIndexData));
+
+    }
+
+    @Override
+    public void scrolltoTop() {
+
+    }
+
+    @Override
+    public void showLoading(String title) {
+
+    }
+
+    @Override
+    public void stopLoading() {
+
+    }
+
+    @Override
+    public void showErrorTip(String msg) {
+
+    }
 }

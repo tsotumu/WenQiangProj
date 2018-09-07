@@ -1,6 +1,7 @@
 package com.macojia.leanproduct.http;
 
 import com.macojia.common.basebean.BaseRespose;
+import com.macojia.leanproduct.bean.control.EfficiencyIndexData;
 import com.macojia.leanproduct.bean.control.QualityIndexData;
 import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.bean.login.User;
@@ -30,9 +31,6 @@ public interface ApiService {
     @GET("login")
     Observable<BaseRespose<User>> login(@Query("username") String username, @Query("password") String password);
 
-    @GET("control/yield")
-    Observable<YieldIndexData> getYieldData();
-
     @GET("lpcms/getNewDetail")
     Observable<NewsDetailEntity> getNewDetail(@Query("id") String id);
 
@@ -44,6 +42,12 @@ public interface ApiService {
 
     @GET("lpcms/getMarkIndexData")
     Observable<QualityIndexData> getControlList(@Query("markindex") String markindex);
+
+    @GET("lpcms/getMarkIndexData")
+    Observable<YieldIndexData> getYieldData(@Query("markindex") String markindex);
+
+    @GET("lpcms/getMarkIndexData")
+    Observable<EfficiencyIndexData> getEfficiencyData(@Query("markindex") String markindex);
 
     @GET
     Observable<ResponseBody> getNewsBodyHtmlPhoto(

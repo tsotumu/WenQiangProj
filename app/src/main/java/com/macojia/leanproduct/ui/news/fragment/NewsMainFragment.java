@@ -52,6 +52,12 @@ public class NewsMainFragment extends BaseFragment<NewsMainPresenter, NewsMainMo
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        LogUtils.logd("NewsMainFragment onresume");
+    }
+
+    @Override
     public void initView() {
         LogUtils.logd("lodeChannelsRequest");
         mPresenter.lodeChannelsRequest();

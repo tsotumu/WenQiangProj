@@ -1,13 +1,16 @@
 package com.macojia.leanproduct.ui.news.presenter;
 
 import com.macojia.common.baserx.RxSubscriber;
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.bean.news.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.news.contract.NewsMainContractBase;
 
 import java.util.List;
 
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * des:
@@ -33,7 +36,8 @@ public class NewsMainPresenter extends NewsMainContractBase.Presenter {
 
     @Override
     public void lodeChannelsRequest() {
-        mRxManage.add(mModel.loadNewsChannels().subscribe(new RxSubscriber<List<NewsChannelTable>>(mContext, false) {
+        LogUtils.logd("lodeChannelsRequest" );
+        mRxManage.add(mModel.loadNewsChannels().subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new RxSubscriber<List<NewsChannelTable>>(mContext, false) {
             @Override
             protected void _onNext(List<NewsChannelTable> newsChannelTables) {
                 mView.OnNewsChannelsReturned(newsChannelTables);

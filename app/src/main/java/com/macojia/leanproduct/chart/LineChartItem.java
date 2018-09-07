@@ -2,13 +2,11 @@
 package com.macojia.leanproduct.chart;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.XAxis.XAxisPosition;
@@ -25,7 +23,7 @@ public class LineChartItem extends ChartItem {
     private String mTitle;
     private String mXLabel;
     private String mYLabel;
-    private String[] mXAxis;
+    private String[] mXAxisLabels;
 
     public LineChartItem(ChartData<?> cd, Context c, String title, String xLabel, String yLabel/*, String[] strings*/) {
         super(cd);
@@ -33,7 +31,7 @@ public class LineChartItem extends ChartItem {
         mXLabel = xLabel;
         mYLabel = yLabel;
         mTf = Typeface.createFromAsset(c.getAssets(), "OpenSans-Regular.ttf");
-//        mXAxis = strings;
+//        mXAxisLabels = strings;
     }
 
     public LineChartItem(ChartData<?> cd, Context c, String title, String xLabel, String yLabel, String[] strings) {
@@ -42,7 +40,7 @@ public class LineChartItem extends ChartItem {
         mXLabel = xLabel;
         mYLabel = yLabel;
         mTf = Typeface.createFromAsset(c.getAssets(), "OpenSans-Regular.ttf");
-        mXAxis = strings;
+        mXAxisLabels = strings;
     }
 
 
@@ -96,12 +94,12 @@ public class LineChartItem extends ChartItem {
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
         
         YAxis rightAxis = holder.chart.getAxisRight();
-        if (mXAxis == null) {
-            mXAxis = new String[]{
+        if (mXAxisLabels == null) {
+            mXAxisLabels = new String[]{
                     "2017.8", "2017.8", "2017.8", "2017.8", "2017.8", "2017.8", "2017.8", "2017.8", "2017.8", "2017.8"
             };
         }
-        xAxis.setValueFormatter(new LabelFormatter(mXAxis));
+        xAxis.setValueFormatter(new LabelFormatter(mXAxisLabels));
         rightAxis.setTypeface(mTf);
         rightAxis.setLabelCount(5, false);
         rightAxis.setDrawGridLines(false);

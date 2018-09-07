@@ -7,11 +7,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.XAxis.XAxisPosition;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.ChartData;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.macojia.leanproduct.R;
 
 public class HorizonBarChartItem extends ChartItem {
@@ -20,6 +22,7 @@ public class HorizonBarChartItem extends ChartItem {
     private String mTitle;
     private String mXLabel;
     private String mYLabel;
+    private String[] mLeftAxisLabels;
 
     public HorizonBarChartItem(ChartData<?> cd, Context c, String title, String xLabel, String yLabel) {
         super(cd);
@@ -27,6 +30,15 @@ public class HorizonBarChartItem extends ChartItem {
         mXLabel = xLabel;
         mYLabel = yLabel;
         mTf = Typeface.createFromAsset(c.getAssets(), "OpenSans-Regular.ttf");
+    }
+
+    public HorizonBarChartItem(ChartData<?> cd, Context c, String title, String xLabel, String yLabel, String[] leftAxisLabels) {
+        super(cd);
+        mTitle = title;
+        mXLabel = xLabel;
+        mYLabel = yLabel;
+        mTf = Typeface.createFromAsset(c.getAssets(), "OpenSans-Regular.ttf");
+        mLeftAxisLabels = leftAxisLabels;
     }
 
     @Override
@@ -68,6 +80,10 @@ public class HorizonBarChartItem extends ChartItem {
         holder.chart.setDrawBarShadow(false);
 
         XAxis xAxis = holder.chart.getXAxis();
+        if (mLeftAxisLabels != null) {
+            xAxis.setValueFormatter(new LabelFormatter(mLeftAxisLabels));
+            xAxis.setLabelRotationAngle(25);
+        }
         xAxis.setPosition(XAxisPosition.BOTTOM);
         xAxis.setTypeface(mTf);
         xAxis.setDrawGridLines(false);

@@ -12,14 +12,13 @@ import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.macojia.common.base.BaseActivity;
-import com.macojia.common.baseapp.AppConfig;
 import com.macojia.common.commonutils.LogUtils;
 import com.macojia.common.daynightmodeutils.ChangeModeController;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.TabEntity;
 import com.macojia.leanproduct.constant.AppConstant;
-import com.macojia.leanproduct.ui.hotel.CareMainFragment;
 import com.macojia.leanproduct.ui.control.ControlMainFragment;
+import com.macojia.leanproduct.ui.hotel.CareMainFragment;
 import com.macojia.leanproduct.ui.news.fragment.NewsMainFragment;
 import com.macojia.leanproduct.ui.video.VideoMainFragment;
 
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import base.utils.ResourceUtil;
 import butterknife.Bind;
 import cn.hugeterry.updatefun.UpdateFunGO;
-import cn.hugeterry.updatefun.config.UpdateKey;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import rx.functions.Action1;
 
@@ -61,14 +59,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        //切换daynight模式要立即变色的页面
+        // 切换daynight模式要立即变色的页面
         ChangeModeController.getInstance().init(this, R.attr.class);
         super.onCreate(savedInstanceState);
-        //初始化frament
+        // 初始化frament
         initFragment(savedInstanceState);
         mTabLayout.measure(0, 0);
         tabLayoutHeight = mTabLayout.getMeasuredHeight();
-        //监听菜单显示或隐藏
+        // 监听菜单显示或隐藏
         mRxManager.on(AppConstant.MENU_SHOW_HIDE, new Action1<Boolean>() {
 
             @Override
@@ -80,14 +78,18 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        //此处填上在http://fir.im/注册账号后获得的API_TOKEN以及APP的应用ID
-        UpdateKey.API_TOKEN = AppConfig.API_FIRE_TOKEN;
-        UpdateKey.APP_ID = AppConfig.APP_FIRE_ID;
-        //如果你想通过Dialog来进行下载，可以如下设置
-//        UpdateKey.DialogOrNotification=UpdateKey.WITH_DIALOG;
-        UpdateFunGO.init(this);
+        autoUpdateGrade();
         //初始化菜单
         initTab();
+    }
+
+    private void autoUpdateGrade() {
+        //此处填上在http://fir.im/注册账号后获得的API_TOKEN以及APP的应用ID
+       /* UpdateKey.API_TOKEN = AppConfig.API_FIRE_TOKEN;
+        UpdateKey.APP_ID = AppConfig.APP_FIRE_ID;*/
+        //如果你想通过Dialog来进行下载，可以如下设置
+//        UpdateKey.DialogOrNotification=UpdateKey.WITH_DIALOG;
+        /*UpdateFunGO.init(this);*/
     }
 
     @Override
@@ -259,13 +261,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        UpdateFunGO.onResume(this);
+//        UpdateFunGO.onResume(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        UpdateFunGO.onStop(this);
+//        UpdateFunGO.onStop(this);
     }
 
     @Override

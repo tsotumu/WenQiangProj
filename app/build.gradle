@@ -12,8 +12,8 @@ android {
         applicationId "macojia.com.leanproduct"
         minSdkVersion 23
         targetSdkVersion 24
-        versionCode 4
-        versionName "1.0.3"
+        versionCode 1
+        versionName "1.0.0"
     }
     buildTypes {
         release {
@@ -31,7 +31,7 @@ android {
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
                         //这里修改apk文件名
-                        def fileName = "LeanProduct-${defaultConfig.versionCode}-${defaultConfig.versionName}-${releaseTime()}.apk"
+                        def fileName = "zhihuijuanbao-${defaultConfig.versionCode}-${releaseTime()}.apk"
                         output.outputFile = new File(outputFile.parent, fileName)
                     }
                 }

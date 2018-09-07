@@ -13,8 +13,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.AppApplication;
+import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.control.QualityIndexData;
 import com.macojia.leanproduct.chart.ChartItem;
 import com.macojia.leanproduct.chart.HorizonBarChartItem;
@@ -35,22 +35,15 @@ public class QualityIndexAdapter extends ArrayAdapter<ChartItem> {
         super(context, 0, objects);
     }
 
-    private static LineData generateDataLine(int cnt) {
+    private static LineData generateDataLine(List<QualityIndexData.MonthlyIndexPerMachineBean.IndexListBean> indexListBeanList) {
 
         ArrayList<Entry> e1 = new ArrayList<Entry>();
 
-        for (int i = 0; i < 12; i++) {
-            e1.add(new Entry(i, (int) (Math.random() * 65) + 40));
+        for (int i = 0; i < indexListBeanList.size(); i++) {
+            e1.add(new Entry(i, Double.valueOf(indexListBeanList.get(i).getValue()).floatValue()));
         }
-
-        LineDataSet lineDataSet = new LineDataSet(e1,"");
+        LineDataSet lineDataSet = new LineDataSet(e1, "");
         lineDataSet.setDrawValues(true);
-
-        ArrayList<Entry> e2 = new ArrayList<Entry>();
-
-        for (int i = 0; i < 6; i++) {
-            e2.add(new Entry(i, e1.get(i).getY() - 30));
-        }
 
         ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
         sets.add(lineDataSet);
@@ -59,12 +52,12 @@ public class QualityIndexAdapter extends ArrayAdapter<ChartItem> {
         return cd;
     }
 
-    private static BarData generateDataBar(int cnt) {
+    private static BarData generateDataBar(List<QualityIndexData.MachineIndexBean> machineIndexBeanList) {
 
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
 
-        for (int i = 0; i < 19; i++) {
-            entries.add(new BarEntry(i, (int) (Math.random() * 70) + 30));
+        for (int i = 0; i < machineIndexBeanList.size(); i++) {
+            entries.add(new BarEntry(i, Double.valueOf(machineIndexBeanList.get(i).getValue()).floatValue()));
         }
 
         BarDataSet d = new BarDataSet(entries, "");
@@ -74,6 +67,36 @@ public class QualityIndexAdapter extends ArrayAdapter<ChartItem> {
         BarData cd = new BarData(d);
         cd.setBarWidth(0.9f);
         return cd;
+    }
+
+    public static QualityIndexAdapter getAdapter(Context context, QualityIndexData qualityIndexData) {
+        ArrayList<ChartItem> list = new ArrayList<>();
+        list.add(new HorizonBarChartItem(generateDataBar(qualityIndexData.getMachineIndex()), context, "质量年度指标", "指标", "包装机号", getHorizonBarChartLabels(qualityIndexData.getMachineIndex())));
+        // 30 items
+        List<QualityIndexData.MonthlyIndexPerMachineBean> monthlyIndexPerMachineBeanList = qualityIndexData.getMonthlyIndexPerMachine();
+        for (int i = 0; i < monthlyIndexPerMachineBeanList.size(); i++) {
+            List<QualityIndexData.MonthlyIndexPerMachineBean.IndexListBean> listBeanList = monthlyIndexPerMachineBeanList.get(i).getIndexList();
+            list.add(new LineChartItem(generateDataLine(listBeanList), context, monthlyIndexPerMachineBeanList.get(i).getMachineName(), ResourceUtil.getString(R.string.x_label_month), ResourceUtil.getString(R.string.y_label_index), getLineChartLabels(listBeanList)));
+        }
+        return new QualityIndexAdapter(AppApplication.getAppContext(), list);
+    }
+
+    private static String[] getHorizonBarChartLabels(List<QualityIndexData.MachineIndexBean> machineIndexBeanList) {
+        ArrayList<String> labels = new ArrayList<>();
+        String[] result = new String[machineIndexBeanList.size()];
+        for (QualityIndexData.MachineIndexBean machineIndexBean : machineIndexBeanList) {
+            labels.add(machineIndexBean.getKey());
+        }
+        return labels.toArray(result);
+    }
+
+    private static String[] getLineChartLabels(List<QualityIndexData.MonthlyIndexPerMachineBean.IndexListBean> indexListBeanList) {
+        ArrayList<String> labels = new ArrayList<>();
+        String[] result = new String[indexListBeanList.size()];
+        for (QualityIndexData.MonthlyIndexPerMachineBean.IndexListBean indexListBean : indexListBeanList) {
+            labels.add(indexListBean.getKey());
+        }
+        return labels.toArray(result);
     }
 
     @Override
@@ -90,18 +113,5 @@ public class QualityIndexAdapter extends ArrayAdapter<ChartItem> {
     @Override
     public int getViewTypeCount() {
         return 2; // we have 3 different item-types
-    }
-
-
-    public static QualityIndexAdapter getAdapter(Context context, QualityIndexData qualityIndexData) {
-
-        ArrayList<ChartItem> list = new ArrayList<>();
-
-        list.add(new HorizonBarChartItem(generateDataBar(1), context, "质量年度指标", "指标", "包装机号"));
-        // 30 items
-        for (int i = 0; i < 19; i++) {
-            list.add(new LineChartItem(generateDataLine(i + 1), context, i + "号包装机", ResourceUtil.getString(R.string.x_label_month), ResourceUtil.getString(R.string.y_label_index)));
-        }
-        return new QualityIndexAdapter(AppApplication.getAppContext(), list);
     }
 }

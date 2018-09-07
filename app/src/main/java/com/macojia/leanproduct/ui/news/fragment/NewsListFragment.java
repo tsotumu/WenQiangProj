@@ -79,7 +79,7 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter, NewsListMo
     public void OnNewsListDataReturned(NewsListData newsSummaries) {
         LogUtils.logd("OnNewsListDataReturned->" + " newsType->"+mNewsType + " newsSummary:\n" + newsSummaries.getNewsList());
         if (newsSummaries != null) {
-            mStartPage += 20;
+            mStartPage += 1;
             if (newListAdapter.getPageBean().isRefresh()) {
                 mRecylerView.setRefreshing(false);
                 newListAdapter.replaceAll(newsSummaries.getNewsList());

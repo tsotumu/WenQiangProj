@@ -13,7 +13,13 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:title="@string/processpredict" />
-    <com.daimajia.numberprogressbar.NumberProgressBar
+
+    <ListView
+        android:id="@+id/lv_forcast"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+ <!--   <com.daimajia.numberprogressbar.NumberProgressBar
         android:id="@+id/tsyh"
         android:layout_width="wrap_content"
         android:padding="20dp"
@@ -98,7 +104,7 @@
         android:layout_margin="20dp"
         style="@style/NumberProgressBar_Grace_Yellow"
         custom:progress_current="79"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" />-->
   
 
 </LinearLayout>

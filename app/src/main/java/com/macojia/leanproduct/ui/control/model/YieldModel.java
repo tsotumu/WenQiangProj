@@ -2,6 +2,7 @@ package com.macojia.leanproduct.ui.control.model;
 
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.LogUtils;
+import com.macojia.leanproduct.bean.control.ControlType;
 import com.macojia.leanproduct.http.NetworkManager;
 import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.ui.control.contact.YieldListContact;
@@ -18,7 +19,7 @@ import rx.Subscriber;
 public class YieldModel implements YieldListContact.Model {
     @Override
     public Observable<YieldIndexData> getData() {
-        if (DebugUtil.DEBUG) {
+        if (DebugUtil.DEBUG && false) {
             return Observable.create(new Observable.OnSubscribe<YieldIndexData>() {
                 @Override
                 public void call(Subscriber<? super YieldIndexData> subscriber) {
@@ -30,7 +31,7 @@ public class YieldModel implements YieldListContact.Model {
                 }
             }).compose(RxSchedulers.<YieldIndexData>io_main());
         } else {
-            return NetworkManager.getDefault(0).getYieldData();
+            return NetworkManager.getDefault(0).getYieldData(ControlType.YIELD_INDEX);
         }
     }
 }

@@ -23,12 +23,19 @@ import rx.Subscriber;
 public class NewsMainModel implements NewsMainContractBase.Model {
     @Override
     public Observable<List<NewsChannelTable>> loadNewsChannels() {
-
+        LogUtils.logd("loadNewsChannels" );
         return Observable.create(new Observable.OnSubscribe<List<NewsChannelTable>>() {
             @Override
             public void call(Subscriber<? super List<NewsChannelTable>> subscriber) {
-                ArrayList<NewsChannelTable> newsChannelTableList = (ArrayList<NewsChannelTable>) ACache.get(AppApplication.getAppContext()).getAsObject(AppConstant.CHANNEL_MINE);
-                LogUtils.logd("from cache->" + newsChannelTableList.toString());
+                LogUtils.logd("loadNewsChannels begin");
+                ArrayList<NewsChannelTable> newsChannelTableList = new ArrayList<>();
+                try {
+                    newsChannelTableList = (ArrayList<NewsChannelTable>) ACache.get(AppApplication.getAppContext()).getAsObject(AppConstant.CHANNEL_MINE);
+                }catch (Exception e){
+                    LogUtils.loge("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", e);
+                    e.printStackTrace();
+                }
+                LogUtils.logd("from cache->");
                 if (newsChannelTableList == null) {
                     LogUtils.logd("load news channels.");
                     newsChannelTableList = (ArrayList<NewsChannelTable>) NewsChannelTableManager.loadNewsChannelsStatic();

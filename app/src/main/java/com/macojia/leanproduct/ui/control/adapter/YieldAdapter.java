@@ -52,12 +52,12 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
         return 2; // we have 3 different item-types
     }
 
-    private static BarData generateDataBar(List<Integer> data) {
+    private static BarData generateDataBar(List<YieldIndexData.MachineIndexBean> data) {
 
         ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
 
         for (int i = 0; i < data.size(); i++) {
-            entries.add(new BarEntry(i, (data.get(i))));
+            entries.add(new BarEntry(i, Double.valueOf(data.get(i).getValue()).floatValue()));
         }
 
         BarDataSet d = new BarDataSet(entries, "");
@@ -73,8 +73,8 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
 
         ArrayList<Entry> monthlyDataSet = new ArrayList<Entry>();
 
-        for (int i = 0; i < 12; i++) {
-            monthlyDataSet.add(new Entry(i, monthlyIndex.getMonthlyIndex().get(i).getIndex()));
+        for (int i = 0; i < monthlyIndex.getIndexList().size(); i++) {
+            monthlyDataSet.add(new Entry(i, Double.valueOf(monthlyIndex.getIndexList().get(i).getValue()).floatValue()));
         }
 
         LineDataSet dataSet = new LineDataSet(monthlyDataSet, "");
@@ -90,7 +90,7 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
     public static YieldAdapter getAdapter(YieldIndexData indexData, Context context){
         ArrayList<ChartItem> list = new ArrayList<>();
 
-        list.add(new HorizonBarChartItem(generateDataBar(indexData.getMachineIndex()), context, "产量年度指标", "指标", "包装机号"));
+        list.add(new HorizonBarChartItem(generateDataBar(indexData.getMachineIndex()), context, "产量年度指标", "指标", "包装机号", getHorizonBarChartLabels(indexData.getMachineIndex())));
 
         List<YieldIndexData.MonthlyIndexPerMachineBean> monthlyIndexPerMachineBeen = indexData.getMonthlyIndexPerMachine();
 
@@ -98,7 +98,7 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
             list.add(new LineChartItem(
                     generateDataLine(monthlyIndexPerMachineBeen.get(i)),
                     context,
-                    i + "号包装机",
+                    monthlyIndexPerMachineBeen.get(i).getMachineName(),
                     ResourceUtil.getString(R.string.x_label_month),
                     ResourceUtil.getString(R.string.y_label_index),
                     getXAxis(monthlyIndexPerMachineBeen.get(i)))
@@ -108,11 +108,20 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
         return new YieldAdapter(context, list);
     }
 
+    private static String[] getHorizonBarChartLabels(List<YieldIndexData.MachineIndexBean> machineIndexBeanList){
+        ArrayList<String> labels = new ArrayList<>();
+        String[] result = new String[machineIndexBeanList.size()];
+        for (YieldIndexData.MachineIndexBean machineIndexBean : machineIndexBeanList){
+            labels.add(machineIndexBean.getKey());
+        }
+        return labels.toArray(result);
+    }
+
     private static String[] getXAxis(YieldIndexData.MonthlyIndexPerMachineBean monthlyIndexPerMachineBean){
         ArrayList<String> axis = new ArrayList<>();
-        List<YieldIndexData.MonthlyIndexPerMachineBean.MonthlyIndexBean> monthlyIndex = monthlyIndexPerMachineBean.getMonthlyIndex();
-        for (YieldIndexData.MonthlyIndexPerMachineBean.MonthlyIndexBean monthlyIndexBean : monthlyIndex){
-            axis.add(monthlyIndexBean.getMonth());
+        List<YieldIndexData.MonthlyIndexPerMachineBean.IndexListBean> monthlyIndex = monthlyIndexPerMachineBean.getIndexList();
+        for (YieldIndexData.MonthlyIndexPerMachineBean.IndexListBean monthlyIndexBean : monthlyIndex){
+            axis.add(monthlyIndexBean.getKey());
         }
         String[] strings = new String[axis.size()];
         return  axis.toArray(strings);

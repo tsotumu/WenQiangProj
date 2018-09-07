@@ -13,6 +13,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.macojia.leanproduct.AppApplication;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.control.EfficiencyIndexData;
 import com.macojia.leanproduct.chart.ChartItem;
@@ -34,6 +35,71 @@ public class EfficiencyAdapter extends ArrayAdapter<ChartItem> {
         super(context, 0, objects);
     }
 
+    public static EfficiencyAdapter getAdapter(Context context, EfficiencyIndexData qualityIndexData) {
+        ArrayList<ChartItem> list = new ArrayList<>();
+        list.add(new HorizonBarChartItem(generateDataBar(qualityIndexData.getMachineIndex()), context, "质量年度指标", "指标", "包装机号", getHorizonBarChartLabels(qualityIndexData.getMachineIndex())));
+        // 30 items
+        List<EfficiencyIndexData.MonthlyIndexPerMachineBean> monthlyIndexPerMachineBeanList = qualityIndexData.getMonthlyIndexPerMachine();
+        for (int i = 0; i < monthlyIndexPerMachineBeanList.size(); i++) {
+            List<EfficiencyIndexData.MonthlyIndexPerMachineBean.IndexListBean> listBeanList = monthlyIndexPerMachineBeanList.get(i).getIndexList();
+            list.add(new LineChartItem(generateDataLine(listBeanList), context, monthlyIndexPerMachineBeanList.get(i).getMachineName(), ResourceUtil.getString(R.string.x_label_month), ResourceUtil.getString(R.string.y_label_index), getLineChartLabels(listBeanList)));
+        }
+        return new EfficiencyAdapter(AppApplication.getAppContext(), list);
+    }
+
+    private static LineData generateDataLine( List<EfficiencyIndexData.MonthlyIndexPerMachineBean.IndexListBean> indexListBeanList) {
+
+        ArrayList<Entry> e1 = new ArrayList<Entry>();
+
+        for (int i = 0; i < indexListBeanList.size(); i++) {
+            e1.add(new Entry(i, Double.valueOf(indexListBeanList.get(i).getValue()).floatValue()));
+        }
+
+        LineDataSet d1 = new LineDataSet(e1, "");
+        d1.setDrawValues(true);
+        ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
+        sets.add(d1);
+
+        LineData cd = new LineData(sets);
+        return cd;
+    }
+
+    private static BarData generateDataBar(List<EfficiencyIndexData.MachineIndexBean> machineIndexBeanList) {
+
+        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
+
+        for (int i = 0; i < machineIndexBeanList.size(); i++) {
+            entries.add(new BarEntry(i, Double.valueOf(machineIndexBeanList.get(i).getValue()).floatValue()));
+        }
+
+
+        BarDataSet d = new BarDataSet(entries, "");
+        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        d.setHighLightAlpha(255);
+
+        BarData cd = new BarData(d);
+        cd.setBarWidth(0.9f);
+        return cd;
+    }
+
+    private static String[] getHorizonBarChartLabels(List<EfficiencyIndexData.MachineIndexBean> machineIndexBeanList) {
+        ArrayList<String> labels = new ArrayList<>();
+        String[] result = new String[machineIndexBeanList.size()];
+        for (EfficiencyIndexData.MachineIndexBean machineIndexBean : machineIndexBeanList) {
+            labels.add(machineIndexBean.getKey());
+        }
+        return labels.toArray(result);
+    }
+
+    private static String[] getLineChartLabels(List<EfficiencyIndexData.MonthlyIndexPerMachineBean.IndexListBean> indexListBeanList) {
+        ArrayList<String> labels = new ArrayList<>();
+        String[] result = new String[indexListBeanList.size()];
+        for (EfficiencyIndexData.MonthlyIndexPerMachineBean.IndexListBean indexListBean : indexListBeanList) {
+            labels.add(indexListBean.getKey());
+        }
+        return labels.toArray(result);
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         return getItem(position).getView(position, convertView, getContext());
@@ -48,57 +114,5 @@ public class EfficiencyAdapter extends ArrayAdapter<ChartItem> {
     @Override
     public int getViewTypeCount() {
         return 2; // we have 3 different item-types
-    }
-
-    public static EfficiencyAdapter getAdapter(Context context, EfficiencyIndexData indexData) {
-        ArrayList<ChartItem> list = new ArrayList<ChartItem>();
-
-        list.add(new HorizonBarChartItem(generateDataBar(1), context, "产量年度指标", "指标", "包装机号"));
-        // 30 items
-        for (int i = 0; i < 19; i++) {
-            list.add(new LineChartItem(generateDataLine(i + 1), context, i + "号包装机", ResourceUtil.getString(R.string.x_label_month), ResourceUtil.getString(R.string.y_label_index)));
-        }
-        return new EfficiencyAdapter(context, list);
-    }
-
-    private static LineData generateDataLine(int cnt) {
-
-        ArrayList<Entry> e1 = new ArrayList<Entry>();
-
-        for (int i = 0; i < 12; i++) {
-            e1.add(new Entry(i, (int) (Math.random() * 65) + 40));
-        }
-
-        LineDataSet d1 = new LineDataSet(e1,"");
-        d1.setDrawValues(true);
-
-        ArrayList<Entry> e2 = new ArrayList<Entry>();
-
-        for (int i = 0; i < 6; i++) {
-            e2.add(new Entry(i, e1.get(i).getY() - 30));
-        }
-
-        ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
-        sets.add(d1);
-
-        LineData cd = new LineData(sets);
-        return cd;
-    }
-
-    private static BarData generateDataBar(int cnt) {
-
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-
-        for (int i = 0; i < 19; i++) {
-            entries.add(new BarEntry(i, (int) (Math.random() * 70) + 30));
-        }
-
-        BarDataSet d = new BarDataSet(entries, "");
-        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
-        d.setHighLightAlpha(255);
-
-        BarData cd = new BarData(d);
-        cd.setBarWidth(0.9f);
-        return cd;
     }
 }

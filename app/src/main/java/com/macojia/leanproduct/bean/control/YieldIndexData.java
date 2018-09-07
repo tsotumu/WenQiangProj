@@ -7,60 +7,100 @@ import java.util.List;
  */
 
 public class YieldIndexData {
-    private List<Integer> machineIndex;
-    private List<MonthlyIndexPerMachineBean> monthlyIndexPerMachine;
+    private List<MonthlyIndexPerMachineBean> MonthlyIndexPerMachine;
+    private List<MachineIndexBean> machineIndex;
 
-    public List<Integer> getMachineIndex() {
+    public List<MonthlyIndexPerMachineBean> getMonthlyIndexPerMachine() {
+        return MonthlyIndexPerMachine;
+    }
+
+    public void setMonthlyIndexPerMachine(List<MonthlyIndexPerMachineBean> MonthlyIndexPerMachine) {
+        this.MonthlyIndexPerMachine = MonthlyIndexPerMachine;
+    }
+
+    public List<MachineIndexBean> getMachineIndex() {
         return machineIndex;
     }
 
-    public void setMachineIndex(List<Integer> machineIndex) {
+    public void setMachineIndex(List<MachineIndexBean> machineIndex) {
         this.machineIndex = machineIndex;
     }
 
-    public List<MonthlyIndexPerMachineBean> getMonthlyIndexPerMachine() {
-        return monthlyIndexPerMachine;
-    }
-
-    public void setMonthlyIndexPerMachine(List<MonthlyIndexPerMachineBean> monthlyIndexPerMachine) {
-        this.monthlyIndexPerMachine = monthlyIndexPerMachine;
-    }
-
     public static class MonthlyIndexPerMachineBean {
-        private List<MonthlyIndexBean> monthlyIndex;
+        /**
+         * indexList : [{"key":"2017-06","value":3656.8},{"key":"2017-05","value":3332.4},{"key":"2017-04","value":3086.8},{"key":"2017-03","value":4170.6},{"key":"2017-01","value":791.2},{"key":"2016-12","value":2948.6}]
+         * machineName : 2号包装机
+         */
 
-        public List<MonthlyIndexBean> getMonthlyIndex() {
-            return monthlyIndex;
+        private String machineName;
+        private List<IndexListBean> indexList;
+
+        public String getMachineName() {
+            return machineName;
         }
 
-        public void setMonthlyIndex(List<MonthlyIndexBean> monthlyIndex) {
-            this.monthlyIndex = monthlyIndex;
+        public void setMachineName(String machineName) {
+            this.machineName = machineName;
         }
 
-        public static class MonthlyIndexBean {
+        public List<IndexListBean> getIndexList() {
+            return indexList;
+        }
+
+        public void setIndexList(List<IndexListBean> indexList) {
+            this.indexList = indexList;
+        }
+
+        public static class IndexListBean {
             /**
-             * month : 2017.9
-             * index : 55
+             * key : 2017-06
+             * value : 3656.8
              */
 
-            private String month;
-            private int index;
+            private String key;
+            private double value;
 
-            public String getMonth() {
-                return month;
+            public String getKey() {
+                return key;
             }
 
-            public void setMonth(String month) {
-                this.month = month;
+            public void setKey(String key) {
+                this.key = key;
             }
 
-            public int getIndex() {
-                return index;
+            public double getValue() {
+                return value;
             }
 
-            public void setIndex(int index) {
-                this.index = index;
+            public void setValue(double value) {
+                this.value = value;
             }
+        }
+    }
+
+    public static class MachineIndexBean {
+        /**
+         * key : 2号包装机
+         * value : 3656.8
+         */
+
+        private String key;
+        private double value;
+
+        public String getKey() {
+            return key;
+        }
+
+        public void setKey(String key) {
+            this.key = key;
+        }
+
+        public double getValue() {
+            return value;
+        }
+
+        public void setValue(double value) {
+            this.value = value;
         }
     }
 }
