@@ -35,6 +35,22 @@ public class QualityIndexAdapter extends ArrayAdapter<ChartItem> {
         super(context, 0, objects);
     }
 
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        return getItem(position).getView(position, convertView, getContext());
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        // return the views type
+        return getItem(position).getItemType();
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2; // we have 3 different item-types
+    }
+
     private static LineData generateDataLine(List<QualityIndexData.MonthlyIndexPerMachineBean.IndexListBean> indexListBeanList) {
 
         ArrayList<Entry> e1 = new ArrayList<Entry>();
@@ -97,21 +113,5 @@ public class QualityIndexAdapter extends ArrayAdapter<ChartItem> {
             labels.add(indexListBean.getKey());
         }
         return labels.toArray(result);
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return getItem(position).getView(position, convertView, getContext());
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        // return the views type
-        return getItem(position).getItemType();
-    }
-
-    @Override
-    public int getViewTypeCount() {
-        return 2; // we have 3 different item-types
     }
 }

@@ -7,6 +7,7 @@ import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.bean.login.User;
 import com.macojia.leanproduct.bean.news.NewsDetailEntity;
 import com.macojia.leanproduct.bean.news.NewsListData;
+import com.macojia.leanproduct.bean.video.VideoListData;
 import com.macojia.leanproduct.bean.video.VideoListEntity;
 
 import java.util.List;
@@ -48,6 +49,11 @@ public interface ApiService {
 
     @GET("lpcms/getMarkIndexData")
     Observable<EfficiencyIndexData> getEfficiencyData(@Query("markindex") String markindex);
+
+    @GET("lpcms/getVideoList")
+    Observable<VideoListData> getVideoList(
+            @Query("startPage") String startPage,
+            @Query("type") String type);
 
     @GET
     Observable<ResponseBody> getNewsBodyHtmlPhoto(

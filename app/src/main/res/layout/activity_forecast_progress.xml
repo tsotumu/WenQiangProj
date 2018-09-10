@@ -14,10 +14,15 @@
         app:navigationIcon="@drawable/ic_arrow_back"
         app:title="@string/processpredict" />
 
-    <ListView
-        android:id="@+id/lv_forcast"
+    <com.aspsine.irecyclerview.IRecyclerView
+        android:id="@+id/irc_forcast"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="?attr/dayNightBackground"
+        app:dayNightBackgroundAttr="dayNightBackground"
+        app:loadMoreEnabled="true"
+        app:refreshEnabled="true"
+        app:refreshHeaderLayout="@layout/layout_irecyclerview_classic_refresh_header" />
 
  <!--   <com.daimajia.numberprogressbar.NumberProgressBar
         android:id="@+id/tsyh"

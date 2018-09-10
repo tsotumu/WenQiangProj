@@ -25,6 +25,7 @@ public class NetworkConstants {
     // http://118.190.153.47:8080/lpcms/getMarkIndexData?markindex=efficiencyindex
     // http://118.190.153.47:8080/lpcms/getMarkIndexData?markindex=costindex
     // http://118.190.153.47:8080/lpcms/getMarkIndexData?markindex=yieldindex
+    // http://118.190.153.47:8080/lpcms/getVideoList?startPage=1&type=安全
 
     // 其他TYPE
     public static final String OTHER_TYPE = "list";
