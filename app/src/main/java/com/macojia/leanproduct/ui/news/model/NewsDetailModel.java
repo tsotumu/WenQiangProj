@@ -1,14 +1,22 @@
 package com.macojia.leanproduct.ui.news.model;
 
 import com.macojia.common.baserx.RxSchedulers;
+import com.macojia.common.commonutils.LogUtils;
+import com.macojia.leanproduct.http.HttpUtil;
+import com.macojia.leanproduct.http.NetworkConstants;
 import com.macojia.leanproduct.http.NetworkManager;
 import com.macojia.leanproduct.bean.news.NewsDetailEntity;
 import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import base.utils.JsonUtils;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 import rx.Observable;
 import rx.functions.Func1;
 
@@ -21,16 +29,15 @@ public class NewsDetailModel implements NewsDetailContract.Model {
 
     @Override
     public Observable<NewsDetailEntity> getOneNewsData(final String postId) {
-        return NetworkManager.getDefault(0).getNewDetail(postId)
-                .compose(RxSchedulers.<NewsDetailEntity>io_main());
+        return NetworkManager.getDefault(0).getNewDetail(Integer.valueOf(postId).intValue());
     }
 
     private void changeNewsDetail(NewsDetailEntity newsDetail) {
-        List<NewsDetailEntity.ImgBean> imgSrcs = newsDetail.img;
+        List<NewsDetailEntity.ImgBean> imgSrcs = newsDetail.getImg();
         if (isChange(imgSrcs)) {
-            String newsBody = newsDetail.news_content;
+            String newsBody = newsDetail.getNews_content();
             newsBody = changeNewsBody(imgSrcs, newsBody);
-            newsDetail.news_content = newsBody;
+            newsDetail.setNews_content(newsBody);
         }
     }
 
@@ -45,7 +52,7 @@ public class NewsDetailModel implements NewsDetailContract.Model {
             if (i == 0) {
                 newChars = "";
             } else {
-                newChars = "<img src=\"" + imgSrcs.get(i).src + "\" />";
+                newChars = "<img src=\"" + imgSrcs.get(i).getSrc() + "\" />";
             }
             newsBody = newsBody.replace(oldChars, newChars);
 

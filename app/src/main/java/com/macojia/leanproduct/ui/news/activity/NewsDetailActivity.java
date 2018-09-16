@@ -65,7 +65,6 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
     FloatingActionButton fab;
 
     private String postId;
-    private URLImageGetter mUrlImageGetter;
     private String mNewsTitle;
     private String mShareLink;
 
@@ -160,10 +159,10 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
     public void OnOneNewsDataReturned(NewsDetailEntity newsDetail) {
         LogUtils.logd("OnOneNewsDataReturned->" + newsDetail.toString());
 //        mShareLink = newsDetail.getShareLink();
-        mNewsTitle = newsDetail.news_title;
-        String newsSource = newsDetail.news_category;
-        String newsTime = TimeUtil.formatDate(newsDetail.news_datetime);
-        String newsBody = newsDetail.news_content;
+        mNewsTitle = newsDetail.getNews_title();
+        String newsSource = newsDetail.getNews_category();
+        String newsTime = TimeUtil.formatDate(newsDetail.getNews_datetime());
+        String newsBody = newsDetail.getNews_content();
         String NewsImgSrc = getImgSrcs(newsDetail);
 
         setToolBarLayout(mNewsTitle);
@@ -192,7 +191,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
                 .subscribe(new Subscriber<Long>() {
                     @Override
                     public void onCompleted() {
-                        progressBar.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.INVISIBLE);
                         fab.setVisibility(View.VISIBLE);
                     }
 
@@ -209,14 +208,14 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
     }
 
     private void setBody(NewsDetailEntity newsDetail, String newsBody) {
-        int imgTotal = newsDetail.img.size();
-        if (isShowBody(newsBody, imgTotal)) {
+        int imgTotal = newsDetail.getImg().size();
+//        if (isShowBody(newsBody, imgTotal)) {
 //              mNewsDetailBodyTv.setMovementMethod(LinkMovementMethod.getInstance());//加这句才能让里面的超链接生效,实测经常卡机崩溃
-            mUrlImageGetter = new URLImageGetter(newsDetailBodyTv, newsBody, imgTotal);
+            URLImageGetter mUrlImageGetter = new URLImageGetter(newsDetailBodyTv, newsBody, imgTotal);
             newsDetailBodyTv.setText(Html.fromHtml(newsBody, mUrlImageGetter, null));
-        } else {
-            newsDetailBodyTv.setText(Html.fromHtml(newsBody));
-        }
+//        } else {
+//            newsDetailBodyTv.setText(Html.fromHtml(newsBody));
+//        }
     }
 
     private boolean isShowBody(String newsBody, int imgTotal) {
@@ -224,10 +223,10 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
     }
 
     private String getImgSrcs(NewsDetailEntity newsDetail) {
-        List<NewsDetailEntity.ImgBean> imgSrcs = newsDetail.img;
+        List<NewsDetailEntity.ImgBean> imgSrcs = newsDetail.getImg();
         String imgSrc;
         if (imgSrcs != null && imgSrcs.size() > 0) {
-            imgSrc = imgSrcs.get(0).src;
+            imgSrc = imgSrcs.get(0).getSrc();
         } else {
             imgSrc = getIntent().getStringExtra(AppConstant.NEWS_IMG_RES);
         }

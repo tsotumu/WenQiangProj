@@ -33,7 +33,7 @@ public interface ApiService {
     Observable<BaseRespose<User>> login(@Query("username") String username, @Query("password") String password);
 
     @GET("lpcms/getNewDetail")
-    Observable<NewsDetailEntity> getNewDetail(@Query("id") String id);
+    Observable<NewsDetailEntity> getNewDetail(@Query("id") int id);
 
     @GET("lpcms/getNewsList")
     Observable<NewsListData> getNewsList(

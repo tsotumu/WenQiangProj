@@ -17,7 +17,7 @@ import butterknife.Bind;
  * Created by xsf
  * on 2016.09.17:07
  */
-public class CareMainFragment extends BaseFragment {
+public class ViewWindowFragment extends BaseFragment {
     @Bind(R.id.view_recyclerView)
     RecyclerView mRecyclerView;
 

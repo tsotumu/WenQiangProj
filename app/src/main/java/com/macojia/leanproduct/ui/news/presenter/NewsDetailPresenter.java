@@ -7,6 +7,9 @@ import com.macojia.leanproduct.bean.news.NewsDetail;
 import com.macojia.leanproduct.bean.news.NewsDetailEntity;
 import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
 
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 /**
  * des:新闻详情
  * Created by xsf
@@ -15,7 +18,13 @@ import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
 public class NewsDetailPresenter extends NewsDetailContract.Presenter {
     @Override
     public void getOneNewsDataRequest(String postId) {
-        mRxManage.add(mModel.getOneNewsData(postId).subscribe(new RxSubscriber<NewsDetailEntity>(mContext) {
+        mRxManage.add(mModel.getOneNewsData(postId).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new RxSubscriber<NewsDetailEntity>(mContext) {
+            @Override
+            public void onStart() {
+                super.onStart();
+                mView.showLoading(mContext.getString(R.string.loading));
+            }
+
             @Override
             protected void _onNext(NewsDetailEntity newsDetail) {
                 mView.OnOneNewsDataReturned(newsDetail);

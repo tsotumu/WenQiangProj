@@ -18,7 +18,7 @@ import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.TabEntity;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.ui.control.ControlMainFragment;
-import com.macojia.leanproduct.ui.hotel.CareMainFragment;
+import com.macojia.leanproduct.ui.hotel.ViewWindowFragment;
 import com.macojia.leanproduct.ui.news.fragment.NewsMainFragment;
 import com.macojia.leanproduct.ui.video.VideoMainFragment;
 
@@ -26,7 +26,6 @@ import java.util.ArrayList;
 
 import base.utils.ResourceUtil;
 import butterknife.Bind;
-import cn.hugeterry.updatefun.UpdateFunGO;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import rx.functions.Action1;
 
@@ -54,7 +53,7 @@ public class MainActivity extends BaseActivity {
     private NewsMainFragment newsFragment;
     // private PhotosMainFragment photosMainFragment;
     private VideoMainFragment videoMainFragment;
-    private CareMainFragment careMainFragment;
+    private ViewWindowFragment careMainFragment;
     private ControlMainFragment controlMainFragment;
 
     @Override
@@ -126,14 +125,14 @@ public class MainActivity extends BaseActivity {
             newsFragment = (NewsMainFragment) getSupportFragmentManager().findFragmentByTag("newsFragment");
             //  photosMainFragment = (PhotosMainFragment) getSupportFragmentManager().findFragmentByTag("photosMainFragment");
             videoMainFragment = (VideoMainFragment) getSupportFragmentManager().findFragmentByTag("videoMainFragment");
-            careMainFragment = (CareMainFragment) getSupportFragmentManager().findFragmentByTag("careMainFragment");
+            careMainFragment = (ViewWindowFragment) getSupportFragmentManager().findFragmentByTag("careMainFragment");
             controlMainFragment = (ControlMainFragment) getSupportFragmentManager().findFragmentByTag("controlMainFragment");
             currentTabPosition = savedInstanceState.getInt(AppConstant.HOME_CURRENT_TAB_POSITION);
         } else {
             newsFragment = new NewsMainFragment();
             //      photosMainFragment = new PhotosMainFragment();
             videoMainFragment = new VideoMainFragment();
-            careMainFragment = new CareMainFragment();
+            careMainFragment = new ViewWindowFragment();
             controlMainFragment = new ControlMainFragment();
             transaction.add(R.id.fl_container, newsFragment, "newsFragment");
             //     transaction.add(R.id.fl_body, photosMainFragment, "photosMainFragment");
