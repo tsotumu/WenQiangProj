@@ -7,7 +7,9 @@ import com.macojia.leanproduct.constant.AppConstant;
 
 import java.util.List;
 
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * des:
@@ -36,7 +38,7 @@ public class VideoListPresenter extends VideosListContract.Presenter {
      */
     @Override
     public void getVideosListDataRequest(String type, int startPage) {
-        mRxManage.add(mModel.getVideosListData(type, startPage).subscribe(new RxSubscriber<List<VideoListEntity.VideoEntity>>(mContext, false) {
+        mRxManage.add(mModel.getVideosListData(type, startPage).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new RxSubscriber<VideoListEntity>(mContext, false) {
             @Override
             public void onStart() {
                 super.onStart();
@@ -44,7 +46,7 @@ public class VideoListPresenter extends VideosListContract.Presenter {
             }
 
             @Override
-            protected void _onNext(List<VideoListEntity.VideoEntity> videoDatas) {
+            protected void _onNext(VideoListEntity videoDatas) {
                 mView.returnVideosListData(videoDatas);
                 mView.stopLoading();
             }

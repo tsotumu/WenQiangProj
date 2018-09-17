@@ -15,12 +15,11 @@ import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.video.VideoChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
 import com.macojia.leanproduct.db.VideosChannelTableManager;
-import com.macojia.leanproduct.ui.video.VideoChildFragment;
-import base.utils.MyUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import base.utils.MyUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -37,6 +36,14 @@ public class VideoMainFragment extends BaseFragment {
     @Bind(R.id.fab)
     FloatingActionButton fab;
     private BaseFragmentAdapter fragmentAdapter;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
 
     @Override
     protected int getLayoutResource() {
@@ -96,13 +103,5 @@ public class VideoMainFragment extends BaseFragment {
         bundle.putString(VideoChildFragment.EXTRA_TYPE, videoChannelTable.getChannelName());
         fragment.setArguments(bundle);
         return fragment;
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
     }
 }

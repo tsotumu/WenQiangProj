@@ -51,22 +51,14 @@ public interface ApiService {
     Observable<EfficiencyIndexData> getEfficiencyData(@Query("markindex") String markindex);
 
     @GET("lpcms/getVideoList")
-    Observable<VideoListData> getVideoList(
-            @Query("startPage") String startPage,
+    Observable<VideoListEntity> getVideoList(
+            @Query("startPage") int startPage,
             @Query("type") String type);
 
     @GET
     Observable<ResponseBody> getNewsBodyHtmlPhoto(
             @Header("Cache-Control") String cacheControl,
             @Url String photoPath);
-    //@Url，它允许我们直接传入一个请求的URL。这样以来我们可以将上一个请求的获得的url直接传入进来，baseUrl将被无视
-    // baseUrl 需要符合标准，为空、""、或不合法将会报错
-
-    @GET("nc/video/list/{type}/n/{startPage}-10.html")
-    Observable<Map<String, List<VideoListEntity.VideoEntity>>> getVideoList(
-            @Header("Cache-Control") String cacheControl,
-            @Path("type") String type,
-            @Path("startPage") int startPage);
 
     @GET("rank")
     Call<String> getRank(

@@ -40,7 +40,7 @@ public class VideoChildFragment extends BaseFragment<VideoListPresenter, VideosL
     IRecyclerView irc;
     @Bind(R.id.loadedTip)
     LoadingTip loadedTip;
-    private CommonRecycleViewAdapter<VideoListEntity.VideoEntity> videoListAdapter;
+    private CommonRecycleViewAdapter<VideoListEntity.DataListBean> videoListAdapter;
     public final static String EXTRA_TYPE = "type";
     private String extra_type;
 
@@ -64,18 +64,18 @@ public class VideoChildFragment extends BaseFragment<VideoListPresenter, VideosL
             extra_type = getArguments().getString(EXTRA_TYPE);
         }
         irc.setLayoutManager(new LinearLayoutManager(getContext()));
-        videoListAdapter = new CommonRecycleViewAdapter<VideoListEntity.VideoEntity>(getContext(), R.layout.item_video_list) {
+        videoListAdapter = new CommonRecycleViewAdapter<VideoListEntity.DataListBean>(getContext(), R.layout.item_video_list) {
             @Override
-            public void convert(ViewHolderHelper helper, VideoListEntity.VideoEntity videoData) {
+            public void convert(ViewHolderHelper helper, VideoListEntity.DataListBean videoData) {
 //                helper.setImageRoundUrl(R.id.iv_logo, videoData.getTopicImg());
-                helper.setText(R.id.tv_from, videoData.video_topic);
-                helper.setText(R.id.tv_play_time, String.format(getResources().getString(R.string.video_play_times), String.valueOf(videoData.play_count)));
+                helper.setText(R.id.tv_from, videoData.getVideo_topic());
+                helper.setText(R.id.tv_play_time, String.format(getResources().getString(R.string.video_play_times), String.valueOf(videoData.getPlay_count())));
                 JCVideoPlayerStandard jcVideoPlayerStandard = helper.getView(R.id.videoplayer);
                 boolean setUp = jcVideoPlayerStandard.setUp(
-                        videoData.video_url, JCVideoPlayer.SCREEN_LAYOUT_LIST,
-                        TextUtils.isEmpty(videoData.video_digest) ? videoData.video_title + "" : videoData.video_digest);
+                        videoData.getVideo_url(), JCVideoPlayer.SCREEN_LAYOUT_LIST,
+                        TextUtils.isEmpty(videoData.getVideo_digest()) ? videoData.getVideo_title() + "" : videoData.getVideo_digest());
                 if (setUp) {
-                    Glide.with(mContext).load(videoData.video_cover)
+                    Glide.with(mContext).load(videoData.getVideo_cover())
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .centerCrop()
                             .error(com.macojia.common.R.drawable.ic_empty_picture)
@@ -119,16 +119,16 @@ public class VideoChildFragment extends BaseFragment<VideoListPresenter, VideosL
     }
 
     @Override
-    public void returnVideosListData(List<VideoListEntity.VideoEntity> videoDatas) {
+    public void returnVideosListData(VideoListEntity videoDatas) {
         if (videoDatas != null) {
             mStartPage += 1;
             if (videoListAdapter.getPageBean().isRefresh()) {
                 irc.setRefreshing(false);
-                videoListAdapter.replaceAll(videoDatas);
+                videoListAdapter.replaceAll(videoDatas.getDataList());
             } else {
-                if (videoDatas.size() > 0) {
+                if (videoDatas.getDataList().size() > 0) {
                     irc.setLoadMoreStatus(LoadMoreFooterView.Status.GONE);
-                    videoListAdapter.addAll(videoDatas);
+                    videoListAdapter.addAll(videoDatas.getDataList());
                 } else {
                     irc.setLoadMoreStatus(LoadMoreFooterView.Status.THE_END);
                 }

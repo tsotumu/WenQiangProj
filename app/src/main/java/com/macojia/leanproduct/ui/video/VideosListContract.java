@@ -17,12 +17,12 @@ import rx.Observable;
 public interface VideosListContract {
     interface Model extends BaseModel {
         //请求获取视频
-        Observable<List<VideoListEntity.VideoEntity>> getVideosListData(String type, int startPage);
+        Observable<VideoListEntity> getVideosListData(String type, int startPage);
     }
 
     interface View extends BaseView {
         //返回获取的视频
-        void returnVideosListData(List<VideoListEntity.VideoEntity> newsSummaries);
+        void returnVideosListData(VideoListEntity newsSummaries);
 
         //返回顶部
         void scrolltoTop();
