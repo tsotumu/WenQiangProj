@@ -32,46 +32,46 @@
             android:theme="@style/BaseAppTheme.Trans" />
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.news.activity.NewsDetailActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.news.activity.NewsBrowserActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.news.activity.NewsPhotoDetailActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.news.activity.NewsChannelActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.news.activity.AboutActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.control.activity.QualityIndexActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.control.activity.ComprehensiveIndexActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.control.activity.CostIndexActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.control.activity.QualityFeedBackActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.control.activity.EfficiencyIndexActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.control.activity.MaintainGuidanceActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.control.activity.YieldIndexActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.login.LoginActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

@@ -3,7 +3,6 @@ package com.macojia.leanproduct.bean.control;
 import java.util.List;
 
 public class ForcastData {
-
     private List<DataListBean> dataList;
 
     public List<DataListBean> getDataList() {
@@ -16,27 +15,27 @@ public class ForcastData {
 
     public static class DataListBean {
         /**
-         * name : 泰山（硬红）
-         * percent : 50
+         * key : 泰山（八喜）
+         * value : 170
          */
 
-        private String name;
-        private int percent;
+        private String key;
+        private Double value;
 
-        public String getName() {
-            return name;
+        public String getKey() {
+            return key;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setKey(String key) {
+            this.key = key;
         }
 
-        public int getPercent() {
-            return percent;
+        public Double getValue() {
+            return value;
         }
 
-        public void setPercent(int percent) {
-            this.percent = percent;
+        public void setValue(Double value) {
+            this.value = value;
         }
     }
 }

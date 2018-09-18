@@ -27,6 +27,7 @@ import com.macojia.common.commonutils.TimeUtil;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.news.NewsDetailEntity;
 import com.macojia.leanproduct.constant.AppConstant;
+import com.macojia.leanproduct.ui.MainActivity;
 import com.macojia.leanproduct.ui.news.contract.NewsDetailContract;
 import com.macojia.leanproduct.ui.news.model.NewsDetailModel;
 import com.macojia.leanproduct.ui.news.presenter.NewsDetailPresenter;
@@ -93,6 +94,13 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+        Intent i2 = new Intent(this, MainActivity.class);
+        startActivity(i2/*, oc2.toBundle()*/);
+        finish();
+    }
     @Override
     public int getLayoutId() {
         return R.layout.activity_news_detail;

@@ -34,10 +34,9 @@ public class VideosChannelTableManager {
      */
     public static List<VideoChannelTable> loadVideosChannelsMine() {
         List<String> channelName = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.video_channel_name));
-        List<String> channelId = Arrays.asList(AppApplication.getAppContext().getResources().getStringArray(R.array.video_channel_id));
         ArrayList<VideoChannelTable> newsChannelTables = new ArrayList<>();
         for (int i = 0; i < channelName.size(); i++) {
-            VideoChannelTable entity = new VideoChannelTable(channelId.get(i), channelName.get(i));
+            VideoChannelTable entity = new VideoChannelTable(channelName.get(i), channelName.get(i));
             newsChannelTables.add(entity);
         }
         return newsChannelTables;

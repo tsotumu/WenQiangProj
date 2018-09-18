@@ -1,5 +1,6 @@
 package com.macojia.leanproduct.ui.control.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 
 import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.ui.MainActivity;
 
 import butterknife.Bind;
 
@@ -31,6 +33,13 @@ public class QualityFeedBackActivity extends  BaseActivity {
     @Override
     public void initPresenter() {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i2 = new Intent(this, MainActivity.class);
+        startActivity(i2/*, oc2.toBundle()*/);
+        finish();
     }
 
     @Override

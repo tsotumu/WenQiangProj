@@ -1,5 +1,6 @@
 package com.macojia.leanproduct.ui.control.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ListView;
 import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.control.QualityIndexData;
+import com.macojia.leanproduct.ui.MainActivity;
 import com.macojia.leanproduct.ui.control.adapter.QualityIndexAdapter;
 import com.macojia.leanproduct.ui.control.contact.QualityIndexContract;
 import com.macojia.leanproduct.ui.control.model.QualityIndexModel;
@@ -42,6 +44,13 @@ public class QualityIndexActivity extends BaseActivity<QualityIndexPresenter, Qu
         mPresenter.getDataRequest();
     }
 
+
+    @Override
+    public void onBackPressed() {
+        Intent i2 = new Intent(this, MainActivity.class);
+        startActivity(i2/*, oc2.toBundle()*/);
+        finish();
+    }
     public int getTitleId() {
         return R.string.qualityindex;
     }

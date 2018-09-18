@@ -1,7 +1,9 @@
 package com.macojia.leanproduct.http;
 
 import com.macojia.common.basebean.BaseRespose;
+import com.macojia.leanproduct.bean.control.CostIndexData;
 import com.macojia.leanproduct.bean.control.EfficiencyIndexData;
+import com.macojia.leanproduct.bean.control.ForcastData;
 import com.macojia.leanproduct.bean.control.QualityIndexData;
 import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.bean.login.User;
@@ -30,7 +32,7 @@ import rx.Observable;
 public interface ApiService {
 
     @GET("login")
-    Observable<BaseRespose<User>> login(@Query("username") String username, @Query("password") String password);
+    Call<BaseRespose<User>> login(@Query("username") String username, @Query("password") String password);
 
     @GET("lpcms/getNewDetail")
     Observable<NewsDetailEntity> getNewDetail(@Query("id") int id);
@@ -40,6 +42,12 @@ public interface ApiService {
             @Query("startPage") String startPage,
             @Query("type") String type);
 
+
+    @GET("lpcms/getProductionInfo")
+    Observable<ForcastData> getForcastData();
+
+    @GET("lpcms/getMarkIndexData")
+    Observable<CostIndexData> getCostData(@Query("markindex") String markindex);
 
     @GET("lpcms/getMarkIndexData")
     Observable<QualityIndexData> getControlList(@Query("markindex") String markindex);

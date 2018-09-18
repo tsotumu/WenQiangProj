@@ -1,5 +1,6 @@
 package com.macojia.leanproduct.ui.control.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -8,10 +9,12 @@ import android.widget.ListView;
 import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.control.YieldIndexData;
+import com.macojia.leanproduct.ui.MainActivity;
 import com.macojia.leanproduct.ui.control.adapter.YieldAdapter;
 import com.macojia.leanproduct.ui.control.contact.YieldListContact;
 import com.macojia.leanproduct.ui.control.model.YieldModel;
 import com.macojia.leanproduct.ui.control.presenter.YieldPresenter;
+import com.macojia.leanproduct.ui.login.LoginActivity;
 
 import butterknife.Bind;
 
@@ -30,6 +33,13 @@ public class YieldIndexActivity extends BaseActivity<YieldPresenter, YieldModel>
     public void initView() {
         initToolBar();
         mPresenter.getListDataRequest();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i2 = new Intent(this, MainActivity.class);
+        startActivity(i2/*, oc2.toBundle()*/);
+        finish();
     }
 
     public int getTitleId() {

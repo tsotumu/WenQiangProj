@@ -1,6 +1,7 @@
 package com.macojia.leanproduct.ui.control.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.macojia.leanproduct.bean.control.EfficiencyIndexData;
 import com.macojia.leanproduct.chart.ChartItem;
 import com.macojia.leanproduct.chart.HorizonBarChartItem;
 import com.macojia.leanproduct.chart.LineChartItem;
+import com.macojia.leanproduct.ui.MainActivity;
 import com.macojia.leanproduct.ui.control.adapter.EfficiencyAdapter;
 import com.macojia.leanproduct.ui.control.contact.EfficiencyIndexContract;
 import com.macojia.leanproduct.ui.control.model.EfficiencyModel;
@@ -55,6 +57,13 @@ public class EfficiencyIndexActivity extends  BaseActivity<EfficiencyPresenter, 
     public void initView() {
         initToolBar();
         mPresenter.getDataRequest();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i2 = new Intent(this, MainActivity.class);
+        startActivity(i2/*, oc2.toBundle()*/);
+        finish();
     }
 
     private void initToolBar() {

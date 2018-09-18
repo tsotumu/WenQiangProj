@@ -1,5 +1,6 @@
 package com.macojia.leanproduct.ui.control.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -9,6 +10,7 @@ import com.macojia.common.base.BaseActivity;
 import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.control.CostIndexData;
+import com.macojia.leanproduct.ui.MainActivity;
 import com.macojia.leanproduct.ui.control.adapter.CostIndexAdapter;
 import com.macojia.leanproduct.ui.control.contact.CostListContact;
 import com.macojia.leanproduct.ui.control.model.CostIndexModel;
@@ -42,6 +44,13 @@ public class CostIndexActivity extends BaseActivity<CostIndexPresenter, CostInde
     public void initView() {
         initToolBar();
         mPresenter.getDataRequest();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i2 = new Intent(this, MainActivity.class);
+        startActivity(i2/*, oc2.toBundle()*/);
+        finish();
     }
 
     private void initToolBar() {

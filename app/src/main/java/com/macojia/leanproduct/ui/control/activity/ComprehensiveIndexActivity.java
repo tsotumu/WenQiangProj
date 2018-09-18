@@ -1,5 +1,6 @@
 package com.macojia.leanproduct.ui.control.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -9,6 +10,7 @@ import com.macojia.common.base.BaseActivity;
 import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.control.ComprehensiveIndexData;
+import com.macojia.leanproduct.ui.MainActivity;
 import com.macojia.leanproduct.ui.control.adapter.ComprehensiveIndexAdapter;
 import com.macojia.leanproduct.ui.control.contact.ComprehensiveIndexContract;
 import com.macojia.leanproduct.ui.control.model.ComprehensiveIndexModel;
@@ -42,6 +44,13 @@ public class ComprehensiveIndexActivity extends BaseActivity<ComprehensivePresen
     public void initView() {
         initToolBar();
         mPresenter.getDataRequest();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i2 = new Intent(this, MainActivity.class);
+        startActivity(i2/*, oc2.toBundle()*/);
+        finish();
     }
 
     private void initToolBar(){

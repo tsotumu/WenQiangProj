@@ -111,7 +111,6 @@ public abstract class BaseActivity<PresenterType extends BasePresenter, ModelTyp
     //初始化view
     public abstract void initView();
 
-
     /**
      * 设置主题
      */

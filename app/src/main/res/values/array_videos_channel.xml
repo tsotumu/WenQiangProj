@@ -7,10 +7,4 @@
         <item>操作</item>
         <item>保养</item>
     </string-array>
-    <string-array name="video_channel_id">
-        <item>V9LG4B3A0</item>
-        <item>V9LG4E6VR</item>
-        <item>V9LG4CHOR</item>
-        <item>00850FRB</item>
-    </string-array>
 </resources>

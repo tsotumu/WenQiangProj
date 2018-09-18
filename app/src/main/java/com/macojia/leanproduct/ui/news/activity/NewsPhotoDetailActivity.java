@@ -17,6 +17,7 @@ import com.macojia.common.commonwidget.ViewPagerFixed;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.news.NewsPhotoDetail;
 import com.macojia.leanproduct.constant.AppConstant;
+import com.macojia.leanproduct.ui.MainActivity;
 import com.macojia.leanproduct.ui.news.fragment.PhotoDetailFragment;
 
 import java.util.ArrayList;
@@ -41,6 +42,13 @@ public class NewsPhotoDetailActivity extends BaseActivity {
     private List<Fragment> mPhotoDetailFragmentList = new ArrayList<>();
     private NewsPhotoDetail mNewsPhotoDetail;
 
+
+    @Override
+    public void onBackPressed() {
+        Intent i2 = new Intent(this, MainActivity.class);
+        startActivity(i2/*, oc2.toBundle()*/);
+        finish();
+    }
 
     /**
      * 入口

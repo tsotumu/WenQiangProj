@@ -24,92 +24,12 @@
         app:refreshEnabled="true"
         app:refreshHeaderLayout="@layout/layout_irecyclerview_classic_refresh_header" />
 
- <!--   <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/tsyh"
-        android:layout_width="wrap_content"
-        android:padding="20dp"
-        custom:progress_current="10"
-        style="@style/NumberProgressBar_Default"
-        android:layout_height="wrap_content" />
-
-    <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/tsbx"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        custom:progress_current="20"
+    <com.macojia.common.commonwidget.LoadingTip
+        android:id="@+id/loadedTip"
         android:layout_width="match_parent"
-        style="@style/NumberProgressBar_Passing_Green"
-     />
-
-    <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/tshdm"
-        android:layout_margin="20dp"
-        style="@style/NumberProgressBar_Grace_Yellow"
-        custom:progress_current="30"
-        android:layout_height="wrap_content" />
-
-    <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/tswy"
-        android:layout_width="wrap_content"
-        android:layout_margin="20dp"
-        style="@style/NumberProgressBar_Warning_Red"
-        custom:progress_current="40"
-        android:layout_height="wrap_content" />
-
-
-    <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/bsy"
-        android:layout_width="wrap_content"
-        android:layout_margin="20dp"
-        custom:progress_current="50"
-        style="@style/NumberProgressBar_Default"
-        android:layout_height="wrap_content" />
-
-
-    <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/bsjp"
-        android:layout_width="wrap_content"
-        android:layout_margin="20dp"
-        style="@style/NumberProgressBar_Passing_Green"
-        custom:progress_current="60"
-        android:layout_height="wrap_content" />
-
-    <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/njh"
-        android:layout_width="wrap_content"
-        android:layout_margin="20dp"
-        style="@style/NumberProgressBar_Grace_Yellow"
-        custom:progress_current="70"
-        android:layout_height="wrap_content" />
-
-    <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/tshdmyh"
-        android:layout_width="wrap_content"
-        android:layout_margin="20dp"
-        style="@style/NumberProgressBar_Warning_Red"
-        custom:progress_current="80"
-        android:layout_height="wrap_content" />
-    <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/tshp"
-        android:layout_width="wrap_content"
-        android:layout_margin="20dp"
-        style="@style/NumberProgressBar_Default"
-        custom:progress_current="80"
-        android:layout_height="wrap_content" />
-     <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/tsqy"
-        android:layout_width="wrap_content"
-        android:layout_margin="20dp"
-        style="@style/NumberProgressBar_Passing_Green"
-        custom:progress_current="45"
-        android:layout_height="wrap_content" />
-     <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/tsdf"
-        android:layout_width="wrap_content"
-        android:layout_margin="20dp"
-        style="@style/NumberProgressBar_Grace_Yellow"
-        custom:progress_current="79"
-        android:layout_height="wrap_content" />-->
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center" />
   
 
 </LinearLayout>

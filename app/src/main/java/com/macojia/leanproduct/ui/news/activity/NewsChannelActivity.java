@@ -16,6 +16,7 @@ import com.macojia.common.base.BaseActivity;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.news.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
+import com.macojia.leanproduct.ui.MainActivity;
 import com.macojia.leanproduct.ui.news.presenter.NewsChanelPresenter;
 import com.macojia.leanproduct.ui.news.contract.NewsChannelContract;
 import com.macojia.leanproduct.ui.news.model.NewsChannelModel;
@@ -53,6 +54,13 @@ public class NewsChannelActivity extends BaseActivity<NewsChanelPresenter, NewsC
     public static void startAction(Context context) {
         Intent intent = new Intent(context, NewsChannelActivity.class);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i2 = new Intent(this, MainActivity.class);
+        startActivity(i2/*, oc2.toBundle()*/);
+        finish();
     }
 
     @Override
