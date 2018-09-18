@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -26,18 +27,17 @@ import java.util.ArrayList;
 
 import base.utils.ResourceUtil;
 import butterknife.Bind;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import rx.functions.Action1;
 
 /**
  * Created by xsf on 2016.09.15:32
  */
 public class MainActivity extends BaseActivity {
+    public static final long DOUBLE_BACK_FOR_QUIT_INTERNAL = 3 * 1000;
     private static int tabLayoutHeight;
-
     @Bind(R.id.tab_layout)
     CommonTabLayout mTabLayout;
-
+    private long mLastBackTime;
     private int[] mTitles = {R.string.home, R.string.control, R.string.weiguan, R.string.shichuang};
     private int[] mIconUnselectIds = {
             R.mipmap.ic_home_normal,
@@ -219,15 +219,15 @@ public class MainActivity extends BaseActivity {
         animatorSet.start();
     }
 
-    /**
-     * 监听全屏视频时返回键
-     */
     @Override
     public void onBackPressed() {
-        if (JCVideoPlayer.backPress()) {
-            return;
+        long currentT = System.currentTimeMillis();
+        if (currentT - mLastBackTime > DOUBLE_BACK_FOR_QUIT_INTERNAL) {
+            mLastBackTime = System.currentTimeMillis();
+            Toast.makeText(this, "再次点击回退键退出应用", Toast.LENGTH_LONG);
+        } else {
+            finish();
         }
-        super.onBackPressed();
     }
 
     /**

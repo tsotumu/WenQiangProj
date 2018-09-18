@@ -31,8 +31,8 @@ import rx.Observable;
  */
 public interface ApiService {
 
-    @GET("login")
-    Call<BaseRespose<User>> login(@Query("username") String username, @Query("password") String password);
+    @GET("lpcms/appLogin")
+    Call<Boolean> login(@Query("username") String username, @Query("password") String password);
 
     @GET("lpcms/getNewDetail")
     Observable<NewsDetailEntity> getNewDetail(@Query("id") int id);
