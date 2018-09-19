@@ -4,6 +4,7 @@ import com.macojia.common.basebean.BaseRespose;
 import com.macojia.leanproduct.bean.control.CostIndexData;
 import com.macojia.leanproduct.bean.control.EfficiencyIndexData;
 import com.macojia.leanproduct.bean.control.ForcastData;
+import com.macojia.leanproduct.bean.control.MatainGuideData;
 import com.macojia.leanproduct.bean.control.QualityIndexData;
 import com.macojia.leanproduct.bean.control.YieldIndexData;
 import com.macojia.leanproduct.bean.login.User;
@@ -48,6 +49,11 @@ public interface ApiService {
 
     @GET("lpcms/getMarkIndexData")
     Observable<CostIndexData> getCostData(@Query("markindex") String markindex);
+
+    @GET("lpcms/getMarkIndexData")
+    Observable<MatainGuideData> getMaintain();
+
+
 
     @GET("lpcms/getMarkIndexData")
     Observable<QualityIndexData> getControlList(@Query("markindex") String markindex);

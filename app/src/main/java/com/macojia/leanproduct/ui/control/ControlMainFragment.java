@@ -126,17 +126,17 @@ public class ControlMainFragment extends BaseFragment<ControlItemsPresenter, Con
                             break;
                         }*/
                         // 质量反馈
-                        case 7:{
+                        case 6:{
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, QualityFeedBackActivity.class);
                             break;
                         }
                         // 维修指导
-                        case 8:{
+                        case 7:{
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, MaintainGuidanceActivity.class);
                             break;
                         }
                         // 进度预测
-                        case 9:{
+                        case 8:{
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, ForecastProgressActivity.class);
                             break;
                         }

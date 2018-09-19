@@ -7,15 +7,66 @@ import java.util.List;
  */
 
 public class MatainGuideData {
-    public List<MatainDataPerMachine> maintainDataList;
 
-    public static class MatainDataPerMachine {
-        public List<MatainData> data;
+    private List<MaintainDataListBean> maintainDataList;
+
+    public List<MaintainDataListBean> getMaintainDataList() {
+        return maintainDataList;
     }
 
-    public static class MatainData {
-        public String name;
-        public int frequency;
+    public void setMaintainDataList(List<MaintainDataListBean> maintainDataList) {
+        this.maintainDataList = maintainDataList;
     }
 
+    public static class MaintainDataListBean {
+        /**
+         * data : [{"key":"tst3","value":15},{"key":"tst1","value":31},{"key":"tst2","value":12}]
+         * machineName : 17号卷烟机
+         */
+
+        private String machineName;
+        private List<DataBean> data;
+
+        public String getMachineName() {
+            return machineName;
+        }
+
+        public void setMachineName(String machineName) {
+            this.machineName = machineName;
+        }
+
+        public List<DataBean> getData() {
+            return data;
+        }
+
+        public void setData(List<DataBean> data) {
+            this.data = data;
+        }
+
+        public static class DataBean {
+            /**
+             * key : tst3
+             * value : 15
+             */
+
+            private String key;
+            private int value;
+
+            public String getKey() {
+                return key;
+            }
+
+            public void setKey(String key) {
+                this.key = key;
+            }
+
+            public int getValue() {
+                return value;
+            }
+
+            public void setValue(int value) {
+                this.value = value;
+            }
+        }
+    }
 }
