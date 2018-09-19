@@ -99,7 +99,6 @@ public class ControlMainFragment extends BaseFragment<ControlItemsPresenter, Con
                 @Override
                 public void onClick(View view) {
                     int pos = holder.getLayoutPosition();
-                    LogUtils.logd("我的6666" + pos);
                     switch (pos){
                         // 产量指标
                         case 2:{
@@ -121,11 +120,11 @@ public class ControlMainFragment extends BaseFragment<ControlItemsPresenter, Con
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, EfficiencyIndexActivity.class);
                             break;
                         }
-                        //综合指标
+                      /*  //综合指标
                         case 6:{
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, ComprehensiveIndexActivity.class);
                             break;
-                        }
+                        }*/
                         // 质量反馈
                         case 7:{
                             ActivityUtil.startActivity(ControlMainFragment.this.mActivity, QualityFeedBackActivity.class);

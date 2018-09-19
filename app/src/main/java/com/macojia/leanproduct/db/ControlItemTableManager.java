@@ -39,7 +39,7 @@ public class ControlItemTableManager {
         itemImages.add(R.mipmap.control_item_1);
         itemImages.add(R.mipmap.control_item_2);
         itemImages.add(R.mipmap.control_item_3);
-        itemImages.add(R.mipmap.control_item_4);
+//        itemImages.add(R.mipmap.control_item_4);
         itemImages.add(R.mipmap.control_item_5);
         itemImages.add(R.mipmap.control_item_6);
         itemImages.add(R.mipmap.control_item_7);

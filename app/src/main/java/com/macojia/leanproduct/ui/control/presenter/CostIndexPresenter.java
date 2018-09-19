@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Observable;
 
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by LC on 2018/7/9.
@@ -21,7 +23,7 @@ public class CostIndexPresenter extends CostListContact.Presenter {
          * Observable可观察对象；Subscriber订阅者；Observable.subscribe(Subscriber)
          * Observer同Subcriber，只是不能取消订阅。
          */
-        rx.Observable<CostIndexData> observable = mModel.getData();
+        rx.Observable<CostIndexData> observable = mModel.getData().subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
         Subscriber subscriber = new RxSubscriber<CostIndexData>(mContext, false) {
             @Override
             protected void _onNext(CostIndexData newsChannelTables) {

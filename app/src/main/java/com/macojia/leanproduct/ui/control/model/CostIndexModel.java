@@ -1,8 +1,9 @@
 package com.macojia.leanproduct.ui.control.model;
 
 import com.macojia.common.baserx.RxSchedulers;
-import com.macojia.leanproduct.BuildConfig;
+import com.macojia.leanproduct.bean.control.ControlType;
 import com.macojia.leanproduct.bean.control.CostIndexData;
+import com.macojia.leanproduct.http.NetworkManager;
 import com.macojia.leanproduct.ui.control.contact.CostListContact;
 
 import base.utils.DebugUtil;
@@ -20,19 +21,23 @@ public class CostIndexModel implements CostListContact.Model {
         /**
          * Observer.create就是创建一个数据发射源。
          */
-        Observable.OnSubscribe observable = new Observable.OnSubscribe<CostIndexData>() {
-            @Override
-            public void call(Subscriber<? super CostIndexData> subscriber) {
+        if (false) {
+            Observable.OnSubscribe observable = new Observable.OnSubscribe<CostIndexData>() {
+                @Override
+                public void call(Subscriber<? super CostIndexData> subscriber) {
 
-                CostIndexData costIndexList = new CostIndexData();
-                if (DebugUtil.DEBUG) {
-                    costIndexList = base.utils.JsonUtils.analysisNewsJsonFile(CostIndexData.class, "cost_index_json");
+                    CostIndexData costIndexList = new CostIndexData();
+                    if (DebugUtil.DEBUG) {
+                        costIndexList = base.utils.JsonUtils.analysisNewsJsonFile(CostIndexData.class, "cost_index_json");
+                    }
+                    subscriber.onNext(costIndexList);
+                    subscriber.onCompleted();
                 }
-                subscriber.onNext(costIndexList);
-                subscriber.onCompleted();
-            }
-        };
-        return Observable.create(observable).compose(RxSchedulers.<CostIndexData>io_main());
+            };
+            return Observable.create(observable).compose(RxSchedulers.<CostIndexData>io_main());
+        } else {
+            return NetworkManager.getDefault(0).getCostData(ControlType.COST_INDEX);
+        }
     }
 
 }

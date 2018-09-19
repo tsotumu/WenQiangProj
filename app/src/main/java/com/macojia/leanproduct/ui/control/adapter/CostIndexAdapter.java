@@ -19,6 +19,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.AppApplication;
 import com.macojia.leanproduct.bean.control.CostIndexData;
+import com.macojia.leanproduct.chart.LabelFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,25 +29,38 @@ import java.util.List;
  */
 
 public class CostIndexAdapter extends ArrayAdapter<BarData> {
+    private List<String> titleList;
+    private List<List<String>> mAxisLabels;
 
     public CostIndexAdapter(Context context, List<BarData> objects) {
         super(context, 0, objects);
     }
 
     public static CostIndexAdapter getAdapter(CostIndexData costIndexData) {
-        ArrayList<BarData> list = new ArrayList<>();
-        for (int i = 0; i < costIndexData.indexData.size(); i++) {
-            CostIndexData.MonthlyData monthlyData = costIndexData.indexData.get(i);
-            list.add(generateData(monthlyData));
+        List<String> barTitleList = new ArrayList<>();
+        ArrayList<BarData> barList = new ArrayList<>();
+        List<List<String>> axisLabels = new ArrayList<>();
+        List<CostIndexData.MonthlyIndexPerMachineBean> monthlyIndexPerMachineBeans = costIndexData.getMonthlyIndexPerMachine();
+        for (int i = 0; i < monthlyIndexPerMachineBeans.size(); i++) {
+            List<CostIndexData.MonthlyIndexPerMachineBean.IndexListBean> indexListBeanList = monthlyIndexPerMachineBeans.get(i).getIndexList();
+            barList.add(generateSingleBarData(indexListBeanList));
+            barTitleList.add(monthlyIndexPerMachineBeans.get(i).getMachineName());
+            List<String> titleList = new ArrayList<>();
+            for (CostIndexData.MonthlyIndexPerMachineBean.IndexListBean indexListBean : indexListBeanList){
+                titleList.add(indexListBean.getKey());
+            }
+            axisLabels.add(titleList);
         }
-        CostIndexAdapter adapter = new CostIndexAdapter(AppApplication.getInstance(), list);
+        CostIndexAdapter adapter = new CostIndexAdapter(AppApplication.getInstance(), barList);
+        adapter.titleList = barTitleList;
+        adapter.mAxisLabels = axisLabels;
         return adapter;
     }
 
-    private static BarData generateData(CostIndexData.MonthlyData monthlyDataList) {
+    private static BarData generateSingleBarData(List<CostIndexData.MonthlyIndexPerMachineBean.IndexListBean> indexListBeanLis) {
         ArrayList<BarEntry> entries = new ArrayList<>();
-        for (int count = 0; count < monthlyDataList.data.size(); count++) {
-            entries.add(new BarEntry(count, monthlyDataList.data.get(count)));
+        for (int count = 0; count < indexListBeanLis.size(); count++) {
+            entries.add(new BarEntry(count, indexListBeanLis.get(count).getValue()));
         }
         BarDataSet barDataSet = new BarDataSet(entries, "");
         barDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
@@ -67,7 +81,7 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
 
         ViewHolder holder = null;
 
-        if (convertView == null) {
+   /*     if (convertView == null) {*/
 
             holder = new ViewHolder();
 
@@ -78,11 +92,11 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
 
             convertView.setTag(holder);
 
-        } else {
+       /* } else {
             holder = (ViewHolder) convertView.getTag();
-        }
+        }*/
 
-        holder.chartTitle.setText(position + "号包装机");
+        holder.chartTitle.setText(titleList.get(position));
 
         // apply styling
 //            data.setValueTypeface(mTfLight);
@@ -104,7 +118,14 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
 
         YAxis rightAxis = holder.chart.getAxisRight();
 //            rightAxis.setTypeface(mTfLight);
-        rightAxis.setLabelCount(5, false);
+
+        if (mAxisLabels != null && mAxisLabels.get(position) != null) {
+            String[] titles = new String[0];
+            titles = mAxisLabels.get(position).toArray(titles);
+            xAxis.setValueFormatter(new LabelFormatter(titles));
+            xAxis.setLabelRotationAngle(25);
+        }
+        rightAxis.setLabelCount(mAxisLabels.get(position).size(), false);
         rightAxis.setSpaceTop(15f);
 
         // set data

@@ -40,7 +40,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        mEditUsrName.setText("20097");
+        mEditUsrName.setText("200972");
         mEditPwd.setText("1");
     }
 

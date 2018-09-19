@@ -73,6 +73,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/selector_bg_edit"
                         android:hint="@string/Username"
+                        android:text="200972"
                         android:inputType="textPersonName"
                         android:paddingBottom="2dp"
                         android:textColor="#2fa881"
@@ -102,6 +103,7 @@
                         android:inputType="textPassword"
                         android:paddingBottom="2dp"
                         android:textColor="#2fa881"
+                        android:text="1"
                         android:textCursorDrawable="@drawable/bg_input_cursor"
                         android:textSize="18sp" />
                 </android.support.design.widget.TextInputLayout>
