@@ -28,11 +28,13 @@ android {
             //apk命名
             android.applicationVariants.all { variant ->
                 variant.outputs.each { output ->
-                    def outputFile = output.outputFile
-                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        //这里修改apk文件名
-                        def fileName = "zhihuijuanbao${defaultConfig.versionName}-${releaseTime()}.apk"
-                        output.outputFile = new File(outputFile.parent, fileName)
+                    if(variant.buildType.name.equals('release')) {
+                        def outputFile = output.packageApplication.outputFile
+                        if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                            //这里修改apk文件名
+                            def fileName = "zhihuijuanbao${defaultConfig.versionName}-${releaseTime()}.apk"
+                            output.packageApplication.outputFile = new File(outputFile.parent, fileName)
+                        }
                     }
                 }
             }
@@ -68,4 +70,5 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     compile 'com.daimajia.numberprogressbar:library:1.4@aar'
     compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
 }

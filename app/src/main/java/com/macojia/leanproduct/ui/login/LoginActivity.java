@@ -1,19 +1,18 @@
 package com.macojia.leanproduct.ui.login;
 
-import android.app.LauncherActivity;
 import android.content.Intent;
+import android.os.MessageQueue;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.macojia.common.base.BaseActivity;
-import com.macojia.leanproduct.AppApplication;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.http.NetworkManager;
 import com.macojia.leanproduct.ui.MainActivity;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,51 +36,48 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initPresenter() {
-
     }
 
     @Override
     public void initView() {
-        mEditUsrName.setText("Admin");
-        mEditPwd.setText("password_123");
+        mEditUsrName.setText("20097");
+        mEditPwd.setText("1");
     }
 
-    @OnClick(R.id.bt_go)
-    public void GoMain() {
+    public void GoMain(View view) {
         isValidLogin();
-      /*  if (isValidLogin()) {
-//        Explode explode = new Explode();
-//        explode.setDuration(500);
-//
-//        getWindow().setExitTransition(explode);
-//        ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
-            Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(i2*//*, oc2.toBundle()*//*);
-            finish();
-        }*/
     }
 
     private void isValidLogin() {
         String inputUsrName = mEditUsrName.getText().toString();
         String inputPwd = mEditPwd.getText().toString();
-        retrofit2.Call<Boolean> call = NetworkManager.getDefault(0).login(inputUsrName, inputPwd);
-        call.enqueue(new Callback<Boolean>() {
+        retrofit2.Call<String> call = NetworkManager.getDefault(1).login(inputUsrName, inputPwd);
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                if (response != null && response.body() != null && response.body().booleanValue()){
-                    Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(i2/*, oc2.toBundle()*/);
-                    finish();
-                }else {
-                    Toast.makeText(AppApplication.getInstance(), "用户名或密码错误", Toast.LENGTH_LONG);
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response != null && response.body() != null) {
+                    if (response.body().equals("true")) {
+                        LoginActivity.this.getMainLooper().getQueue().addIdleHandler(new MessageQueue.IdleHandler() {
+                            @Override
+                            public boolean queueIdle() {
+                                Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(i2/*, oc2.toBundle()*/);
+                                LoginActivity.this.finish();
+                                return false;
+                            }
+                        });
+                    } else {
+                        Toast.makeText(LoginActivity.this, R.string.wrong_usn_pwd, Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(LoginActivity.this, R.string.wrong_usn_pwd, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
-                Toast.makeText(AppApplication.getInstance(), "用户名或密码错误", Toast.LENGTH_LONG);
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, R.string.wrong_network, Toast.LENGTH_SHORT).show();
             }
         });
-        call.request();
     }
 }

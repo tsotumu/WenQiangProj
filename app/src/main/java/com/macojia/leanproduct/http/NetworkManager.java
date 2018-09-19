@@ -3,7 +3,6 @@ package com.macojia.leanproduct.http;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.util.SparseArray;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,6 +23,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * des:retorfit api
@@ -98,9 +98,10 @@ public class NetworkManager {
             }
         }
     };
-    public Retrofit retrofit;
-    public ApiService apiService;
-    public OkHttpClient okHttpClient;
+    private Retrofit retrofitJson;
+    private ApiService apiService;
+    private OkHttpClient okHttpClient;
+    private Retrofit retrofitScalars;
 
 
     //构造方法私有
@@ -133,13 +134,19 @@ public class NetworkManager {
                 .build();
 
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
-        retrofit = new Retrofit.Builder()
+        retrofitJson = new Retrofit.Builder()
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(NetworkConstants.getHost(hostType))
                 .build();
-        apiService = retrofit.create(ApiService.class);
+        apiService = retrofitJson.create(ApiService.class);
+        retrofitScalars = new Retrofit.Builder()
+                .client(okHttpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(NetworkConstants.getHost(hostType))
+                .build();
     }
 
     /**
@@ -150,7 +157,11 @@ public class NetworkManager {
         if (networkManager == null) {
             networkManager = new NetworkManager(hostType);
         }
-        return networkManager.apiService;
+        if (hostType == 0) {
+            return networkManager.apiService;
+        }else {
+            return networkManager.retrofitScalars.create(ApiService.class);
+        }
     } /**
      * OkHttpClient
      *
