@@ -14,7 +14,6 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.macojia.common.base.BaseActivity;
 import com.macojia.common.commonutils.LogUtils;
-import com.macojia.common.commonutils.ToastUitl;
 import com.macojia.common.daynightmodeutils.ChangeModeController;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.TabEntity;
@@ -54,7 +53,7 @@ public class MainActivity extends BaseActivity {
     private NewsMainFragment newsFragment;
     // private PhotosMainFragment photosMainFragment;
     private VideoMainFragment videoMainFragment;
-    private ViewWindowFragment careMainFragment;
+    private ViewWindowFragment viewWindowFragement;
     private ControlMainFragment controlMainFragment;
 
     @Override
@@ -126,19 +125,19 @@ public class MainActivity extends BaseActivity {
             newsFragment = (NewsMainFragment) getSupportFragmentManager().findFragmentByTag("newsFragment");
             //  photosMainFragment = (PhotosMainFragment) getSupportFragmentManager().findFragmentByTag("photosMainFragment");
             videoMainFragment = (VideoMainFragment) getSupportFragmentManager().findFragmentByTag("videoMainFragment");
-            careMainFragment = (ViewWindowFragment) getSupportFragmentManager().findFragmentByTag("careMainFragment");
+            viewWindowFragement = (ViewWindowFragment) getSupportFragmentManager().findFragmentByTag("viewWindowFragement");
             controlMainFragment = (ControlMainFragment) getSupportFragmentManager().findFragmentByTag("controlMainFragment");
             currentTabPosition = savedInstanceState.getInt(AppConstant.HOME_CURRENT_TAB_POSITION);
         } else {
             newsFragment = new NewsMainFragment();
             //      photosMainFragment = new PhotosMainFragment();
             videoMainFragment = new VideoMainFragment();
-            careMainFragment = new ViewWindowFragment();
+            viewWindowFragement = new ViewWindowFragment();
             controlMainFragment = new ControlMainFragment();
             transaction.add(R.id.fl_container, newsFragment, "newsFragment");
             //     transaction.add(R.id.fl_body, photosMainFragment, "photosMainFragment");
             transaction.add(R.id.fl_container, videoMainFragment, "videoMainFragment");
-            transaction.add(R.id.fl_container, careMainFragment, "careMainFragment");
+            transaction.add(R.id.fl_container, viewWindowFragement, "viewWindowFragement");
             transaction.add(R.id.fl_container, controlMainFragment, "controlMainFragment");
         }
         transaction.commit();
@@ -154,7 +153,7 @@ public class MainActivity extends BaseActivity {
                 //首页
                 transaction.hide(controlMainFragment);
                 transaction.hide(videoMainFragment);
-                transaction.hide(careMainFragment);
+                transaction.hide(viewWindowFragement);
                 transaction.show(newsFragment);
                 transaction.commitAllowingStateLoss();
                 break;
@@ -163,7 +162,7 @@ public class MainActivity extends BaseActivity {
                 // 管控
                 transaction.hide(newsFragment);
                 transaction.hide(videoMainFragment);
-                transaction.hide(careMainFragment);
+                transaction.hide(viewWindowFragement);
                 transaction.show(controlMainFragment);
                 transaction.commitAllowingStateLoss();
                 break;
@@ -172,7 +171,7 @@ public class MainActivity extends BaseActivity {
                 //视频
                 transaction.hide(newsFragment);
                 transaction.hide(controlMainFragment);
-                transaction.hide(careMainFragment);
+                transaction.hide(viewWindowFragement);
                 transaction.show(videoMainFragment);
                 transaction.commitAllowingStateLoss();
                 break;
@@ -182,7 +181,7 @@ public class MainActivity extends BaseActivity {
                 transaction.hide(newsFragment);
                 transaction.hide(controlMainFragment);
                 transaction.hide(videoMainFragment);
-                transaction.show(careMainFragment);
+                transaction.show(viewWindowFragement);
                 transaction.commitAllowingStateLoss();
                 break;
             }

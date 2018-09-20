@@ -16,9 +16,10 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.AppApplication;
+import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.control.MatainGuideData;
+import com.macojia.leanproduct.chart.LabelFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,20 +28,32 @@ import java.util.List;
  * Created by Administrator on 2018/8/8.
  */
 
-public class MaintainGuideAdapter  extends ArrayAdapter<BarData> {
+public class MaintainGuideAdapter extends ArrayAdapter<BarData> {
+    private List<String> mTitleList;
+    private List<List<String>> mAxisLabels;
 
     public MaintainGuideAdapter(Context context, List<BarData> objects) {
         super(context, 0, objects);
     }
 
     public static MaintainGuideAdapter getAdapter(MatainGuideData data) {
-        List<String> titleList = new ArrayList<>();
-        ArrayList<BarData> list = new ArrayList<>();
-        for (int i = 0; i < data.maintainDataList.size(); i++) {
-            MatainGuideData.MatainDataPerMachine costIndexData = data.maintainDataList.get(i);
-            list.add(generateData(costIndexData));
+        List<String> barTitleList = new ArrayList<>();
+        ArrayList<BarData> barList = new ArrayList<>();
+        List<List<String>> axisLabels = new ArrayList<>();
+        List<MatainGuideData.MaintainDataListBean> maintainDataListBeanList = data.getMaintainDataList();
+        for (int i = 0; i < maintainDataListBeanList.size(); i++) {
+            List<MatainGuideData.MaintainDataListBean.DataBean> dataList = maintainDataListBeanList.get(i).getData();
+            barList.add(generateData(dataList));
+            barTitleList.add(maintainDataListBeanList.get(i).getMachineName());
+            List<String> titleList = new ArrayList<>();
+            for (MatainGuideData.MaintainDataListBean.DataBean dataBean : dataList) {
+                titleList.add(dataBean.getKey());
+            }
+            axisLabels.add(titleList);
         }
-        MaintainGuideAdapter adapter = new MaintainGuideAdapter(AppApplication.getInstance(), list);
+        MaintainGuideAdapter adapter = new MaintainGuideAdapter(AppApplication.getInstance(), barList);
+        adapter.mAxisLabels = axisLabels;
+        adapter.mTitleList = barTitleList;
         return adapter;
     }
 
@@ -49,10 +62,10 @@ public class MaintainGuideAdapter  extends ArrayAdapter<BarData> {
      *
      * @return
      */
-    private static BarData generateData(MatainGuideData.MatainDataPerMachine dataList) {
+    private static BarData generateData(List<MatainGuideData.MaintainDataListBean.DataBean> dataList) {
         ArrayList<BarEntry> entries = new ArrayList<>();
-        for (int count = 0; count < dataList.data.size(); count++) {
-            entries.add(new BarEntry(count, dataList.data.get(count).frequency));
+        for (int count = 0; count < dataList.size(); count++) {
+            entries.add(new BarEntry(count, dataList.get(count).getValue()));
         }
         BarDataSet barDataSet = new BarDataSet(entries, "");
         barDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
@@ -87,7 +100,7 @@ public class MaintainGuideAdapter  extends ArrayAdapter<BarData> {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.chartTitle.setText(position + "号包装机");
+        holder.chartTitle.setText(mTitleList.get(position));
 
         data.setValueTextColor(Color.BLACK);
         holder.chart.getDescription().setEnabled(false);
@@ -104,7 +117,12 @@ public class MaintainGuideAdapter  extends ArrayAdapter<BarData> {
 //            leftAxis.setTypeface(mTfLight);
         leftAxis.setLabelCount(5, false);
         leftAxis.setSpaceTop(15f);
-
+        if (mAxisLabels != null && mAxisLabels.get(position) != null) {
+            String[] titles = new String[0];
+            titles = mAxisLabels.get(position).toArray(titles);
+            xAxis.setValueFormatter(new LabelFormatter(titles));
+            xAxis.setLabelRotationAngle(25);
+        }
         YAxis rightAxis = holder.chart.getAxisRight();
 //            rightAxis.setTypeface(mTfLight);
         rightAxis.setLabelCount(5, false);

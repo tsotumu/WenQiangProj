@@ -7,7 +7,6 @@ import java.util.List;
  */
 
 public class MatainGuideData {
-
     private List<MaintainDataListBean> maintainDataList;
 
     public List<MaintainDataListBean> getMaintainDataList() {

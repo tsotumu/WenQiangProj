@@ -6,7 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import com.macojia.common.base.BaseFragment;
 import com.macojia.common.daynightmodeutils.ChangeModeController;
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.bean.hotel.HotelEntity;
+import com.macojia.leanproduct.bean.hotel.ViewWindowEntity;
+import com.macojia.leanproduct.ui.control.contact.ViewWindowContact;
+import com.macojia.leanproduct.ui.control.model.ViewWindowModel;
+import com.macojia.leanproduct.ui.control.presenter.ViewWindowPresenter;
 import com.macojia.leanproduct.ui.news.activity.AboutActivity;
 
 import base.utils.JsonUtils;
@@ -17,7 +20,7 @@ import butterknife.Bind;
  * Created by xsf
  * on 2016.09.17:07
  */
-public class ViewWindowFragment extends BaseFragment {
+public class ViewWindowFragment extends BaseFragment<ViewWindowPresenter, ViewWindowModel> implements ViewWindowContact.View{
     @Bind(R.id.view_recyclerView)
     RecyclerView mRecyclerView;
 
@@ -26,12 +29,12 @@ public class ViewWindowFragment extends BaseFragment {
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.fra_care_main;
+        return R.layout.fra_view_window_main;
     }
 
     @Override
     public void initPresenter() {
-
+        mPresenter.setView_Model(this, mModel);
     }
 
     @Override
@@ -42,8 +45,7 @@ public class ViewWindowFragment extends BaseFragment {
         manager.setSpanSizeLookup(new SectionedSpanSizeLookup(mAdapter, manager));
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
-        HotelEntity entity = JsonUtils.analysisNewsJsonFile(HotelEntity.class, "shichuang");
-        mAdapter.setData(entity.allTagsList);
+        mPresenter.getDataRequest();
     }
 
     //    @OnClick(R.id.ll_daynight_toggle)
@@ -54,6 +56,34 @@ public class ViewWindowFragment extends BaseFragment {
     //    @OnClick(R.id.ll_daynight_about)
     public void about() {
         AboutActivity.startAction(getContext());
+    }
+
+    @Override
+    public void onIndexDataReturn(ViewWindowEntity data) {
+
+//        ViewWindowEntity entity = JsonUtils.analysisNewsJsonFile(ViewWindowEntity.class, "shichuang");
+        mAdapter.setData(data.getAllTagsList());
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void scrolltoTop() {
+
+    }
+
+    @Override
+    public void showLoading(String title) {
+
+    }
+
+    @Override
+    public void stopLoading() {
+
+    }
+
+    @Override
+    public void showErrorTip(String msg) {
+
     }
 
     /**

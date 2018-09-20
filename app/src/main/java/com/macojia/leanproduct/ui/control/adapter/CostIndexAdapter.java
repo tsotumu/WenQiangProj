@@ -29,7 +29,7 @@ import java.util.List;
  */
 
 public class CostIndexAdapter extends ArrayAdapter<BarData> {
-    private List<String> titleList;
+    private List<String> mTitleList;
     private List<List<String>> mAxisLabels;
 
     public CostIndexAdapter(Context context, List<BarData> objects) {
@@ -52,7 +52,7 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
             axisLabels.add(titleList);
         }
         CostIndexAdapter adapter = new CostIndexAdapter(AppApplication.getInstance(), barList);
-        adapter.titleList = barTitleList;
+        adapter.mTitleList = barTitleList;
         adapter.mAxisLabels = axisLabels;
         return adapter;
     }
@@ -96,7 +96,7 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
             holder = (ViewHolder) convertView.getTag();
         }*/
 
-        holder.chartTitle.setText(titleList.get(position));
+        holder.chartTitle.setText(mTitleList.get(position));
 
         // apply styling
 //            data.setValueTypeface(mTfLight);

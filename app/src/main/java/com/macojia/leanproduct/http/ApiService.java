@@ -7,6 +7,8 @@ import com.macojia.leanproduct.bean.control.ForcastData;
 import com.macojia.leanproduct.bean.control.MatainGuideData;
 import com.macojia.leanproduct.bean.control.QualityIndexData;
 import com.macojia.leanproduct.bean.control.YieldIndexData;
+import com.macojia.leanproduct.bean.hotel.VWDetailEntity;
+import com.macojia.leanproduct.bean.hotel.ViewWindowEntity;
 import com.macojia.leanproduct.bean.login.User;
 import com.macojia.leanproduct.bean.news.NewsDetailEntity;
 import com.macojia.leanproduct.bean.news.NewsListData;
@@ -50,10 +52,14 @@ public interface ApiService {
     @GET("lpcms/getMarkIndexData")
     Observable<CostIndexData> getCostData(@Query("markindex") String markindex);
 
-    @GET("lpcms/getMarkIndexData")
+    @GET("lpcms/getEquipFaultData")
     Observable<MatainGuideData> getMaintain();
 
+    @GET("lpcms/getWindowList")
+    Observable<ViewWindowEntity> getWindowList();
 
+    @GET("lpcms/getWindowData")
+    Call<VWDetailEntity> getWindowData();
 
     @GET("lpcms/getMarkIndexData")
     Observable<QualityIndexData> getControlList(@Query("markindex") String markindex);

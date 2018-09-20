@@ -10,10 +10,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.macojia.leanproduct.R;
-import com.macojia.leanproduct.bean.hotel.HotelEntity;
+import com.macojia.leanproduct.bean.hotel.ViewWindowEntity;
 import com.macojia.leanproduct.ui.news.activity.AboutActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import base.utils.ActivityUtil;
 import base.utils.HotelUtils;
@@ -25,7 +26,7 @@ import base.utils.HotelUtils;
 public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HotelEntityAdapter.HeaderHolder, HotelEntityAdapter.DescHolder, RecyclerView.ViewHolder> {
 
 
-    public ArrayList<HotelEntity.TagsEntity> allTagList;
+    public List<ViewWindowEntity.AllTagsListBean> allTagList;
     private Context mContext;
     private LayoutInflater mInflater;
 
@@ -37,7 +38,7 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HotelEntity
         mBooleanMap = new SparseBooleanArray();
     }
 
-    public void setData(ArrayList<HotelEntity.TagsEntity> allTagList) {
+    public void setData(List<ViewWindowEntity.AllTagsListBean> allTagList) {
         this.allTagList = allTagList;
         notifyDataSetChanged();
     }
@@ -49,12 +50,12 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HotelEntity
 
     @Override
     protected int getItemCountForSection(int section) {
-        int count = allTagList.get(section).tagInfoList.size();
+        int count = allTagList.get(section).getAtiList().size();
         if (count >= 8 && !mBooleanMap.get(section)) {
             count = 8;
         }
 
-        return HotelUtils.isEmpty(allTagList.get(section).tagInfoList) ? 0 : count;
+        return HotelUtils.isEmpty(allTagList.get(section).getAtiList()) ? 0 : count;
     }
 
     //是否有footer布局
@@ -93,7 +94,7 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HotelEntity
             }
         });
 
-        holder.titleView.setText(allTagList.get(section).tagsName);
+        holder.titleView.setText(allTagList.get(section).getTagsName());
         holder.openView.setText(mBooleanMap.get(section) ? "关闭" : "展开");
 
     }
@@ -106,7 +107,7 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HotelEntity
 
     @Override
     protected void onBindItemViewHolder(DescHolder holder, int section, int position) {
-        holder.descView.setText(allTagList.get(section).tagInfoList.get(position).tagName);
+        holder.descView.setText(allTagList.get(section).getAtiList().get(position).getTagName());
         holder.descView.setTag(R.id.group_index, section);
         holder.descView.setTag(R.id.content_index, position);
         holder.descView.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +115,7 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HotelEntity
             public void onClick(View v) {
                 int groupIndex = (int) v.getTag(R.id.group_index);
                 int contentIndex = (int) v.getTag(R.id.content_index);
-                String data = allTagList.get(groupIndex).tagInfoList.get(contentIndex).tagName;
+                String data = allTagList.get(groupIndex).getAtiList().get(contentIndex).getTagName();
                 ActivityUtil.startActivity((Activity) mContext, AboutActivity.class);
             }
         });
