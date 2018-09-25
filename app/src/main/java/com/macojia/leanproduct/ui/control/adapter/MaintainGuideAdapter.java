@@ -122,7 +122,9 @@ public class MaintainGuideAdapter extends ArrayAdapter<BarData> {
             titles = mAxisLabels.get(position).toArray(titles);
             xAxis.setValueFormatter(new LabelFormatter(titles));
             xAxis.setLabelRotationAngle(25);
+            xAxis.setLabelCount(titles.length);
         }
+
         YAxis rightAxis = holder.chart.getAxisRight();
 //            rightAxis.setTypeface(mTfLight);
         rightAxis.setLabelCount(5, false);

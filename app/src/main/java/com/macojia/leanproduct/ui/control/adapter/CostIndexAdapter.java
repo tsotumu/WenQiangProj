@@ -2,6 +2,7 @@ package com.macojia.leanproduct.ui.control.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.macojia.common.commonutils.LogUtils;
 import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.AppApplication;
 import com.macojia.leanproduct.bean.control.CostIndexData;
@@ -23,6 +25,8 @@ import com.macojia.leanproduct.chart.LabelFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import base.utils.LogUtil;
 
 /**
  * Created by LC on 2018/7/10.
@@ -58,6 +62,7 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
     }
 
     private static BarData generateSingleBarData(List<CostIndexData.MonthlyIndexPerMachineBean.IndexListBean> indexListBeanLis) {
+        Log.d("axis", "size->" + indexListBeanLis.size() + " list->" + indexListBeanLis.toString());
         ArrayList<BarEntry> entries = new ArrayList<>();
         for (int count = 0; count < indexListBeanLis.size(); count++) {
             entries.add(new BarEntry(count, indexListBeanLis.get(count).getValue()));
@@ -124,9 +129,12 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
             titles = mAxisLabels.get(position).toArray(titles);
             xAxis.setValueFormatter(new LabelFormatter(titles));
             xAxis.setLabelRotationAngle(25);
+            LogUtil.pintArray("axis", position + "-titles->",titles);
+            xAxis.setLabelCount(titles.length);
         }
-        rightAxis.setLabelCount(mAxisLabels.get(position).size(), false);
+        rightAxis.setLabelCount(mAxisLabels.get(position).size());
         rightAxis.setSpaceTop(15f);
+        Log.d("axis", "titlesize->" + mAxisLabels.get(position).size());
 
         // set data
         holder.chart.setData(data);
