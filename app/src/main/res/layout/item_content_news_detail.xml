@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/container_background"
+    android:background="@color/mask_news_detail_photo"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_news_detail">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:padding="@dimen/text_margin">
-
-        <TextView
-            android:id="@+id/news_detail_from_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="?attr/dayNightTwoTextColor"
-            android:textSize="@dimen/font_small"
-            tools:text="澎湃新闻 06-06 17:24" />
         <!--        android:layout_below="@id/news_detail_title_tv"
                 android:layout_marginTop="10dp"-->
+        <TextView
+            android:id="@+id/news_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_title"
+            tools:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/news_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="?attr/dayNightTwoTextColor"
+            android:textSize="@dimen/font_normal"
+            tools:text="澎湃新闻 06-06 17:24" />
 
         <TextView
             android:id="@+id/news_detail_body_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/news_detail_from_tv"
-            android:layout_marginTop="10dp"
+            android:layout_below="@id/news_sub_title"
+            android:layout_marginTop="20dp"
             android:lineSpacingExtra="6dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="?attr/dayNightOneTextColor"
@@ -44,5 +54,5 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="200dp" />
-    </RelativeLayout>
-</android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</ScrollView>

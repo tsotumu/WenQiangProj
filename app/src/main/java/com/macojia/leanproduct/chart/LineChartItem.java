@@ -100,6 +100,7 @@ public class LineChartItem extends ChartItem {
             };
         }
         xAxis.setValueFormatter(new LabelFormatter(mXAxisLabels));
+        xAxis.setLabelCount(mXAxisLabels.length);
         rightAxis.setTypeface(mTf);
         rightAxis.setLabelCount(5, false);
         rightAxis.setDrawGridLines(false);

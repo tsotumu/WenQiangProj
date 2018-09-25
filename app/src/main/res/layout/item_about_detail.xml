@@ -14,7 +14,7 @@
         android:padding="@dimen/text_margin">
 
         <TextView
-            android:id="@+id/news_detail_from_tv"
+            android:id="@+id/news_sub_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="精益生产介绍"
@@ -26,7 +26,7 @@
             android:id="@+id/tv_code_des"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/news_detail_from_tv"
+            android:layout_below="@+id/news_sub_title"
             android:layout_marginTop="15dp"
             android:text="@string/care_about_wechat"
             android:textColor="?attr/dayNightTwoTextColor"

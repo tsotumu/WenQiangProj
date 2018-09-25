@@ -36,7 +36,7 @@ public class AboutActivity extends BaseActivity {
     CollapsingToolbarLayout toolbarLayout;
     @Bind(R.id.app_bar)
     AppBarLayout appBar;
-    @Bind(R.id.news_detail_from_tv)
+    @Bind(R.id.news_sub_title)
     TextView newsDetailFromTv;
     @Bind(R.id.tv_code_des)
     TextView tvCodeDes;

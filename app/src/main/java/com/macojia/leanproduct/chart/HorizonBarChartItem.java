@@ -83,6 +83,7 @@ public class HorizonBarChartItem extends ChartItem {
         if (mLeftAxisLabels != null) {
             xAxis.setValueFormatter(new LabelFormatter(mLeftAxisLabels));
             xAxis.setLabelRotationAngle(25);
+            xAxis.setLabelCount(mLeftAxisLabels.length);
         }
         xAxis.setPosition(XAxisPosition.BOTTOM);
         xAxis.setTypeface(mTf);

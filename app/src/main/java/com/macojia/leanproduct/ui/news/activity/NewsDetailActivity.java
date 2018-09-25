@@ -6,20 +6,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.macojia.common.base.BaseActivity;
 import com.macojia.common.baserx.RxSchedulers;
 import com.macojia.common.commonutils.LogUtils;
@@ -46,24 +41,16 @@ import rx.Subscriber;
  * on 2016.09.16:57
  */
 public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDetailModel> implements NewsDetailContract.View {
-    @Bind(R.id.news_detail_photo_iv)
-    ImageView newsDetailPhotoIv;
     @Bind(R.id.mask_view)
     View maskView;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.toolbar_layout)
-    CollapsingToolbarLayout toolbarLayout;
-    @Bind(R.id.app_bar)
-    AppBarLayout appBar;
-    @Bind(R.id.news_detail_from_tv)
+    @Bind(R.id.news_sub_title)
     TextView newsDetailFromTv;
     @Bind(R.id.news_detail_body_tv)
     TextView newsDetailBodyTv;
     @Bind(R.id.progress_bar)
     ProgressBar progressBar;
-    @Bind(R.id.fab)
-    FloatingActionButton fab;
 
     private String postId;
     private String mNewsTitle;
@@ -147,20 +134,6 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
                 return true;
             }
         });
-        //分享
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mShareLink == null) {
-                    mShareLink = "";
-                }
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share));
-                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_contents, mNewsTitle, mShareLink));
-                startActivity(Intent.createChooser(intent, getTitle()));
-            }
-        });
     }
 
     @Override
@@ -173,24 +146,10 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
         String newsBody = newsDetail.getNews_content();
         String NewsImgSrc = getImgSrcs(newsDetail);
 
-        setToolBarLayout(mNewsTitle);
         //mNewsDetailTitleTv.setText(newsTitle);
         newsDetailFromTv.setText(getString(R.string.news_from, newsSource, newsTime));
-        setNewsDetailPhotoIv(NewsImgSrc);
         setNewsDetailBodyTv(newsDetail, newsBody);
-    }
-
-    private void setToolBarLayout(String newsTitle) {
-        toolbarLayout.setTitle(newsTitle);
-        toolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this, R.color.white));
-        toolbarLayout.setCollapsedTitleTextColor(ContextCompat.getColor(this, R.color.primary_text_white));
-    }
-
-    private void setNewsDetailPhotoIv(String imgSrc) {
-        Glide.with(this).load(imgSrc)
-                .fitCenter()
-                .error(com.macojia.common.R.drawable.ic_empty_picture)
-                .crossFade().into(newsDetailPhotoIv);
+        ((TextView)findViewById(R.id.news_title)).setText(newsDetail.getNews_title());
     }
 
     private void setNewsDetailBodyTv(final NewsDetailEntity newsDetail, final String newsBody) {
@@ -200,7 +159,6 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
                     @Override
                     public void onCompleted() {
                         progressBar.setVisibility(View.INVISIBLE);
-                        fab.setVisibility(View.VISIBLE);
                     }
 
                     @Override
