@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.Toolbar;
@@ -41,10 +40,8 @@ import rx.Subscriber;
  * on 2016.09.16:57
  */
 public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDetailModel> implements NewsDetailContract.View {
-    @Bind(R.id.mask_view)
-    View maskView;
     @Bind(R.id.toolbar)
-    Toolbar toolbar;
+    Toolbar mToolbar;
     @Bind(R.id.news_sub_title)
     TextView newsDetailFromTv;
     @Bind(R.id.news_detail_body_tv)
@@ -88,6 +85,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
         startActivity(i2/*, oc2.toBundle()*/);
         finish();
     }
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_news_detail;
@@ -103,7 +101,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
         SetTranslanteBar();
         postId = getIntent().getStringExtra(AppConstant.NEWS_POST_ID);
         mPresenter.getOneNewsDataRequest(postId);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -111,27 +109,6 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
                 } else {
                     finish();
                 }
-            }
-        });
-        toolbar.inflateMenu(R.menu.news_detail);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_web_view:
-                        NewsBrowserActivity.startAction(NewsDetailActivity.this, mShareLink, mNewsTitle);
-                        break;
-                    case R.id.action_browser:
-                        Intent intent = new Intent();
-                        intent.setAction("android.intent.action.VIEW");
-                        if (canBrowse(intent)) {
-                            Uri uri = Uri.parse(mShareLink);
-                            intent.setData(uri);
-                            startActivity(intent);
-                        }
-                        break;
-                }
-                return true;
             }
         });
     }
@@ -149,7 +126,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
         //mNewsDetailTitleTv.setText(newsTitle);
         newsDetailFromTv.setText(getString(R.string.news_from, newsSource, newsTime));
         setNewsDetailBodyTv(newsDetail, newsBody);
-        ((TextView)findViewById(R.id.news_title)).setText(newsDetail.getNews_title());
+        ((TextView) findViewById(R.id.news_title)).setText(newsDetail.getNews_title());
     }
 
     private void setNewsDetailBodyTv(final NewsDetailEntity newsDetail, final String newsBody) {
@@ -177,8 +154,8 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
         int imgTotal = newsDetail.getImg().size();
 //        if (isShowBody(newsBody, imgTotal)) {
 //              mNewsDetailBodyTv.setMovementMethod(LinkMovementMethod.getInstance());//加这句才能让里面的超链接生效,实测经常卡机崩溃
-            URLImageGetter mUrlImageGetter = new URLImageGetter(newsDetailBodyTv, newsBody, imgTotal);
-            newsDetailBodyTv.setText(Html.fromHtml(newsBody, mUrlImageGetter, null));
+        URLImageGetter mUrlImageGetter = new URLImageGetter(newsDetailBodyTv, newsBody, imgTotal);
+        newsDetailBodyTv.setText(Html.fromHtml(newsBody, mUrlImageGetter, null));
 //        } else {
 //            newsDetailBodyTv.setText(Html.fromHtml(newsBody));
 //        }

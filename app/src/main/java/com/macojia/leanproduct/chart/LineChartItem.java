@@ -15,6 +15,7 @@ import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.LineData;
 import com.macojia.leanproduct.R;
 
+import base.utils.LogUtil;
 import base.utils.ResourceUtil;
 
 public class LineChartItem extends ChartItem {
@@ -100,7 +101,8 @@ public class LineChartItem extends ChartItem {
             };
         }
         xAxis.setValueFormatter(new LabelFormatter(mXAxisLabels));
-        xAxis.setLabelCount(mXAxisLabels.length);
+        xAxis.setLabelCount(mXAxisLabels.length, true);
+        LogUtil.pintArray("qualityIndex", "mXAxisLabels->", mXAxisLabels);
         rightAxis.setTypeface(mTf);
         rightAxis.setLabelCount(5, false);
         rightAxis.setDrawGridLines(false);
@@ -114,7 +116,6 @@ public class LineChartItem extends ChartItem {
         // do not forget to refresh the chart
         // holder.chart.invalidate();
         holder.chart.animateX(750);
-
         return convertView;
     }
 
