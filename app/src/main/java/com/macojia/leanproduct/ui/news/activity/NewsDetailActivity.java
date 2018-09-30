@@ -98,7 +98,8 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
 
     @Override
     public void initView() {
-        SetTranslanteBar();
+       // SetTranslanteBar();
+        mToolbar.setTitle("");
         postId = getIntent().getStringExtra(AppConstant.NEWS_POST_ID);
         mPresenter.getOneNewsDataRequest(postId);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
