@@ -30,7 +30,7 @@
     <string name="qualityindex" translatable="false">质量指标</string>
     <string name="efficiencyindex" translatable="false">效率指标</string>
     <string name="comprehenindex" translatable="false">综合指标</string>
-    <string name="repairguide" translatable="false">维修指导</string>
+    <string name="repairguide" translatable="false">维修建议</string>
     <string name="processpredict" translatable="false">进度预测</string>
 
     <string name="weiguan" translatable="false">微视</string>
@@ -42,12 +42,12 @@
     <string name="video_play_times" translatable="false">%1$s次播放</string>
 
     <!--动态 -->
-    <string name="care_about_wechat" translatable="false">更多精彩要闻，请及时查看精益生产APP！</string>
+    <string name="care_about_wechat" translatable="false">更多精彩要闻，请及时查看卷包智慧微平台！</string>
 
     <!-- 管控 -->
     <string name="control_yield_index" translatable="false">产量指标</string>
     <string name="control_cost_index" translatable="false">消耗指标</string>
-    <string name="control_quality_feedback" translatable="false">质量反馈</string>
+    <string name="control_quality_feedback" translatable="false">产品追溯</string>
     <string name="control_title_feedback" translatable="false">请输入要查询的钢印号</string>
     <string name="control_searchbutton_feedback" translatable="false">查  询</string>
     <string name="control_number_feedback" translatable="false">钢印号:</string>

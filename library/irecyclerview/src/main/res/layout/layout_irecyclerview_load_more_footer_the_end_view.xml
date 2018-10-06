@@ -7,5 +7,5 @@
     android:layout_width="match_parent"
     android:layout_height="36dp"
     android:gravity="center"
-    android:text="THE END"
+    android:text="全部浏览完成，还没有更多数据哦!"
     android:layout_gravity="center" />
