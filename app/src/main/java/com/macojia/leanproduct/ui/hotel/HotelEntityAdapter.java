@@ -2,6 +2,7 @@ package com.macojia.leanproduct.ui.hotel;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.macojia.leanproduct.R;
+import com.macojia.leanproduct.bean.hotel.VWDetailEntity;
 import com.macojia.leanproduct.bean.hotel.ViewWindowEntity;
 import com.macojia.leanproduct.ui.news.activity.AboutActivity;
 
@@ -115,8 +117,10 @@ public class HotelEntityAdapter extends SectionedRecyclerViewAdapter<HotelEntity
             public void onClick(View v) {
                 int groupIndex = (int) v.getTag(R.id.group_index);
                 int contentIndex = (int) v.getTag(R.id.content_index);
-                String data = allTagList.get(groupIndex).getAtiList().get(contentIndex).getTagName();
-                ActivityUtil.startActivity((Activity) mContext, AboutActivity.class);
+                int id = allTagList.get(groupIndex).getAtiList().get(contentIndex).getTagId();
+                Intent intent = new Intent((Activity) mContext, ViewWindowDetailActivity.class);
+                intent.putExtra(ViewWindowDetailActivity.VWDetailId, id);
+                ((Activity) mContext).startActivity(intent);
             }
         });
     }

@@ -40,6 +40,9 @@ public interface ApiService {
     @GET("lpcms/getNewDetail")
     Observable<NewsDetailEntity> getNewDetail(@Query("id") int id);
 
+    @GET("lpcms/getWindowData")
+    Observable<VWDetailEntity> getWindowData(@Query("tagid") int id);
+
     @GET("lpcms/getNewsList")
     Observable<NewsListData> getNewsList(
             @Query("startPage") String startPage,
@@ -57,9 +60,6 @@ public interface ApiService {
 
     @GET("lpcms/getWindowList")
     Observable<ViewWindowEntity> getWindowList();
-
-    @GET("lpcms/getWindowData")
-    Call<VWDetailEntity> getWindowData();
 
     @GET("lpcms/getMarkIndexData")
     Observable<QualityIndexData> getControlList(@Query("markindex") String markindex);

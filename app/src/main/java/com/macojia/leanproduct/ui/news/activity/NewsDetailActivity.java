@@ -116,7 +116,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
 
     @Override
     public void OnOneNewsDataReturned(NewsDetailEntity newsDetail) {
-        LogUtils.logd("OnOneNewsDataReturned->" + newsDetail.toString());
+        LogUtils.logd("OnReturned->" + newsDetail.toString());
 //        mShareLink = newsDetail.getShareLink();
         mNewsTitle = newsDetail.getNews_title();
         String newsSource = newsDetail.getNews_category();
@@ -162,10 +162,6 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
 //        }
     }
 
-    private boolean isShowBody(String newsBody, int imgTotal) {
-        return imgTotal >= 2 && newsBody != null;
-    }
-
     private String getImgSrcs(NewsDetailEntity newsDetail) {
         List<NewsDetailEntity.ImgBean> imgSrcs = newsDetail.getImg();
         String imgSrc;
@@ -175,10 +171,6 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter, NewsDe
             imgSrc = getIntent().getStringExtra(AppConstant.NEWS_IMG_RES);
         }
         return imgSrc;
-    }
-
-    private boolean canBrowse(Intent intent) {
-        return intent.resolveActivity(getPackageManager()) != null && mShareLink != null;
     }
 
     @Override

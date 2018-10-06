@@ -77,7 +77,7 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter, NewsListMo
 
     @Override
     public void OnNewsListDataReturned(NewsListData newsSummaries) {
-        LogUtils.logd("OnNewsListDataReturned->" + " newsType->"+mNewsType + " newsSummary:\n" + newsSummaries.getNewsList());
+        LogUtils.logd("OnDataReturned->" + " newsType->"+mNewsType + " newsSummary:\n" + newsSummaries.getNewsList());
         if (newsSummaries != null) {
             mStartPage += 1;
             if (newListAdapter.getPageBean().isRefresh()) {

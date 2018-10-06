@@ -10,12 +10,10 @@ import rx.Observable;
 
 public class ViewWindowContact {
     public interface Model extends BaseModel {
-        //请求获取消耗指标
         Observable<ViewWindowEntity> getData();
     }
 
     public interface View extends BaseView {
-        //返回获取的消耗指标
         void onIndexDataReturn(ViewWindowEntity data);
 
         //返回顶部
@@ -23,7 +21,6 @@ public class ViewWindowContact {
     }
 
     public abstract static class Presenter extends BasePresenter<ViewWindowContact.View, ViewWindowContact.Model> {
-        //发起获取消耗指标请求
         public abstract void getDataRequest();
     }
 }
