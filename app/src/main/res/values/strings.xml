@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">卷包智慧微平台</string>
-
+    <string name="app_title" translatable="false">快乐工作，健康生活！</string>
     <!--menu-->
     <string name="title" translatable="false">卷包智慧微平台</string>
 

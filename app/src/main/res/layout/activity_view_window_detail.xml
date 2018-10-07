@@ -35,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_title"
                 android:textStyle="bold"
+                android:textColor="?attr/dayNightOneTextColor"
                 tools:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" />
 
             <TextView
