@@ -90,7 +90,7 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
     public static YieldAdapter getAdapter(YieldIndexData indexData, Context context){
         ArrayList<ChartItem> list = new ArrayList<>();
 
-        list.add(new HorizonBarChartItem(generateDataBar(indexData.getMachineIndex()), context, "产量年度指标", "指标", "包装机号", getHorizonBarChartLabels(indexData.getMachineIndex())));
+        list.add(new HorizonBarChartItem(generateDataBar(indexData.getMachineIndex()), context, indexData.getMachineTitle(), "指标", "包装机号", getHorizonBarChartLabels(indexData.getMachineIndex())));
 
         List<YieldIndexData.MonthlyIndexPerMachineBean> monthlyIndexPerMachineBeen = indexData.getMonthlyIndexPerMachine();
 

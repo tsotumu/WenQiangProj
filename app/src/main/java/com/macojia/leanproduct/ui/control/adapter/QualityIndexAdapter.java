@@ -87,7 +87,7 @@ public class QualityIndexAdapter extends ArrayAdapter<ChartItem> {
 
     public static QualityIndexAdapter getAdapter(Context context, QualityIndexData qualityIndexData) {
         ArrayList<ChartItem> list = new ArrayList<>();
-        list.add(new HorizonBarChartItem(generateDataBar(qualityIndexData.getMachineIndex()), context, "质量年度指标", "指标", "包装机号", getHorizonBarChartLabels(qualityIndexData.getMachineIndex())));
+        list.add(new HorizonBarChartItem(generateDataBar(qualityIndexData.getMachineIndex()), context, qualityIndexData.getMachineTitle(), "指标", "包装机号", getHorizonBarChartLabels(qualityIndexData.getMachineIndex())));
         // 30 items
         List<QualityIndexData.MonthlyIndexPerMachineBean> monthlyIndexPerMachineBeanList = qualityIndexData.getMonthlyIndexPerMachine();
         for (int i = 0; i < monthlyIndexPerMachineBeanList.size(); i++) {

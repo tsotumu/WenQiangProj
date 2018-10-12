@@ -37,7 +37,7 @@ public class EfficiencyAdapter extends ArrayAdapter<ChartItem> {
 
     public static EfficiencyAdapter getAdapter(Context context, EfficiencyIndexData qualityIndexData) {
         ArrayList<ChartItem> list = new ArrayList<>();
-        list.add(new HorizonBarChartItem(generateDataBar(qualityIndexData.getMachineIndex()), context, "质量年度指标", "指标", "包装机号", getHorizonBarChartLabels(qualityIndexData.getMachineIndex())));
+        list.add(new HorizonBarChartItem(generateDataBar(qualityIndexData.getMachineIndex()), context, qualityIndexData.getMachineTitle(), "指标", "包装机号", getHorizonBarChartLabels(qualityIndexData.getMachineIndex())));
         // 30 items
         List<EfficiencyIndexData.MonthlyIndexPerMachineBean> monthlyIndexPerMachineBeanList = qualityIndexData.getMonthlyIndexPerMachine();
         for (int i = 0; i < monthlyIndexPerMachineBeanList.size(); i++) {

@@ -7,8 +7,23 @@ import java.util.List;
  */
 
 public class EfficiencyIndexData {
+    /**
+     * MonthlyIndexPerMachine : [{"indexList":[{"key":"2018-09","value":98.87},{"key":"2018-08","value":97.95},{"key":"2018-07","value":97.34},{"key":"2018-06","value":98.35},{"key":"2018-05","value":98.62},{"key":"2018-04","value":98.1}],"machineName":"2号包装机"},{"indexList":[{"key":"2018-09","value":89.75},{"key":"2018-08","value":91.08},{"key":"2018-07","value":93.81},{"key":"2018-06","value":94.29},{"key":"2018-05","value":98.05},{"key":"2018-04","value":97.29}],"machineName":"3号包装机"},{"indexList":[{"key":"2018-09","value":97.99},{"key":"2018-08","value":97.82},{"key":"2018-07","value":97.19},{"key":"2018-06","value":98.45},{"key":"2018-05","value":97.89},{"key":"2018-04","value":98.59}],"machineName":"1号包装机"},{"indexList":[{"key":"2018-09","value":97.99},{"key":"2018-08","value":98.7},{"key":"2018-07","value":96.97},{"key":"2018-06","value":90.55},{"key":"2018-05","value":89.21},{"key":"2018-04","value":91.49}],"machineName":"5号包装机"},{"indexList":[{"key":"2018-09","value":98.18},{"key":"2018-08","value":98.49},{"key":"2018-07","value":98.54},{"key":"2018-06","value":98.79},{"key":"2018-05","value":98.58},{"key":"2018-04","value":97.64}],"machineName":"4号包装机"}]
+     * machineIndex : [{"key":"2号包装机","value":98.87},{"key":"3号包装机","value":89.75},{"key":"1号包装机","value":97.99},{"key":"5号包装机","value":97.99},{"key":"4号包装机","value":98.18}]
+     * machineTitle : 2018-09开动各机组效率指标图示
+     */
+
+    private String machineTitle;
     private List<MonthlyIndexPerMachineBean> MonthlyIndexPerMachine;
     private List<MachineIndexBean> machineIndex;
+
+    public String getMachineTitle() {
+        return machineTitle;
+    }
+
+    public void setMachineTitle(String machineTitle) {
+        this.machineTitle = machineTitle;
+    }
 
     public List<MonthlyIndexPerMachineBean> getMonthlyIndexPerMachine() {
         return MonthlyIndexPerMachine;
@@ -28,7 +43,7 @@ public class EfficiencyIndexData {
 
     public static class MonthlyIndexPerMachineBean {
         /**
-         * indexList : [{"key":"2017-06","value":98.94},{"key":"2017-05","value":97.95},{"key":"2017-04","value":98.26},{"key":"2017-03","value":99.1},{"key":"2017-01","value":99.4},{"key":"2016-12","value":99.16}]
+         * indexList : [{"key":"2018-09","value":98.87},{"key":"2018-08","value":97.95},{"key":"2018-07","value":97.34},{"key":"2018-06","value":98.35},{"key":"2018-05","value":98.62},{"key":"2018-04","value":98.1}]
          * machineName : 2号包装机
          */
 
@@ -53,8 +68,8 @@ public class EfficiencyIndexData {
 
         public static class IndexListBean {
             /**
-             * key : 2017-06
-             * value : 98.94
+             * key : 2018-09
+             * value : 98.87
              */
 
             private String key;
@@ -81,7 +96,7 @@ public class EfficiencyIndexData {
     public static class MachineIndexBean {
         /**
          * key : 2号包装机
-         * value : 98.94
+         * value : 98.87
          */
 
         private String key;
