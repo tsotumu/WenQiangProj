@@ -37,12 +37,12 @@ public class EfficiencyAdapter extends ArrayAdapter<ChartItem> {
 
     public static EfficiencyAdapter getAdapter(Context context, EfficiencyIndexData qualityIndexData) {
         ArrayList<ChartItem> list = new ArrayList<>();
-        list.add(new HorizonBarChartItem(generateDataBar(qualityIndexData.getMachineIndex()), context, qualityIndexData.getMachineTitle(), "指标", "包装机号", getHorizonBarChartLabels(qualityIndexData.getMachineIndex())));
+        list.add(new HorizonBarChartItem(generateDataBar(qualityIndexData.getMachineIndex()), context, qualityIndexData.getMachineTitle(), "运行效率（%）", "机组号", getHorizonBarChartLabels(qualityIndexData.getMachineIndex())));
         // 30 items
         List<EfficiencyIndexData.MonthlyIndexPerMachineBean> monthlyIndexPerMachineBeanList = qualityIndexData.getMonthlyIndexPerMachine();
         for (int i = 0; i < monthlyIndexPerMachineBeanList.size(); i++) {
             List<EfficiencyIndexData.MonthlyIndexPerMachineBean.IndexListBean> listBeanList = monthlyIndexPerMachineBeanList.get(i).getIndexList();
-            list.add(new LineChartItem(generateDataLine(listBeanList), context, monthlyIndexPerMachineBeanList.get(i).getMachineName(), ResourceUtil.getString(R.string.x_label_month), ResourceUtil.getString(R.string.y_label_index), getLineChartLabels(listBeanList)));
+            list.add(new LineChartItem(generateDataLine(listBeanList), context, monthlyIndexPerMachineBeanList.get(i).getMachineName()+"机组近六日设备运行效率对比图", ResourceUtil.getString(R.string.x_label_efficiencyindex), ResourceUtil.getString(R.string.y_label_efficiencyindex), getLineChartLabels(listBeanList)));
         }
         return new EfficiencyAdapter(AppApplication.getAppContext(), list);
     }

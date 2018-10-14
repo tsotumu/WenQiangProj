@@ -87,12 +87,12 @@ public class QualityIndexAdapter extends ArrayAdapter<ChartItem> {
 
     public static QualityIndexAdapter getAdapter(Context context, QualityIndexData qualityIndexData) {
         ArrayList<ChartItem> list = new ArrayList<>();
-        list.add(new HorizonBarChartItem(generateDataBar(qualityIndexData.getMachineIndex()), context, qualityIndexData.getMachineTitle(), "指标", "包装机号", getHorizonBarChartLabels(qualityIndexData.getMachineIndex())));
+        list.add(new HorizonBarChartItem(generateDataBar(qualityIndexData.getMachineIndex()), context, qualityIndexData.getMachineTitle(), "质量得分", "机组号", getHorizonBarChartLabels(qualityIndexData.getMachineIndex())));
         // 30 items
         List<QualityIndexData.MonthlyIndexPerMachineBean> monthlyIndexPerMachineBeanList = qualityIndexData.getMonthlyIndexPerMachine();
         for (int i = 0; i < monthlyIndexPerMachineBeanList.size(); i++) {
             List<QualityIndexData.MonthlyIndexPerMachineBean.IndexListBean> listBeanList = monthlyIndexPerMachineBeanList.get(i).getIndexList();
-            list.add(new LineChartItem(generateDataLine(listBeanList), context, monthlyIndexPerMachineBeanList.get(i).getMachineName(), ResourceUtil.getString(R.string.x_label_month), ResourceUtil.getString(R.string.y_label_index), getLineChartLabels(listBeanList)));
+            list.add(new LineChartItem(generateDataLine(listBeanList), context, monthlyIndexPerMachineBeanList.get(i).getMachineName()+"机组近六日产品质量得分对比图", ResourceUtil.getString(R.string.x_label_qualityindex), ResourceUtil.getString(R.string.y_label_qualityindex), getLineChartLabels(listBeanList)));
         }
         return new QualityIndexAdapter(AppApplication.getAppContext(), list);
     }

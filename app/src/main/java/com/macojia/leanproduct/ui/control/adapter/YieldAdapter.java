@@ -90,7 +90,7 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
     public static YieldAdapter getAdapter(YieldIndexData indexData, Context context){
         ArrayList<ChartItem> list = new ArrayList<>();
 
-        list.add(new HorizonBarChartItem(generateDataBar(indexData.getMachineIndex()), context, indexData.getMachineTitle(), "指标", "包装机号", getHorizonBarChartLabels(indexData.getMachineIndex())));
+        list.add(new HorizonBarChartItem(generateDataBar(indexData.getMachineIndex()), context, indexData.getMachineTitle(), "产量（箱）", "机组号", getHorizonBarChartLabels(indexData.getMachineIndex())));
 
         List<YieldIndexData.MonthlyIndexPerMachineBean> monthlyIndexPerMachineBeen = indexData.getMonthlyIndexPerMachine();
 
@@ -98,9 +98,9 @@ public class YieldAdapter extends ArrayAdapter<ChartItem> {
             list.add(new LineChartItem(
                     generateDataLine(monthlyIndexPerMachineBeen.get(i)),
                     context,
-                    monthlyIndexPerMachineBeen.get(i).getMachineName(),
-                    ResourceUtil.getString(R.string.x_label_month),
-                    ResourceUtil.getString(R.string.y_label_index),
+                    monthlyIndexPerMachineBeen.get(i).getMachineName()+"机组近六日设备产量对比图",
+                    ResourceUtil.getString(R.string.x_label_yieldindex),
+                    ResourceUtil.getString(R.string.y_label_yieldindex),
                     getXAxis(monthlyIndexPerMachineBeen.get(i)))
             );
         }

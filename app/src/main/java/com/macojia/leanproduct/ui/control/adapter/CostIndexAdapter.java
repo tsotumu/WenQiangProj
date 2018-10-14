@@ -48,7 +48,7 @@ public class CostIndexAdapter extends ArrayAdapter<BarData> {
         for (int i = 0; i < monthlyIndexPerMachineBeans.size(); i++) {
             List<CostIndexData.MonthlyIndexPerMachineBean.IndexListBean> indexListBeanList = monthlyIndexPerMachineBeans.get(i).getIndexList();
             barList.add(generateSingleBarData(indexListBeanList));
-            barTitleList.add(monthlyIndexPerMachineBeans.get(i).getMachineName());
+            barTitleList.add(monthlyIndexPerMachineBeans.get(i).getMachineName()+"机组近六日设备物耗得分对比图");
             List<String> titleList = new ArrayList<>();
             for (CostIndexData.MonthlyIndexPerMachineBean.IndexListBean indexListBean : indexListBeanList){
                 titleList.add(indexListBean.getKey());

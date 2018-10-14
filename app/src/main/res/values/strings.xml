@@ -60,6 +60,14 @@
 
     <string name="x_label_month" translatable="false">（月份）</string>
     <string name="y_label_index" translatable="false">（数量）</string>
+    <string name="x_label_yieldindex" translatable="false">日期</string>
+    <string name="y_label_yieldindex" translatable="false">产量（箱）</string>
+    <string name="x_label_qualityindex" translatable="false">日期</string>
+    <string name="y_label_qualityindex" translatable="false">质量得分</string>
+    <string name="x_label_costindex" translatable="false">日期</string>
+    <string name="y_label_costindex" translatable="false">消耗得分</string>
+    <string name="x_label_efficiencyindex" translatable="false">日期</string>
+    <string name="y_label_efficiencyindex" translatable="false">运行效率（%）</string>
 
     <string name="login_success" translatable="false">登陆成功</string>
     <string name="login" translatable="false">登陆</string>

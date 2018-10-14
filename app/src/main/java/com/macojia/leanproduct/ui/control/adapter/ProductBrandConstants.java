@@ -45,6 +45,10 @@ public class ProductBrandConstants {
         Brand_TS.put("YC", "2022");
         Brand_TS.put("YD", "2023");
         Brand_TS.put("YE", "2024");
+        Brand_TS.put("M1", "01");
+        Brand_TS.put("M2", "02");
+        Brand_TS.put("M3", "03");
+        Brand_TS.put("M4", "04");
         Brand_TS.put("M5", "05");
         Brand_TS.put("M6", "06");
         Brand_TS.put("M7", "07");
@@ -61,10 +65,14 @@ public class ProductBrandConstants {
         Brand_BS.put("C2", "乙班");
         Brand_BS.put("C3", "丙班");
         Brand_BS.put("C4", "丁班");
-        Brand_NJ.put("MAA", "1");
-        Brand_NJ.put("MAB", "2");
-        Brand_NJ.put("MAC", "3");
-        Brand_NJ.put("MAD", "4");
+        Brand_NJ.put("MAA", "01");
+        Brand_NJ.put("MAB", "02");
+        Brand_NJ.put("MAC", "03");
+        Brand_NJ.put("MAD", "04");
+        Brand_TS.put("MA5", "13");
+        Brand_TS.put("MA6", "06");
+        Brand_TS.put("MA7", "07");
+        Brand_TS.put("MA8", "08");
         Brand_TS.put("MA3", "11");
         Brand_TS.put("MA4", "12");
         Brand_TS.put("MA9", "15");
@@ -72,10 +80,11 @@ public class ProductBrandConstants {
         Brand_TS.put("MAB", "17");
         Brand_TS.put("MAC", "18");
         Brand_TS.put("MAD", "19");
-        Brand_BS.put("MAV5", "5");
-        Brand_BS.put("MAV6", "6");
-        Brand_BS.put("MAV7", "7");
-        Brand_BS.put("MAV8", "8");
+        Brand_BS.put("MAV5", "05");
+        Brand_BS.put("MAV6", "06");
+        Brand_BS.put("MAV7", "07");
+        Brand_BS.put("MAV8", "08");
+        Brand_BS.put("MAV9", "09");
 
     }
 
