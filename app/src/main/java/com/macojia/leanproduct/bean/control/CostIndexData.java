@@ -8,9 +8,9 @@ import java.util.List;
 
 public class CostIndexData {
     /**
-     * MonthlyIndexPerMachine : [{"indexList":[{"key":"2018-09-04","value":23},{"key":"2018-09-03","value":-5},{"key":"2018-09-02","value":20},{"key":"2018-09-01","value":11}],"machineName":"15号包装机"},{"indexList":[{"key":"2018-09-06","value":11},{"key":"2018-09-05","value":13},{"key":"2018-09-04","value":8},{"key":"2018-09-03","value":-5},{"key":"2018-09-02","value":-12},{"key":"2018-09-01","value":11}],"machineName":"1号包装机"},{"indexList":[{"key":"2018-09-06","value":20},{"key":"2018-09-05","value":-12},{"key":"2018-09-04","value":-5},{"key":"2018-09-03","value":8},{"key":"2018-09-02","value":13},{"key":"2018-09-01","value":11}],"machineName":"2号包装机"},{"indexList":[{"key":"2018-09-08","value":-17},{"key":"2018-09-07","value":8},{"key":"2018-09-06","value":-5},{"key":"2018-09-05","value":20},{"key":"2018-09-04","value":-12},{"key":"2018-09-02","value":8}],"machineName":"3号包装机"},{"indexList":[{"key":"2018-09-03","value":11}],"machineName":"4号包装机"},{"indexList":[{"key":"2018-09-05","value":12},{"key":"2018-09-04","value":-3},{"key":"2018-09-03","value":14},{"key":"2018-09-02","value":-5},{"key":"2018-09-01","value":11},{"key":"2018-09-01","value":8}],"machineName":"5号包装机"},{"indexList":[{"key":"2018-09-03","value":-12},{"key":"2018-09-02","value":-5},{"key":"2018-09-01","value":21}],"machineName":"8号包装机"}]
-     * machineIndex : [{"key":"15号包装机","value":49},{"key":"1号包装机","value":26},{"key":"2号包装机","value":35},{"key":"3号包装机","value":2},{"key":"4号包装机","value":11},{"key":"5号包装机","value":37},{"key":"8号包装机","value":4}]
-     * machineTitle : 2018-09开动各机组消耗累计图示
+     * MonthlyIndexPerMachine : [{"indexList":[{"key":"2018-09-01","value":11},{"key":"2018-09-02","value":20},{"key":"2018-09-03","value":-5},{"key":"2018-09-04","value":23}],"machineName":"15号"},{"indexList":[{"key":"2018-09-01","value":11},{"key":"2018-09-02","value":-12},{"key":"2018-09-03","value":-5},{"key":"2018-09-04","value":8},{"key":"2018-09-05","value":13},{"key":"2018-09-06","value":11}],"machineName":"1号"},{"indexList":[{"key":"2018-09-01","value":11},{"key":"2018-09-02","value":13},{"key":"2018-09-03","value":8},{"key":"2018-09-04","value":-5},{"key":"2018-09-05","value":-12},{"key":"2018-09-06","value":20}],"machineName":"2号"},{"indexList":[{"key":"2018-09-02","value":8},{"key":"2018-09-04","value":-12},{"key":"2018-09-05","value":20},{"key":"2018-09-06","value":-5},{"key":"2018-09-07","value":8},{"key":"2018-09-08","value":-17}],"machineName":"3号"},{"indexList":[{"key":"2018-09-03","value":11}],"machineName":"4号"},{"indexList":[{"key":"2018-09-01","value":8},{"key":"2018-09-01","value":11},{"key":"2018-09-02","value":-5},{"key":"2018-09-03","value":14},{"key":"2018-09-04","value":-3},{"key":"2018-09-05","value":12}],"machineName":"5号"},{"indexList":[{"key":"2018-09-01","value":21},{"key":"2018-09-02","value":-5},{"key":"2018-09-03","value":-12}],"machineName":"8号"}]
+     * machineIndex : [{"key":"15号","value":49},{"key":"1号","value":26},{"key":"2号","value":35},{"key":"3号","value":2},{"key":"4号","value":11},{"key":"5号","value":37},{"key":"8号","value":4}]
+     * machineTitle : 2018-10开动各机组消耗累计图示
      */
 
     private String machineTitle;
@@ -43,8 +43,8 @@ public class CostIndexData {
 
     public static class MonthlyIndexPerMachineBean {
         /**
-         * indexList : [{"key":"2018-09-04","value":23},{"key":"2018-09-03","value":-5},{"key":"2018-09-02","value":20},{"key":"2018-09-01","value":11}]
-         * machineName : 15号包装机
+         * indexList : [{"key":"2018-09-01","value":11},{"key":"2018-09-02","value":20},{"key":"2018-09-03","value":-5},{"key":"2018-09-04","value":23}]
+         * machineName : 15号
          */
 
         private String machineName;
@@ -68,8 +68,8 @@ public class CostIndexData {
 
         public static class IndexListBean {
             /**
-             * key : 2018-09-04
-             * value : 23
+             * key : 2018-09-01
+             * value : 11
              */
 
             private String key;
@@ -95,7 +95,7 @@ public class CostIndexData {
 
     public static class MachineIndexBean {
         /**
-         * key : 15号包装机
+         * key : 15号
          * value : 49
          */
 
