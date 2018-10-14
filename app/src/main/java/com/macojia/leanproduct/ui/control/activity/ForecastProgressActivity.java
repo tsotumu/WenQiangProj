@@ -66,8 +66,8 @@ public class ForecastProgressActivity extends BaseActivity<ForcastPresenter, For
     @Override
     public void initView() {
         initToolBar();
-        mPresenter.getDataRequest();
         intView();
+        mPresenter.getDataRequest();
     }
 
     private void intView() {

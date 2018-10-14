@@ -1,6 +1,8 @@
 package com.macojia.leanproduct.ui.control.presenter;
 
 import com.macojia.common.baserx.RxSubscriber;
+import com.macojia.common.commonutils.ToastUitl;
+import com.macojia.leanproduct.R;
 import com.macojia.leanproduct.bean.hotel.ViewWindowEntity;
 import com.macojia.leanproduct.bean.news.NewsChannelTable;
 import com.macojia.leanproduct.constant.AppConstant;
@@ -20,10 +22,15 @@ public class ViewWindowPresenter extends ViewWindowContact.Presenter {
             protected void _onNext(ViewWindowEntity newsChannelTables) {
                 mView.onIndexDataReturn(newsChannelTables);
             }
+            @Override
+            public void onStart() {
+                super.onStart();
+                mView.showLoading(mContext.getString(R.string.loading));
+            }
 
             @Override
             protected void _onError(String message) {
-
+                ToastUitl.showToastWithImg(message, R.drawable.ic_wrong);
             }
         }));
     }
