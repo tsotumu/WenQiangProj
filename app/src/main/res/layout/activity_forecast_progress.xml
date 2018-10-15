@@ -13,7 +13,16 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:title="@string/processpredict" />
-
+    <TextView
+        android:id="@+id/forcast_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/tv_right_gray"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textStyle="bold"
+        android:textSize="14dp" />
     <com.aspsine.irecyclerview.IRecyclerView
         android:id="@+id/irc_forcast"
         android:layout_width="match_parent"

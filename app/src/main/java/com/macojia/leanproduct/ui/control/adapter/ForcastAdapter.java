@@ -35,7 +35,7 @@ public class ForcastAdapter extends CommonRecycleViewAdapter<ForcastData.DataLis
     public void convert(ViewHolderHelper helper, ForcastData.DataListBean forcastData) {
         NumberProgressBar numberProgressBar = helper.getView(R.id.tsyh);
         numberProgressBar.setMax(100);
-        numberProgressBar.setProgress(forcastData.getValue().intValue());
+        numberProgressBar.setProgress(Double.valueOf(forcastData.getValue()).intValue());
         numberProgressBar.setPrefix(forcastData.getKey());
 
         if (forcastData.getValue() < 50) {

@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.aspsine.irecyclerview.IRecyclerView;
 import com.aspsine.irecyclerview.OnRefreshListener;
@@ -38,6 +39,8 @@ public class ForecastProgressActivity extends BaseActivity<ForcastPresenter, For
     IRecyclerView irc;
     @Bind(R.id.loadedTip)
     LoadingTip loadedTip;
+    @Bind(R.id.forcast_title)
+    TextView forcast_title;
     private CommonRecycleViewAdapter<ForcastData.DataListBean> ListAdapter;
 
 
@@ -97,10 +100,12 @@ public class ForecastProgressActivity extends BaseActivity<ForcastPresenter, For
             if (ListAdapter.getPageBean().isRefresh()) {
                 irc.setRefreshing(false);
                 ListAdapter.replaceAll(costIndexData.getDataList());
+                forcast_title.setText(costIndexData.getProgressTitle());
             } else {
                 if (costIndexData.getDataList().size() > 0) {
                     irc.setLoadMoreStatus(LoadMoreFooterView.Status.GONE);
                     ListAdapter.addAll(costIndexData.getDataList());
+                    forcast_title.setText(costIndexData.getProgressTitle());
                 } else {
                     irc.setLoadMoreStatus(LoadMoreFooterView.Status.THE_END);
                 }
