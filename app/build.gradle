@@ -46,9 +46,10 @@ android {
                 variant.outputs.each { output ->
                     if (variant.buildType.name.equals('release')) {
                         def outputFile = output.packageApplication.outputFile
+                        def channel = variant.productFlavors[0].manifestPlaceholders.get("CHANNEL_VALUE")
                         if (outputFile != null && outputFile.name.endsWith('.apk')) {
                             //这里修改apk文件名
-                            def fileName = "zhihuijuanbao${defaultConfig.versionName}-${releaseTime()}.apk"
+                            def fileName = "zhihuijuanbao${defaultConfig.versionName}-${channel}-${releaseTime()}.apk"
                             output.packageApplication.outputFile = new File(outputFile.parent, fileName)
                         }
                     }
@@ -76,12 +77,15 @@ android {
     productFlavors {
         googleplay {
             dimension "channel"
+            manifestPlaceholders = [CHANNEL_VALUE: "googleplay"]
         }
         baidu {
             dimension "channel"
+            manifestPlaceholders = [CHANNEL_VALUE: "baidu"]
         }
         amazon {
             dimension "channel"
+            manifestPlaceholders = [CHANNEL_VALUE: "amazon"]
         }
     }
 }
