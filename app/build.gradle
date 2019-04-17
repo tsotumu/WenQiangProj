@@ -17,7 +17,20 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0.0"
+
+        flavorDimensions("channel")
     }
+
+    signingConfigs {
+        release {
+            //设置release的签名信息
+            keyAlias 'licheng'
+            keyPassword 'licheng'
+            storeFile file('../key/licheng.jks')
+            storePassword 'licheng'
+        }
+    }
+
     buildTypes {
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
@@ -41,6 +54,7 @@ android {
                     }
                 }
             }
+            signingConfig signingConfigs.release
         }
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
@@ -59,6 +73,17 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+    productFlavors {
+        googleplay {
+            dimension "channel"
+        }
+        baidu {
+            dimension "channel"
+        }
+        amazon {
+            dimension "channel"
+        }
+    }
 }
 
 dependencies {
@@ -75,5 +100,5 @@ dependencies {
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
     compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha5'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
 }
